@@ -254,9 +254,9 @@
                     <!-- Left: Traditional Guesswork -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-old h-100">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
                                 <span class="ios-badge ios-badge-red">Traditional Campus Approach</span>
-                                <span class="text-muted small font-weight-bold">Uncertain & Risky</span>
+                                <span class="text-muted small font-weight-bold">Uncertain &amp; Risky</span>
                             </div>
                             
                             <h3 class="font-weight-bold mb-4" style="font-size: 1.45rem; letter-spacing: -0.02em; color: var(--ios-text-primary);">
@@ -309,8 +309,8 @@
                     <!-- Right: SkillTrack Solution -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-new h-100">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <span class="ios-badge ios-badge-green">The SkillTrack Scientific System</span>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                                <span class="ios-badge ios-badge-green">SkillTrack Scientific System</span>
                                 <span class="text-success small font-weight-bold">Deterministic Success</span>
                             </div>
                             
@@ -485,7 +485,7 @@
                             
                             <!-- Enhanced Project Card -->
                             <div class="p-3 bg-light rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                                     <div class="d-flex align-items-center">
                                         <span class="mr-2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--ios-green); display: inline-block;"></span>
                                         <span class="font-weight-bold small" style="color: var(--ios-text-primary);">E-Commerce Microservices Platform</span>
@@ -516,7 +516,7 @@
                             </p>
                             
                             <!-- Enhanced Criteria Matcher Box -->
-                            <div class="p-3 bg-light rounded-lg border d-flex justify-content-between align-items-center" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
+                            <div class="p-3 bg-light rounded-lg border d-flex flex-wrap justify-content-between align-items-center gap-2" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
                                 <div>
                                     <div class="font-weight-bold small" style="color: var(--ios-text-primary);">Tier-1 Product Company Cutoff</div>
                                     <small class="text-muted">Min CGPA: 8.0 | Max Backlogs: 0 | Score &ge; 80</small>

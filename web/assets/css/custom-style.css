@@ -568,7 +568,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 18px;
   }
 
-  .ios-feature-card {
+  .ios-feature-card,
+  .ios-compare-card-old,
+  .ios-compare-card-new {
     padding: 1.5rem 1.25rem !important;
   }
 
@@ -671,6 +673,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.775rem;
   font-weight: 700;
   border-radius: var(--ios-radius-full);
+  white-space: nowrap !important;
 }
 
 .ios-badge-blue   { background: #edf5ff; color: #005bb5; border: 1px solid rgba(0, 91, 181, 0.2); }

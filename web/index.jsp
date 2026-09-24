@@ -723,7 +723,7 @@
                         <div class="accordion" id="faqAccordion">
                             <!-- FAQ 1 -->
                             <div class="ios-accordion-item">
-                                <button class="ios-accordion-btn" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                <button class="ios-accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
                                     <span>How is the 100-Point Placement Readiness Score calculated?</span>
                                     <span class="ios-accordion-icon-circle">
                                         <svg class="ios-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -731,7 +731,7 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <div id="faqCollapse1" class="collapse show" data-parent="#faqAccordion">
+                                <div id="faqCollapse1" class="collapse" data-parent="#faqAccordion">
                                     <div class="ios-accordion-body">
                                         SkillTrack uses a weighted deterministic algorithm designed by industry hiring leads:
                                         <ul class="mb-0 mt-2 pl-3">

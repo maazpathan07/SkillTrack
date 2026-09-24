@@ -534,7 +534,7 @@
 
                 <div class="row">
                     <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-left">
+                        <div class="ios-feature-card text-center">
                             <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 01</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Register Profile</h5>
                             <p class="text-muted small mb-0">Sign up with your college email, department (CSE, IT, ECE), graduation year, and current CGPA.</p>
@@ -542,7 +542,7 @@
                     </div>
 
                     <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-left">
+                        <div class="ios-feature-card text-center">
                             <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 02</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Select Target Role</h5>
                             <p class="text-muted small mb-0">Pick your desired industry role to instantly uncover required competencies and proficiency benchmarks.</p>
@@ -550,7 +550,7 @@
                     </div>
 
                     <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-left">
+                        <div class="ios-feature-card text-center">
                             <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 03</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Execute Daily Prep</h5>
                             <p class="text-muted small mb-0">Rate mastered skills, log solved DSA questions, add GitHub project repositories, and complete action tasks.</p>
@@ -558,7 +558,7 @@
                     </div>
 
                     <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-left">
+                        <div class="ios-feature-card text-center">
                             <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 04</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Qualify & Get Hired</h5>
                             <p class="text-muted small mb-0">Export your official verified Readiness Card, check company eligibility cutoffs, and sit for campus drives.</p>

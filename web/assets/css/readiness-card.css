@@ -1,0 +1,102 @@
+/* =====================================================================
+   SkillTrack Readiness Card & Print Stylesheet
+   ===================================================================== */
+
+.readiness-card-container {
+    max-width: 850px;
+    margin: 2rem auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
+}
+
+.readiness-header {
+    border-bottom: 2px solid #1e3c72;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.readiness-score-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 6px solid #1e3c72;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: #f8fafc;
+}
+
+.readiness-score-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #1e3c72;
+}
+
+.readiness-score-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.component-breakdown-table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.component-breakdown-table td {
+    vertical-align: middle;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: #ffffff !important;
+        font-size: 11pt !important;
+        color: #000000 !important;
+    }
+
+    .no-print,
+    .navbar,
+    .sidebar,
+    .btn,
+    footer,
+    .alert {
+        display: none !important;
+    }
+
+    .readiness-card-container {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+
+    .progress {
+        border: 1px solid #ccc !important;
+    }
+
+    a[href]:after {
+        content: none !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 1.5cm;
+    }
+}

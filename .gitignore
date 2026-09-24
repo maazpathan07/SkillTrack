@@ -1,0 +1,25 @@
+# Build and distribution directories
+/build/
+/dist/
+*.class
+
+# NetBeans private configurations and backups
+/nbproject/private/
+*.xml~
+
+# Log files and crash dumps
+*.log
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE-specific metadata
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath

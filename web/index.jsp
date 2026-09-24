@@ -254,9 +254,8 @@
                     <!-- Left: Traditional Guesswork -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-old h-100">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                            <div class="mb-4">
                                 <span class="ios-badge ios-badge-red">Traditional Campus Approach</span>
-                                <span class="text-muted small font-weight-bold">Uncertain &amp; Risky</span>
                             </div>
                             
                             <h3 class="font-weight-bold mb-4" style="font-size: 1.45rem; letter-spacing: -0.02em; color: var(--ios-text-primary);">
@@ -309,9 +308,8 @@
                     <!-- Right: SkillTrack Solution -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-new h-100">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                            <div class="mb-4">
                                 <span class="ios-badge ios-badge-green">SkillTrack Scientific System</span>
-                                <span class="text-success small font-weight-bold">Deterministic Success</span>
                             </div>
                             
                             <h3 class="font-weight-bold mb-4" style="font-size: 1.45rem; letter-spacing: -0.02em; color: var(--ios-text-primary);">

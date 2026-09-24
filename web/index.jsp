@@ -45,10 +45,14 @@
                 <a href="#faq" class="ios-capsule-link">FAQ</a>
             </nav>
 
-            <!-- Apple Capsule Action Button Group -->
-            <div class="ios-capsule-pill">
-                <a class="ios-capsule-link" href="${pageContext.request.contextPath}/login">Sign In</a>
-                <a class="ios-capsule-tag" href="${pageContext.request.contextPath}/register" style="color: var(--ios-blue); text-decoration: none;">Get Started &rarr;</a>
+            <!-- Apple Pill Action Buttons -->
+            <div class="d-flex align-items-center">
+                <a class="ios-btn-secondary mr-2" href="${pageContext.request.contextPath}/login" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">
+                    Sign In
+                </a>
+                <a class="ios-btn-primary" href="${pageContext.request.contextPath}/register" style="padding: 0.5rem 1.35rem; font-size: 0.875rem;">
+                    Get Started &rarr;
+                </a>
             </div>
         </header>
 
@@ -57,13 +61,10 @@
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row align-items-center">
                     <div class="col-lg-7 text-center text-lg-left mb-5 mb-lg-0">
-                        <!-- Apple Style Capsule Pill Tag -->
-                        <div class="ios-capsule-pill mb-4">
-                            <span class="ios-capsule-tag">
-                                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-blue); display: inline-block;"></span>
-                                Placement Intelligence
-                            </span>
-                            <span class="ios-capsule-label">v1.0 Platform</span>
+                        <!-- Apple Style Pill Tag -->
+                        <div class="d-inline-flex align-items-center px-3 py-1 mb-4 rounded-pill border" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); font-size: 0.825rem; font-weight: 700; color: var(--ios-blue);">
+                            <span class="mr-2" style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-blue); display: inline-block;"></span>
+                            Placement Intelligence Platform
                         </div>
                         
                         <!-- Hero Typography -->
@@ -89,19 +90,19 @@
                             </a>
                         </div>
 
-                        <!-- Micro Feature Capsule Badges -->
+                        <!-- Micro Feature Badges -->
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2 pt-2">
-                            <span class="ios-capsule-badge mr-2 mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                <span>Deterministic Algorithm</span>
+                            <span class="ios-badge ios-badge-gray mr-2 mb-2">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                Deterministic Algorithm
                             </span>
-                            <span class="ios-capsule-badge mr-2 mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                                <span>12+ Target Roles</span>
+                            <span class="ios-badge ios-badge-gray mr-2 mb-2">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                                12+ Industry Roles
                             </span>
-                            <span class="ios-capsule-badge mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary mr-1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                                <span>PDF Readiness Card</span>
+                            <span class="ios-badge ios-badge-gray mb-2">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                                PDF Readiness Card
                             </span>
                         </div>
                     </div>
@@ -188,10 +189,7 @@
         <section class="py-5 bg-white border-top border-bottom" id="comparison">
             <div class="container py-5">
                 <div class="text-center mb-5">
-                    <div class="ios-capsule-pill mb-3">
-                        <span class="ios-capsule-tag">Why SkillTrack?</span>
-                        <span class="ios-capsule-label">Scientific Benchmarks</span>
-                    </div>
+                    <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Why SkillTrack?</span>
                     <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
                         The Placement Revolution: Data Over Guesswork
                     </h2>
@@ -205,11 +203,8 @@
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-old h-100">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <span class="ios-capsule-badge text-danger" style="background: #fff1f2; border-color: #fecdd3;">
-                                    <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-red); display: inline-block;"></span>
-                                    Traditional Campus Approach
-                                </span>
-                                <span class="text-muted small font-weight-bold">Uncertain &amp; Risky</span>
+                                <span class="ios-badge ios-badge-red">Traditional Campus Approach</span>
+                                <span class="text-muted small font-weight-bold">Uncertain & Risky</span>
                             </div>
                             
                             <h3 class="font-weight-bold mb-4" style="font-size: 1.45rem; letter-spacing: -0.02em; color: var(--ios-text-primary);">
@@ -263,10 +258,7 @@
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-new h-100">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <span class="ios-capsule-badge text-success" style="background: #f0fdf4; border-color: #bbf7d0;">
-                                    <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-green); display: inline-block;"></span>
-                                    The SkillTrack Scientific System
-                                </span>
+                                <span class="ios-badge ios-badge-green">The SkillTrack Scientific System</span>
                                 <span class="text-success small font-weight-bold">Deterministic Success</span>
                             </div>
                             
@@ -325,10 +317,7 @@
         <section class="py-5" id="features" style="background: var(--ios-bg-base);">
             <div class="container py-5">
                 <div class="text-center mb-5">
-                    <div class="ios-capsule-pill mb-3">
-                        <span class="ios-capsule-tag">Core Capabilities</span>
-                        <span class="ios-capsule-label">4 Modular Placement Engines</span>
-                    </div>
+                    <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Core Capabilities</span>
                     <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
                         Four Modular Placement Engines
                     </h2>
@@ -492,10 +481,7 @@
         <section class="py-5 bg-white border-top border-bottom" id="roadmap">
             <div class="container py-5">
                 <div class="text-center mb-5">
-                    <div class="ios-capsule-pill mb-3">
-                        <span class="ios-capsule-tag">4-Step Action Plan</span>
-                        <span class="ios-capsule-label">Roadmap to Offer Letter</span>
-                    </div>
+                    <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">4-Step Action Plan</span>
                     <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
                         Your Structured Roadmap to Placement
                     </h2>
@@ -507,7 +493,7 @@
                 <div class="row">
                     <div class="col-md-3 mb-4">
                         <div class="ios-feature-card text-left">
-                            <span class="ios-capsule-tag mb-3" style="font-size: 0.75rem;">STEP 01</span>
+                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 01</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Register Profile</h5>
                             <p class="text-muted small mb-0">Sign up with your college email, department (CSE, IT, ECE), graduation year, and current CGPA.</p>
                         </div>
@@ -515,7 +501,7 @@
 
                     <div class="col-md-3 mb-4">
                         <div class="ios-feature-card text-left">
-                            <span class="ios-capsule-tag mb-3" style="font-size: 0.75rem;">STEP 02</span>
+                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 02</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Select Target Role</h5>
                             <p class="text-muted small mb-0">Pick your desired industry role to instantly uncover required competencies and proficiency benchmarks.</p>
                         </div>
@@ -523,7 +509,7 @@
 
                     <div class="col-md-3 mb-4">
                         <div class="ios-feature-card text-left">
-                            <span class="ios-capsule-tag mb-3" style="font-size: 0.75rem;">STEP 03</span>
+                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 03</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Execute Daily Prep</h5>
                             <p class="text-muted small mb-0">Rate mastered skills, log solved DSA questions, add GitHub project repositories, and complete action tasks.</p>
                         </div>
@@ -531,7 +517,7 @@
 
                     <div class="col-md-3 mb-4">
                         <div class="ios-feature-card text-left">
-                            <span class="ios-capsule-tag mb-3" style="font-size: 0.75rem;">STEP 04</span>
+                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 04</span>
                             <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Qualify & Get Hired</h5>
                             <p class="text-muted small mb-0">Export your official verified Readiness Card, check company eligibility cutoffs, and sit for campus drives.</p>
                         </div>
@@ -545,10 +531,7 @@
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
-                        <div class="ios-capsule-pill mb-3">
-                            <span class="ios-capsule-tag">Faculty &amp; TPO Console</span>
-                            <span class="ios-capsule-label">Cohort Intelligence</span>
-                        </div>
+                        <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Faculty &amp; TPO Console</span>
                         <h2 class="font-weight-bold mb-3" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
                             Enterprise Intelligence for Placement Officers
                         </h2>
@@ -684,10 +667,7 @@
         <section class="py-5 bg-white border-top border-bottom" id="faq">
             <div class="container py-5">
                 <div class="text-center mb-5">
-                    <div class="ios-capsule-pill mb-3">
-                        <span class="ios-capsule-tag">Got Questions?</span>
-                        <span class="ios-capsule-label">Knowledgebase &amp; FAQs</span>
-                    </div>
+                    <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Got Questions?</span>
                     <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
                         Frequently Asked Questions
                     </h2>
@@ -782,12 +762,9 @@
         <section class="py-5" style="background: var(--ios-bg-base);">
             <div class="container py-5">
                 <div class="ios-dark-glass-banner">
-                    <div class="ios-capsule-pill mb-4" style="background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.22);">
-                        <span class="ios-capsule-tag" style="background: #ffffff; color: #0f172a;">
-                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-green); display: inline-block;"></span>
-                            System Active
-                        </span>
-                        <span class="ios-capsule-label font-weight-bold" style="color: #ffffff;">Campus Placement Accelerator</span>
+                    <div class="d-inline-flex align-items-center px-3 py-1 mb-4 rounded-pill" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.8rem; font-weight: 600; color: #ffffff;">
+                        <span class="mr-2" style="width: 6px; height: 6px; border-radius: 50%; background: #34c759; display: inline-block;"></span>
+                        Placement Readiness Platform
                     </div>
                     
                     <h2 class="display-5 font-weight-bold mb-3 text-white" style="letter-spacing: -0.035em; font-size: 2.75rem;">

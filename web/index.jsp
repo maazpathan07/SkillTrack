@@ -842,10 +842,10 @@
         <!-- 8. APPLE MINIMALIST MULTI-COLUMN FOOTER -->
         <footer class="ios-footer">
             <div class="container">
-                <div class="row mb-5">
+                <div class="row mb-5 text-center text-lg-left">
                     <!-- Brand Column -->
-                    <div class="col-lg-4 mb-4 mb-lg-0 text-left">
-                        <a class="ios-brand d-inline-flex mb-3" href="${pageContext.request.contextPath}/">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <a class="ios-brand d-inline-flex mb-3 justify-content-center justify-content-lg-start" href="${pageContext.request.contextPath}/">
                             <span class="ios-brand-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -855,16 +855,18 @@
                             </span>
                             <span class="ml-2 font-weight-bold" style="color: var(--ios-text-primary);">SkillTrack</span>
                         </a>
-                        <p class="text-muted small pr-lg-4 mb-3" style="line-height: 1.6;">
+                        <p class="text-muted small pr-lg-4 mb-3 mx-auto ml-lg-0" style="line-height: 1.6; max-width: 420px;">
                             Student Skill Benchmarking, DSA Milestone Tracker & Placement Readiness Management Platform.
                         </p>
-                        <span class="ios-badge ios-badge-gray">
-                            Designed for Engineering & Tech Universities
-                        </span>
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <span class="ios-badge ios-badge-gray">
+                                Designed for Engineering & Tech Universities
+                            </span>
+                        </div>
                     </div>
 
                     <!-- Column 2: Student Engines -->
-                    <div class="col-6 col-lg-2 mb-4 mb-lg-0 text-left">
+                    <div class="col-6 col-lg-2 mb-4 mb-lg-0">
                         <div class="ios-footer-heading">Student Tools</div>
                         <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Skill Gap Radar</a>
                         <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">DSA Milestones</a>
@@ -873,7 +875,7 @@
                     </div>
 
                     <!-- Column 3: Placement TPO -->
-                    <div class="col-6 col-lg-3 mb-4 mb-lg-0 text-left">
+                    <div class="col-6 col-lg-3 mb-4 mb-lg-0">
                         <div class="ios-footer-heading">Placement Cells</div>
                         <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Cohort Intelligence</a>
                         <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Company Criteria Rules</a>
@@ -882,7 +884,7 @@
                     </div>
 
                     <!-- Column 4: Portals -->
-                    <div class="col-12 col-lg-3 text-left">
+                    <div class="col-12 col-lg-3">
                         <div class="ios-footer-heading">Quick Access</div>
                         <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Create Student Account</a>
                         <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Administrator Portal</a>

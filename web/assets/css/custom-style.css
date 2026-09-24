@@ -540,6 +540,20 @@ h1, h2, h3, h4, h5, h6 {
   .ios-desktop-actions {
     display: none !important;
   }
+
+  .ios-footer {
+    text-align: center;
+    padding: 3.5rem 0 2rem 0;
+  }
+
+  .ios-footer .ios-brand {
+    justify-content: center;
+  }
+
+  .ios-footer-heading {
+    margin-top: 1.25rem;
+    margin-bottom: 0.85rem;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -848,7 +862,7 @@ h1, h2, h3, h4, h5, h6 {
 .ios-footer-link:hover {
   color: var(--ios-blue);
   text-decoration: none;
-  transform: translateX(3px);
+  transform: translateY(-2px);
 }
 
 /* =====================================================================

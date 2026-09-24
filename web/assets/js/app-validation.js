@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 5. ScrollSpy & Sticky Navbar Glass Controller
     var navbar = document.querySelector(".ios-navbar");
     var scrollTopBtn = document.getElementById("iosScrollTopBtn");
-    var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#']");
+    var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#']");
     var sections = [];
 
     navLinks.forEach(function (link) {

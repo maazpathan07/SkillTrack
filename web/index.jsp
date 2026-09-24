@@ -35,14 +35,14 @@
                 </a>
             </div>
 
-            <!-- Clean Nav Links -->
-            <nav class="d-none d-lg-flex align-items-center">
-                <a href="#overview" class="ios-nav-link mr-1">Overview</a>
-                <a href="#comparison" class="ios-nav-link mr-1">Why SkillTrack</a>
-                <a href="#features" class="ios-nav-link mr-1">Capabilities</a>
-                <a href="#roadmap" class="ios-nav-link mr-1">Roadmap</a>
-                <a href="#tpo-portal" class="ios-nav-link mr-1">Placement Cells</a>
-                <a href="#faq" class="ios-nav-link">FAQ</a>
+            <!-- Apple Floating Capsule Pill Navigation Menu -->
+            <nav class="d-none d-lg-flex align-items-center ios-capsule-nav">
+                <a href="#overview" class="ios-capsule-link active">Overview</a>
+                <a href="#comparison" class="ios-capsule-link">Why SkillTrack</a>
+                <a href="#features" class="ios-capsule-link">Capabilities</a>
+                <a href="#roadmap" class="ios-capsule-link">Roadmap</a>
+                <a href="#tpo-portal" class="ios-capsule-link">Placement Cells</a>
+                <a href="#faq" class="ios-capsule-link">FAQ</a>
             </nav>
 
             <!-- Apple Pill Action Buttons -->

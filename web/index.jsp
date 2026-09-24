@@ -254,7 +254,7 @@
                     <!-- Left: Traditional Guesswork -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-old h-100">
-                            <div class="mb-4">
+                            <div class="text-center mb-4">
                                 <span class="ios-badge ios-badge-red">Traditional Campus Approach</span>
                             </div>
                             
@@ -308,7 +308,7 @@
                     <!-- Right: SkillTrack Solution -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-compare-card-new h-100">
-                            <div class="mb-4">
+                            <div class="text-center mb-4">
                                 <span class="ios-badge ios-badge-green">SkillTrack Scientific System</span>
                             </div>
                             

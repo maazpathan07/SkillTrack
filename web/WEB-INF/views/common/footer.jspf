@@ -45,6 +45,6 @@
     <!-- Bootstrap 4.6.2 Bundle (Includes Popper) -->
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <!-- Application Helper & Glassmorphic Validation Script -->
-    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=2.5"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=3.2"></script>
 </body>
 </html>

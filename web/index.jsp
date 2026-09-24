@@ -865,7 +865,7 @@
         <!-- Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/app-validation.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=3.2"></script>
 
         <!-- Interactive Hero Role Switcher Demo Script -->
         <script>

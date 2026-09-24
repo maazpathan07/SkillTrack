@@ -139,13 +139,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }, true);
 
     // 4. Apple iOS 18 Smooth Scroll Momentum & Timing System
-    function smoothScrollTo(targetY, duration) {
+    var isUserClickScrolling = false;
+    var userClickTimer = null;
+
+    function setActiveNavLink(targetId) {
+        if (!targetId) return;
+        var links = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#']");
+        links.forEach(function (link) {
+            var href = link.getAttribute("href");
+            if (href === targetId) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    function smoothScrollTo(targetY, duration, targetId) {
         var startY = window.pageYOffset || document.documentElement.scrollTop;
         var diff = targetY - startY;
         if (Math.abs(diff) < 2) return;
 
+        isUserClickScrolling = true;
+        if (userClickTimer) clearTimeout(userClickTimer);
+        if (targetId) setActiveNavLink(targetId);
+
         var start = null;
-        duration = duration || 520; // Silky Apple timing
+        duration = duration || 500;
 
         function easeInOutQuad(t, b, c, d) {
             t /= d / 2;
@@ -163,6 +183,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.requestAnimationFrame(step);
             } else {
                 window.scrollTo(0, targetY);
+                userClickTimer = setTimeout(function () {
+                    isUserClickScrolling = false;
+                }, 100);
             }
         }
         window.requestAnimationFrame(step);
@@ -185,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var offsetPosition = elementPosition + (window.pageYOffset || document.documentElement.scrollTop) - navHeight;
             if (offsetPosition < 0) offsetPosition = 0;
 
-            smoothScrollTo(offsetPosition, 520);
+            smoothScrollTo(offsetPosition, 500, hash);
 
             if (history.pushState) {
                 history.pushState(null, null, hash);
@@ -193,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 5. ScrollSpy & Sticky Navbar Glass Controller
+    // 5. High-Precision ScrollSpy & Sticky Navbar Glass Controller
     var navbar = document.querySelector(".ios-navbar");
     var scrollTopBtn = document.getElementById("iosScrollTopBtn");
     var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#']");
@@ -231,31 +254,36 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // ScrollSpy active link detection
-        if (sections.length > 0) {
-            var navHeight = (navbar ? navbar.offsetHeight : 70) + 30;
+        // ScrollSpy active link detection (Dynamic section detection during scroll)
+        if (sections.length > 0 && !isUserClickScrolling) {
+            var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            var clientHeight = window.innerHeight || document.documentElement.clientHeight;
+            var isAtBottom = (scrollY + clientHeight) >= (scrollHeight - 60);
+
             var currentSectionId = null;
 
-            for (var i = sections.length - 1; i >= 0; i--) {
-                var sectionTop = sections[i].element.offsetTop;
-                if (scrollY >= sectionTop - navHeight) {
-                    currentSectionId = sections[i].id;
-                    break;
-                }
-            }
-
-            // If at very top of page, default to first section if exists
-            if (!currentSectionId && scrollY < 100 && sections.length > 0) {
+            if (isAtBottom) {
+                // Bottom of page -> activate last item (e.g. FAQ)
+                currentSectionId = sections[sections.length - 1].id;
+            } else if (scrollY < 120) {
+                // Top of page -> activate first item (e.g. Overview)
                 currentSectionId = sections[0].id;
+            } else {
+                var navHeight = (navbar ? navbar.offsetHeight : 70);
+                var activeThreshold = navHeight + 140;
+
+                // Find section whose top has entered active threshold
+                for (var i = 0; i < sections.length; i++) {
+                    var rect = sections[i].element.getBoundingClientRect();
+                    if (rect.top <= activeThreshold && rect.bottom > navHeight + 20) {
+                        currentSectionId = sections[i].id;
+                    }
+                }
             }
 
-            sections.forEach(function (item) {
-                if (item.id === currentSectionId) {
-                    item.link.classList.add("active");
-                } else {
-                    item.link.classList.remove("active");
-                }
-            });
+            if (currentSectionId) {
+                setActiveNavLink(currentSectionId);
+            }
         }
 
         ticking = false;
@@ -275,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollTopBtn) {
         scrollTopBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            smoothScrollTo(0, 520);
+            smoothScrollTo(0, 500, (sections.length > 0 ? sections[0].id : null));
         });
     }
 });

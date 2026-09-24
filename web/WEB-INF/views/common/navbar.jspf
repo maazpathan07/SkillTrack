@@ -100,9 +100,9 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="d-flex align-items-center gap-2">
-                    <a class="ios-btn-secondary mr-2" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/login">Sign In</a>
-                    <a class="ios-btn-primary" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/register">Get Started &rarr;</a>
+                <div class="ios-capsule-pill">
+                    <a class="ios-capsule-link" href="${pageContext.request.contextPath}/login">Sign In</a>
+                    <a class="ios-capsule-tag" href="${pageContext.request.contextPath}/register" style="color: var(--ios-blue); text-decoration: none;">Get Started &rarr;</a>
                 </div>
             </c:otherwise>
         </c:choose>

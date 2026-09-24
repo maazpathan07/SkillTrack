@@ -32,98 +32,97 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 3. Apple iOS 18 Liquid Glassmorphic Confirmation Modal System
-    var activeFormOrLink = null;
+    var activeTarget = null;
 
-    function createOrGetConfirmModal() {
-        var existing = document.getElementById("iosConfirmModalBackdrop");
-        if (existing) return existing;
-
-        var backdrop = document.createElement("div");
-        backdrop.id = "iosConfirmModalBackdrop";
-        backdrop.className = "ios-modal-backdrop";
-        backdrop.setAttribute("role", "dialog");
-        backdrop.setAttribute("aria-modal", "true");
-        backdrop.setAttribute("aria-labelledby", "iosConfirmModalTitle");
-
-        backdrop.innerHTML = [
-            '<div class="ios-modal-card">',
-            '  <div class="ios-modal-icon-badge" aria-hidden="true">',
-            '    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">',
-            '      <polyline points="3 6 5 6 21 6"></polyline>',
-            '      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>',
-            '      <line x1="10" y1="11" x2="10" y2="17"></line>',
-            '      <line x1="14" y1="11" x2="14" y2="17"></line>',
-            '    </svg>',
-            '  </div>',
-            '  <h3 id="iosConfirmModalTitle" class="ios-modal-title">Confirm Deletion</h3>',
-            '  <p id="iosConfirmModalMessage" class="ios-modal-body-text">Are you sure you want to remove this item? This action cannot be undone.</p>',
-            '  <div class="ios-modal-actions">',
-            '    <button type="button" id="iosConfirmModalCancel" class="ios-modal-btn-cancel">Cancel</button>',
-            '    <button type="button" id="iosConfirmModalSubmit" class="ios-modal-btn-confirm">Yes, Remove</button>',
-            '  </div>',
-            '</div>'
-        ].join('\n');
-
-        document.body.appendChild(backdrop);
-
-        // Backdrop click to cancel
-        backdrop.addEventListener("click", function (e) {
-            if (e.target === backdrop) {
-                closeConfirmModal();
-            }
-        });
-
-        // Cancel button click
-        document.getElementById("iosConfirmModalCancel").addEventListener("click", function () {
-            closeConfirmModal();
-        });
-
-        // Confirm button click
-        document.getElementById("iosConfirmModalSubmit").addEventListener("click", function () {
-            if (activeFormOrLink) {
-                if (activeFormOrLink.tagName === "FORM") {
-                    activeFormOrLink.submit();
-                } else if (activeFormOrLink.tagName === "A" && activeFormOrLink.href) {
-                    window.location.href = activeFormOrLink.href;
-                }
-            }
-            closeConfirmModal();
-        });
-
-        // Escape key to close
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && backdrop.classList.contains("is-open")) {
-                closeConfirmModal();
-            }
-        });
-
-        return backdrop;
+    function getModalElements() {
+        var backdrop = document.getElementById("iosConfirmModalBackdrop");
+        if (!backdrop) return null;
+        return {
+            backdrop: backdrop,
+            title: document.getElementById("iosConfirmModalTitle"),
+            msg: document.getElementById("iosConfirmModalMessage"),
+            cancelBtn: document.getElementById("iosConfirmModalCancel"),
+            submitBtn: document.getElementById("iosConfirmModalSubmit")
+        };
     }
 
     function openConfirmModal(title, message, targetElement) {
-        var modal = createOrGetConfirmModal();
-        activeFormOrLink = targetElement;
+        var elements = getModalElements();
+        if (!elements) return;
 
-        var titleEl = document.getElementById("iosConfirmModalTitle");
-        var msgEl = document.getElementById("iosConfirmModalMessage");
+        activeTarget = targetElement;
 
-        if (titleEl) titleEl.textContent = title || "Confirm Deletion";
-        if (msgEl) msgEl.textContent = message || "Are you sure you want to permanently remove this record?";
+        if (elements.title) elements.title.textContent = title || "Confirm Deletion";
+        if (elements.msg) elements.msg.textContent = message || "Are you sure you want to permanently remove this record?";
 
-        modal.classList.add("is-open");
-        var cancelBtn = document.getElementById("iosConfirmModalCancel");
-        if (cancelBtn) cancelBtn.focus();
+        elements.backdrop.style.display = "flex";
+        // Force reflow for smooth animation
+        void elements.backdrop.offsetWidth;
+        elements.backdrop.classList.add("is-open");
+
+        if (elements.cancelBtn) elements.cancelBtn.focus();
     }
 
     function closeConfirmModal() {
-        var modal = document.getElementById("iosConfirmModalBackdrop");
-        if (modal) {
-            modal.classList.remove("is-open");
-        }
-        activeFormOrLink = null;
+        var elements = getModalElements();
+        if (!elements) return;
+
+        elements.backdrop.classList.remove("is-open");
+        setTimeout(function() {
+            if (!elements.backdrop.classList.contains("is-open")) {
+                elements.backdrop.style.display = "none";
+            }
+        }, 200);
+        activeTarget = null;
     }
 
-    // Attach delegated click listener to all confirm-delete buttons
+    // Modal button interactions
+    var modalElements = getModalElements();
+    if (modalElements) {
+        // Cancel button click
+        if (modalElements.cancelBtn) {
+            modalElements.cancelBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                closeConfirmModal();
+            });
+        }
+
+        // Submit/Confirm button click
+        if (modalElements.submitBtn) {
+            modalElements.submitBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                if (activeTarget) {
+                    var target = activeTarget;
+                    closeConfirmModal();
+                    if (target.tagName === "FORM") {
+                        target.submit();
+                    } else if (target.closest && target.closest("form")) {
+                        target.closest("form").submit();
+                    } else if (target.tagName === "A" && target.href) {
+                        window.location.href = target.href;
+                    }
+                } else {
+                    closeConfirmModal();
+                }
+            });
+        }
+
+        // Backdrop click to dismiss
+        modalElements.backdrop.addEventListener("click", function (e) {
+            if (e.target === modalElements.backdrop) {
+                closeConfirmModal();
+            }
+        });
+
+        // Escape key to dismiss
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && modalElements.backdrop.classList.contains("is-open")) {
+                closeConfirmModal();
+            }
+        });
+    }
+
+    // Universal click interceptor for .confirm-delete buttons
     document.addEventListener("click", function (event) {
         var button = event.target.closest(".confirm-delete");
         if (!button) return;
@@ -137,5 +136,5 @@ document.addEventListener("DOMContentLoaded", function () {
         var title = button.getAttribute("data-title") || "Confirm Removal";
 
         openConfirmModal(title, msg, target);
-    });
+    }, true);
 });

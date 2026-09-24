@@ -14,7 +14,7 @@
     </footer>
 
     <!-- Apple iOS 18 Glassmorphic Confirmation Modal -->
-    <div id="iosConfirmModalBackdrop" class="ios-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="iosConfirmModalTitle">
+    <div id="iosConfirmModalBackdrop" class="ios-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="iosConfirmModalTitle" style="display: none;">
         <div class="ios-modal-card">
             <div class="ios-modal-icon-badge" aria-hidden="true">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

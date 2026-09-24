@@ -1410,22 +1410,28 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   z-index: 99999 !important;
-  display: flex;
+  display: none !important;
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none !important;
 }
 
 .ios-modal-backdrop.is-open {
-  opacity: 1;
-  visibility: visible;
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  animation: iosBackdropFadeIn 0.2s ease forwards;
+}
+
+@keyframes iosBackdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .ios-modal-card {

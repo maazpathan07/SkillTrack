@@ -668,7 +668,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
+  flex-shrink: 0;
   box-shadow: var(--ios-shadow-sm);
 }
 

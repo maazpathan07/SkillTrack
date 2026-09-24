@@ -380,14 +380,16 @@
                     <!-- Feature Card 1: Role Skill Gap Engine -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-feature-card">
-                            <div class="text-center mb-3">
-                                <div class="ios-icon-box ios-icon-blue mx-auto mb-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="ios-icon-box ios-icon-blue mr-3 flex-shrink-0">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                                 </div>
-                                <h5 class="font-weight-bold mb-1" style="color: var(--ios-text-primary);">Role Skill Gap Engine</h5>
-                                <small class="text-muted">Target Competency Benchmarking</small>
+                                <div>
+                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Role Skill Gap Engine</h5>
+                                    <small class="text-muted" style="display: block; margin-top: 2px;">Target Competency Benchmarking</small>
+                                </div>
                             </div>
-                            <p class="text-muted small text-center mb-4">
+                            <p class="text-muted small mb-4">
                                 Select your target role (Full Stack, Backend, Cloud DevOps) and immediately discover acquired proficiencies vs missing requirements.
                             </p>
 
@@ -423,14 +425,16 @@
                     <!-- Feature Card 2: DSA Problem Solving Engine -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-feature-card">
-                            <div class="text-center mb-3">
-                                <div class="ios-icon-box ios-icon-green mx-auto mb-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="ios-icon-box ios-icon-green mr-3 flex-shrink-0">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
                                 </div>
-                                <h5 class="font-weight-bold mb-1" style="color: var(--ios-text-primary);">DSA & Problem Solving Engine</h5>
-                                <small class="text-muted">Topic-Wise Algorithmic Milestones</small>
+                                <div>
+                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">DSA & Problem Solving Engine</h5>
+                                    <small class="text-muted" style="display: block; margin-top: 2px;">Topic-Wise Algorithmic Milestones</small>
+                                </div>
                             </div>
-                            <p class="text-muted small text-center mb-4">
+                            <p class="text-muted small mb-4">
                                 Maintain structured daily logs across Arrays, Trees, Graphs, and Dynamic Programming with difficulty breakdown counters.
                             </p>
 
@@ -464,14 +468,16 @@
                     <!-- Feature Card 3: Project & Certification Portfolio -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-feature-card">
-                            <div class="text-center mb-3">
-                                <div class="ios-icon-box ios-icon-purple mx-auto mb-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="ios-icon-box ios-icon-purple mr-3 flex-shrink-0">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                                 </div>
-                                <h5 class="font-weight-bold mb-1" style="color: var(--ios-text-primary);">Project & Certification Portfolio</h5>
-                                <small class="text-muted">Verified Proof-of-Work</small>
+                                <div>
+                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Project & Certification Portfolio</h5>
+                                    <small class="text-muted" style="display: block; margin-top: 2px;">Verified Proof-of-Work</small>
+                                </div>
                             </div>
-                            <p class="text-muted small text-center mb-3">
+                            <p class="text-muted small mb-3">
                                 Showcase real-world GitHub repositories, live deployed application URLs, tech stacks, and industry certification credentials.
                             </p>
                             
@@ -494,14 +500,16 @@
                     <!-- Feature Card 4: Placement Cutoff Matcher -->
                     <div class="col-lg-6 mb-4">
                         <div class="ios-feature-card">
-                            <div class="text-center mb-3">
-                                <div class="ios-icon-box ios-icon-orange mx-auto mb-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="ios-icon-box ios-icon-orange mr-3 flex-shrink-0">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 </div>
-                                <h5 class="font-weight-bold mb-1" style="color: var(--ios-text-primary);">Placement Cutoff Matcher</h5>
-                                <small class="text-muted">Real-Time Company Eligibility</small>
+                                <div>
+                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Placement Cutoff Matcher</h5>
+                                    <small class="text-muted" style="display: block; margin-top: 2px;">Real-Time Company Eligibility</small>
+                                </div>
                             </div>
-                            <p class="text-muted small text-center mb-3">
+                            <p class="text-muted small mb-3">
                                 Automated evaluation against hiring criteria (CGPA threshold, allowed backlogs, mandatory skills) with real-time match status.
                             </p>
                             

@@ -17,9 +17,9 @@
     <!-- Bootstrap 4.6.2 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
     <!-- SkillTrack Enterprise SaaS Theme -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom-style.css?v=2.5">
     <!-- Readiness Card & Print Styling -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/readiness-card.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/readiness-card.css?v=2.5">
     
     <!-- Chart.js 2.9.4 -->
     <script src="${pageContext.request.contextPath}/assets/js/chart.min.js"></script>

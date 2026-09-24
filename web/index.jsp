@@ -657,16 +657,6 @@
                                 </table>
                             </div>
 
-                            <!-- Bottom Action Row -->
-                            <div class="mt-4 pt-3 border-top d-flex flex-column flex-sm-row justify-content-between align-items-center" style="border-color: #f1f5f9 !important; gap: 0.75rem;">
-                                <span class="text-muted small d-flex align-items-center">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1 text-muted" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                    Admin role credentials required for export.
-                                </span>
-                                <a href="${pageContext.request.contextPath}/login" class="ios-btn-primary font-weight-bold d-inline-flex align-items-center" style="padding: 0.5rem 1.25rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
-                                    Admin Login &rarr;
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

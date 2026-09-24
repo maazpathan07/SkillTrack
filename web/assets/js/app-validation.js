@@ -137,4 +137,145 @@ document.addEventListener("DOMContentLoaded", function () {
 
         openConfirmModal(title, msg, target);
     }, true);
+
+    // 4. Apple iOS 18 Smooth Scroll Momentum & Timing System
+    function smoothScrollTo(targetY, duration) {
+        var startY = window.pageYOffset || document.documentElement.scrollTop;
+        var diff = targetY - startY;
+        if (Math.abs(diff) < 2) return;
+
+        var start = null;
+        duration = duration || 520; // Silky Apple timing
+
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        function step(timestamp) {
+            if (!start) start = timestamp;
+            var progress = timestamp - start;
+            var current = easeInOutQuad(progress, startY, diff, duration);
+            window.scrollTo(0, current);
+            if (progress < duration) {
+                window.requestAnimationFrame(step);
+            } else {
+                window.scrollTo(0, targetY);
+            }
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    // Intercept in-page anchor links for fluid scrolling
+    document.addEventListener("click", function (event) {
+        var anchor = event.target.closest('a[href^="#"]');
+        if (!anchor) return;
+
+        var hash = anchor.getAttribute("href");
+        if (!hash || hash === "#" || hash === "#!") return;
+
+        var targetEl = document.querySelector(hash);
+        if (targetEl) {
+            event.preventDefault();
+            var nav = document.querySelector(".ios-navbar");
+            var navHeight = nav ? nav.offsetHeight : 70;
+            var elementPosition = targetEl.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + (window.pageYOffset || document.documentElement.scrollTop) - navHeight;
+            if (offsetPosition < 0) offsetPosition = 0;
+
+            smoothScrollTo(offsetPosition, 520);
+
+            if (history.pushState) {
+                history.pushState(null, null, hash);
+            }
+        }
+    });
+
+    // 5. ScrollSpy & Sticky Navbar Glass Controller
+    var navbar = document.querySelector(".ios-navbar");
+    var scrollTopBtn = document.getElementById("iosScrollTopBtn");
+    var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#']");
+    var sections = [];
+
+    navLinks.forEach(function (link) {
+        var hash = link.getAttribute("href");
+        if (hash && hash.length > 1) {
+            var el = document.querySelector(hash);
+            if (el) {
+                sections.push({ id: hash, element: el, link: link });
+            }
+        }
+    });
+
+    var ticking = false;
+    function handleScrollState() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Navbar scrolled glassmorphic state
+        if (navbar) {
+            if (scrollY > 20) {
+                navbar.classList.add("is-scrolled");
+            } else {
+                navbar.classList.remove("is-scrolled");
+            }
+        }
+
+        // Scroll to top button visibility
+        if (scrollTopBtn) {
+            if (scrollY > 350) {
+                scrollTopBtn.classList.add("is-visible");
+            } else {
+                scrollTopBtn.classList.remove("is-visible");
+            }
+        }
+
+        // ScrollSpy active link detection
+        if (sections.length > 0) {
+            var navHeight = (navbar ? navbar.offsetHeight : 70) + 30;
+            var currentSectionId = null;
+
+            for (var i = sections.length - 1; i >= 0; i--) {
+                var sectionTop = sections[i].element.offsetTop;
+                if (scrollY >= sectionTop - navHeight) {
+                    currentSectionId = sections[i].id;
+                    break;
+                }
+            }
+
+            // If at very top of page, default to first section if exists
+            if (!currentSectionId && scrollY < 100 && sections.length > 0) {
+                currentSectionId = sections[0].id;
+            }
+
+            sections.forEach(function (item) {
+                if (item.id === currentSectionId) {
+                    item.link.classList.add("active");
+                } else {
+                    item.link.classList.remove("active");
+                }
+            });
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+        if (!ticking) {
+            window.requestAnimationFrame(handleScrollState);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Initial scroll state trigger
+    handleScrollState();
+
+    // Scroll to top button click handler
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            smoothScrollTo(0, 520);
+        });
+    }
 });

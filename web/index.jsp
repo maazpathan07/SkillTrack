@@ -855,6 +855,13 @@
             </div>
         </footer>
 
+        <!-- Apple Floating Scroll To Top Action Button -->
+        <button type="button" class="ios-scroll-top-btn" id="iosScrollTopBtn" aria-label="Scroll to top" title="Back to top">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+
         <!-- Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>

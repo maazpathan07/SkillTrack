@@ -687,7 +687,23 @@
                                                 <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr style="border-bottom: 1px solid #f8fafc;">
+                                            <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="st-avatar-xs mr-2" style="background: rgba(52, 199, 89, 0.12); color: var(--ios-green-dark); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
+                                                        SG
+                                                    </div>
+                                                    <span style="color: var(--ios-text-primary);">Sneha Gupta</span>
+                                                </div>
+                                            </td>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">AI &amp; DS</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">9.12</td>
+                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">96 / 100</span></td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
+                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #f8fafc;">
                                             <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
                                                 <div class="d-flex align-items-center">
                                                     <div class="st-avatar-xs mr-2" style="background: rgba(255, 149, 0, 0.1); color: var(--ios-orange); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
@@ -703,8 +719,36 @@
                                                 <span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">In Progress</span>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="st-avatar-xs mr-2" style="background: rgba(88, 86, 214, 0.1); color: var(--ios-indigo); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
+                                                        RV
+                                                    </div>
+                                                    <span style="color: var(--ios-text-primary);">Rohan Verma</span>
+                                                </div>
+                                            </td>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">CSE</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">8.05</td>
+                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">78 / 100</span></td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
+                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <!-- Bottom Card Summary Toolbar -->
+                            <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 pt-2">
+                                <div class="small text-muted font-weight-semibold">
+                                    <span>Showing <strong>5 of 142</strong> eligible candidates</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">
+                                        94% Placement Ready
+                                    </span>
+                                </div>
                             </div>
 
                         </div>

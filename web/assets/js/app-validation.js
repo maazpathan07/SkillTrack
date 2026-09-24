@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setActiveNavLink(targetId) {
         if (!targetId) return;
-        var links = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#']");
+        var links = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#'], .ios-mobile-link[href^='#']");
         links.forEach(function (link) {
             var href = link.getAttribute("href");
             if (href === targetId) {
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 5. High-Precision ScrollSpy & Sticky Navbar Glass Controller
     var navbar = document.querySelector(".ios-navbar");
     var scrollTopBtn = document.getElementById("iosScrollTopBtn");
-    var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#']");
+    var navLinks = document.querySelectorAll(".ios-navbar .ios-nav-link[href^='#'], .ios-navbar .ios-capsule-link[href^='#'], .ios-mobile-link[href^='#']");
     var sections = [];
 
     navLinks.forEach(function (link) {
@@ -304,6 +304,31 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTopBtn.addEventListener("click", function (e) {
             e.preventDefault();
             smoothScrollTo(0, 500, (sections.length > 0 ? sections[0].id : null));
+        });
+    }
+
+    // 6. Mobile Navigation Drawer Controller
+    var mobileNavToggle = document.getElementById("iosMobileNavToggle");
+    var mobileDrawer = document.getElementById("iosMobileDrawer");
+
+    if (mobileNavToggle && mobileDrawer) {
+        mobileNavToggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            mobileDrawer.classList.toggle("is-open");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!mobileDrawer.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+                mobileDrawer.classList.remove("is-open");
+            }
+        });
+
+        var drawerAnchors = mobileDrawer.querySelectorAll("a[href^='#']");
+        drawerAnchors.forEach(function (anchor) {
+            anchor.addEventListener("click", function () {
+                mobileDrawer.classList.remove("is-open");
+            });
         });
     }
 });

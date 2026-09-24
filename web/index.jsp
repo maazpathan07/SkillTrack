@@ -21,7 +21,7 @@
         <%@ include file="/WEB-INF/views/common/header.jspf" %>
 
         <!-- Apple iOS Glassmorphism Sticky Navbar -->
-        <header class="ios-navbar d-flex align-items-center justify-content-between">
+        <header class="ios-navbar d-flex align-items-center justify-content-between position-sticky">
             <div class="d-flex align-items-center">
                 <a class="ios-brand" href="${pageContext.request.contextPath}/">
                     <span class="ios-brand-icon">
@@ -35,7 +35,7 @@
                 </a>
             </div>
 
-            <!-- Apple Floating Capsule Pill Navigation Menu -->
+            <!-- Apple Floating Capsule Pill Navigation Menu (Desktop) -->
             <nav class="d-none d-lg-flex align-items-center ios-capsule-nav">
                 <a href="#overview" class="ios-capsule-link active">Overview</a>
                 <a href="#comparison" class="ios-capsule-link">Why SkillTrack</a>
@@ -45,14 +45,66 @@
                 <a href="#faq" class="ios-capsule-link">FAQ</a>
             </nav>
 
-            <!-- Apple Pill Action Buttons -->
-            <div class="d-flex align-items-center">
+            <!-- Desktop Action Buttons -->
+            <div class="d-none d-lg-flex align-items-center ios-desktop-actions">
                 <a class="ios-btn-secondary mr-2" href="${pageContext.request.contextPath}/login" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">
                     Sign In
                 </a>
                 <a class="ios-btn-primary" href="${pageContext.request.contextPath}/register" style="padding: 0.5rem 1.35rem; font-size: 0.875rem;">
                     Get Started &rarr;
                 </a>
+            </div>
+
+            <!-- Mobile Actions & Hamburger Toggle (< 992px) -->
+            <div class="d-flex d-lg-none align-items-center">
+                <a class="ios-btn-primary mr-2" href="${pageContext.request.contextPath}/register" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;">
+                    Get Started
+                </a>
+                <button type="button" class="ios-mobile-toggle" id="iosMobileNavToggle" aria-label="Toggle navigation menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Apple iOS Mobile Glass Drawer Menu -->
+            <div class="ios-mobile-drawer" id="iosMobileDrawer">
+                <div class="mb-3">
+                    <a href="#overview" class="ios-mobile-link active">
+                        <span>Overview</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#comparison" class="ios-mobile-link">
+                        <span>Why SkillTrack</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#features" class="ios-mobile-link">
+                        <span>Capabilities</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#roadmap" class="ios-mobile-link">
+                        <span>Roadmap</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#tpo-portal" class="ios-mobile-link">
+                        <span>Placement Cells</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#faq" class="ios-mobile-link">
+                        <span>FAQ</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                </div>
+                <div class="pt-2 border-top d-flex flex-column gap-2">
+                    <a class="ios-btn-secondary text-center mb-2" href="${pageContext.request.contextPath}/login" style="padding: 0.65rem; font-size: 0.9rem;">
+                        Sign In to Portal
+                    </a>
+                    <a class="ios-btn-primary text-center" href="${pageContext.request.contextPath}/register" style="padding: 0.65rem; font-size: 0.9rem;">
+                        Create Student Account &rarr;
+                    </a>
+                </div>
             </div>
         </header>
 
@@ -68,7 +120,7 @@
                         </div>
                         
                         <!-- Hero Typography -->
-                        <h1 class="display-4 font-weight-bold mb-3" style="font-size: 3.5rem; letter-spacing: -0.04em; line-height: 1.12; color: #1d1d1f;">
+                        <h1 class="ios-hero-title font-weight-bold mb-3" style="color: #1d1d1f;">
                             Master Industry Skills. <br />
                             <span style="background: linear-gradient(135deg, #0071e3, #5856d6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                                 Accelerate Career Readiness.
@@ -190,7 +242,7 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Why SkillTrack?</span>
-                    <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
+                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
                         The Placement Revolution: Data Over Guesswork
                     </h2>
                     <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
@@ -318,7 +370,7 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Core Capabilities</span>
-                    <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
+                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
                         Four Modular Placement Engines
                     </h2>
                     <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
@@ -482,7 +534,7 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">4-Step Action Plan</span>
-                    <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
+                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
                         Your Structured Roadmap to Placement
                     </h2>
                     <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
@@ -532,7 +584,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Faculty &amp; TPO Console</span>
-                        <h2 class="font-weight-bold mb-3" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
+                        <h2 class="ios-section-title font-weight-bold mb-3" style="color: var(--ios-text-primary);">
                             Enterprise Intelligence for Placement Officers
                         </h2>
                         <p class="text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6;">
@@ -668,7 +720,7 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Got Questions?</span>
-                    <h2 class="font-weight-bold" style="font-size: 2.35rem; letter-spacing: -0.03em; color: var(--ios-text-primary);">
+                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
                         Frequently Asked Questions
                     </h2>
                     <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
@@ -767,7 +819,7 @@
                         Placement Readiness Platform
                     </div>
                     
-                    <h2 class="display-5 font-weight-bold mb-3 text-white" style="letter-spacing: -0.035em; font-size: 2.75rem;">
+                    <h2 class="ios-section-title font-weight-bold mb-3 text-white">
                         Ready to Take Control of Your Career Readiness?
                     </h2>
                     

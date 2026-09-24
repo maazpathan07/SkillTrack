@@ -40,6 +40,17 @@ public class StudentSkillsServlet extends HttpServlet {
             List<StudentSkill> studentSkills = studentService.getStudentSkills(studentId);
             List<Skill> allSkills = skillDAO.findAll();
 
+            String editIdStr = request.getParameter("editSkillId");
+            if (editIdStr != null && !editIdStr.trim().isEmpty()) {
+                int editSkillId = ValidationUtil.parsePositiveInt(editIdStr, 0);
+                for (StudentSkill ss : studentSkills) {
+                    if (ss.getSkillId() == editSkillId) {
+                        request.setAttribute("editSkill", ss);
+                        break;
+                    }
+                }
+            }
+
             request.setAttribute("studentSkills", studentSkills);
             request.setAttribute("allSkills", allSkills);
             request.setAttribute("skillLevels", SkillLevel.values());

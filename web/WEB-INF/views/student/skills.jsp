@@ -34,16 +34,21 @@
 
             <div class="row">
                 <!-- Add / Update Skill Form -->
-                <div class="col-lg-4 mb-4">
-                    <div class="ios-card">
-                        <div class="ios-card-header">
+                <div class="col-lg-4 mb-4" id="skillFormContainer">
+                    <div class="ios-card h-100">
+                        <div class="ios-card-header" style="padding: 1.25rem 1.5rem;">
                             <div>
-                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1rem;">Add / Update Skill</h2>
+                                <h2 class="h5 font-weight-bold text-dark mb-0" id="formHeaderTitle" style="font-size: 1.05rem;">
+                                    <c:out value="${not empty editSkill ? 'Edit Skill Proficiency' : 'Add Technical Skill'}" />
+                                </h2>
                                 <small class="text-muted">Select skill &amp; your proficiency</small>
                             </div>
+                            <c:if test="${not empty editSkill}">
+                                <a href="${pageContext.request.contextPath}/app/student/skills" class="ios-badge ios-badge-gray text-decoration-none">Cancel Edit</a>
+                            </c:if>
                         </div>
-                        <div class="ios-card-body">
-                            <form action="${pageContext.request.contextPath}/app/student/skills" method="post" class="needs-validation" novalidate>
+                        <div class="ios-card-body" style="padding: 1.5rem;">
+                            <form action="${pageContext.request.contextPath}/app/student/skills" method="post" id="studentSkillForm" class="needs-validation" novalidate>
                                 <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
                                 <input type="hidden" name="action" value="save" />
 
@@ -52,7 +57,7 @@
                                     <select class="ios-form-control" id="skillId" name="skillId" required>
                                         <option value="">Choose a skill...</option>
                                         <c:forEach items="${allSkills}" var="skill">
-                                            <option value="${skill.skillId}">
+                                            <option value="${skill.skillId}" ${not empty editSkill && editSkill.skillId == skill.skillId ? 'selected' : ''}>
                                                 <c:out value="${skill.skillName}" /> (<c:out value="${skill.category.displayName}" />)
                                             </option>
                                         </c:forEach>
@@ -65,7 +70,7 @@
                                     <select class="ios-form-control" id="proficiencyLevel" name="proficiencyLevel" required>
                                         <option value="">Select Level...</option>
                                         <c:forEach items="${skillLevels}" var="lvl">
-                                            <option value="${lvl.name()}"><c:out value="${lvl.displayName}" /></option>
+                                            <option value="${lvl.name()}" ${not empty editSkill && editSkill.proficiencyLevel == lvl ? 'selected' : ''}><c:out value="${lvl.displayName}" /></option>
                                         </c:forEach>
                                     </select>
                                     <div class="invalid-feedback">Please select your proficiency level.</div>
@@ -74,34 +79,26 @@
                                     </small>
                                 </div>
 
-                                <button type="submit" class="ios-btn-primary w-100" style="padding: 0.75rem;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    Record Skill Proficiency
-                                </button>
+                                <div class="d-flex align-items-center gap-2" style="gap: 0.5rem;">
+                                    <button type="submit" id="submitSkillBtn" class="ios-btn-primary flex-grow-1" style="padding: 0.7rem 1.25rem; font-size: 0.875rem;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span id="submitSkillBtnText"><c:out value="${not empty editSkill ? 'Update Proficiency' : 'Record Skill'}" /></span>
+                                    </button>
+                                    <c:if test="${not empty editSkill}">
+                                        <a href="${pageContext.request.contextPath}/app/student/skills" class="ios-btn-secondary" style="padding: 0.7rem 1rem; font-size: 0.875rem;">Cancel</a>
+                                    </c:if>
+                                </div>
                             </form>
                         </div>
-                    </div>
-
-                    <!-- Informational Box -->
-                    <div class="ios-card p-4">
-                        <div class="d-flex align-items-center gap-2 mb-2">
-                            <div class="ios-badge ios-badge-blue p-1">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                            </div>
-                            <span class="font-weight-bold text-dark" style="font-size: 0.9rem;">Skill Weighting</span>
-                        </div>
-                        <p class="text-muted small mb-0" style="line-height: 1.6;">
-                            Skills matched with your Target Role requirement directly boost your <strong>Role Skill Match (25% Weight)</strong> in the Placement Readiness formula.
-                        </p>
                     </div>
                 </div>
 
                 <!-- Acquired Skills Table -->
                 <div class="col-lg-8 mb-4">
-                    <div class="ios-card">
-                        <div class="ios-card-header">
+                    <div class="ios-card h-100">
+                        <div class="ios-card-header" style="padding: 1.25rem 1.5rem;">
                             <div>
-                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1rem;">Acquired Skills Inventory</h2>
+                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.05rem; letter-spacing: -0.02em;">Acquired Skills Inventory</h2>
                                 <small class="text-muted">Total recorded skills on your profile</small>
                             </div>
                             <span class="ios-badge ios-badge-blue font-weight-bold">
@@ -136,7 +133,12 @@
                                                 <c:forEach items="${studentSkills}" var="ss">
                                                     <tr style="border-bottom: 1px solid #f1f5f9;">
                                                         <td class="font-weight-bold text-dark py-3 px-4" style="vertical-align: middle;">
-                                                            <c:out value="${ss.skillName}" />
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="st-avatar-xs mr-2" style="background: rgba(0, 113, 227, 0.08); color: var(--ios-blue); border-radius: var(--ios-radius-sm); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;" aria-hidden="true">
+                                                                    <c:out value="${ss.skillName.substring(0, 1)}" />
+                                                                </div>
+                                                                <span><c:out value="${ss.skillName}" /></span>
+                                                            </div>
                                                         </td>
                                                         <td style="vertical-align: middle;">
                                                             <span class="ios-badge ios-badge-gray">
@@ -146,13 +148,13 @@
                                                         <td style="vertical-align: middle;">
                                                             <c:choose>
                                                                 <c:when test="${ss.proficiencyLevel.name() == 'ADVANCED'}">
-                                                                    <span class="ios-badge ios-badge-green">
+                                                                    <span class="ios-badge ios-badge-green font-weight-bold">
                                                                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                                                         Advanced
                                                                     </span>
                                                                 </c:when>
                                                                 <c:when test="${ss.proficiencyLevel.name() == 'INTERMEDIATE'}">
-                                                                    <span class="ios-badge ios-badge-blue">
+                                                                    <span class="ios-badge ios-badge-blue font-weight-bold">
                                                                         Intermediate
                                                                     </span>
                                                                 </c:when>
@@ -164,20 +166,31 @@
                                                             </c:choose>
                                                         </td>
                                                         <td class="text-right py-3 px-4" style="vertical-align: middle;">
-                                                            <form action="${pageContext.request.contextPath}/app/student/skills" method="post" class="d-inline">
-                                                                <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
-                                                                <input type="hidden" name="action" value="delete" />
-                                                                <input type="hidden" name="skillId" value="${ss.skillId}" />
-                                                                <button type="submit" class="btn btn-sm btn-outline-danger confirm-delete d-inline-flex align-items-center" style="border-radius: var(--ios-radius-sm); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;" data-confirm="Remove ${ss.skillName} from your profile?" aria-label="Remove skill <c:out value='${ss.skillName}' />">
-                                                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1" aria-hidden="true">
-                                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                                    </svg>
-                                                                    Remove
-                                                                </button>
-                                                            </form>
+                                                            <div class="d-flex align-items-center justify-content-end gap-2" style="gap: 0.35rem;">
+                                                                <a href="${pageContext.request.contextPath}/app/student/skills?editSkillId=${ss.skillId}" 
+                                                                   class="btn btn-sm btn-outline-primary d-inline-flex align-items-center edit-skill-btn" 
+                                                                   data-id="${ss.skillId}" 
+                                                                   data-level="${ss.proficiencyLevel.name()}"
+                                                                   style="border-radius: var(--ios-radius-sm); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;" 
+                                                                   aria-label="Edit skill <c:out value='${ss.skillName}' />">
+                                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                                                    Edit
+                                                                </a>
+                                                                <form action="${pageContext.request.contextPath}/app/student/skills" method="post" class="d-inline">
+                                                                    <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
+                                                                    <input type="hidden" name="action" value="delete" />
+                                                                    <input type="hidden" name="skillId" value="${ss.skillId}" />
+                                                                    <button type="submit" class="btn btn-sm btn-outline-danger confirm-delete d-inline-flex align-items-center" style="border-radius: var(--ios-radius-sm); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;" data-title="Remove Technical Skill" data-confirm="Are you sure you want to remove '${ss.skillName}' from your acquired skills portfolio? This will adjust your Placement Readiness score." aria-label="Remove skill <c:out value='${ss.skillName}' />">
+                                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1" aria-hidden="true">
+                                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                                        </svg>
+                                                                        Remove
+                                                                    </button>
+                                                                </form>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -193,5 +206,36 @@
         </main>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Instant client-side form populate on Edit button click
+    var editButtons = document.querySelectorAll('.edit-skill-btn');
+    var skillSelect = document.getElementById('skillId');
+    var levelSelect = document.getElementById('proficiencyLevel');
+    var formHeaderTitle = document.getElementById('formHeaderTitle');
+    var submitSkillBtnText = document.getElementById('submitSkillBtnText');
+    var formContainer = document.getElementById('skillFormContainer');
+
+    editButtons.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            var skillId = this.getAttribute('data-id');
+            var level = this.getAttribute('data-level');
+
+            if (skillSelect && levelSelect && skillId && level) {
+                skillSelect.value = skillId;
+                levelSelect.value = level;
+                if (formHeaderTitle) formHeaderTitle.textContent = "Edit Skill Proficiency";
+                if (submitSkillBtnText) submitSkillBtnText.textContent = "Update Proficiency";
+                if (formContainer) {
+                    formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                levelSelect.focus();
+                e.preventDefault();
+            }
+        });
+    });
+});
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

@@ -1400,3 +1400,126 @@ h1, h2, h3, h4, h5, h6 {
     color: #15803d !important;
   }
 }
+
+/* =====================================================================
+   Apple iOS 18 Glassmorphism Confirmation Modal System
+   ===================================================================== */
+.ios-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  z-index: 10500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ios-modal-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--ios-radius-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.75rem;
+  text-align: center;
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-modal-backdrop.is-open .ios-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.ios-modal-icon-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--ios-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.125rem;
+  box-shadow: 0 0 0 6px rgba(255, 59, 48, 0.05);
+}
+
+.ios-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ios-text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.ios-modal-body-text {
+  font-size: 0.925rem;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+}
+
+.ios-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ios-modal-btn-cancel {
+  flex: 1;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--ios-radius-sm);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--ios-ease);
+}
+
+.ios-modal-btn-cancel:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.ios-modal-btn-confirm {
+  flex: 1;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--ios-radius-sm);
+  background: var(--ios-red);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 59, 48, 0.35);
+  transition: var(--ios-ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ios-modal-btn-confirm:hover {
+  background: #e02d23;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 59, 48, 0.45);
+}
+

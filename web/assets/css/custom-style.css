@@ -668,6 +668,31 @@ main {
   color: #b91c1c;
 }
 
+/* Developer Link */
+.st-dev-link {
+  display: inline-flex;
+  align-items: center;
+  color: #1e293b !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none !important;
+}
+
+.st-dev-link:hover {
+  color: #0071e3 !important;
+  text-decoration: none !important;
+}
+
+.st-dev-link svg {
+  margin-left: 3px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.st-dev-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
 /* Developer LinkedIn Badge */
 .st-dev-badge {
   display: inline-flex;

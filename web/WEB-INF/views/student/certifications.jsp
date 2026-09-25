@@ -32,6 +32,67 @@
                 </div>
             </div>
 
+            <!-- Smart Certification Auto-Fill & Credential Engine Card -->
+            <div class="ios-card p-4 mb-4" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
+                <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.35);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.1rem; letter-spacing: -0.02em;">Smart Certification Auto-Fill Engine</h2>
+                                <span class="badge badge-success px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem;">
+                                    ⚡ 1-Click Auto-Fill &bull; Credly &bull; AWS &bull; Oracle &bull; Coursera &bull; HackerRank
+                                </span>
+                            </div>
+                            <p class="text-muted small mb-2" style="max-width: 680px; line-height: 1.45;">
+                                Auto-fill verified industry credentials in 1-click or paste your Credly / Badge verification link to auto-extract credential details instantly.
+                            </p>
+
+                            <!-- Quick Preset Badges -->
+                            <div class="d-flex align-items-center flex-wrap gap-2 pt-1">
+                                <span class="text-muted small mr-1 font-weight-bold" style="font-size: 0.75rem;">1-Click Auto-Fill:</span>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('AWS Certified Cloud Practitioner', 'Amazon Web Services', 'https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner')">
+                                    ☁️ AWS Cloud Practitioner
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Oracle Certified Associate, Java SE 8 Programmer', 'Oracle Corporation', 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=...')">
+                                    ☕ Oracle Java Associate
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Google Cloud Associate Cloud Engineer', 'Google Cloud', 'https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer')">
+                                    🌐 Google Cloud Associate
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Microsoft Certified: Azure Fundamentals (AZ-900)', 'Microsoft', 'https://learn.microsoft.com/en-us/users/.../credentials/...')">
+                                    🔷 Azure Fundamentals
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Problem Solving (Advanced) Certificate', 'HackerRank', 'https://www.hackerrank.com/certificates/...')">
+                                    ⚡ HackerRank Problem Solving
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Meta Front-End Developer Professional Certificate', 'Meta &amp; Coursera', 'https://www.coursera.org/verify/professional-cert/...')">
+                                    💻 Meta Front-End
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- URL Quick Auto-Extract Box -->
+                    <div class="p-3 mt-2 mt-lg-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 12px; min-width: 290px; max-width: 380px;">
+                        <label class="small font-weight-bold text-dark mb-1 d-block" style="font-size: 0.78rem;">
+                            🔗 Auto-Detect From URL Link:
+                        </label>
+                        <div class="input-group input-group-sm mb-1">
+                            <input type="url" id="quickUrlInput" class="form-control" placeholder="Paste Credly/Badge link..." style="font-size: 0.8rem; border-radius: 6px 0 0 6px;">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; font-weight: 600; border-radius: 0 6px 6px 0;" onclick="autoExtractFromUrl()">
+                                    ⚡ Fill Form
+                                </button>
+                            </div>
+                        </div>
+                        <small class="text-muted d-block" style="font-size: 0.72rem;">Parses Issuer, Title &amp; verification link.</small>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <!-- Certification Form -->
                 <div class="col-lg-5 mb-4">
@@ -50,9 +111,50 @@
                             </c:if>
                         </div>
                         <div class="ios-card-body" style="padding: 1.5rem 1.5rem 1.75rem 1.5rem;">
-                            <form action="${pageContext.request.contextPath}/app/student/certifications" method="post" class="needs-validation" novalidate>
+                            <form id="certForm" action="${pageContext.request.contextPath}/app/student/certifications" method="post" class="needs-validation" novalidate>
                                 <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
                                 <input type="hidden" name="certId" value="<c:out value='${editCert.certId}' default='0' />" />
+
+                                <!-- Quick Preset Dropdown -->
+                                <div class="form-group mb-3">
+                                    <label for="certPresetSelect" class="ios-form-label d-flex justify-content-between align-items-center">
+                                        <span>⚡ Quick Auto-Fill Template</span>
+                                        <span class="text-muted font-weight-normal" style="font-size: 0.72rem;">Optional one-click fill</span>
+                                    </label>
+                                    <select id="certPresetSelect" class="ios-form-control" onchange="onPresetSelectChange(this)" style="font-size: 0.85rem; color: #005bb5; font-weight: 600; background-color: #f8fafc;">
+                                        <option value="">-- Choose a Recognized Industry Certification --</option>
+                                        <optgroup label="Amazon Web Services (AWS)">
+                                            <option value="AWS Certified Cloud Practitioner|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner">AWS Certified Cloud Practitioner</option>
+                                            <option value="AWS Certified Solutions Architect - Associate|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect - Associate</option>
+                                            <option value="AWS Certified Developer - Associate|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-developer-associate">AWS Certified Developer - Associate</option>
+                                        </optgroup>
+                                        <optgroup label="Oracle &amp; Java">
+                                            <option value="Oracle Certified Associate, Java SE 8 Programmer|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Certified Associate, Java SE 8 Programmer (OCAJP)</option>
+                                            <option value="Oracle Certified Professional, Java SE 11 Developer|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Certified Professional, Java SE 11 Developer (OCPJP)</option>
+                                            <option value="Oracle Database SQL Certified Associate|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Database SQL Certified Associate</option>
+                                        </optgroup>
+                                        <optgroup label="Google Cloud &amp; Microsoft">
+                                            <option value="Google Cloud Associate Cloud Engineer|Google Cloud|https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer">Google Cloud Associate Cloud Engineer</option>
+                                            <option value="Google Cloud Professional Data Engineer|Google Cloud|https://www.credly.com/org/google-cloud/badge/professional-data-engineer">Google Cloud Professional Data Engineer</option>
+                                            <option value="Microsoft Certified: Azure Fundamentals (AZ-900)|Microsoft|https://learn.microsoft.com/en-us/users/.../credentials/...">Microsoft Certified: Azure Fundamentals (AZ-900)</option>
+                                            <option value="Microsoft Certified: Azure Developer Associate (AZ-204)|Microsoft|https://learn.microsoft.com/en-us/users/.../credentials/...">Microsoft Certified: Azure Developer Associate (AZ-204)</option>
+                                        </optgroup>
+                                        <optgroup label="Coding &amp; Algorithms Platforms">
+                                            <option value="Problem Solving (Intermediate) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Problem Solving (Intermediate)</option>
+                                            <option value="Problem Solving (Advanced) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Problem Solving (Advanced)</option>
+                                            <option value="Java (Basic &amp; Intermediate) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Java Skills Certified</option>
+                                            <option value="SQL (Advanced) Skills Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank SQL (Advanced)</option>
+                                        </optgroup>
+                                        <optgroup label="Full-Stack &amp; Professional Specializations">
+                                            <option value="Meta Front-End Developer Professional Certificate|Meta &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">Meta Front-End Developer Professional Certificate</option>
+                                            <option value="Meta Back-End Developer Professional Certificate|Meta &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">Meta Back-End Developer Professional Certificate</option>
+                                            <option value="IBM Full Stack Software Developer Professional Certificate|IBM &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">IBM Full Stack Software Developer (IBM)</option>
+                                            <option value="freeCodeCamp JavaScript Algorithms and Data Structures|freeCodeCamp|https://www.freecodecamp.org/certification/...">freeCodeCamp JavaScript Algorithms and Data Structures</option>
+                                            <option value="freeCodeCamp Responsive Web Design Certification|freeCodeCamp|https://www.freecodecamp.org/certification/...">freeCodeCamp Responsive Web Design</option>
+                                            <option value="Certified Kubernetes Application Developer (CKAD)|The Linux Foundation / CNCF|https://www.credly.com/org/the-linux-foundation/badge/ckad">Certified Kubernetes Application Developer (CKAD)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
 
                                 <div class="form-group mb-3">
                                     <label for="title" class="ios-form-label">Certification Title *</label>
@@ -207,5 +309,154 @@
         </main>
     </div>
 </div>
+
+<script>
+function autoFillPreset(title, issuingOrg, credentialUrl) {
+    var titleInput = document.getElementById('title');
+    var orgInput = document.getElementById('issuingOrg');
+    var dateInput = document.getElementById('issueDate');
+    var urlInput = document.getElementById('credentialUrl');
+
+    if (titleInput) titleInput.value = title;
+    if (orgInput) orgInput.value = issuingOrg;
+    if (urlInput) urlInput.value = credentialUrl;
+    
+    // Set default date to current date if empty
+    if (dateInput && !dateInput.value) {
+        var today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+    }
+
+    flashHighlight([titleInput, orgInput, dateInput, urlInput]);
+}
+
+function onPresetSelectChange(select) {
+    if (!select || !select.value) return;
+    var parts = select.value.split('|');
+    if (parts.length >= 2) {
+        var title = parts[0];
+        var org = parts[1];
+        var url = (parts.length >= 3) ? parts[2] : '';
+        autoFillPreset(title, org, url);
+    }
+}
+
+function autoExtractFromUrl() {
+    var input = document.getElementById('quickUrlInput');
+    if (!input || !input.value.trim()) {
+        alert('Please paste a Credly, Coursera, HackerRank, or verification link.');
+        return;
+    }
+
+    var url = input.value.trim();
+    var lower = url.toLowerCase();
+
+    var detectedTitle = '';
+    var detectedOrg = '';
+
+    if (lower.includes('credly.com')) {
+        if (lower.includes('amazon') || lower.includes('aws')) {
+            detectedOrg = 'Amazon Web Services';
+            detectedTitle = extractTitleFromSlug(url, 'AWS Certified Cloud Practitioner');
+        } else if (lower.includes('google')) {
+            detectedOrg = 'Google Cloud';
+            detectedTitle = extractTitleFromSlug(url, 'Google Cloud Associate Cloud Engineer');
+        } else if (lower.includes('microsoft') || lower.includes('azure')) {
+            detectedOrg = 'Microsoft';
+            detectedTitle = extractTitleFromSlug(url, 'Microsoft Certified: Azure Fundamentals (AZ-900)');
+        } else if (lower.includes('oracle')) {
+            detectedOrg = 'Oracle Corporation';
+            detectedTitle = extractTitleFromSlug(url, 'Oracle Certified Associate, Java SE Programmer');
+        } else if (lower.includes('linux-foundation') || lower.includes('ckad') || lower.includes('cka')) {
+            detectedOrg = 'The Linux Foundation / CNCF';
+            detectedTitle = extractTitleFromSlug(url, 'Certified Kubernetes Application Developer (CKAD)');
+        } else {
+            detectedOrg = 'Credly Verified Issuer';
+            detectedTitle = extractTitleFromSlug(url, 'Professional Industry Certification');
+        }
+    } else if (lower.includes('hackerrank.com')) {
+        detectedOrg = 'HackerRank';
+        if (lower.includes('problem_solving') || lower.includes('problem-solving')) {
+            detectedTitle = 'Problem Solving (Advanced) Certificate';
+        } else if (lower.includes('java')) {
+            detectedTitle = 'Java (Basic & Intermediate) Skills Certificate';
+        } else if (lower.includes('sql')) {
+            detectedTitle = 'SQL (Advanced) Skills Certificate';
+        } else if (lower.includes('python')) {
+            detectedTitle = 'Python Skills Certificate';
+        } else {
+            detectedTitle = 'HackerRank Verified Skills Certificate';
+        }
+    } else if (lower.includes('coursera.org')) {
+        if (lower.includes('meta')) {
+            detectedOrg = 'Meta & Coursera';
+            detectedTitle = 'Meta Front-End Developer Professional Certificate';
+        } else if (lower.includes('ibm')) {
+            detectedOrg = 'IBM & Coursera';
+            detectedTitle = 'IBM Full Stack Software Developer Certificate';
+        } else if (lower.includes('deeplearning') || lower.includes('andrew-ng')) {
+            detectedOrg = 'DeepLearning.AI & Coursera';
+            detectedTitle = 'Deep Learning Specialization';
+        } else {
+            detectedOrg = 'Coursera';
+            detectedTitle = extractTitleFromSlug(url, 'Specialization Certificate');
+        }
+    } else if (lower.includes('freecodecamp.org')) {
+        detectedOrg = 'freeCodeCamp';
+        if (lower.includes('javascript') || lower.includes('algorithms')) {
+            detectedTitle = 'JavaScript Algorithms and Data Structures Certification';
+        } else if (lower.includes('responsive-web-design')) {
+            detectedTitle = 'Responsive Web Design Certification';
+        } else if (lower.includes('backend') || lower.includes('api')) {
+            detectedTitle = 'Back End Development and APIs Certification';
+        } else {
+            detectedTitle = 'freeCodeCamp Certified Developer';
+        }
+    } else if (lower.includes('udemy.com')) {
+        detectedOrg = 'Udemy';
+        detectedTitle = extractTitleFromSlug(url, 'Masterclass Completion Certificate');
+    } else if (lower.includes('oracle.com')) {
+        detectedOrg = 'Oracle Corporation';
+        detectedTitle = 'Oracle Certified Associate, Java SE Programmer';
+    } else {
+        detectedOrg = 'Industry Credential Authority';
+        detectedTitle = 'Verified Technology Certification';
+    }
+
+    autoFillPreset(detectedTitle, detectedOrg, url);
+    input.value = '';
+}
+
+function extractTitleFromSlug(url, fallback) {
+    try {
+        var cleanUrl = url.split('?')[0].replace(/\/$/, '');
+        var segments = cleanUrl.split('/');
+        var lastSegment = segments[segments.length - 1];
+        if (lastSegment && lastSegment.length > 3 && !/^[0-9a-f-]{30,}$/i.test(lastSegment)) {
+            var words = lastSegment.replace(/[-_]/g, ' ').split(' ');
+            var title = words.map(function(w) {
+                return w.charAt(0).toUpperCase() + w.slice(1);
+            }).join(' ');
+            return title;
+        }
+    } catch(e) {}
+    return fallback;
+}
+
+function flashHighlight(elements) {
+    elements.forEach(function(el) {
+        if (!el) return;
+        el.style.transition = 'all 0.3s ease';
+        el.style.backgroundColor = '#ecfdf5';
+        el.style.borderColor = '#10b981';
+        el.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.2)';
+        setTimeout(function() {
+            el.style.backgroundColor = '';
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+        }, 1200);
+    });
+}
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

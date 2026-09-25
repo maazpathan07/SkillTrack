@@ -38,18 +38,12 @@
         </div>
     </div>
 
-    <!-- Apple Floating Scroll To Top Action Button -->
-    <button type="button" class="ios-scroll-top-btn" id="iosScrollTopBtn" aria-label="Scroll to top" title="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
 
     <!-- jQuery 3.6.0 -->
     <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
     <!-- Bootstrap 4.6.2 Bundle (Includes Popper) -->
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <!-- Application Helper & Glassmorphic Validation Script -->
-    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=3.8"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=3.9"></script>
 </body>
 </html>

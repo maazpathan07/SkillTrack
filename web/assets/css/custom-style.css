@@ -71,7 +71,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   scrollbar-gutter: stable;
 }
@@ -2028,49 +2027,4 @@ main {
   box-shadow: 0 6px 18px rgba(255, 59, 48, 0.45);
 }
 
-/* =====================================================================
-   Apple iOS 18 Specular Floating Scroll-To-Top Button
-   ===================================================================== */
-.ios-scroll-top-btn {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: var(--ios-blur);
-  -webkit-backdrop-filter: var(--ios-blur);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-  color: var(--ios-text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1010;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(12px) scale(0.92);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  outline: none;
-  padding: 0;
-}
-
-.ios-scroll-top-btn.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
-
-.ios-scroll-top-btn:hover {
-  background: #ffffff;
-  color: var(--ios-blue);
-  transform: translateY(-2px) scale(1.06);
-  box-shadow: 0 12px 30px rgba(0, 113, 227, 0.22);
-}
-
-.ios-scroll-top-btn:active {
-  transform: translateY(0) scale(0.96);
-}
 

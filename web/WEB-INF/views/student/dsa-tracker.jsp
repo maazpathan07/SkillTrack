@@ -325,7 +325,8 @@
             <div class="modal fade" id="syncPlatformsModal" tabindex="-1" role="dialog" aria-labelledby="syncPlatformsModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" style="border-radius: var(--ios-radius-lg); border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-                        <form id="syncPlatformForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms">
+                        <form id="syncPlatformForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms" onsubmit="event.preventDefault(); performLivePlatformSync();">
+                            <input type="hidden" name="csrfToken" id="syncCsrfToken" value="${sessionScope.CSRF_TOKEN}">
                             <input type="hidden" name="redirectUri" value="/app/student/dsa">
                             <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
                                 <div class="d-flex align-items-center gap-2">
@@ -382,7 +383,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
                                 <button type="button" class="ios-btn-secondary" data-dismiss="modal" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">Cancel</button>
-                                <button type="button" id="triggerLiveSyncBtn" class="ios-btn-primary" onclick="performLivePlatformSync()" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                <button type="submit" id="triggerLiveSyncBtn" class="ios-btn-primary" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
                                     <span id="syncBtnSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
                                     <span id="syncBtnText">🚀 Fetch &amp; Sync Live Stats</span>
                                 </button>
@@ -465,9 +466,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function performLivePlatformSync() {
-    var leetcodeUser = $('#syncLeetcodeUser').val().trim();
-    var githubUser = $('#syncGithubUser').val().trim();
+    var leetcodeUser = $('#syncLeetcodeUser').val() ? $('#syncLeetcodeUser').val().trim() : '';
+    var githubUser = $('#syncGithubUser').val() ? $('#syncGithubUser').val().trim() : '';
     var autoDistribute = $('#autoDistributeDsa').is(':checked');
+    var csrfToken = $('#syncCsrfToken').val() || '${sessionScope.CSRF_TOKEN}';
 
     if (!leetcodeUser && !githubUser) {
         $('#syncModalAlert').removeClass('d-none alert-success alert-danger alert-info').addClass('alert-warning').text('Please enter your LeetCode or GitHub username.');
@@ -488,12 +490,14 @@ function performLivePlatformSync() {
         url: '${pageContext.request.contextPath}/app/student/sync-platforms',
         type: 'POST',
         data: {
+            csrfToken: csrfToken,
             leetcodeUsername: leetcodeUser,
             githubUsername: githubUser,
             autoDistribute: autoDistribute ? 'true' : 'false'
         },
         headers: {
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': csrfToken
         },
         success: function(resp) {
             btn.prop('disabled', false);
@@ -506,19 +510,19 @@ function performLivePlatformSync() {
                     window.location.reload();
                 }, 1200);
             } else {
-                alertBox.removeClass('d-none alert-info alert-success').addClass('alert-warning').text(resp.message || 'Warning during sync. Please verify the handle.');
+                alertBox.removeClass('d-none alert-info alert-success').addClass('alert-warning').html('<strong>⚠️ Notice:</strong> ' + (resp.message || 'Warning during sync. Please verify the handle.'));
             }
         },
         error: function(xhr) {
             btn.prop('disabled', false);
             spinner.addClass('d-none');
             btnText.text('🚀 Fetch & Sync Live Stats');
-            var errMsg = 'Unable to reach coding platform APIs. Please try again.';
+            var errMsg = 'Unable to reach coding platform APIs. Please verify your internet connection or handles.';
             try {
                 var errObj = JSON.parse(xhr.responseText);
                 if (errObj && errObj.message) errMsg = errObj.message;
             } catch(e) {}
-            alertBox.removeClass('d-none alert-info alert-success alert-warning').addClass('alert-danger').text(errMsg);
+            alertBox.removeClass('d-none alert-info alert-success alert-warning').addClass('alert-danger').html('<strong>❌ Error:</strong> ' + errMsg);
         }
     });
 }

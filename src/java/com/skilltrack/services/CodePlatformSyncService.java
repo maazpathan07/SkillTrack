@@ -82,7 +82,7 @@ public class CodePlatformSyncService {
                 }
             } else {
                 result.setSuccess(false);
-                statusMsg.append("LeetCode handle '").append(cleanLc).append("' not found. ");
+                statusMsg.append("LeetCode account '").append(cleanLc).append("' not found on leetcode.com. Please check your username from your LeetCode profile URL (e.g. leetcode.com/your_username). ");
             }
         }
 
@@ -97,7 +97,7 @@ public class CodePlatformSyncService {
                 statusMsg.append("GitHub synced (").append(result.getPublicRepos()).append(" repos).");
             } else {
                 result.setSuccess(false);
-                statusMsg.append("GitHub handle '").append(cleanGh).append("' not found.");
+                statusMsg.append("GitHub account '").append(cleanGh).append("' not found on github.com.");
             }
         }
 

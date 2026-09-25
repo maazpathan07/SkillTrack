@@ -131,6 +131,23 @@
     color: #000000;
 }
 
+/* Summary Edit Modal Styling */
+.summary-preset-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--ios-radius-md);
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: var(--ios-ease);
+    margin-bottom: 0.75rem;
+}
+
+.summary-preset-card:hover {
+    border-color: var(--ios-blue);
+    background: rgba(0, 113, 227, 0.04);
+    transform: translateY(-1px);
+}
+
 /* Print Specific Rules */
 @media print {
     body {
@@ -138,7 +155,7 @@
         margin: 0 !important;
         padding: 0 !important;
     }
-    .no-print, nav, footer, .ios-navbar, .ios-toast-container, #iosToastContainer {
+    .no-print, nav, footer, .ios-navbar, .ios-toast-container, #iosToastContainer, .modal, .modal-backdrop {
         display: none !important;
     }
     .ats-page-container {
@@ -180,6 +197,10 @@
                     <p class="text-muted small mb-0 mt-1">Machine-readable single-column Ivy-League format compiled live from your verified SkillTrack portfolio</p>
                 </div>
                 <div class="d-flex align-items-center flex-wrap flex-sm-nowrap gap-2 mt-3 mt-lg-0 w-100 w-lg-auto" style="gap: 0.5rem;">
+                    <button type="button" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" id="openSummaryModalBtn" data-toggle="modal" data-target="#summaryModal" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap; color: var(--ios-blue); border-color: rgba(0, 113, 227, 0.3);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        Edit Summary
+                    </button>
                     <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" id="downloadAtsPdfBtn" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25); white-space: nowrap;">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         Download ATS PDF
@@ -233,10 +254,15 @@
                         </c:if>
                     </div>
 
-                    <!-- 2. Professional Career Summary -->
+                    <!-- 2. Professional Career Summary (Editable Live) -->
                     <div class="ats-section">
-                        <div class="ats-section-title">Professional Summary</div>
-                        <div class="ats-summary-text">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ats-section-title flex-grow-1">Professional Summary</div>
+                            <button type="button" class="btn btn-sm btn-link p-0 text-primary font-weight-bold no-print" data-toggle="modal" data-target="#summaryModal" style="font-size: 0.775rem; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-decoration: underline; margin-top: -6px;">
+                                ✏️ Customize Summary
+                            </button>
+                        </div>
+                        <div class="ats-summary-text" id="liveResumeSummary">
                             Aspiring <strong><c:out value="${student.targetRoleTitle}" default="Software Development Engineer" /></strong> with strong foundational expertise in <strong>Data Structures, Algorithms, and Software Engineering</strong>. Proven track record of developing responsive full stack applications, designing efficient database schemas, and solving <strong><c:out value="${profile.totalDsaProblemsSolved}" default="10" />+ algorithmic problems</strong>. Dedicated to building reliable, high-performance systems and contributing to high-velocity software engineering teams.
                         </div>
                     </div>
@@ -394,7 +420,164 @@
     </div>
 </div>
 
+<!-- Interactive Summary Customizer Modal (No Print) -->
+<div class="modal fade no-print" id="summaryModal" tabindex="-1" role="dialog" aria-labelledby="summaryModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: var(--ios-radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--ios-shadow-glass);">
+            <div class="modal-header pb-2" style="border-bottom: 1px solid #f1f5f9;">
+                <div>
+                    <h2 class="modal-title h5 font-weight-bold text-dark mb-0" id="summaryModalTitle">
+                        Customize Professional Resume Summary
+                    </h2>
+                    <small class="text-muted">Choose a tailored archetype preset or write your own custom pitch.</small>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- 3 Instant Smart Presets -->
+                <div class="mb-3">
+                    <label class="ios-form-label mb-2">⚡ 1-Click Smart Archetype Presets</label>
+                    
+                    <!-- Preset 1: Target Role Focused -->
+                    <div class="summary-preset-card" onclick="applyPreset(1)">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <strong style="color: var(--ios-blue); font-size: 0.875rem;">1. Role-Focused Specialist Archetype</strong>
+                            <span class="ios-badge ios-badge-blue" style="font-size: 0.7rem;">Recommended</span>
+                        </div>
+                        <p class="small text-muted mb-0" id="presetText1">
+                            Aspiring <strong><c:out value="${student.targetRoleTitle}" default="Software Development Engineer" /></strong> with strong academic grounding in <strong><c:out value="${student.department}" /> (CGPA: <c:out value="${student.formattedCgpa}" />/10.00)</strong>. Proficient in modern full stack development, database schema modeling, and scalable web architectures. Dedicated to building secure, maintainable applications and collaborating in high-velocity software engineering teams.
+                        </p>
+                    </div>
+
+                    <!-- Preset 2: Project & Full-Stack Execution Focused -->
+                    <div class="summary-preset-card" onclick="applyPreset(2)">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <strong style="color: #7e22ce; font-size: 0.875rem;">2. Project-Driven Full Stack Builder Archetype</strong>
+                            <span class="ios-badge ios-badge-purple" style="font-size: 0.7rem;">Project Heavy</span>
+                        </div>
+                        <p class="small text-muted mb-0" id="presetText2">
+                            Hands-on Software Engineer with practical experience designing and shipping full-stack web applications. Skilled in building responsive client interfaces, designing normalized relational databases, and implementing RESTful APIs. Passionate about software architecture, clean code standards, and agile development lifecycles.
+                        </p>
+                    </div>
+
+                    <!-- Preset 3: Algorithmic & Problem Solving Focused -->
+                    <div class="summary-preset-card" onclick="applyPreset(3)">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <strong style="color: #c2410c; font-size: 0.875rem;">3. Algorithmic &amp; Problem Solving Specialist Archetype</strong>
+                            <span class="ios-badge ios-badge-orange" style="font-size: 0.7rem;">DSA Heavy</span>
+                        </div>
+                        <p class="small text-muted mb-0" id="presetText3">
+                            Analytical problem solver with <strong><c:out value="${profile.totalDsaProblemsSolved}" default="15" />+ algorithmic coding milestones</strong> across core data structures including Trees, Dynamic Programming, and Graph Traversals. Placement Readiness Index evaluated at <strong><c:out value="${readiness.formattedOverall}" default="0" />%</strong>. Focused on algorithmic efficiency, backend performance, and robust system design.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Custom Text Area Input -->
+                <div class="form-group mb-0">
+                    <label for="customSummaryInput" class="ios-form-label">Or Write Your Custom Summary Text</label>
+                    <textarea class="ios-form-control" id="customSummaryInput" rows="4" placeholder="Type your personalized professional career summary here..." style="font-size: 0.9rem; line-height: 1.5;"></textarea>
+                    <div class="d-flex justify-content-between align-items-center mt-1">
+                        <small class="text-muted" id="summaryCharCount">Chars: 0</small>
+                        <button type="button" class="btn btn-sm btn-link p-0 text-muted" onclick="resetToDefaultSummary()" style="font-size: 0.8rem;">
+                            Reset to Default
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer pt-2" style="border-top: 1px solid #f1f5f9;">
+                <button type="button" class="ios-btn-secondary" data-dismiss="modal" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">Cancel</button>
+                <button type="button" class="ios-btn-primary" onclick="saveAndApplySummary()" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                    Save &amp; Apply to Resume
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+var studentStorageKey = "skilltrack_ats_summary_${student.studentId}";
+var liveSummaryEl = document.getElementById('liveResumeSummary');
+var customSummaryInput = document.getElementById('customSummaryInput');
+var defaultSummaryHtml = liveSummaryEl ? liveSummaryEl.innerHTML : '';
+
+function updateSummaryCharCount() {
+    if (customSummaryInput) {
+        var count = customSummaryInput.value.length;
+        var countEl = document.getElementById('summaryCharCount');
+        if (countEl) countEl.textContent = 'Chars: ' + count;
+    }
+}
+
+if (customSummaryInput) {
+    customSummaryInput.addEventListener('input', updateSummaryCharCount);
+}
+
+function applyPreset(presetNum) {
+    var presetEl = document.getElementById('presetText' + presetNum);
+    if (presetEl && customSummaryInput) {
+        // Strip extra spaces and set text
+        var text = presetEl.innerText || presetEl.textContent;
+        customSummaryInput.value = text.trim();
+        updateSummaryCharCount();
+        if (typeof showToast === 'function') {
+            showToast("✓ Preset " + presetNum + " copied to summary box!");
+        }
+    }
+}
+
+function resetToDefaultSummary() {
+    if (liveSummaryEl) {
+        liveSummaryEl.innerHTML = defaultSummaryHtml;
+    }
+    if (customSummaryInput) {
+        customSummaryInput.value = liveSummaryEl.innerText || liveSummaryEl.textContent;
+        updateSummaryCharCount();
+    }
+    try {
+        localStorage.removeItem(studentStorageKey);
+    } catch(e) {}
+    if (typeof showToast === 'function') {
+        showToast("✓ Reset to standard default summary.");
+    }
+}
+
+function saveAndApplySummary() {
+    if (!customSummaryInput || !liveSummaryEl) return;
+    var newText = customSummaryInput.value.trim();
+    if (newText.length > 0) {
+        liveSummaryEl.textContent = newText;
+        try {
+            localStorage.setItem(studentStorageKey, newText);
+        } catch(e) {}
+        if (typeof showToast === 'function') {
+            showToast("✓ Custom summary applied live to your ATS Resume!");
+        }
+    }
+    if ($ && typeof $('#summaryModal').modal === 'function') {
+        $('#summaryModal').modal('hide');
+    }
+}
+
+// Load saved custom summary from localStorage on page load if exists
+(function() {
+    try {
+        var saved = localStorage.getItem(studentStorageKey);
+        if (saved && saved.trim().length > 0 && liveSummaryEl) {
+            liveSummaryEl.textContent = saved.trim();
+            if (customSummaryInput) {
+                customSummaryInput.value = saved.trim();
+                updateSummaryCharCount();
+            }
+        } else if (liveSummaryEl && customSummaryInput) {
+            customSummaryInput.value = (liveSummaryEl.innerText || liveSummaryEl.textContent).trim();
+            updateSummaryCharCount();
+        }
+    } catch(e) {}
+})();
+
+// PDF Export Handler
 (function() {
     var btn = document.getElementById('downloadAtsPdfBtn');
     if (btn) {

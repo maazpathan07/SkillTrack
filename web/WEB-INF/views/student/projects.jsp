@@ -32,6 +32,64 @@
                 </div>
             </div>
 
+            <!-- Live GitHub Auto-Sync Engine Card -->
+            <div class="ios-card p-4 mb-4" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
+                <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #1e293b, #0f172a); color: #ffffff; box-shadow: 0 8px 16px -4px rgba(15, 23, 42, 0.35);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.1rem; letter-spacing: -0.02em;">Live GitHub Portfolio &amp; Repository Sync</h2>
+                                <c:choose>
+                                    <c:when test="${codingProfile != null && codingProfile.githubSynced}">
+                                        <span class="badge badge-success px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem;">
+                                            ✓ Live Verified on GitHub (@<c:out value="${codingProfile.githubUsername}" />)
+                                        </span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge badge-secondary px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem; background: #e2e8f0; color: #475569;">
+                                            GitHub API &bull; Verified Portfolio
+                                        </span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <p class="text-muted small mb-2" style="max-width: 680px; line-height: 1.45;">
+                                Connect your GitHub profile to verify your engineering credentials, public repositories, and showcase open-source contributions.
+                            </p>
+
+                            <!-- Live Chips Bar -->
+                            <c:if test="${codingProfile != null && codingProfile.githubSynced}">
+                                <div class="d-flex align-items-center flex-wrap gap-2 pt-1">
+                                    <span class="ios-badge" style="background: rgba(15, 23, 42, 0.08); color: #0f172a; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(15, 23, 42, 0.15);">
+                                        📦 Public Repos: <c:out value="${codingProfile.githubReposCount}" />
+                                    </span>
+                                    <span class="ios-badge" style="background: rgba(99, 102, 241, 0.1); color: #4338ca; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                        👥 Followers: <c:out value="${codingProfile.githubFollowers}" />
+                                    </span>
+                                    <c:if test="${not empty codingProfile.githubBio}">
+                                        <span class="text-muted small italic" style="font-size: 0.78rem;">
+                                            &ldquo;<c:out value="${codingProfile.githubBio}" />&rdquo;
+                                        </span>
+                                    </c:if>
+                                    <a href="https://github.com/<c:out value='${codingProfile.githubUsername}' />" target="_blank" rel="noopener noreferrer" class="small ml-1 font-weight-bold" style="color: #0071e3;">
+                                        View Profile &rarr;
+                                    </a>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center flex-wrap gap-2 flex-shrink-0">
+                        <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center" data-toggle="modal" data-target="#syncGithubModal" style="padding: 0.65rem 1.35rem; font-size: 0.875rem; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25); background: linear-gradient(135deg, #1e293b, #0f172a); border-color: #0f172a;">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            ${codingProfile != null && codingProfile.githubSynced ? '⚡ Re-Sync GitHub Stats' : '⚡ Connect &amp; Auto-Sync GitHub'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <!-- Project Add/Edit Form -->
                 <div class="col-lg-5 mb-4">
@@ -73,7 +131,14 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <label for="githubUrl" class="ios-form-label">GitHub Repository URL</label>
+                                    <label for="githubUrl" class="ios-form-label d-flex justify-content-between align-items-center">
+                                        <span>GitHub Repository URL</span>
+                                        <c:if test="${codingProfile != null && codingProfile.githubSynced}">
+                                            <a href="javascript:void(0);" onclick="document.getElementById('githubUrl').value='https://github.com/${codingProfile.githubUsername}/';" class="small" style="font-size: 0.75rem; color: #0071e3; text-decoration: none;">
+                                                + Use @${codingProfile.githubUsername}
+                                            </a>
+                                        </c:if>
+                                    </label>
                                     <div class="ios-input-icon-wrapper">
                                         <input type="url" class="ios-form-control" id="githubUrl" name="githubUrl" value="<c:out value='${editProject.githubUrl}' />" placeholder="https://github.com/user/project">
                                         <span class="ios-input-icon">
@@ -216,8 +281,78 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal: Live GitHub Sync -->
+            <div class="modal fade" id="syncGithubModal" tabindex="-1" role="dialog" aria-labelledby="syncGithubModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style="border-radius: var(--ios-radius-lg); border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                        <form id="syncGithubForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms" onsubmit="return handleGithubSyncSubmit(this);">
+                            <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
+                            <input type="hidden" name="redirectUri" value="/app/student/projects">
+                            <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #1e293b, #0f172a); color: #ffffff;">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    </div>
+                                    <h5 class="modal-title font-weight-bold text-dark mb-0" id="syncGithubModalLabel">Live GitHub Portfolio Sync</h5>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="outline: none;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <!-- GitHub Username -->
+                                <div class="form-group mb-3">
+                                    <label for="syncGithubUser" class="ios-form-label d-flex justify-content-between">
+                                        <span>GitHub Username *</span>
+                                        <span class="text-muted font-weight-normal" style="font-size: 0.75rem;">e.g. torvalds or your_handle</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="text" class="ios-form-control" id="syncGithubUser" name="githubUsername" value="<c:out value='${codingProfile != null ? codingProfile.githubUsername : ""}' />" required placeholder="Enter GitHub username (without @)" style="padding-left: 2.25rem;">
+                                        <span class="position-absolute" style="left: 10px; top: 10px; color: #1e293b;" aria-hidden="true">
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        </span>
+                                    </div>
+                                    <small class="text-muted mt-1 d-block">System will fetch public repository count, bio, avatar, and verify your open source portfolio.</small>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
+                                <button type="button" class="ios-btn-secondary" data-dismiss="modal" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">Cancel</button>
+                                <button type="submit" id="triggerGithubSyncBtn" class="ios-btn-primary" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; background: linear-gradient(135deg, #1e293b, #0f172a); border-color: #0f172a; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);">
+                                    <span id="githubSyncSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
+                                    <span id="githubSyncBtnText">🚀 Fetch &amp; Sync GitHub Profile</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
+
+<script>
+function handleGithubSyncSubmit(form) {
+    var githubUser = (form.githubUsername && form.githubUsername.value) ? form.githubUsername.value.trim() : '';
+
+    if (!githubUser) {
+        alert('Please enter your GitHub username to sync.');
+        return false;
+    }
+
+    var btn = document.getElementById('triggerGithubSyncBtn');
+    var spinner = document.getElementById('githubSyncSpinner');
+    var btnText = document.getElementById('githubSyncBtnText');
+
+    if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.75';
+    }
+    if (spinner) spinner.classList.remove('d-none');
+    if (btnText) btnText.textContent = 'Querying GitHub API & Syncing...';
+
+    return true;
+}
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

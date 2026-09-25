@@ -22,6 +22,7 @@ public class StudentProjectsServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(StudentProjectsServlet.class.getName());
 
     private final StudentService studentService = new StudentService();
+    private final com.skilltrack.services.CodePlatformSyncService syncService = new com.skilltrack.services.CodePlatformSyncService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +38,9 @@ public class StudentProjectsServlet extends HttpServlet {
 
         try {
             List<Project> projects = studentService.getStudentProjects(studentId);
+            com.skilltrack.models.StudentCodingProfile codingProfile = syncService.getStudentCodingProfile(studentId);
             request.setAttribute("projects", projects);
+            request.setAttribute("codingProfile", codingProfile);
 
             if (editId > 0) {
                 Project editProject = studentService.getProject(studentId, editId);

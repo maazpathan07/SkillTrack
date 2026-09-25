@@ -82,8 +82,13 @@ public class CodeSyncServlet extends HttpServlet {
                 response.getWriter().write("{\"success\":false,\"message\":\"Please provide a LeetCode or GitHub username to sync.\"}");
                 return;
             }
-            request.getSession().setAttribute(AppConstants.FLASH_ERROR, "Please provide a LeetCode or GitHub username to sync.");
-            response.sendRedirect(request.getContextPath() + "/app/student/dsa");
+            request.getSession().setAttribute(AppConstants.FLASH_ERROR, "Please provide a valid username to sync.");
+            String redirectUri = request.getParameter("redirectUri");
+            if (redirectUri != null && redirectUri.startsWith("/app/student")) {
+                response.sendRedirect(request.getContextPath() + redirectUri);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/app/student/dsa");
+            }
             return;
         }
 

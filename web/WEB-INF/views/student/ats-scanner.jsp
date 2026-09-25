@@ -238,12 +238,36 @@
     </div>
 </div>
 
+<textarea id="profileTemplateText" style="display:none;"><c:out value="${student.fullName}" />
+Email: <c:out value="${student.email}" />
+Department: <c:out value="${student.department}" />
+CGPA: <c:out value="${student.formattedCgpa}" />
+
+EDUCATION
+Bachelor of Technology in <c:out value="${student.department}" /> - Batch <c:out value="${student.graduationYear}" />
+
+TECHNICAL SKILLS
+<c:forEach items="${profile.skills}" var="sk"><c:out value="${sk.skillName}" />, </c:forEach>
+
+PROJECTS
+<c:forEach items="${profile.projects}" var="p"><c:out value="${p.title}" /> | <c:out value="${p.techStack}" />
+<c:out value="${p.description}" />
+
+</c:forEach>
+PROBLEM SOLVING
+Data Structures & Algorithms - Solved <c:out value="${profile.totalDsaProblemsSolved}" default="0" /> problems
+
+CERTIFICATIONS
+<c:forEach items="${profile.certifications}" var="c"><c:out value="${c.title}" /> - <c:out value="${c.issuingOrg}" />
+</c:forEach></textarea>
+
 <script>
 (function() {
     var loadBtn = document.getElementById('loadProfileTextBtn');
     var resumeArea = document.getElementById('resumeText');
     var wordLabel = document.getElementById('wordCountLabel');
     var charLabel = document.getElementById('charCountLabel');
+    var templateArea = document.getElementById('profileTemplateText');
 
     function updateCounts() {
         if (!resumeArea) return;
@@ -258,23 +282,9 @@
         updateCounts();
     }
 
-    if (loadBtn && resumeArea) {
+    if (loadBtn && resumeArea && templateArea) {
         loadBtn.addEventListener('click', function() {
-            var profileText = "${student.fullName}\n" +
-                              "Email: ${student.email}\n" +
-                              "Department: ${student.department}\n" +
-                              "CGPA: ${student.formattedCgpa}\n\n" +
-                              "EDUCATION\n" +
-                              "Bachelor of Technology in ${student.department} - Batch ${student.graduationYear}\n\n" +
-                              "TECHNICAL SKILLS\n" +
-                              "<c:forEach items='${profile.skills}' var='sk'>${sk.skillName}, </c:forEach>\n\n" +
-                              "PROJECTS\n" +
-                              "<c:forEach items='${profile.projects}' var='p'>${p.title} | ${p.techStack}\n${p.description}\n\n</c:forEach>" +
-                              "PROBLEM SOLVING\n" +
-                              "Data Structures & Algorithms - Solved ${profile.totalDsaProblemsSolved} problems\n\n" +
-                              "CERTIFICATIONS\n" +
-                              "<c:forEach items='${profile.certifications}' var='c'>${c.title} - ${c.issuingOrg}\n</c:forEach>";
-            resumeArea.value = profileText;
+            resumeArea.value = templateArea.value;
             updateCounts();
             if (typeof showToast === 'function') {
                 showToast("✓ Loaded resume text from your SkillTrack profile!");

@@ -362,7 +362,7 @@
 
             var opt = {
                 margin:       [8, 8, 8, 8],
-                filename:     "${student.rollNumber}_<c:out value='${student.fullName.replaceAll(\"[^a-zA-Z0-9]\", \"_\")}' />_ATS_Resume.pdf",
+                filename:     "SkillTrack_${student.rollNumber}_ATS_Resume.pdf",
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { 
                     scale: 2.2, 

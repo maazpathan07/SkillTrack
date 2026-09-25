@@ -211,54 +211,36 @@ public class CertificateVerificationService {
             return trimmed;
         }
 
-        // 2. Platform specific prefix resolution
+        // 2. Explicit Platform selected
         String plat = (platform != null) ? platform.trim().toLowerCase() : "auto";
 
-        // LinkedIn Learning Certificate ID / URL slug
         if ("linkedin".equals(plat)) {
             return "https://www.linkedin.com/learning/certificates/" + trimmed;
         }
-
-        // Udemy certificate ID: UC-xxxx
-        if (trimmed.toUpperCase().startsWith("UC-") || "udemy".equals(plat)) {
+        if ("udemy".equals(plat)) {
             return "https://www.udemy.com/certificate/" + trimmed + "/";
         }
-
-        // Credly Badge ID: UUID pattern or 32+ hex chars
-        if (trimmed.matches("(?i)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}") ||
-            trimmed.matches("(?i)[0-9a-f]{20,64}") || "credly".equals(plat)) {
-            return "https://www.credly.com/badges/" + trimmed;
-        }
-
-        // HackerRank Certificate ID: alphanumeric 8-16 chars
-        if ("hackerrank".equals(plat) || (trimmed.matches("(?i)[a-z0-9]{8,16}") && !trimmed.contains("."))) {
-            return "https://www.hackerrank.com/certificates/" + trimmed;
-        }
-
-        // Coursera Verification Code
         if ("coursera".equals(plat)) {
             return "https://coursera.org/verify/" + trimmed;
         }
-
-        // Microsoft Learn
+        if ("hackerrank".equals(plat)) {
+            return "https://www.hackerrank.com/certificates/" + trimmed;
+        }
+        if ("credly".equals(plat)) {
+            return "https://www.credly.com/badges/" + trimmed;
+        }
         if ("microsoft".equals(plat)) {
             if (trimmed.startsWith("users/")) {
                 return "https://learn.microsoft.com/en-us/" + trimmed;
             }
             return "https://learn.microsoft.com/en-us/users/" + trimmed + "/credentials";
         }
-
-        // edX Certificate
         if ("edx".equals(plat)) {
             return "https://courses.edx.org/certificates/" + trimmed;
         }
-
-        // Kaggle Learn Certificate
         if ("kaggle".equals(plat)) {
             return "https://www.kaggle.com/learn/certification/" + trimmed;
         }
-
-        // freeCodeCamp username or certification slug
         if ("freecodecamp".equals(plat)) {
             if (trimmed.contains("/")) {
                 return "https://www.freecodecamp.org/certification/" + trimmed;
@@ -266,12 +248,22 @@ public class CertificateVerificationService {
             return "https://www.freecodecamp.org/certification/" + trimmed + "/javascript-algorithms-and-data-structures";
         }
 
-        // Fallback: If it has domain format, prepend https://
+        // 3. Auto-Detect based on ID pattern
+        if (trimmed.toUpperCase().startsWith("UC-")) {
+            return "https://www.udemy.com/certificate/" + trimmed + "/";
+        }
+        if (trimmed.matches("(?i)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}") ||
+            trimmed.matches("(?i)[0-9a-f]{20,64}")) {
+            return "https://www.credly.com/badges/" + trimmed;
+        }
+        if (trimmed.matches("(?i)[a-z0-9]{8,16}") && !trimmed.contains(".")) {
+            return "https://www.hackerrank.com/certificates/" + trimmed;
+        }
         if (trimmed.contains(".") && !trimmed.contains(" ")) {
             return "https://" + trimmed;
         }
 
-        // Default ID fallback: Credly badge
+        // Default fallback
         return "https://www.credly.com/badges/" + trimmed;
     }
 

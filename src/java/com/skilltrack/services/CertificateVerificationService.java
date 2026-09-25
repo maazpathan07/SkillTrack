@@ -123,6 +123,7 @@ public class CertificateVerificationService {
 
     /**
      * Resolves the input (URL or Certificate ID), fetches verified metadata, and creates a verified certification record.
+     * Uses intelligent multi-platform probing so entering an ID works seamlessly even on Auto-Detect.
      */
     public AutoFetchResult autoFetchAndSaveCertificate(int studentId, String certInput, String selectedPlatform) {
         AutoFetchResult result = new AutoFetchResult();
@@ -134,32 +135,50 @@ public class CertificateVerificationService {
         }
 
         String rawInput = certInput.trim();
-        String targetUrl = resolveTargetUrl(rawInput, selectedPlatform);
+        List<String> candidateUrls = getCandidateUrls(rawInput, selectedPlatform);
 
-        if (targetUrl == null || !targetUrl.startsWith("http")) {
+        if (candidateUrls == null || candidateUrls.isEmpty()) {
             result.setSuccess(false);
             result.setMessage("Could not format a valid certificate verification link from the provided input: " + rawInput);
             return result;
         }
 
-        try {
-            ExtractedMeta meta = extractMetadataFromUrl(targetUrl);
-            if (meta == null || !meta.valid || meta.title == null || meta.title.trim().isEmpty() || isBlocked(meta.title)) {
-                result.setSuccess(false);
-                String err = (meta != null && meta.errorMessage != null) 
-                    ? meta.errorMessage 
-                    : "Unable to extract authentic certificate details from the provided link. Please ensure the certificate link is public and valid.";
-                result.setMessage(err);
-                return result;
-            }
+        ExtractedMeta finalMeta = null;
+        String successfulTargetUrl = null;
+        String lastErrorMessage = null;
 
+        for (String targetUrl : candidateUrls) {
+            try {
+                ExtractedMeta meta = extractMetadataFromUrl(targetUrl);
+                if (meta != null && meta.valid && meta.title != null && !meta.title.trim().isEmpty() && !isBlocked(meta.title)) {
+                    finalMeta = meta;
+                    successfulTargetUrl = targetUrl;
+                    break;
+                } else if (meta != null && meta.errorMessage != null) {
+                    lastErrorMessage = meta.errorMessage;
+                }
+            } catch (Exception e) {
+                lastErrorMessage = e.getMessage();
+            }
+        }
+
+        if (finalMeta == null || successfulTargetUrl == null) {
+            result.setSuccess(false);
+            String err = (lastErrorMessage != null)
+                ? lastErrorMessage
+                : "Unable to extract authentic certificate details from the provided ID or link. Please verify the ID/URL or select the specific platform from the dropdown.";
+            result.setMessage(err);
+            return result;
+        }
+
+        try {
             // Check if certificate with same URL or same Title + Issuer already exists for this student
             List<Certification> existingCerts = certificationDAO.findByStudentId(studentId);
             if (existingCerts != null) {
                 for (Certification c : existingCerts) {
-                    if ((c.getCredentialUrl() != null && c.getCredentialUrl().equalsIgnoreCase(targetUrl)) ||
-                        (c.getTitle() != null && c.getTitle().equalsIgnoreCase(meta.title) && 
-                         c.getIssuingOrg() != null && c.getIssuingOrg().equalsIgnoreCase(meta.issuingOrg))) {
+                    if ((c.getCredentialUrl() != null && c.getCredentialUrl().equalsIgnoreCase(successfulTargetUrl)) ||
+                        (c.getTitle() != null && c.getTitle().equalsIgnoreCase(finalMeta.title) && 
+                         c.getIssuingOrg() != null && c.getIssuingOrg().equalsIgnoreCase(finalMeta.issuingOrg))) {
                         result.setSuccess(true);
                         result.setTitle(c.getTitle());
                         result.setIssuingOrg(c.getIssuingOrg());
@@ -175,10 +194,10 @@ public class CertificateVerificationService {
             // Create new record
             Certification cert = new Certification();
             cert.setStudentId(studentId);
-            cert.setTitle(meta.title);
-            cert.setIssuingOrg(meta.issuingOrg);
-            cert.setIssueDate(meta.issueDate != null ? meta.issueDate : LocalDate.now());
-            cert.setCredentialUrl(targetUrl);
+            cert.setTitle(finalMeta.title);
+            cert.setIssuingOrg(finalMeta.issuingOrg);
+            cert.setIssueDate(finalMeta.issueDate != null ? finalMeta.issueDate : LocalDate.now());
+            cert.setCredentialUrl(successfulTargetUrl);
 
             int newId = certificationDAO.createCertification(cert);
             result.setSuccess(true);
@@ -186,7 +205,7 @@ public class CertificateVerificationService {
             result.setTitle(cert.getTitle());
             result.setIssuingOrg(cert.getIssuingOrg());
             result.setIssueDate(cert.getIssueDate());
-            result.setCredentialUrl(targetUrl);
+            result.setCredentialUrl(successfulTargetUrl);
             result.setMessage("Successfully verified and added '" + cert.getTitle() + "' issued by " + cert.getIssuingOrg() + " (" + cert.getFormattedIssueDate() + ") to your profile!");
             return result;
 
@@ -195,76 +214,120 @@ public class CertificateVerificationService {
             result.setSuccess(false);
             result.setMessage("Database error while saving the verified certificate.");
             return result;
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Error extracting certificate from " + targetUrl, e);
-            result.setSuccess(false);
-            result.setMessage("Failed to verify certificate: " + e.getMessage());
-            return result;
         }
     }
 
-    private String resolveTargetUrl(String input, String platform) {
+    private List<String> getCandidateUrls(String input, String platform) {
+        List<String> list = new java.util.ArrayList<>();
         String trimmed = input.trim();
 
         // 1. Direct URL provided
         if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-            return trimmed;
+            list.add(trimmed);
+            return list;
         }
 
         // 2. Explicit Platform selected
         String plat = (platform != null) ? platform.trim().toLowerCase() : "auto";
 
         if ("linkedin".equals(plat)) {
-            return "https://www.linkedin.com/learning/certificates/" + trimmed;
+            list.add("https://www.linkedin.com/learning/certificates/" + trimmed);
+            return list;
         }
         if ("udemy".equals(plat)) {
-            return "https://www.udemy.com/certificate/" + trimmed + "/";
+            list.add("https://www.udemy.com/certificate/" + trimmed + "/");
+            return list;
         }
         if ("coursera".equals(plat)) {
-            return "https://coursera.org/verify/" + trimmed;
+            list.add("https://coursera.org/verify/" + trimmed);
+            return list;
         }
         if ("hackerrank".equals(plat)) {
-            return "https://www.hackerrank.com/certificates/" + trimmed;
+            list.add("https://www.hackerrank.com/certificates/" + trimmed);
+            return list;
         }
         if ("credly".equals(plat)) {
-            return "https://www.credly.com/badges/" + trimmed;
+            list.add("https://www.credly.com/badges/" + trimmed);
+            return list;
         }
         if ("microsoft".equals(plat)) {
             if (trimmed.startsWith("users/")) {
-                return "https://learn.microsoft.com/en-us/" + trimmed;
+                list.add("https://learn.microsoft.com/en-us/" + trimmed);
+            } else {
+                list.add("https://learn.microsoft.com/en-us/users/" + trimmed + "/credentials");
             }
-            return "https://learn.microsoft.com/en-us/users/" + trimmed + "/credentials";
+            return list;
         }
         if ("edx".equals(plat)) {
-            return "https://courses.edx.org/certificates/" + trimmed;
+            list.add("https://courses.edx.org/certificates/" + trimmed);
+            return list;
         }
         if ("kaggle".equals(plat)) {
-            return "https://www.kaggle.com/learn/certification/" + trimmed;
+            list.add("https://www.kaggle.com/learn/certification/" + trimmed);
+            return list;
         }
         if ("freecodecamp".equals(plat)) {
             if (trimmed.contains("/")) {
-                return "https://www.freecodecamp.org/certification/" + trimmed;
+                list.add("https://www.freecodecamp.org/certification/" + trimmed);
+            } else {
+                list.add("https://www.freecodecamp.org/certification/" + trimmed + "/javascript-algorithms-and-data-structures");
             }
-            return "https://www.freecodecamp.org/certification/" + trimmed + "/javascript-algorithms-and-data-structures";
+            return list;
         }
 
-        // 3. Auto-Detect based on ID pattern
+        // 3. AUTO-DETECT multi-candidate probing
         if (trimmed.toUpperCase().startsWith("UC-")) {
-            return "https://www.udemy.com/certificate/" + trimmed + "/";
-        }
-        if (trimmed.matches("(?i)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}") ||
-            trimmed.matches("(?i)[0-9a-f]{20,64}")) {
-            return "https://www.credly.com/badges/" + trimmed;
-        }
-        if (trimmed.matches("(?i)[a-z0-9]{8,16}") && !trimmed.contains(".")) {
-            return "https://www.hackerrank.com/certificates/" + trimmed;
-        }
-        if (trimmed.contains(".") && !trimmed.contains(" ")) {
-            return "https://" + trimmed;
+            list.add("https://www.udemy.com/certificate/" + trimmed + "/");
+            return list;
         }
 
-        // Default fallback
-        return "https://www.credly.com/badges/" + trimmed;
+        // 64-character hex string -> Strongly LinkedIn Learning certificate hash or Credly
+        if (trimmed.matches("(?i)[0-9a-f]{64}")) {
+            list.add("https://www.linkedin.com/learning/certificates/" + trimmed);
+            list.add("https://www.credly.com/badges/" + trimmed);
+            return list;
+        }
+
+        // UUID format -> Credly badge
+        if (trimmed.matches("(?i)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")) {
+            list.add("https://www.credly.com/badges/" + trimmed);
+            return list;
+        }
+
+        // freeCodeCamp slug e.g. username/slug
+        if (trimmed.contains("/") && !trimmed.contains(" ")) {
+            list.add("https://www.freecodecamp.org/certification/" + trimmed);
+            return list;
+        }
+
+        // 12-hex chars -> HackerRank or Coursera
+        if (trimmed.matches("(?i)[0-9a-f]{12}")) {
+            list.add("https://www.hackerrank.com/certificates/" + trimmed);
+            list.add("https://coursera.org/verify/" + trimmed);
+            list.add("https://www.credly.com/badges/" + trimmed);
+            return list;
+        }
+
+        // Alphanumeric code (Coursera / HackerRank / Credly)
+        if (trimmed.matches("(?i)[a-z0-9]{8,24}") && !trimmed.contains(".")) {
+            list.add("https://coursera.org/verify/" + trimmed);
+            list.add("https://www.hackerrank.com/certificates/" + trimmed);
+            list.add("https://www.linkedin.com/learning/certificates/" + trimmed);
+            list.add("https://www.credly.com/badges/" + trimmed);
+            return list;
+        }
+
+        if (trimmed.contains(".") && !trimmed.contains(" ")) {
+            list.add("https://" + trimmed);
+            return list;
+        }
+
+        // Universal multi-platform probes
+        list.add("https://www.linkedin.com/learning/certificates/" + trimmed);
+        list.add("https://www.credly.com/badges/" + trimmed);
+        list.add("https://coursera.org/verify/" + trimmed);
+        list.add("https://www.hackerrank.com/certificates/" + trimmed);
+        return list;
     }
 
     private ExtractedMeta extractMetadataFromUrl(String targetUrl) {

@@ -9,10 +9,14 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -22,10 +26,9 @@ import java.util.regex.Pattern;
 
 /**
  * Universal, production-ready service to automatically verify and extract metadata
- * from Certificate URLs or IDs across ANY accreditation platform on the web:
- * Credly, LinkedIn Learning, Coursera, HackerRank, Udemy, freeCodeCamp,
- * Microsoft Learn, Google Cloud Skills Boost, edX, Kaggle, LeetCode,
- * GeeksforGeeks, Simplilearn, Great Learning, Coding Ninjas, Scaler, Cisco, Oracle, etc.
+ * from Certificate URLs or IDs across ANY accreditation platform on the web.
+ * Accurately extracts the authentic Course/Certification Title, real Completion/Issue Date,
+ * and Official Issuing Organization.
  */
 public class CertificateVerificationService {
 
@@ -38,7 +41,8 @@ public class CertificateVerificationService {
         "log in", "unable to verify badge", "online courses & credentials from top educators. join for free | coursera",
         "online courses & credentials from top educators", "verified certificate",
         "certificate of completion", "undefined", "null", "profile", "user profile", "my profile",
-        "overview", "dashboard", "learn", "courses", "certificates"
+        "overview", "dashboard", "learn", "courses", "certificates", "certificate of achievement",
+        "linkedin learning certificate of completion"
     ));
 
     private static final Map<String, String> DOMAIN_BRAND_MAP = new HashMap<>();
@@ -159,6 +163,7 @@ public class CertificateVerificationService {
                         result.setSuccess(true);
                         result.setTitle(c.getTitle());
                         result.setIssuingOrg(c.getIssuingOrg());
+                        result.setIssueDate(c.getIssueDate());
                         result.setCredentialUrl(c.getCredentialUrl());
                         result.setCertId(c.getCertId());
                         result.setMessage("Certificate '" + c.getTitle() + "' from " + c.getIssuingOrg() + " is already in your verified portfolio.");
@@ -182,7 +187,7 @@ public class CertificateVerificationService {
             result.setIssuingOrg(cert.getIssuingOrg());
             result.setIssueDate(cert.getIssueDate());
             result.setCredentialUrl(targetUrl);
-            result.setMessage("Successfully verified and added '" + cert.getTitle() + "' issued by " + cert.getIssuingOrg() + " to your profile!");
+            result.setMessage("Successfully verified and added '" + cert.getTitle() + "' issued by " + cert.getIssuingOrg() + " (" + cert.getFormattedIssueDate() + ") to your profile!");
             return result;
 
         } catch (SQLException e) {
@@ -293,10 +298,6 @@ public class CertificateVerificationService {
                 return result;
             }
             if (code == 401 || code == 403) {
-                ExtractedMeta slugData = parseKnownSlug(targetUrl);
-                if (slugData != null && slugData.valid) {
-                    return slugData;
-                }
                 result.valid = false;
                 result.errorMessage = "Certificate page is private or restricted (HTTP " + code + "). Please enter details manually if needed.";
                 return result;
@@ -330,18 +331,53 @@ public class CertificateVerificationService {
                 }
             }
 
-            // 2. Extract OpenGraph and title tags
+            // 2. Extract OpenGraph, Twitter, and document tags
             String ogTitle = extractMeta(html, "og:title");
             String ogDesc = extractMeta(html, "og:description");
             String ogSite = extractMeta(html, "og:site_name");
+            String ogImageAlt = extractMeta(html, "og:image:alt");
+            String metaDesc = extractMeta(html, "description");
             String rawTitle = extractRegex(html, "<title[^>]*>(.*?)</title>");
 
             String title = null;
             String issuer = null;
             String recipient = null;
+            LocalDate issueDate = null;
 
             // 3. Platform-specific metadata extraction
-            if (lowerUrl.contains("credly.com")) {
+            if (lowerUrl.contains("linkedin.com")) {
+                issuer = "LinkedIn Learning";
+
+                // LinkedIn Learning provides course title in meta description or og:description:
+                // "Check out my certificate for “Mastering Reasoning Models: Algorithms, Optimization, and Applications”: https://..."
+                String descToUse = (metaDesc != null && !metaDesc.isEmpty()) ? metaDesc : ogDesc;
+                if (descToUse != null) {
+                    Matcher descMatcher = Pattern.compile("certificate for [\"'\\u201C\\u2018](.*?)(?:[\"'\\u201D\\u2019]|:\\s*https?:)", Pattern.CASE_INSENSITIVE).matcher(descToUse);
+                    if (descMatcher.find()) {
+                        title = cleanTitle(descMatcher.group(1));
+                    }
+                }
+
+                // Or from og:image:alt
+                if ((title == null || isBlocked(title)) && ogImageAlt != null) {
+                    Matcher altMatcher = Pattern.compile("certificate for (.*?)$", Pattern.CASE_INSENSITIVE).matcher(ogImageAlt);
+                    if (altMatcher.find()) {
+                        title = cleanTitle(altMatcher.group(1));
+                    }
+                }
+
+                if (title == null || isBlocked(title)) {
+                    if (ogTitle != null && !isBlocked(ogTitle)) title = cleanTitle(ogTitle);
+                    else if (rawTitle != null && !isBlocked(rawTitle)) title = cleanTitle(rawTitle);
+                }
+
+                // Extract completion date from LinkedIn HTML:
+                Matcher liDateMatcher = Pattern.compile("certificate-details__completion-date[^>]*>[\\s\\S]*?([A-Za-z]{3,9}\\s+\\d{1,2},?\\s+\\d{4})", Pattern.CASE_INSENSITIVE).matcher(html);
+                if (liDateMatcher.find()) {
+                    issueDate = parseFlexibleDate(liDateMatcher.group(1));
+                }
+
+            } else if (lowerUrl.contains("credly.com")) {
                 if (ogTitle != null && ogTitle.contains("was issued by")) {
                     Matcher m = Pattern.compile("^(.*?)\\s+was issued by\\s+(.*?)\\s+to\\s+(.*?)$", Pattern.CASE_INSENSITIVE).matcher(ogTitle);
                     if (m.find()) {
@@ -392,32 +428,7 @@ public class CertificateVerificationService {
                 if (ogTitle != null && !isBlocked(ogTitle)) {
                     title = cleanTitle(ogTitle);
                 }
-            } else if (lowerUrl.contains("linkedin.com")) {
-                issuer = "LinkedIn Learning";
-                if (ogTitle != null && !isBlocked(ogTitle)) {
-                    title = cleanTitle(ogTitle);
-                } else if (rawTitle != null && !isBlocked(rawTitle)) {
-                    title = cleanTitle(rawTitle);
-                }
-            } else if (lowerUrl.contains("learn.microsoft.com") || lowerUrl.contains("microsoft.com")) {
-                issuer = "Microsoft";
-                if (ogTitle != null && !isBlocked(ogTitle)) {
-                    title = cleanTitle(ogTitle);
-                } else if (rawTitle != null && !isBlocked(rawTitle)) {
-                    title = cleanTitle(rawTitle);
-                }
-            } else if (lowerUrl.contains("edx.org")) {
-                issuer = "edX";
-                if (ogTitle != null && !isBlocked(ogTitle)) {
-                    title = cleanTitle(ogTitle);
-                }
-            } else if (lowerUrl.contains("kaggle.com")) {
-                issuer = "Kaggle";
-                if (ogTitle != null && !isBlocked(ogTitle)) {
-                    title = cleanTitle(ogTitle);
-                }
             } else {
-                // Universal Brand deduction from domain
                 issuer = resolveBrandFromDomain(targetUrl, ogSite);
                 if (ogTitle != null && !isBlocked(ogTitle)) {
                     title = cleanTitle(ogTitle);
@@ -426,38 +437,84 @@ public class CertificateVerificationService {
                 }
             }
 
-            // Fallback to slug if title still unextracted or blocked
-            if (title == null || isBlocked(title)) {
-                ExtractedMeta slugData = parseKnownSlug(targetUrl);
-                if (slugData != null && slugData.valid) {
-                    title = slugData.title;
-                    if (issuer == null || issuer.isEmpty()) issuer = slugData.issuingOrg;
-                }
+            // Universal Date Extraction across page if not yet extracted
+            if (issueDate == null) {
+                issueDate = extractUniversalDate(html);
             }
 
-            // Final check: Title must be valid and non-generic
+            // Final validation: Title must not be blocked or too short
             if (title == null || title.trim().length() < 3 || isBlocked(title)) {
                 result.valid = false;
-                result.errorMessage = "Could not verify an authentic certificate title from this link. Please check the URL/ID or enter details manually.";
+                result.errorMessage = "Could not extract an authentic certificate/course title from this link. Please check the URL or enter details manually.";
                 return result;
             }
 
             result.valid = true;
             result.title = title.trim();
             result.issuingOrg = (issuer != null && !issuer.trim().isEmpty()) ? issuer.trim() : "Verified Authority";
-            result.issueDate = LocalDate.now();
+            result.issueDate = (issueDate != null) ? issueDate : LocalDate.now();
             result.recipient = recipient;
             return result;
 
         } catch (Exception e) {
-            ExtractedMeta slugData = parseKnownSlug(targetUrl);
-            if (slugData != null && slugData.valid) {
-                return slugData;
-            }
             result.valid = false;
             result.errorMessage = "Connection error while verifying certificate: " + e.getMessage();
             return result;
         }
+    }
+
+    private static LocalDate extractUniversalDate(String html) {
+        if (html == null) return null;
+
+        // 1. JSON-LD date fields
+        Matcher jsonDate = Pattern.compile("\"(?:dateCreated|datePublished|issuedOn|issued_at|issueDate|completionDate|dateCompleted)\"\\s*:\\s*\"([^\"]+)\"", Pattern.CASE_INSENSITIVE).matcher(html);
+        if (jsonDate.find()) {
+            LocalDate d = parseFlexibleDate(jsonDate.group(1));
+            if (d != null) return d;
+        }
+
+        // 2. Meta tags for date
+        Matcher metaDate = Pattern.compile("<meta[^>]+(?:article:published_time|date|issue_date)[^>]+content=[\"']([^\"']+)[\"']", Pattern.CASE_INSENSITIVE).matcher(html);
+        if (metaDate.find()) {
+            LocalDate d = parseFlexibleDate(metaDate.group(1));
+            if (d != null) return d;
+        }
+
+        // 3. In-text date patterns (e.g. "Completion date: September 5, 2026", "Issued on May 12, 2024", etc.)
+        Matcher textDate = Pattern.compile("(?i)(?:completion date|completed on|issued on|earned on|awarded on|issue date|completed|issued)\\s*(?:<[^>]+>|[\\s\\:–—-])*\\s*([A-Za-z]{3,9}\\s+\\d{1,2},?\\s+\\d{4}|\\d{1,2}\\s+[A-Za-z]{3,9},?\\s+\\d{4}|\\d{4}-\\d{2}-\\d{2})", Pattern.CASE_INSENSITIVE).matcher(html);
+        if (textDate.find()) {
+            LocalDate d = parseFlexibleDate(textDate.group(1));
+            if (d != null) return d;
+        }
+
+        return null;
+    }
+
+    private static LocalDate parseFlexibleDate(String raw) {
+        if (raw == null) return null;
+        String cleaned = raw.replaceAll("<[^>]+>", "").replaceAll("[^A-Za-z0-9,\\s\\-\\/\\.:]", " ").replaceAll("\\s+", " ").trim();
+        if (cleaned.contains("T")) {
+            cleaned = cleaned.split("T")[0].trim();
+        }
+        if (cleaned.isEmpty()) return null;
+
+        String[] patterns = {
+            "MMMM d, yyyy", "MMMM d yyyy", "MMM d, yyyy", "MMM d yyyy",
+            "d MMMM yyyy", "d MMM yyyy", "d-MMM-yyyy", "d/MM/yyyy",
+            "yyyy-MM-dd", "MM/dd/yyyy", "yyyy/MM/dd", "MMMM yyyy", "MMM yyyy"
+        };
+
+        for (String pat : patterns) {
+            try {
+                DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .appendPattern(pat)
+                    .parseDefaulting(ChronoField.DAY_OF_MONTH, 1)
+                    .toFormatter(Locale.ENGLISH);
+                return LocalDate.parse(cleaned, formatter);
+            } catch (Exception ignored) {}
+        }
+        return null;
     }
 
     private static String resolveBrandFromDomain(String targetUrl, String ogSite) {
@@ -522,8 +579,9 @@ public class CertificateVerificationService {
                      .replace("Certificate of Achievement", "")
                      .trim();
 
-        // Remove trailing pipes or dashes
-        clean = clean.replaceAll("[\\|\\-\\:]+$", "").trim();
+        // Remove trailing quotes, pipes, colons, or dashes
+        clean = clean.replaceAll("[\"'\\u201C\\u201D\\u2018\\u2019\\|\\-\\:]+$", "").trim();
+        clean = clean.replaceAll("^[\"'\\u201C\\u201D\\u2018\\u2019]+", "").trim();
         return clean;
     }
 
@@ -581,59 +639,6 @@ public class CertificateVerificationService {
         return "freeCodeCamp Verified Developer Certification";
     }
 
-    private static ExtractedMeta parseKnownSlug(String targetUrl) {
-        String lower = targetUrl.toLowerCase();
-        ExtractedMeta data = new ExtractedMeta();
-        data.issueDate = LocalDate.now();
-
-        if (lower.contains("credly.com")) {
-            if (lower.contains("badge/aws-certified-cloud-practitioner")) {
-                data.valid = true;
-                data.title = "AWS Certified Cloud Practitioner";
-                data.issuingOrg = "Amazon Web Services";
-                return data;
-            }
-            if (lower.contains("badge/associate-cloud-engineer")) {
-                data.valid = true;
-                data.title = "Google Cloud Certified Associate Cloud Engineer";
-                data.issuingOrg = "Google Cloud";
-                return data;
-            }
-        }
-        if (lower.contains("freecodecamp.org/certification/")) {
-            data.valid = true;
-            data.title = deduceFreeCodeCampTitle(targetUrl, null, null);
-            data.issuingOrg = "freeCodeCamp";
-            return data;
-        }
-        if (lower.contains("udemy.com/certificate/")) {
-            data.valid = true;
-            data.title = "Udemy Verified Course Certificate";
-            data.issuingOrg = "Udemy";
-            return data;
-        }
-        if (lower.contains("linkedin.com/learning/certificates/")) {
-            data.valid = true;
-            data.title = "LinkedIn Learning Professional Certificate";
-            data.issuingOrg = "LinkedIn Learning";
-            return data;
-        }
-        if (lower.contains("learn.microsoft.com")) {
-            data.valid = true;
-            data.title = "Microsoft Certified Professional Credential";
-            data.issuingOrg = "Microsoft";
-            return data;
-        }
-        if (lower.contains("edx.org/certificates/")) {
-            data.valid = true;
-            data.title = "edX Verified Specialization Certificate";
-            data.issuingOrg = "edX";
-            return data;
-        }
-
-        return null;
-    }
-
     private static String extractMeta(String html, String prop) {
         Pattern p1 = Pattern.compile("<meta[^>]*property=[\"']" + Pattern.quote(prop) + "[\"'][^>]*content=[\"']([^\"']*)[\"']", Pattern.CASE_INSENSITIVE);
         Matcher m1 = p1.matcher(html);
@@ -646,6 +651,10 @@ public class CertificateVerificationService {
         Pattern p3 = Pattern.compile("<meta[^>]*content=[\"']([^\"']*)[\"'][^>]*property=[\"']" + Pattern.quote(prop) + "[\"']", Pattern.CASE_INSENSITIVE);
         Matcher m3 = p3.matcher(html);
         if (m3.find()) return unescapeHtml(m3.group(1));
+
+        Pattern p4 = Pattern.compile("<meta[^>]*content=[\"']([^\"']*)[\"'][^>]*name=[\"']" + Pattern.quote(prop) + "[\"']", Pattern.CASE_INSENSITIVE);
+        Matcher m4 = p4.matcher(html);
+        if (m4.find()) return unescapeHtml(m4.group(1));
 
         return null;
     }

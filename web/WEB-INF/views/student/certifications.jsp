@@ -209,16 +209,22 @@
                                         <div class="ios-card mb-3" style="border: 1px solid rgba(226, 232, 240, 0.9); box-shadow: var(--ios-shadow-sm);">
                                             <div class="ios-card-body p-4">
                                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="ios-badge ios-badge-green p-2" style="border-radius: var(--ios-radius-sm);">
+                                                    <div class="d-flex align-items-start gap-3">
+                                                        <div class="ios-badge ios-badge-green p-2 mt-1" style="border-radius: var(--ios-radius-sm);">
                                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                                                         </div>
                                                         <div>
-                                                            <h3 class="h6 font-weight-bold text-dark mb-0" style="font-size: 1.05rem;">
+                                                            <h3 class="h6 font-weight-bold text-dark mb-1" style="font-size: 1.08rem; line-height: 1.4;">
                                                                 <c:out value="${c.title}" />
                                                             </h3>
-                                                            <div class="small" style="color: #475569;">
-                                                                Issuer: <strong class="text-dark"><c:out value="${c.issuingOrg}" /></strong> &bull; Issued: <c:out value="${c.formattedIssueDate}" />
+                                                            <div class="d-flex flex-wrap align-items-center gap-2 small text-muted">
+                                                                <span class="badge badge-primary px-2 py-1" style="border-radius: 6px; font-weight: 600; font-size: 0.72rem; background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1px solid rgba(0, 113, 227, 0.2);">
+                                                                    Platform: <c:out value="${c.issuingOrg}" />
+                                                                </span>
+                                                                <span class="d-inline-flex align-items-center" style="color: #475569;">
+                                                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                                                    Completed / Issued: <strong class="text-dark ml-1"><c:out value="${c.formattedIssueDate}" /></strong>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>

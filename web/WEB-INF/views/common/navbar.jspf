@@ -138,15 +138,15 @@
 <c:if test="${not empty sessionScope.SESSION_USER_ID}">
     <div class="ios-mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
         <!-- Drawer Header with Brand & Cancel/Close Button -->
-        <div class="ios-mobile-drawer-header d-flex align-items-center justify-content-between px-3 px-md-4">
+        <div class="ios-mobile-drawer-header px-3 px-md-4">
             <a class="ios-brand m-0" href="${pageContext.request.contextPath}/">
-                <span class="ios-brand-icon" style="width: 34px; height: 34px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <span class="ios-brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                         <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                     </svg>
                 </span>
-                <span style="font-size: 1.15rem;">SkillTrack</span>
+                <span>SkillTrack</span>
             </a>
             <button type="button" class="ios-drawer-close-btn" id="mobileNavCloseBtn" aria-label="Cancel and Close Menu">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -157,105 +157,130 @@
         </div>
 
         <!-- Drawer Scrollable Navigation Body -->
-        <div class="ios-mobile-drawer-body px-3 py-3">
-            <div class="ios-mobile-nav-group mb-3">
-                <div class="ios-mobile-section-title">Main Navigation</div>
-                <c:choose>
-                    <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
-                        <a class="ios-mobile-link ${activeNav == 'admin-dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/dashboard">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
-                            </span>
-                            <span>Overview Dashboard</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'students' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/students">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                            </span>
-                            <span>Student Directory</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'roles' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/roles">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                            </span>
-                            <span>Target Roles Bank</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/skills">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </span>
-                            <span>Master Skills Bank</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/criteria">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                            </span>
-                            <span>Placement Cutoffs</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'cohort' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/cohort-summary">
-                            <span class="ios-mobile-link-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                            </span>
-                            <span>Cohort Intelligence</span>
-                        </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="ios-mobile-link ${activeNav == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dashboard">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg></span>
-                            <span>Overview Dashboard</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'profile' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/profile">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
-                            <span>Academic Profile</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skills">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>
-                            <span>My Technical Skills</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'projects' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/projects">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
-                            <span>Projects Portfolio</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'certifications' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/certifications">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span>
-                            <span>Certifications</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'dsa' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dsa">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>
-                            <span>DSA Milestones</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
-                            <span>Action Checklist</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'skill-gap' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skill-gap">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
-                            <span>Role Skill Gap</span>
-                        </a>
-                        <a class="ios-mobile-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">
-                            <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
-                            <span>Company Cutoffs</span>
-                        </a>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+        <div class="ios-mobile-drawer-body">
+            <div class="ios-mobile-section-title">Navigation Menu</div>
+            <c:choose>
+                <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
+                    <a class="ios-mobile-link ${activeNav == 'admin-dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/dashboard">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Overview Dashboard</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'students' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/students">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Student Directory</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'roles' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/roles">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Target Roles Bank</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/skills">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Master Skills Bank</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/criteria">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Placement Cutoffs</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'cohort' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/cohort-summary">
+                        <span class="ios-mobile-link-icon">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </span>
+                        <span class="ios-mobile-link-text">Cohort Intelligence</span>
+                        <span class="ios-mobile-link-chevron">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </span>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a class="ios-mobile-link ${activeNav == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dashboard">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg></span>
+                        <span class="ios-mobile-link-text">Overview Dashboard</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'profile' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/profile">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+                        <span class="ios-mobile-link-text">Academic Profile</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skills">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>
+                        <span class="ios-mobile-link-text">My Technical Skills</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'projects' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/projects">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+                        <span class="ios-mobile-link-text">Projects Portfolio</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'certifications' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/certifications">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span>
+                        <span class="ios-mobile-link-text">Certifications</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'dsa' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dsa">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>
+                        <span class="ios-mobile-link-text">DSA Milestones</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
+                        <span class="ios-mobile-link-text">Action Checklist</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'skill-gap' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skill-gap">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
+                        <span class="ios-mobile-link-text">Role Skill Gap</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
+                        <span class="ios-mobile-link-text">Company Cutoffs</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <!-- Drawer Footer: User Avatar ('A') & Account Controls at the very end/last -->
         <div class="ios-mobile-drawer-footer px-3 py-3 border-top">
-            <div class="ios-mobile-user-card p-3 mb-2 d-flex align-items-center">
-                <!-- Circular Avatar 'A' (Displayed inside drawer at bottom) -->
-                <div class="rounded-circle d-flex align-items-center justify-content-center font-weight-bold mr-3 flex-shrink-0" style="width: 42px; height: 42px; background: linear-gradient(135deg, #0071e3, #5856d6); color: #ffffff; font-size: 1.05rem; border: 2px solid #ffffff; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35);">
+            <div class="ios-mobile-user-card p-3 mb-2.5 d-flex align-items-center">
+                <!-- Circular Avatar 'A' -->
+                <div class="rounded-circle d-flex align-items-center justify-content-center font-weight-bold mr-3 flex-shrink-0" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0071e3, #5856d6); color: #ffffff; font-size: 1.1rem; border: 2px solid #ffffff; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35);">
                     <c:choose>
                         <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">A</c:when>
                         <c:otherwise><c:out value="${fn:substring(sessionScope.SESSION_USER_NAME != null ? sessionScope.SESSION_USER_NAME : 'S', 0, 1)}" /></c:otherwise>
                     </c:choose>
                 </div>
                 <div class="flex-grow-1 text-truncate">
-                    <div class="font-weight-bold text-truncate" style="color: var(--ios-text-primary); font-size: 0.925rem;">
+                    <div class="font-weight-bold text-truncate" style="color: var(--ios-text-primary); font-size: 0.95rem;">
                         <c:out value="${sessionScope.SESSION_USER_NAME}" default="Administrator" />
                     </div>
-                    <div class="small text-muted text-truncate">
+                    <div class="small text-muted font-weight-500 text-truncate">
                         <c:out value="${sessionScope.SESSION_USER_ROLE == 'ADMIN' ? 'System Administrator' : 'Placement Candidate'}" />
                     </div>
                 </div>
@@ -263,7 +288,7 @@
 
             <form action="${pageContext.request.contextPath}/logout" method="post" class="p-0 m-0">
                 <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
-                <button type="submit" class="btn btn-block py-2 font-weight-bold d-flex align-items-center justify-content-center" style="background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; border-radius: 12px; font-size: 0.9rem; transition: var(--ios-ease);">
+                <button type="submit" class="btn btn-block py-2.5 font-weight-bold d-flex align-items-center justify-content-center" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.22); border-radius: 12px; font-size: 0.9rem; transition: var(--ios-ease);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                     Sign Out
                 </button>

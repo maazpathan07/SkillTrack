@@ -2,6 +2,7 @@ package com.skilltrack.controllers;
 
 import com.skilltrack.constants.AppConstants;
 import com.skilltrack.models.Certification;
+import com.skilltrack.services.CertificateVerificationService;
 import com.skilltrack.services.StudentService;
 import com.skilltrack.utils.DateUtil;
 import com.skilltrack.utils.SessionUtil;
@@ -24,6 +25,7 @@ public class StudentCertificationsServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(StudentCertificationsServlet.class.getName());
 
     private final StudentService studentService = new StudentService();
+    private final CertificateVerificationService certVerificationService = new CertificateVerificationService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,6 +65,23 @@ public class StudentCertificationsServlet extends HttpServlet {
         }
 
         String action = request.getParameter("action");
+
+        if ("auto-fetch".equalsIgnoreCase(action)) {
+            String certInput = request.getParameter("certInput");
+            String platform = request.getParameter("platform");
+
+            CertificateVerificationService.AutoFetchResult result = 
+                    certVerificationService.autoFetchAndSaveCertificate(studentId, certInput, platform);
+
+            if (result.isSuccess()) {
+                request.getSession().setAttribute(AppConstants.FLASH_SUCCESS, result.getMessage());
+            } else {
+                request.getSession().setAttribute(AppConstants.FLASH_ERROR, result.getMessage());
+            }
+            response.sendRedirect(request.getContextPath() + "/app/student/certifications");
+            return;
+        }
+
         String certIdStr = request.getParameter("certId");
         int certId = ValidationUtil.parsePositiveInt(certIdStr, 0);
 

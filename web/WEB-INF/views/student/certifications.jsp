@@ -32,63 +32,78 @@
                 </div>
             </div>
 
-            <!-- Smart Certification Auto-Fill & Credential Engine Card -->
+            <!-- Live Certificate & Credential Auto-Fetch Engine Card -->
             <div class="ios-card p-4 mb-4" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
-                <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
+                <div class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-between gap-3">
                     <div class="d-flex align-items-start gap-3">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.35);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                         </div>
                         <div>
                             <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
-                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.1rem; letter-spacing: -0.02em;">Smart Certification Auto-Fill Engine</h2>
+                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.1rem; letter-spacing: -0.02em;">Live Certificate &amp; Credential Auto-Fetch Engine</h2>
                                 <span class="badge badge-success px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem;">
-                                    ⚡ 1-Click Auto-Fill &bull; Credly &bull; AWS &bull; Oracle &bull; Coursera &bull; HackerRank
+                                    ⚡ Auto-Fetch by Link or Certificate ID
                                 </span>
                             </div>
-                            <p class="text-muted small mb-2" style="max-width: 680px; line-height: 1.45;">
-                                Auto-fill verified industry credentials in 1-click or paste your Credly / Badge verification link to auto-extract credential details instantly.
+                            <p class="text-muted small mb-2" style="max-width: 650px; line-height: 1.45;">
+                                Paste your <strong>Credly badge URL/ID</strong>, <strong>HackerRank cert ID</strong>, <strong>Coursera verify link</strong>, or <strong>Udemy ID</strong>. System will automatically verify and add the certificate to your profile in real-time.
                             </p>
 
                             <!-- Quick Preset Badges -->
                             <div class="d-flex align-items-center flex-wrap gap-2 pt-1">
                                 <span class="text-muted small mr-1 font-weight-bold" style="font-size: 0.75rem;">1-Click Auto-Fill:</span>
                                 <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('AWS Certified Cloud Practitioner', 'Amazon Web Services', 'https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner')">
-                                    ☁️ AWS Cloud Practitioner
+                                    ☁️ AWS Cloud
                                 </button>
                                 <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Oracle Certified Associate, Java SE 8 Programmer', 'Oracle Corporation', 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=...')">
-                                    ☕ Oracle Java Associate
+                                    ☕ Oracle Java
                                 </button>
                                 <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Google Cloud Associate Cloud Engineer', 'Google Cloud', 'https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer')">
-                                    🌐 Google Cloud Associate
-                                </button>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Microsoft Certified: Azure Fundamentals (AZ-900)', 'Microsoft', 'https://learn.microsoft.com/en-us/users/.../credentials/...')">
-                                    🔷 Azure Fundamentals
+                                    🌐 Google Cloud
                                 </button>
                                 <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Problem Solving (Advanced) Certificate', 'HackerRank', 'https://www.hackerrank.com/certificates/...')">
-                                    ⚡ HackerRank Problem Solving
+                                    ⚡ HackerRank
                                 </button>
                                 <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Meta Front-End Developer Professional Certificate', 'Meta &amp; Coursera', 'https://www.coursera.org/verify/professional-cert/...')">
-                                    💻 Meta Front-End
+                                    💻 Meta
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- URL Quick Auto-Extract Box -->
-                    <div class="p-3 mt-2 mt-lg-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 12px; min-width: 290px; max-width: 380px;">
-                        <label class="small font-weight-bold text-dark mb-1 d-block" style="font-size: 0.78rem;">
-                            🔗 Auto-Detect From URL Link:
-                        </label>
-                        <div class="input-group input-group-sm mb-1">
-                            <input type="url" id="quickUrlInput" class="form-control" placeholder="Paste Credly/Badge link..." style="font-size: 0.8rem; border-radius: 6px 0 0 6px;">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; font-weight: 600; border-radius: 0 6px 6px 0;" onclick="autoExtractFromUrl()">
-                                    ⚡ Fill Form
-                                </button>
+                    <!-- Live URL / ID Auto-Fetch Form -->
+                    <div class="p-3 mt-3 mt-xl-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 14px; min-width: 320px; max-width: 440px;">
+                        <form action="${pageContext.request.contextPath}/app/student/certifications" method="POST" onsubmit="return handleAutoFetchSubmit(this);">
+                            <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
+                            <input type="hidden" name="action" value="auto-fetch">
+                            
+                            <label for="certInput" class="small font-weight-bold text-dark mb-1.5 d-flex justify-content-between align-items-center">
+                                <span>🔗 Paste Certificate Link or ID:</span>
+                                <span class="badge badge-success px-1.5 py-0.5" style="font-size: 0.68rem;">Live Auto-Add</span>
+                            </label>
+                            
+                            <div class="input-group input-group-sm mb-2">
+                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="e.g. credly link, HackerRank ID..." required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
+                                <div class="input-group-append">
+                                    <button type="submit" id="autoFetchBtn" class="btn btn-success font-weight-bold px-3 d-flex align-items-center" style="font-size: 0.82rem; border-radius: 0 6px 6px 0; background: linear-gradient(135deg, #10b981, #059669); border: none;">
+                                        <span id="autoFetchSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
+                                        <span id="autoFetchText">⚡ Fetch &amp; Add</span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <small class="text-muted d-block" style="font-size: 0.72rem;">Parses Issuer, Title &amp; verification link.</small>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <select name="platform" class="custom-select custom-select-sm" style="font-size: 0.75rem; height: 26px; padding-top: 2px; padding-bottom: 2px; width: 140px; border-radius: 6px;">
+                                    <option value="auto">Auto-Detect</option>
+                                    <option value="credly">Credly Badge</option>
+                                    <option value="hackerrank">HackerRank</option>
+                                    <option value="coursera">Coursera</option>
+                                    <option value="udemy">Udemy (UC-ID)</option>
+                                    <option value="freecodecamp">freeCodeCamp</option>
+                                </select>
+                                <small class="text-muted" style="font-size: 0.72rem;">100% verified accreditation</small>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -456,6 +471,25 @@ function flashHighlight(elements) {
             el.style.boxShadow = '';
         }, 1200);
     });
+function handleAutoFetchSubmit(form) {
+    var input = (form.certInput && form.certInput.value) ? form.certInput.value.trim() : '';
+    if (!input) {
+        alert('Please paste a certificate verification link or enter a certificate ID.');
+        return false;
+    }
+
+    var btn = document.getElementById('autoFetchBtn');
+    var spinner = document.getElementById('autoFetchSpinner');
+    var btnText = document.getElementById('autoFetchText');
+
+    if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.75';
+    }
+    if (spinner) spinner.classList.remove('d-none');
+    if (btnText) btnText.textContent = 'Verifying & Fetching...';
+
+    return true;
 }
 </script>
 

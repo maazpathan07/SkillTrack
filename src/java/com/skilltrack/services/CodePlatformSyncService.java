@@ -2,8 +2,10 @@ package com.skilltrack.services;
 
 import com.skilltrack.dao.CodingProfileDAO;
 import com.skilltrack.dao.DsaProgressDAO;
+import com.skilltrack.dao.ProjectDAO;
 import com.skilltrack.dto.CodingProfileSyncDTO;
 import com.skilltrack.models.DsaTopic;
+import com.skilltrack.models.Project;
 import com.skilltrack.models.StudentCodingProfile;
 import com.skilltrack.utils.SimpleJsonParser;
 import java.io.BufferedReader;
@@ -17,6 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -29,15 +32,18 @@ public class CodePlatformSyncService {
 
     private final CodingProfileDAO codingProfileDAO;
     private final DsaProgressDAO dsaProgressDAO;
+    private final ProjectDAO projectDAO;
 
     public CodePlatformSyncService() {
         this.codingProfileDAO = new CodingProfileDAO();
         this.dsaProgressDAO = new DsaProgressDAO();
+        this.projectDAO = new ProjectDAO();
     }
 
-    public CodePlatformSyncService(CodingProfileDAO codingProfileDAO, DsaProgressDAO dsaProgressDAO) {
+    public CodePlatformSyncService(CodingProfileDAO codingProfileDAO, DsaProgressDAO dsaProgressDAO, ProjectDAO projectDAO) {
         this.codingProfileDAO = codingProfileDAO;
         this.dsaProgressDAO = dsaProgressDAO;
+        this.projectDAO = (projectDAO != null) ? projectDAO : new ProjectDAO();
     }
 
     public StudentCodingProfile getStudentCodingProfile(int studentId) {
@@ -94,7 +100,12 @@ public class CodePlatformSyncService {
             if (ghSuccess) {
                 profile.setGithubUsername(cleanGh);
                 profile.setGithubSyncedAt(LocalDateTime.now());
-                statusMsg.append("GitHub synced (").append(result.getPublicRepos()).append(" repos).");
+                int imported = fetchAndSyncGitHubRepositories(studentId, cleanGh);
+                if (imported > 0) {
+                    statusMsg.append("GitHub profile synced & ").append(imported).append(" public repository projects automatically added to your portfolio!");
+                } else {
+                    statusMsg.append("GitHub profile synced (").append(result.getPublicRepos()).append(" public repos).");
+                }
             } else {
                 result.setSuccess(false);
                 statusMsg.append("GitHub account '").append(cleanGh).append("' not found on github.com.");
@@ -269,6 +280,93 @@ public class CodePlatformSyncService {
             }
         }
         return defaultValue;
+    }
+
+    private int fetchAndSyncGitHubRepositories(int studentId, String username) {
+        int importedCount = 0;
+        try {
+            URL url = new URL("https://api.github.com/users/" + username + "/repos?sort=updated&per_page=10");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(8000);
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("User-Agent", "SkillTrack-Platform-Sync/1.0");
+
+            int code = conn.getResponseCode();
+            if (code >= 200 && code < 400) {
+                String body = readStream(conn.getInputStream());
+                List<Map<String, String>> repos = SimpleJsonParser.parseJsonArrayOfObjects(body);
+
+                if (repos != null && !repos.isEmpty()) {
+                    List<Project> existingProjects = projectDAO.findByStudentId(studentId);
+
+                    for (Map<String, String> repo : repos) {
+                        String name = repo.get("name");
+                        if (name == null || name.trim().isEmpty()) continue;
+
+                        String htmlUrl = repo.get("html_url");
+                        if (htmlUrl == null || htmlUrl.trim().isEmpty()) {
+                            htmlUrl = "https://github.com/" + username + "/" + name;
+                        }
+
+                        // Check if project with same URL or title already exists
+                        boolean exists = false;
+                        if (existingProjects != null) {
+                            for (Project ep : existingProjects) {
+                                if ((ep.getGithubUrl() != null && ep.getGithubUrl().equalsIgnoreCase(htmlUrl)) ||
+                                    (ep.getTitle() != null && ep.getTitle().equalsIgnoreCase(name))) {
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!exists) {
+                            String title = formatRepoTitle(name);
+                            String rawDesc = repo.get("description");
+                            String language = repo.get("language");
+                            String homepage = repo.get("homepage");
+
+                            String techStack = (language != null && !language.trim().isEmpty()) ? language : "Full-Stack, Git";
+                            String description = (rawDesc != null && !rawDesc.trim().isEmpty()) 
+                                    ? rawDesc 
+                                    : "Open-source software project built using " + techStack + " featuring modular architecture, clean code practices, and Git version control.";
+                            String liveDemoUrl = (homepage != null && homepage.trim().startsWith("http")) ? homepage.trim() : null;
+
+                            Project newProject = new Project();
+                            newProject.setStudentId(studentId);
+                            newProject.setTitle(title);
+                            newProject.setDescription(description);
+                            newProject.setTechStack(techStack);
+                            newProject.setGithubUrl(htmlUrl);
+                            newProject.setLiveDemoUrl(liveDemoUrl);
+
+                            projectDAO.createProject(newProject);
+                            importedCount++;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, "Failed to import GitHub repositories for " + username, e);
+        }
+        return importedCount;
+    }
+
+    private String formatRepoTitle(String name) {
+        if (name == null) return "Project";
+        String clean = name.replace("-", " ").replace("_", " ").trim();
+        if (clean.equals(clean.toLowerCase())) {
+            StringBuilder sb = new StringBuilder();
+            for (String word : clean.split("\\s+")) {
+                if (!word.isEmpty()) {
+                    sb.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+                }
+            }
+            return sb.toString().trim();
+        }
+        return clean;
     }
 
     private String readStream(InputStream stream) throws Exception {

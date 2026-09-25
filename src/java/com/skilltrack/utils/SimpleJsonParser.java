@@ -1,6 +1,8 @@
 package com.skilltrack.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +56,55 @@ public final class SimpleJsonParser {
             map.put(key, unescapeJson(val));
         }
         return map;
+    }
+
+    /**
+     * Parses a JSON array of objects into a list of key-value maps.
+     */
+    public static List<Map<String, String>> parseJsonArrayOfObjects(String jsonArray) {
+        List<Map<String, String>> list = new ArrayList<>();
+        if (jsonArray == null || jsonArray.trim().isEmpty()) return list;
+
+        int depth = 0;
+        int objStart = -1;
+        boolean inString = false;
+        boolean escape = false;
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            char c = jsonArray.charAt(i);
+
+            if (escape) {
+                escape = false;
+                continue;
+            }
+
+            if (c == '\\') {
+                escape = true;
+                continue;
+            }
+
+            if (c == '"') {
+                inString = !inString;
+                continue;
+            }
+
+            if (!inString) {
+                if (c == '{') {
+                    if (depth == 0) {
+                        objStart = i;
+                    }
+                    depth++;
+                } else if (c == '}') {
+                    depth--;
+                    if (depth == 0 && objStart != -1) {
+                        String objJson = jsonArray.substring(objStart, i + 1);
+                        list.add(parseFlatJson(objJson));
+                        objStart = -1;
+                    }
+                }
+            }
+        }
+        return list;
     }
 
     private static String unescapeJson(String input) {

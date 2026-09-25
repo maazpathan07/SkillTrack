@@ -315,6 +315,17 @@
                                     </div>
                                     <small class="text-muted mt-1 d-block">System will fetch public repository count, bio, avatar, and verify your open source portfolio.</small>
                                 </div>
+
+                                <!-- Auto-import Repositories Checkbox -->
+                                <div class="custom-control custom-checkbox p-3 mt-3" style="background: rgba(30, 41, 59, 0.04); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 8px;">
+                                    <input type="checkbox" class="custom-control-input" id="autoImportRepos" name="autoDistribute" value="true" checked>
+                                    <label class="custom-control-label small font-weight-bold text-dark" for="autoImportRepos">
+                                        ⚡ Automatically import public repositories into Project Showcase
+                                    </label>
+                                    <small class="text-muted d-block mt-1" style="font-size: 0.775rem;">
+                                        Creates portfolio projects directly with verified GitHub repository links, tech stack tags, and repository descriptions.
+                                    </small>
+                                </div>
                             </div>
                             <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
                                 <button type="button" class="ios-btn-secondary" data-dismiss="modal" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">Cancel</button>

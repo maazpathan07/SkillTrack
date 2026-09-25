@@ -95,3 +95,28 @@
         </button>
     </div>
 </c:if>
+
+<script>
+    (function() {
+        setTimeout(function() {
+            var alerts = document.querySelectorAll(".ios-alert, .alert-dismissible");
+            alerts.forEach(function(alert) {
+                alert.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
+                alert.style.opacity = "0";
+                alert.style.transform = "translateY(-6px)";
+                setTimeout(function() {
+                    alert.style.maxHeight = "0";
+                    alert.style.paddingTop = "0";
+                    alert.style.paddingBottom = "0";
+                    alert.style.marginTop = "0";
+                    alert.style.marginBottom = "0";
+                    alert.style.border = "none";
+                    alert.style.overflow = "hidden";
+                    setTimeout(function() {
+                        if (alert.parentNode) alert.parentNode.removeChild(alert);
+                    }, 350);
+                }, 100);
+            });
+        }, 2000);
+    })();
+</script>

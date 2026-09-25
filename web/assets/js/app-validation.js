@@ -5,19 +5,37 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Auto-dismiss alert messages smoothly after 6 seconds
-    setTimeout(function () {
-        var alerts = document.querySelectorAll(".alert-dismissible, .st-alert");
-        alerts.forEach(function (alert) {
-            if (typeof $ !== 'undefined' && $(alert).alert) {
-                $(alert).alert("close");
-            } else {
-                alert.style.transition = "opacity 0.5s ease";
-                alert.style.opacity = "0";
-                setTimeout(function() { if (alert.parentNode) alert.parentNode.removeChild(alert); }, 500);
+    // 1. Auto-dismiss alert messages smoothly after 2 seconds (2000ms)
+    function dismissAlertSmoothly(alertEl) {
+        if (!alertEl || alertEl.dataset.dismissing === 'true') return;
+        alertEl.dataset.dismissing = 'true';
+        alertEl.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
+        alertEl.style.opacity = "0";
+        alertEl.style.transform = "translateY(-6px)";
+        
+        setTimeout(function () {
+            alertEl.style.maxHeight = "0px";
+            alertEl.style.paddingTop = "0px";
+            alertEl.style.paddingBottom = "0px";
+            alertEl.style.marginTop = "0px";
+            alertEl.style.marginBottom = "0px";
+            alertEl.style.borderWidth = "0px";
+            alertEl.style.overflow = "hidden";
+        }, 100);
+
+        setTimeout(function () {
+            if (alertEl.parentNode) {
+                alertEl.parentNode.removeChild(alertEl);
             }
+        }, 450);
+    }
+
+    setTimeout(function () {
+        var alerts = document.querySelectorAll(".alert-dismissible, .ios-alert, .alert, .st-alert");
+        alerts.forEach(function (alert) {
+            dismissAlertSmoothly(alert);
         });
-    }, 6000);
+    }, 2000);
 
     // 2. Bootstrap 4 instant form validation feedback
     var forms = document.querySelectorAll(".needs-validation");

@@ -15,29 +15,37 @@
             <!-- Page Header -->
             <div class="ios-dash-header mb-4">
                 <div>
-                    <div class="d-flex align-items-center gap-2 mb-1">
+                    <div class="d-flex align-items-center gap-2 mb-2">
                         <span class="ios-badge ios-badge-blue">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             Candidate Profile
                         </span>
                     </div>
-                    <h1 class="h3 font-weight-bold text-gray-800 mb-1" style="letter-spacing: -0.03em;">
-                        Candidate Profile: <c:out value="${student.fullName}" />
+                    <h1 class="h3 font-weight-bold text-gray-900 mb-2.5" style="letter-spacing: -0.03em;">
+                        <c:out value="${student.fullName}" />
                     </h1>
-                    <div class="d-flex align-items-center flex-wrap gap-2 small" style="color: #475569; gap: 0.5rem;">
-                        <span>Roll No: <code style="background: rgba(0,0,0,0.05); padding: 0.15rem 0.45rem; border-radius: var(--ios-radius-sm); font-weight: 700; color: var(--ios-text-primary); font-family: 'JetBrains Mono', monospace;"><c:out value="${student.rollNumber}" /></code></span>
-                        <span>&bull;</span>
-                        <span>Dept: <strong style="color: var(--ios-text-primary);"><c:out value="${student.department}" /></strong> (Batch '<c:out value="${student.graduationYear % 100}" />)</span>
-                        <span>&bull;</span>
-                        <span>Target: <span class="ios-badge ios-badge-blue font-weight-bold"><c:out value="${student.targetRoleTitle}" default="Unassigned" /></span></span>
+                    <div class="d-flex align-items-center flex-wrap" style="gap: 0.5rem;">
+                        <span class="d-inline-flex align-items-center px-2.5 py-1 rounded-pill" style="background: rgba(241, 245, 249, 0.9); border: 1px solid #e2e8f0; font-size: 0.8125rem;">
+                            <span class="text-muted mr-1.5" style="font-weight: 500;">Roll:</span>
+                            <strong style="color: var(--ios-text-primary); font-family: 'JetBrains Mono', monospace;"><c:out value="${student.rollNumber}" /></strong>
+                        </span>
+                        <span class="d-inline-flex align-items-center px-2.5 py-1 rounded-pill" style="background: rgba(241, 245, 249, 0.9); border: 1px solid #e2e8f0; font-size: 0.8125rem;">
+                            <span class="text-muted mr-1.5" style="font-weight: 500;">Dept:</span>
+                            <strong style="color: var(--ios-text-primary);"><c:out value="${student.department}" /></strong>
+                            <span class="text-muted ml-1" style="font-weight: 400;">(Batch '<c:out value="${student.graduationYear % 100}" />)</span>
+                        </span>
+                        <span class="d-inline-flex align-items-center px-2.5 py-1 rounded-pill" style="background: rgba(0, 113, 227, 0.08); border: 1px solid rgba(0, 113, 227, 0.2); font-size: 0.8125rem;">
+                            <span class="mr-1.5" style="color: #0071e3; font-weight: 600;">Target:</span>
+                            <strong style="color: #0071e3;"><c:out value="${student.targetRoleTitle}" default="Unassigned" /></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="d-flex align-items-center flex-wrap gap-2 mt-3 mt-md-0" style="gap: 0.5rem;">
-                    <a href="${pageContext.request.contextPath}/app/admin/readiness-card?studentId=${student.studentId}" class="ios-btn-primary" style="padding: 0.55rem 1.25rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <div class="d-flex align-items-center flex-wrap flex-sm-nowrap gap-2 mt-3 mt-lg-0 w-100 w-lg-auto" style="gap: 0.5rem;">
+                    <a href="${pageContext.request.contextPath}/app/admin/readiness-card?studentId=${student.studentId}" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25); white-space: nowrap;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                         Readiness Card
                     </a>
-                    <a href="${pageContext.request.contextPath}/app/admin/students" class="ios-btn-secondary" style="padding: 0.55rem 1.15rem; font-size: 0.875rem;">
+                    <a href="${pageContext.request.contextPath}/app/admin/students" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap;">
                         Back to Directory
                     </a>
                 </div>

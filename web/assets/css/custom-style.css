@@ -879,6 +879,12 @@ main {
     padding: 2rem 1.25rem !important;
     border-radius: var(--ios-radius-md) !important;
   }
+
+  .ios-dash-header {
+    padding: 1.35rem 1.15rem !important;
+    margin-bottom: 1.25rem !important;
+    border-radius: var(--ios-radius-md) !important;
+  }
 }
 
 /* =====================================================================

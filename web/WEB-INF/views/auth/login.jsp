@@ -28,13 +28,13 @@
                     <%@ include file="/WEB-INF/views/common/alerts.jspf" %>
 
                     <!-- Streamlined Login Form -->
-                    <form action="${pageContext.request.contextPath}/login" method="post" class="needs-validation" novalidate id="loginForm">
+                    <form action="${pageContext.request.contextPath}/login" method="post" class="needs-validation" novalidate id="loginForm" autocomplete="off">
                         <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
 
                         <!-- Email Input -->
                         <div class="form-group mb-3">
                             <label for="email" class="ios-form-label">College / Work Email <span class="text-danger">*</span></label>
-                            <input type="email" class="ios-form-control" id="email" name="email" value="<c:out value='${email}' />" required autofocus placeholder="name@university.edu">
+                            <input type="email" class="ios-form-control" id="email" name="email" value="<c:out value='${email}' />" required autocomplete="off" placeholder="name@university.edu">
                             <div class="invalid-feedback small mt-1">Please enter your email address.</div>
                         </div>
 
@@ -44,7 +44,7 @@
                                 <label for="password" class="ios-form-label mb-0">Password <span class="text-danger">*</span></label>
                             </div>
                             <div class="ios-input-wrapper">
-                                <input type="password" class="ios-form-control" id="password" name="password" required placeholder="••••••••">
+                                <input type="password" class="ios-form-control" id="password" name="password" required autocomplete="new-password" placeholder="••••••••">
                                 <button type="button" class="ios-input-toggle" id="togglePasswordBtn" aria-label="Toggle password visibility">
                                     <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -95,6 +95,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Clear any browser-cached / autofilled values on fresh initial page load
+    <c:if test="${empty error}">
+    function resetAutoFill() {
+        var emailEl = document.getElementById('email');
+        var passEl = document.getElementById('password');
+        if (emailEl && !emailEl.getAttribute('data-user-typed')) emailEl.value = '';
+        if (passEl && !passEl.getAttribute('data-user-typed')) passEl.value = '';
+    }
+    resetAutoFill();
+    setTimeout(resetAutoFill, 50);
+    setTimeout(resetAutoFill, 200);
+    </c:if>
+
     // Bootstrap validation trigger
     var form = document.getElementById('loginForm');
     if (form) {
@@ -106,6 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
             form.classList.add('was-validated');
         }, false);
     }
+});
+
+window.addEventListener('pageshow', function() {
+    <c:if test="${empty error}">
+    var emailEl = document.getElementById('email');
+    var passEl = document.getElementById('password');
+    if (emailEl) emailEl.value = '';
+    if (passEl) passEl.value = '';
+    </c:if>
 });
 </script>
 

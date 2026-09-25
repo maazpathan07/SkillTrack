@@ -24,23 +24,23 @@
                     <h2 class="h3 font-weight-bold text-gray-800 mb-0">Placement Readiness Profile Card</h2>
                     <p class="text-muted small mb-0 mt-1">Verified candidate placement readiness card and multi-pillar benchmark audit</p>
                 </div>
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center flex-wrap flex-sm-nowrap gap-2 mt-3 mt-lg-0 w-100 w-lg-auto" style="gap: 0.5rem;">
                     <c:choose>
                         <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
-                            <a href="${pageContext.request.contextPath}/app/admin/students" class="ios-btn-secondary" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            <a href="${pageContext.request.contextPath}/app/admin/students" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 Back to Directory
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/app/student/dashboard" class="ios-btn-secondary" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            <a href="${pageContext.request.contextPath}/app/student/dashboard" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 Back to Dashboard
                             </a>
                         </c:otherwise>
                     </c:choose>
-                    <button type="button" class="ios-btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.875rem;" onclick="window.print()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;" onclick="window.print()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                         Print / Save as PDF
                     </button>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="ios-dossier-header">
                     <div>
                         <div class="ios-dossier-brand-title">
-                            <div class="ios-brand-icon" style="width: 32px; height: 32px; border-radius: 8px;">
+                            <div class="ios-brand-icon flex-shrink-0" style="width: 32px; height: 32px; border-radius: 8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                             </div>
                             <span>SkillTrack — Placement Readiness Profile</span>
@@ -61,9 +61,9 @@
                             Candidate Assessment Report &bull; Generated: <strong><c:out value="${generatedTimestamp}" /></strong>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <span class="ios-badge ios-badge-blue" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    <div class="dossier-role-target">
+                        <span class="ios-badge ios-badge-blue" style="font-size: 0.875rem; padding: 0.45rem 0.9rem;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                             <c:out value="${student.targetRoleTitle}" default="General Software Engineering" />
                         </span>
                     </div>

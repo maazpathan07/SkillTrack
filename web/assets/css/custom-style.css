@@ -842,6 +842,113 @@ main {
   }
 }
 
+@media (max-width: 767.98px) {
+  main,
+  main.col-md-9,
+  main.col-lg-10 {
+    padding: 1.25rem 0.85rem 2.5rem 0.85rem !important;
+  }
+
+  .container-fluid {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .ios-dash-header {
+    padding: 1.25rem 1rem !important;
+    margin-bottom: 1.25rem !important;
+    border-radius: var(--ios-radius-md) !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .ios-dash-header > div:last-child {
+    width: 100% !important;
+  }
+
+  .ios-dash-header .ios-btn-primary,
+  .ios-dash-header .ios-btn-secondary {
+    width: 100% !important;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .ios-dossier-card {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--ios-radius-md) !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .ios-dossier-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .ios-dossier-brand-title {
+    font-size: 1.1rem !important;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ios-dossier-header .dossier-role-target,
+  .ios-dossier-header .text-right {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .ios-dossier-header .ios-badge {
+    white-space: normal !important;
+    max-width: 100% !important;
+    word-break: break-word !important;
+    display: inline-flex !important;
+    text-align: left !important;
+    font-size: 0.8125rem !important;
+    padding: 0.4rem 0.75rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .ios-dossier-meta-grid {
+    grid-template-columns: 1fr !important;
+    padding: 1rem !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .ios-dossier-gauge-card {
+    padding: 1.25rem 1rem !important;
+    margin-bottom: 1.25rem;
+  }
+
+  .ios-dossier-score-ring {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .ios-dossier-score-val {
+    font-size: 1.5rem !important;
+  }
+
+  .ios-dossier-footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+  }
+
+  .ios-dossier-disclaimer {
+    margin-right: 0 !important;
+    font-size: 0.75rem !important;
+  }
+
+  .ios-dossier-seal {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
 @media (max-width: 575.98px) {
   .ios-navbar {
     padding: 0 1rem;
@@ -877,12 +984,6 @@ main {
   .ios-auth-card,
   .ios-auth-card-wide {
     padding: 2rem 1.25rem !important;
-    border-radius: var(--ios-radius-md) !important;
-  }
-
-  .ios-dash-header {
-    padding: 1.35rem 1.15rem !important;
-    margin-bottom: 1.25rem !important;
     border-radius: var(--ios-radius-md) !important;
   }
 }
@@ -975,7 +1076,8 @@ main {
   font-size: 0.775rem;
   font-weight: 700;
   border-radius: var(--ios-radius-full);
-  white-space: nowrap !important;
+  max-width: 100%;
+  line-height: 1.35;
 }
 
 .ios-badge-blue   { background: #edf5ff; color: #005bb5; border: 1px solid rgba(0, 91, 181, 0.2); }

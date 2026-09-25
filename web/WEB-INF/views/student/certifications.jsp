@@ -46,34 +46,14 @@
                                     ⚡ Auto-Fetch by Link or Certificate ID
                                 </span>
                             </div>
-                            <p class="text-muted small mb-2" style="max-width: 650px; line-height: 1.45;">
-                                Paste your <strong>Credly badge URL/ID</strong>, <strong>HackerRank cert ID</strong>, <strong>Coursera verify link</strong>, or <strong>Udemy ID</strong>. System will automatically verify and add the certificate to your profile in real-time.
+                            <p class="text-muted small mb-0" style="max-width: 680px; line-height: 1.5;">
+                                Paste your <strong>Credly badge link</strong>, <strong>HackerRank cert ID / URL</strong>, <strong>Coursera verify link</strong>, or <strong>Udemy ID</strong>. The system will automatically fetch the real certificate title, issuing organization, and issue date to add it directly to your portfolio.
                             </p>
-
-                            <!-- Quick Preset Badges -->
-                            <div class="d-flex align-items-center flex-wrap gap-2 pt-1">
-                                <span class="text-muted small mr-1 font-weight-bold" style="font-size: 0.75rem;">1-Click Auto-Fill:</span>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('AWS Certified Cloud Practitioner', 'Amazon Web Services', 'https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner')">
-                                    ☁️ AWS Cloud
-                                </button>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Oracle Certified Associate, Java SE 8 Programmer', 'Oracle Corporation', 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=...')">
-                                    ☕ Oracle Java
-                                </button>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Google Cloud Associate Cloud Engineer', 'Google Cloud', 'https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer')">
-                                    🌐 Google Cloud
-                                </button>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Problem Solving (Advanced) Certificate', 'HackerRank', 'https://www.hackerrank.com/certificates/...')">
-                                    ⚡ HackerRank
-                                </button>
-                                <button type="button" class="btn btn-sm btn-light border py-1 px-2.5" style="border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #ffffff;" onclick="autoFillPreset('Meta Front-End Developer Professional Certificate', 'Meta &amp; Coursera', 'https://www.coursera.org/verify/professional-cert/...')">
-                                    💻 Meta
-                                </button>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Live URL / ID Auto-Fetch Form -->
-                    <div class="p-3 mt-3 mt-xl-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 14px; min-width: 320px; max-width: 440px;">
+                    <div class="p-3 mt-3 mt-xl-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 14px; min-width: 320px; max-width: 460px;">
                         <form action="${pageContext.request.contextPath}/app/student/certifications" method="POST" onsubmit="return handleAutoFetchSubmit(this);">
                             <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
                             <input type="hidden" name="action" value="auto-fetch">
@@ -84,7 +64,7 @@
                             </label>
                             
                             <div class="input-group input-group-sm mb-2">
-                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="e.g. credly link, HackerRank ID..." required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
+                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="e.g. credly.com/badges/... or ID" required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
                                 <div class="input-group-append">
                                     <button type="submit" id="autoFetchBtn" class="btn btn-success font-weight-bold px-3 d-flex align-items-center" style="font-size: 0.82rem; border-radius: 0 6px 6px 0; background: linear-gradient(135deg, #10b981, #059669); border: none;">
                                         <span id="autoFetchSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
@@ -129,47 +109,6 @@
                             <form id="certForm" action="${pageContext.request.contextPath}/app/student/certifications" method="post" class="needs-validation" novalidate>
                                 <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
                                 <input type="hidden" name="certId" value="<c:out value='${editCert.certId}' default='0' />" />
-
-                                <!-- Quick Preset Dropdown -->
-                                <div class="form-group mb-3">
-                                    <label for="certPresetSelect" class="ios-form-label d-flex justify-content-between align-items-center">
-                                        <span>⚡ Quick Auto-Fill Template</span>
-                                        <span class="text-muted font-weight-normal" style="font-size: 0.72rem;">Optional one-click fill</span>
-                                    </label>
-                                    <select id="certPresetSelect" class="ios-form-control" onchange="onPresetSelectChange(this)" style="font-size: 0.85rem; color: #005bb5; font-weight: 600; background-color: #f8fafc;">
-                                        <option value="">-- Choose a Recognized Industry Certification --</option>
-                                        <optgroup label="Amazon Web Services (AWS)">
-                                            <option value="AWS Certified Cloud Practitioner|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner">AWS Certified Cloud Practitioner</option>
-                                            <option value="AWS Certified Solutions Architect - Associate|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect - Associate</option>
-                                            <option value="AWS Certified Developer - Associate|Amazon Web Services|https://www.credly.com/org/amazon-web-services/badge/aws-certified-developer-associate">AWS Certified Developer - Associate</option>
-                                        </optgroup>
-                                        <optgroup label="Oracle &amp; Java">
-                                            <option value="Oracle Certified Associate, Java SE 8 Programmer|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Certified Associate, Java SE 8 Programmer (OCAJP)</option>
-                                            <option value="Oracle Certified Professional, Java SE 11 Developer|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Certified Professional, Java SE 11 Developer (OCPJP)</option>
-                                            <option value="Oracle Database SQL Certified Associate|Oracle Corporation|https://catalog-education.oracle.com/pls/certview/sharebadge?id=...">Oracle Database SQL Certified Associate</option>
-                                        </optgroup>
-                                        <optgroup label="Google Cloud &amp; Microsoft">
-                                            <option value="Google Cloud Associate Cloud Engineer|Google Cloud|https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer">Google Cloud Associate Cloud Engineer</option>
-                                            <option value="Google Cloud Professional Data Engineer|Google Cloud|https://www.credly.com/org/google-cloud/badge/professional-data-engineer">Google Cloud Professional Data Engineer</option>
-                                            <option value="Microsoft Certified: Azure Fundamentals (AZ-900)|Microsoft|https://learn.microsoft.com/en-us/users/.../credentials/...">Microsoft Certified: Azure Fundamentals (AZ-900)</option>
-                                            <option value="Microsoft Certified: Azure Developer Associate (AZ-204)|Microsoft|https://learn.microsoft.com/en-us/users/.../credentials/...">Microsoft Certified: Azure Developer Associate (AZ-204)</option>
-                                        </optgroup>
-                                        <optgroup label="Coding &amp; Algorithms Platforms">
-                                            <option value="Problem Solving (Intermediate) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Problem Solving (Intermediate)</option>
-                                            <option value="Problem Solving (Advanced) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Problem Solving (Advanced)</option>
-                                            <option value="Java (Basic &amp; Intermediate) Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank Java Skills Certified</option>
-                                            <option value="SQL (Advanced) Skills Certificate|HackerRank|https://www.hackerrank.com/certificates/...">HackerRank SQL (Advanced)</option>
-                                        </optgroup>
-                                        <optgroup label="Full-Stack &amp; Professional Specializations">
-                                            <option value="Meta Front-End Developer Professional Certificate|Meta &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">Meta Front-End Developer Professional Certificate</option>
-                                            <option value="Meta Back-End Developer Professional Certificate|Meta &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">Meta Back-End Developer Professional Certificate</option>
-                                            <option value="IBM Full Stack Software Developer Professional Certificate|IBM &amp; Coursera|https://www.coursera.org/verify/professional-cert/...">IBM Full Stack Software Developer (IBM)</option>
-                                            <option value="freeCodeCamp JavaScript Algorithms and Data Structures|freeCodeCamp|https://www.freecodecamp.org/certification/...">freeCodeCamp JavaScript Algorithms and Data Structures</option>
-                                            <option value="freeCodeCamp Responsive Web Design Certification|freeCodeCamp|https://www.freecodecamp.org/certification/...">freeCodeCamp Responsive Web Design</option>
-                                            <option value="Certified Kubernetes Application Developer (CKAD)|The Linux Foundation / CNCF|https://www.credly.com/org/the-linux-foundation/badge/ckad">Certified Kubernetes Application Developer (CKAD)</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
 
                                 <div class="form-group mb-3">
                                     <label for="title" class="ios-form-label">Certification Title *</label>
@@ -326,151 +265,6 @@
 </div>
 
 <script>
-function autoFillPreset(title, issuingOrg, credentialUrl) {
-    var titleInput = document.getElementById('title');
-    var orgInput = document.getElementById('issuingOrg');
-    var dateInput = document.getElementById('issueDate');
-    var urlInput = document.getElementById('credentialUrl');
-
-    if (titleInput) titleInput.value = title;
-    if (orgInput) orgInput.value = issuingOrg;
-    if (urlInput) urlInput.value = credentialUrl;
-    
-    // Set default date to current date if empty
-    if (dateInput && !dateInput.value) {
-        var today = new Date().toISOString().split('T')[0];
-        dateInput.value = today;
-    }
-
-    flashHighlight([titleInput, orgInput, dateInput, urlInput]);
-}
-
-function onPresetSelectChange(select) {
-    if (!select || !select.value) return;
-    var parts = select.value.split('|');
-    if (parts.length >= 2) {
-        var title = parts[0];
-        var org = parts[1];
-        var url = (parts.length >= 3) ? parts[2] : '';
-        autoFillPreset(title, org, url);
-    }
-}
-
-function autoExtractFromUrl() {
-    var input = document.getElementById('quickUrlInput');
-    if (!input || !input.value.trim()) {
-        alert('Please paste a Credly, Coursera, HackerRank, or verification link.');
-        return;
-    }
-
-    var url = input.value.trim();
-    var lower = url.toLowerCase();
-
-    var detectedTitle = '';
-    var detectedOrg = '';
-
-    if (lower.includes('credly.com')) {
-        if (lower.includes('amazon') || lower.includes('aws')) {
-            detectedOrg = 'Amazon Web Services';
-            detectedTitle = extractTitleFromSlug(url, 'AWS Certified Cloud Practitioner');
-        } else if (lower.includes('google')) {
-            detectedOrg = 'Google Cloud';
-            detectedTitle = extractTitleFromSlug(url, 'Google Cloud Associate Cloud Engineer');
-        } else if (lower.includes('microsoft') || lower.includes('azure')) {
-            detectedOrg = 'Microsoft';
-            detectedTitle = extractTitleFromSlug(url, 'Microsoft Certified: Azure Fundamentals (AZ-900)');
-        } else if (lower.includes('oracle')) {
-            detectedOrg = 'Oracle Corporation';
-            detectedTitle = extractTitleFromSlug(url, 'Oracle Certified Associate, Java SE Programmer');
-        } else if (lower.includes('linux-foundation') || lower.includes('ckad') || lower.includes('cka')) {
-            detectedOrg = 'The Linux Foundation / CNCF';
-            detectedTitle = extractTitleFromSlug(url, 'Certified Kubernetes Application Developer (CKAD)');
-        } else {
-            detectedOrg = 'Credly Verified Issuer';
-            detectedTitle = extractTitleFromSlug(url, 'Professional Industry Certification');
-        }
-    } else if (lower.includes('hackerrank.com')) {
-        detectedOrg = 'HackerRank';
-        if (lower.includes('problem_solving') || lower.includes('problem-solving')) {
-            detectedTitle = 'Problem Solving (Advanced) Certificate';
-        } else if (lower.includes('java')) {
-            detectedTitle = 'Java (Basic & Intermediate) Skills Certificate';
-        } else if (lower.includes('sql')) {
-            detectedTitle = 'SQL (Advanced) Skills Certificate';
-        } else if (lower.includes('python')) {
-            detectedTitle = 'Python Skills Certificate';
-        } else {
-            detectedTitle = 'HackerRank Verified Skills Certificate';
-        }
-    } else if (lower.includes('coursera.org')) {
-        if (lower.includes('meta')) {
-            detectedOrg = 'Meta & Coursera';
-            detectedTitle = 'Meta Front-End Developer Professional Certificate';
-        } else if (lower.includes('ibm')) {
-            detectedOrg = 'IBM & Coursera';
-            detectedTitle = 'IBM Full Stack Software Developer Certificate';
-        } else if (lower.includes('deeplearning') || lower.includes('andrew-ng')) {
-            detectedOrg = 'DeepLearning.AI & Coursera';
-            detectedTitle = 'Deep Learning Specialization';
-        } else {
-            detectedOrg = 'Coursera';
-            detectedTitle = extractTitleFromSlug(url, 'Specialization Certificate');
-        }
-    } else if (lower.includes('freecodecamp.org')) {
-        detectedOrg = 'freeCodeCamp';
-        if (lower.includes('javascript') || lower.includes('algorithms')) {
-            detectedTitle = 'JavaScript Algorithms and Data Structures Certification';
-        } else if (lower.includes('responsive-web-design')) {
-            detectedTitle = 'Responsive Web Design Certification';
-        } else if (lower.includes('backend') || lower.includes('api')) {
-            detectedTitle = 'Back End Development and APIs Certification';
-        } else {
-            detectedTitle = 'freeCodeCamp Certified Developer';
-        }
-    } else if (lower.includes('udemy.com')) {
-        detectedOrg = 'Udemy';
-        detectedTitle = extractTitleFromSlug(url, 'Masterclass Completion Certificate');
-    } else if (lower.includes('oracle.com')) {
-        detectedOrg = 'Oracle Corporation';
-        detectedTitle = 'Oracle Certified Associate, Java SE Programmer';
-    } else {
-        detectedOrg = 'Industry Credential Authority';
-        detectedTitle = 'Verified Technology Certification';
-    }
-
-    autoFillPreset(detectedTitle, detectedOrg, url);
-    input.value = '';
-}
-
-function extractTitleFromSlug(url, fallback) {
-    try {
-        var cleanUrl = url.split('?')[0].replace(/\/$/, '');
-        var segments = cleanUrl.split('/');
-        var lastSegment = segments[segments.length - 1];
-        if (lastSegment && lastSegment.length > 3 && !/^[0-9a-f-]{30,}$/i.test(lastSegment)) {
-            var words = lastSegment.replace(/[-_]/g, ' ').split(' ');
-            var title = words.map(function(w) {
-                return w.charAt(0).toUpperCase() + w.slice(1);
-            }).join(' ');
-            return title;
-        }
-    } catch(e) {}
-    return fallback;
-}
-
-function flashHighlight(elements) {
-    elements.forEach(function(el) {
-        if (!el) return;
-        el.style.transition = 'all 0.3s ease';
-        el.style.backgroundColor = '#ecfdf5';
-        el.style.borderColor = '#10b981';
-        el.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.2)';
-        setTimeout(function() {
-            el.style.backgroundColor = '';
-            el.style.borderColor = '';
-            el.style.boxShadow = '';
-        }, 1200);
-    });
 function handleAutoFetchSubmit(form) {
     var input = (form.certInput && form.certInput.value) ? form.certInput.value.trim() : '';
     if (!input) {

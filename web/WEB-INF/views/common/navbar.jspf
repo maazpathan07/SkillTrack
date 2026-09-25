@@ -116,7 +116,7 @@
 
                         <form action="${pageContext.request.contextPath}/logout" method="post" class="p-0 m-0">
                             <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
-                            <button type="submit" class="dropdown-item rounded small font-weight-bold py-2 text-danger d-flex align-items-center">
+                            <button type="button" class="dropdown-item rounded small font-weight-bold py-2 text-danger d-flex align-items-center confirm-signout" data-title="Sign Out" data-confirm="Are you sure you want to end your current session and sign out of SkillTrack?" data-btn="Sign Out">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                 Sign Out
                             </button>
@@ -288,7 +288,7 @@
 
             <form action="${pageContext.request.contextPath}/logout" method="post" class="p-0 m-0">
                 <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
-                <button type="submit" class="btn btn-block py-2.5 font-weight-bold d-flex align-items-center justify-content-center" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.22); border-radius: 12px; font-size: 0.9rem; transition: var(--ios-ease);">
+                <button type="button" class="btn btn-block py-2.5 font-weight-bold d-flex align-items-center justify-content-center confirm-signout" data-title="Sign Out" data-confirm="Are you sure you want to end your current session and sign out of SkillTrack?" data-btn="Sign Out" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.22); border-radius: 12px; font-size: 0.9rem; transition: var(--ios-ease);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                     Sign Out
                 </button>
@@ -307,13 +307,11 @@
             function openMenu() {
                 drawer.classList.add('is-open');
                 drawer.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
             }
 
             function closeMenu() {
                 drawer.classList.remove('is-open');
                 drawer.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
             }
 
             if (toggleBtn) {

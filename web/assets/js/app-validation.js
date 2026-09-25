@@ -46,14 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    function openConfirmModal(title, message, targetElement) {
+    function openConfirmModal(title, message, targetElement, btnText) {
         var elements = getModalElements();
         if (!elements) return;
 
         activeTarget = targetElement;
 
-        if (elements.title) elements.title.textContent = title || "Confirm Deletion";
-        if (elements.msg) elements.msg.textContent = message || "Are you sure you want to permanently remove this record?";
+        if (elements.title) elements.title.textContent = title || "Confirm Action";
+        if (elements.msg) elements.msg.textContent = message || "Are you sure you want to proceed?";
+        if (elements.submitBtn) {
+            elements.submitBtn.textContent = btnText || (title && title.toLowerCase().indexOf("sign out") !== -1 ? "Sign Out" : "Yes, Proceed");
+        }
 
         elements.backdrop.style.display = "flex";
         // Force reflow for smooth animation
@@ -122,9 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Universal click interceptor for .confirm-delete buttons
+    // Universal click interceptor for .confirm-delete, .confirm-signout, .confirm-logout buttons
     document.addEventListener("click", function (event) {
-        var button = event.target.closest(".confirm-delete");
+        var button = event.target.closest(".confirm-delete, .confirm-signout, .confirm-logout");
         if (!button) return;
 
         event.preventDefault();
@@ -132,10 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var form = button.closest("form");
         var target = form || button;
-        var msg = button.getAttribute("data-confirm") || "Are you sure you want to permanently delete this item?";
-        var title = button.getAttribute("data-title") || "Confirm Removal";
+        var msg = button.getAttribute("data-confirm") || "Are you sure you want to proceed?";
+        var title = button.getAttribute("data-title") || "Confirm Action";
+        var btnText = button.getAttribute("data-btn") || "Confirm";
 
-        openConfirmModal(title, msg, target);
+        openConfirmModal(title, msg, target, btnText);
     }, true);
 
     // 4. Apple iOS 18 Smooth Scroll Momentum & Timing System

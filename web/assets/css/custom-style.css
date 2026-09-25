@@ -190,103 +190,148 @@ h1, h2, h3, h4, h5, h6 {
    Apple macOS & iOS 18 Dynamic Floating Capsule Pill Navigation
    ===================================================================== */
 .ios-capsule-nav {
-  background: #eef2f6;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(203, 213, 225, 0.85);
+  background: #f1f5f9;
+  border: 1px solid rgba(226, 232, 240, 0.95);
   border-radius: var(--ios-radius-full);
   padding: 4px 6px;
-  gap: 2px;
-  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.05), 0 2px 10px rgba(15, 23, 42, 0.04);
+  gap: 3px;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: inline-flex;
 }
 
 .ios-capsule-link {
-  color: #475569;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.45rem 1.15rem;
+  color: #475569 !important;
+  font-weight: 600;
+  font-size: 0.825rem;
+  padding: 0.42rem 0.95rem;
   border-radius: var(--ios-radius-full);
   transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   text-decoration: none !important;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.35rem;
   white-space: nowrap;
   user-select: none;
 }
 
+.ios-capsule-link svg {
+  flex-shrink: 0;
+}
+
 .ios-capsule-link:hover {
-  color: #0f172a;
-  background: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
+  color: var(--ios-blue) !important;
+  background: rgba(255, 255, 255, 0.7);
+  text-decoration: none !important;
 }
 
 .ios-capsule-link.active {
   background: #ffffff !important;
   color: var(--ios-blue) !important;
-  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(15, 23, 42, 0.06) !important;
-  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.09) !important;
+  font-weight: 700 !important;
+}
+
+/* Mobile Drawer & Toggle */
+.ios-mobile-toggle {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: var(--ios-text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--ios-ease);
+}
+
+.ios-mobile-toggle:hover {
+  background: #e2e8f0;
+  color: var(--ios-blue);
+}
+
+.ios-mobile-drawer {
+  display: none;
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: var(--ios-blur-nav);
+  -webkit-backdrop-filter: var(--ios-blur-nav);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+  padding: 1rem 1.25rem;
+  z-index: 1015;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ios-mobile-drawer.is-open {
+  display: flex !important;
+  animation: iosDrawerSlideDown 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes iosDrawerSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ios-mobile-link {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ios-text-secondary);
+  border-radius: var(--ios-radius-xs);
+  text-decoration: none !important;
+  transition: var(--ios-ease);
+}
+
+.ios-mobile-link:hover {
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--ios-blue);
+}
+
+.ios-mobile-link.active {
+  background: var(--ios-blue);
+  color: #ffffff !important;
+  font-weight: 700;
 }
 
 /* =====================================================================
-   Apple macOS Sonoma & iOS 18 Glassmorphic Sidebar Navigation
+   Full-Width Clean Layout (Top Navigation Architecture)
    ===================================================================== */
 .st-sidebar-wrapper {
+  display: none !important;
+}
+
+main.col-md-9,
+main.col-lg-10,
+main {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  min-height: calc(100vh - 68px - 60px);
+  background-color: var(--ios-bg-base);
+  padding: 1.75rem 2rem 3rem 2rem !important;
+}
+
+.st-footer {
+  width: 100% !important;
+  margin-left: 0 !important;
   background: #ffffff;
-  border-right: 1px solid #e2e8f0;
-  min-height: calc(100vh - 68px);
-  padding: 1.25rem 0.85rem 1.25rem 0.85rem;
-  transition: var(--ios-ease);
-  z-index: 1000;
-  position: sticky;
-  top: 68px;
-  height: calc(100vh - 68px);
-  display: flex;
-  flex-direction: column;
-}
-
-.st-sidebar-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 100%;
-}
-
-.st-sidebar-nav-container {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 2px;
-}
-
-.st-sidebar-nav-container::-webkit-scrollbar {
-  width: 3px;
-}
-
-.st-sidebar-nav-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-
-@media (min-width: 992px) {
-  .st-sidebar-wrapper {
-    flex: 0 0 260px !important;
-    max-width: 260px !important;
-    width: 260px !important;
-  }
-
-  main.col-md-9,
-  main.col-lg-10 {
-    flex: 1 1 auto !important;
-    max-width: calc(100% - 260px) !important;
-    width: calc(100% - 260px) !important;
-    min-height: calc(100vh - 68px);
-    background-color: var(--ios-bg-base);
-  }
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .st-sidebar-heading {

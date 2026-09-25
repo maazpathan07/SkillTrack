@@ -2,20 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<header class="ios-navbar d-flex align-items-center justify-content-between">
+<header class="ios-navbar d-flex align-items-center justify-content-between px-3 px-md-4">
+    <!-- Left: Brand -->
     <div class="d-flex align-items-center">
-        <!-- Mobile Sidebar Toggle Button -->
-        <c:if test="${not empty sessionScope.SESSION_USER_ID}">
-            <button class="btn btn-sm btn-light border d-md-none mr-3" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-        </c:if>
-
-        <!-- Apple Brand Link -->
         <a class="ios-brand" href="${pageContext.request.contextPath}/">
             <span class="ios-brand-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -27,42 +16,78 @@
         </a>
     </div>
 
-    <!-- Right Side Navigation & User Controls -->
+    <!-- Center: Modern Capsule Top Navigation Bar (Desktop) -->
+    <c:if test="${not empty sessionScope.SESSION_USER_ID}">
+        <nav class="ios-capsule-nav d-none d-lg-flex align-items-center" aria-label="Main Navigation">
+            <c:choose>
+                <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
+                    <a class="ios-capsule-link ${activeNav == 'admin-dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/dashboard">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                        Dashboard
+                    </a>
+                    <a class="ios-capsule-link ${activeNav == 'students' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/students">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Students
+                    </a>
+                    <a class="ios-capsule-link ${activeNav == 'roles' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/roles">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        Target Roles
+                    </a>
+                    <a class="ios-capsule-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/skills">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Skills Bank
+                    </a>
+                    <a class="ios-capsule-link ${activeNav == 'criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/criteria">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        Cutoffs
+                    </a>
+                    <a class="ios-capsule-link ${activeNav == 'cohort' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/cohort-summary">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        Cohort Analytics
+                    </a>
+                </c:when>
+
+                <c:otherwise>
+                    <a class="ios-capsule-link ${activeNav == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dashboard">Dashboard</a>
+                    <a class="ios-capsule-link ${activeNav == 'profile' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/profile">Profile</a>
+                    <a class="ios-capsule-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skills">Skills</a>
+                    <a class="ios-capsule-link ${activeNav == 'projects' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/projects">Projects</a>
+                    <a class="ios-capsule-link ${activeNav == 'certifications' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/certifications">Certificates</a>
+                    <a class="ios-capsule-link ${activeNav == 'dsa' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dsa">DSA</a>
+                    <a class="ios-capsule-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">Checklist</a>
+                    <a class="ios-capsule-link ${activeNav == 'skill-gap' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skill-gap">Skill Gap</a>
+                    <a class="ios-capsule-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">Cutoffs</a>
+                </c:otherwise>
+            </c:choose>
+        </nav>
+    </c:if>
+
+    <!-- Right Side: User Avatar (Single 'A' Button) & Mobile Toggle -->
     <div class="d-flex align-items-center">
         <c:choose>
             <c:when test="${not empty sessionScope.SESSION_USER_ID}">
-                <!-- Role Badge -->
-                <span class="ios-badge ${sessionScope.SESSION_USER_ROLE == 'ADMIN' ? 'ios-badge-blue' : 'ios-badge-green'} mr-3 d-none d-sm-inline-flex">
-                    <c:choose>
-                        <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                            Administrator
-                        </c:when>
-                        <c:otherwise>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                            Student
-                        </c:otherwise>
-                    </c:choose>
-                </span>
+                <!-- Mobile Drawer Toggle Button -->
+                <button class="ios-mobile-toggle d-lg-none mr-2" type="button" id="mobileNavToggleBtn" aria-label="Toggle Navigation">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
 
-                <!-- User Dropdown Menu -->
+                <!-- User Circular Avatar Trigger (Only 'A' shown) -->
                 <div class="dropdown">
-                    <div class="d-flex align-items-center py-1 px-2 rounded-pill" id="userMenuDropdown" role="button" tabindex="0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="User account menu for <c:out value='${sessionScope.SESSION_USER_NAME}' default='User' />" style="background: rgba(0, 0, 0, 0.04); cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.05); transition: var(--ios-ease);">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center mr-2 font-weight-bold" aria-hidden="true" style="width: 28px; height: 28px; background: linear-gradient(135deg, #0071e3, #5856d6); color: #ffffff; font-size: 0.8rem;">
-                            <c:out value="${fn:substring(sessionScope.SESSION_USER_NAME != null ? sessionScope.SESSION_USER_NAME : 'U', 0, 1)}" />
-                        </div>
-                        <span class="font-weight-bold small d-none d-md-inline mr-1" style="color: var(--ios-text-primary);">
-                            <c:out value="${sessionScope.SESSION_USER_NAME}" default="User" />
-                        </span>
-                        <svg class="text-muted" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
+                    <div class="rounded-circle d-flex align-items-center justify-content-center font-weight-bold" id="userMenuDropdown" role="button" tabindex="0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="User account menu" style="width: 38px; height: 38px; background: linear-gradient(135deg, #0071e3, #5856d6); color: #ffffff; font-size: 0.95rem; cursor: pointer; border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3); transition: var(--ios-ease);">
+                        <c:choose>
+                            <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">A</c:when>
+                            <c:otherwise><c:out value="${fn:substring(sessionScope.SESSION_USER_NAME != null ? sessionScope.SESSION_USER_NAME : 'S', 0, 1)}" /></c:otherwise>
+                        </c:choose>
                     </div>
 
-                    <div class="dropdown-menu dropdown-menu-right shadow-lg border-0 mt-2 p-2" aria-labelledby="userMenuDropdown" style="min-width: 230px; border-radius: var(--ios-radius-md); box-shadow: var(--ios-shadow-glass) !important; background: rgba(255, 255, 255, 0.96); backdrop-filter: var(--ios-blur);">
+                    <div class="dropdown-menu dropdown-menu-right shadow-lg border-0 mt-2 p-2" aria-labelledby="userMenuDropdown" style="min-width: 230px; border-radius: var(--ios-radius-md); box-shadow: var(--ios-shadow-glass) !important; background: rgba(255, 255, 255, 0.98); backdrop-filter: var(--ios-blur);">
                         <div class="px-3 py-2 border-bottom mb-2">
-                            <p class="font-weight-bold mb-0 small" style="color: var(--ios-text-primary);"><c:out value="${sessionScope.SESSION_USER_NAME}" default="User" /></p>
-                            <p class="text-muted small mb-0"><c:out value="${sessionScope.SESSION_USER_ROLE}" /></p>
+                            <p class="font-weight-bold mb-0 small" style="color: var(--ios-text-primary);"><c:out value="${sessionScope.SESSION_USER_NAME}" default="Administrator" /></p>
+                            <p class="text-muted small mb-0"><c:out value="${sessionScope.SESSION_USER_ROLE == 'ADMIN' ? 'Administrator' : 'Student'}" /></p>
                         </div>
                         
                         <c:if test="${sessionScope.SESSION_USER_ROLE == 'STUDENT'}">
@@ -108,3 +133,48 @@
         </c:choose>
     </div>
 </header>
+
+<!-- Mobile Navigation Drawer (For Small Screens) -->
+<c:if test="${not empty sessionScope.SESSION_USER_ID}">
+    <div class="ios-mobile-drawer" id="mobileNavDrawer">
+        <c:choose>
+            <c:when test="${sessionScope.SESSION_USER_ROLE == 'ADMIN'}">
+                <a class="ios-mobile-link ${activeNav == 'admin-dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/dashboard">Overview Dashboard</a>
+                <a class="ios-mobile-link ${activeNav == 'students' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/students">Student Directory</a>
+                <a class="ios-mobile-link ${activeNav == 'roles' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/roles">Target Roles Bank</a>
+                <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/skills">Master Skills Bank</a>
+                <a class="ios-mobile-link ${activeNav == 'criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/criteria">Placement Cutoffs</a>
+                <a class="ios-mobile-link ${activeNav == 'cohort' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/admin/cohort-summary">Cohort Intelligence</a>
+            </c:when>
+            <c:otherwise>
+                <a class="ios-mobile-link ${activeNav == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dashboard">Overview Dashboard</a>
+                <a class="ios-mobile-link ${activeNav == 'profile' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/profile">Academic Profile</a>
+                <a class="ios-mobile-link ${activeNav == 'skills' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skills">My Technical Skills</a>
+                <a class="ios-mobile-link ${activeNav == 'projects' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/projects">Projects Portfolio</a>
+                <a class="ios-mobile-link ${activeNav == 'certifications' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/certifications">Certifications</a>
+                <a class="ios-mobile-link ${activeNav == 'dsa' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dsa">DSA Milestones</a>
+                <a class="ios-mobile-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">Action Checklist</a>
+                <a class="ios-mobile-link ${activeNav == 'skill-gap' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skill-gap">Role Skill Gap</a>
+                <a class="ios-mobile-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">Company Cutoffs</a>
+            </c:otherwise>
+        </c:choose>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggleBtn = document.getElementById('mobileNavToggleBtn');
+        var drawer = document.getElementById('mobileNavDrawer');
+        if (toggleBtn && drawer) {
+            toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                drawer.classList.toggle('is-open');
+            });
+            document.addEventListener('click', function(e) {
+                if (!drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    drawer.classList.remove('is-open');
+                }
+            });
+        }
+    });
+    </script>
+</c:if>

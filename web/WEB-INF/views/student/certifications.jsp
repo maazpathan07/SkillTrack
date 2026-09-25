@@ -47,7 +47,7 @@
                                 </span>
                             </div>
                             <p class="text-muted small mb-0" style="max-width: 680px; line-height: 1.5;">
-                                Paste your <strong>LinkedIn Learning link</strong>, <strong>Credly badge</strong>, <strong>Coursera link</strong>, <strong>HackerRank ID/URL</strong>, <strong>Microsoft Learn</strong>, <strong>Udemy</strong>, or <strong>any platform link</strong>. The engine will automatically verify and extract the exact certificate title, issuing organization, and issue date to add it to your portfolio.
+                                Paste any <strong>Certificate URL</strong> or <strong>Certificate ID</strong> from <strong>ANY platform, university, MOOC, or certification portal</strong> across the internet. The universal AI engine will automatically verify and extract the exact course title, issuing organization, and completion date.
                             </p>
                         </div>
                     </div>
@@ -59,12 +59,12 @@
                             <input type="hidden" name="action" value="auto-fetch">
                             
                             <label for="certInput" class="small font-weight-bold text-dark mb-1.5 d-flex justify-content-between align-items-center">
-                                <span>🔗 Paste Certificate Link or ID:</span>
-                                <span class="badge badge-success px-1.5 py-0.5" style="font-size: 0.68rem;">Universal Live Auto-Add</span>
+                                <span>🔗 Paste Certificate Link or ID (Any Portal):</span>
+                                <span class="badge badge-success px-1.5 py-0.5" style="font-size: 0.68rem;">Universal Web Engine</span>
                             </label>
                             
                             <div class="input-group input-group-sm mb-2">
-                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="Paste LinkedIn, Credly, Coursera, HackerRank, Udemy, edX, or any link..." required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
+                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="Paste link or ID from ANY platform (LinkedIn, AWS, Coursera, NPTEL, etc.)..." required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
                                 <div class="input-group-append">
                                     <button type="submit" id="autoFetchBtn" class="btn btn-success font-weight-bold px-3 d-flex align-items-center" style="font-size: 0.82rem; border-radius: 0 6px 6px 0; background: linear-gradient(135deg, #10b981, #059669); border: none;">
                                         <span id="autoFetchSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
@@ -73,19 +73,19 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <select name="platform" class="custom-select custom-select-sm" style="font-size: 0.75rem; height: 26px; padding-top: 2px; padding-bottom: 2px; width: 170px; border-radius: 6px;">
-                                    <option value="auto">Auto-Detect (Any Platform)</option>
+                                <select name="platform" class="custom-select custom-select-sm" style="font-size: 0.75rem; height: 26px; padding-top: 2px; padding-bottom: 2px; width: 180px; border-radius: 6px;">
+                                    <option value="auto">Auto-Detect (Any Global Platform)</option>
                                     <option value="linkedin">LinkedIn Learning</option>
-                                    <option value="credly">Credly Badge</option>
+                                    <option value="credly">Credly (AWS / Google / Meta)</option>
                                     <option value="coursera">Coursera</option>
                                     <option value="hackerrank">HackerRank</option>
-                                    <option value="udemy">Udemy (UC-ID / Link)</option>
+                                    <option value="udemy">Udemy</option>
                                     <option value="freecodecamp">freeCodeCamp</option>
                                     <option value="microsoft">Microsoft Learn</option>
                                     <option value="edx">edX</option>
                                     <option value="kaggle">Kaggle</option>
                                     <option value="geeksforgeeks">GeeksforGeeks</option>
-                                    <option value="other">Universal (Other / Custom)</option>
+                                    <option value="other">Any Other / University Portal</option>
                                 </select>
                                 <small class="text-muted" style="font-size: 0.72rem;">100% verified accreditation</small>
                             </div>

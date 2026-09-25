@@ -33,6 +33,69 @@
                 </div>
             </div>
 
+            <!-- Live LeetCode & GitHub Auto-Sync Engine Card -->
+            <div class="ios-card p-4 mb-4" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
+                <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; box-shadow: 0 8px 16px -4px rgba(245, 158, 11, 0.4);">
+                            <span style="font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px;">LC</span>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                                <h2 class="h5 font-weight-bold text-dark mb-0" style="font-size: 1.1rem; letter-spacing: -0.02em;">Live LeetCode &amp; GitHub Auto-Sync Engine</h2>
+                                <c:choose>
+                                    <c:when test="${codingProfile != null && codingProfile.leetCodeSynced}">
+                                        <span class="badge badge-success px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem;">
+                                            ✓ Live Verified on LeetCode (@<c:out value="${codingProfile.leetcodeUsername}" />)
+                                        </span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge badge-secondary px-2.5 py-1" style="border-radius: 999px; font-weight: 600; font-size: 0.72rem; background: #e2e8f0; color: #475569;">
+                                            API Ready &bull; No Manual Entry Needed
+                                        </span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <p class="text-muted small mb-2" style="max-width: 680px; line-height: 1.45;">
+                                Connect your LeetCode handle to automatically fetch real-time solved problems (Easy, Medium, Hard breakdown), global ranking, and verified contest ratings.
+                            </p>
+
+                            <!-- Live Chips Bar -->
+                            <c:if test="${codingProfile != null && codingProfile.leetCodeSynced}">
+                                <div class="d-flex align-items-center flex-wrap gap-2 pt-1">
+                                    <span class="ios-badge" style="background: rgba(16, 185, 129, 0.1); color: #047857; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(16, 185, 129, 0.2);">
+                                        🟢 Easy: <c:out value="${codingProfile.leetcodeEasySolved}" />
+                                    </span>
+                                    <span class="ios-badge" style="background: rgba(245, 158, 11, 0.1); color: #b45309; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(245, 158, 11, 0.2);">
+                                        🟡 Medium: <c:out value="${codingProfile.leetcodeMediumSolved}" />
+                                    </span>
+                                    <span class="ios-badge" style="background: rgba(239, 68, 68, 0.1); color: #b91c1c; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.2);">
+                                        🔴 Hard: <c:out value="${codingProfile.leetcodeHardSolved}" />
+                                    </span>
+                                    <c:if test="${codingProfile.leetcodeRanking > 0}">
+                                        <span class="ios-badge" style="background: rgba(99, 102, 241, 0.1); color: #4338ca; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                            🏆 Global Rank: #<c:out value="${codingProfile.leetcodeRanking}" />
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${codingProfile.gitHubSynced}">
+                                        <span class="ios-badge ios-badge-blue" style="font-size: 0.75rem;">
+                                            🐙 GitHub: <c:out value="${codingProfile.githubReposCount}" /> Repos
+                                        </span>
+                                    </c:if>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center flex-wrap gap-2 flex-shrink-0">
+                        <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center" data-toggle="modal" data-target="#syncPlatformsModal" style="padding: 0.65rem 1.35rem; font-size: 0.875rem; box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25);">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            ${codingProfile != null && codingProfile.leetCodeSynced ? '⚡ Re-Sync Live Stats' : '⚡ Connect &amp; Auto-Sync'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stats Bar -->
             <div class="row mb-4">
                 <div class="col-md-4 mb-3">
@@ -258,6 +321,76 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal: Live Platform Sync -->
+            <div class="modal fade" id="syncPlatformsModal" tabindex="-1" role="dialog" aria-labelledby="syncPlatformsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style="border-radius: var(--ios-radius-lg); border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                        <form id="syncPlatformForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms">
+                            <input type="hidden" name="redirectUri" value="/app/student/dsa">
+                            <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff;">
+                                        <span style="font-weight: 800; font-size: 0.85rem;">⚡</span>
+                                    </div>
+                                    <h5 class="modal-title font-weight-bold text-dark mb-0" id="syncPlatformsModalLabel">Live Coding Profile Auto-Sync</h5>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="outline: none;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <div id="syncModalAlert" class="alert alert-info py-2 px-3 small d-none mb-3" style="border-radius: 8px;"></div>
+
+                                <!-- LeetCode Username -->
+                                <div class="form-group mb-3">
+                                    <label for="syncLeetcodeUser" class="ios-form-label d-flex justify-content-between">
+                                        <span>LeetCode Username</span>
+                                        <span class="text-muted font-weight-normal" style="font-size: 0.75rem;">e.g. maaz_code or tourist</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="text" class="ios-form-control" id="syncLeetcodeUser" name="leetcodeUsername" value="<c:out value='${codingProfile != null ? codingProfile.leetcodeUsername : ""}' />" placeholder="Enter LeetCode handle" style="padding-left: 2.25rem;">
+                                        <span class="position-absolute" style="left: 10px; top: 10px; color: #f59e0b; font-weight: bold; font-size: 0.85rem;" aria-hidden="true">LC</span>
+                                    </div>
+                                    <small class="text-muted mt-1 d-block">System will fetch Easy, Medium, Hard problem counts &amp; rank live.</small>
+                                </div>
+
+                                <!-- GitHub Username -->
+                                <div class="form-group mb-3">
+                                    <label for="syncGithubUser" class="ios-form-label d-flex justify-content-between">
+                                        <span>GitHub Username</span>
+                                        <span class="text-muted font-weight-normal" style="font-size: 0.75rem;">e.g. octocat</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="text" class="ios-form-control" id="syncGithubUser" name="githubUsername" value="<c:out value='${codingProfile != null ? codingProfile.githubUsername : ""}' />" placeholder="Enter GitHub handle" style="padding-left: 2.25rem;">
+                                        <span class="position-absolute" style="left: 10px; top: 10px; color: #64748b;" aria-hidden="true">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        </span>
+                                    </div>
+                                    <small class="text-muted mt-1 d-block">Auto-fetches repositories count and verified portfolio link.</small>
+                                </div>
+
+                                <!-- Auto-distribute Checkbox -->
+                                <div class="custom-control custom-checkbox p-3 mt-3" style="background: rgba(0, 113, 227, 0.04); border: 1px solid rgba(0, 113, 227, 0.15); border-radius: 8px;">
+                                    <input type="checkbox" class="custom-control-input" id="autoDistributeDsa" name="autoDistribute" value="true" checked>
+                                    <label class="custom-control-label small font-weight-bold text-dark" for="autoDistributeDsa">
+                                        ⚡ Auto-allocate solved count across 18 DSA topic matrices
+                                    </label>
+                                    <small class="text-muted d-block mt-1" style="font-size: 0.775rem;">
+                                        Automatically updates your topic completion status, boosts your Readiness Score, and updates your Placement Passport.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
+                                <button type="button" class="ios-btn-secondary" data-dismiss="modal" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">Cancel</button>
+                                <button type="button" id="triggerLiveSyncBtn" class="ios-btn-primary" onclick="performLivePlatformSync()" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                    <span id="syncBtnSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
+                                    <span id="syncBtnText">🚀 Fetch &amp; Sync Live Stats</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
@@ -330,6 +463,65 @@ document.addEventListener('DOMContentLoaded', function() {
         filterTopics();
     });
 });
+
+function performLivePlatformSync() {
+    var leetcodeUser = $('#syncLeetcodeUser').val().trim();
+    var githubUser = $('#syncGithubUser').val().trim();
+    var autoDistribute = $('#autoDistributeDsa').is(':checked');
+
+    if (!leetcodeUser && !githubUser) {
+        $('#syncModalAlert').removeClass('d-none alert-success alert-danger alert-info').addClass('alert-warning').text('Please enter your LeetCode or GitHub username.');
+        return;
+    }
+
+    var btn = $('#triggerLiveSyncBtn');
+    var spinner = $('#syncBtnSpinner');
+    var btnText = $('#syncBtnText');
+    var alertBox = $('#syncModalAlert');
+
+    btn.prop('disabled', true);
+    spinner.removeClass('d-none');
+    btnText.text('Connecting & Fetching...');
+    alertBox.removeClass('d-none alert-danger alert-warning alert-success').addClass('alert-info').text('Querying LeetCode & GitHub APIs in real-time...');
+
+    $.ajax({
+        url: '${pageContext.request.contextPath}/app/student/sync-platforms',
+        type: 'POST',
+        data: {
+            leetcodeUsername: leetcodeUser,
+            githubUsername: githubUser,
+            autoDistribute: autoDistribute ? 'true' : 'false'
+        },
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function(resp) {
+            btn.prop('disabled', false);
+            spinner.addClass('d-none');
+            btnText.text('🚀 Fetch & Sync Live Stats');
+
+            if (resp && resp.success) {
+                alertBox.removeClass('d-none alert-info alert-warning alert-danger').addClass('alert-success').html('<strong>✓ Live Sync Complete!</strong> ' + (resp.message || 'Stats successfully updated.'));
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1200);
+            } else {
+                alertBox.removeClass('d-none alert-info alert-success').addClass('alert-warning').text(resp.message || 'Warning during sync. Please verify the handle.');
+            }
+        },
+        error: function(xhr) {
+            btn.prop('disabled', false);
+            spinner.addClass('d-none');
+            btnText.text('🚀 Fetch & Sync Live Stats');
+            var errMsg = 'Unable to reach coding platform APIs. Please try again.';
+            try {
+                var errObj = JSON.parse(xhr.responseText);
+                if (errObj && errObj.message) errMsg = errObj.message;
+            } catch(e) {}
+            alertBox.removeClass('d-none alert-info alert-success alert-warning').addClass('alert-danger').text(errMsg);
+        }
+    });
+}
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

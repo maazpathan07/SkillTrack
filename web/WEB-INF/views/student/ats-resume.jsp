@@ -240,14 +240,20 @@
                         <span>Roll: <c:out value="${student.rollNumber}" /></span>
                         <span class="sep">&bull;</span>
                         <span><c:out value="${student.department}" /> (Batch '<c:out value="${student.graduationYear % 100}" />)</span>
-                        <c:if test="${not empty profile.projects}">
-                            <c:forEach items="${profile.projects}" var="p" end="0">
-                                <c:if test="${not empty p.githubUrl}">
-                                    <span class="sep">&bull;</span>
-                                    <span>GitHub: <a href="<c:out value='${p.githubUrl}' />" target="_blank">Portfolio Link</a></span>
-                                </c:if>
-                            </c:forEach>
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${profile.codingProfile != null && profile.codingProfile.gitHubSynced}">
+                                <span class="sep">&bull;</span>
+                                <span>GitHub: <a href="<c:out value='${profile.codingProfile.githubProfileUrl}' />" target="_blank">github.com/<c:out value='${profile.codingProfile.githubUsername}' /></a></span>
+                            </c:when>
+                            <c:when test="${not empty profile.projects}">
+                                <c:forEach items="${profile.projects}" var="p" end="0">
+                                    <c:if test="${not empty p.githubUrl}">
+                                        <span class="sep">&bull;</span>
+                                        <span>GitHub: <a href="<c:out value='${p.githubUrl}' />" target="_blank">Portfolio Link</a></span>
+                                    </c:if>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
                     </div>
 
                     <!-- 2. Professional Career Summary (Editable Live) -->
@@ -377,11 +383,36 @@
                         <div class="ats-section-title">Problem Solving &amp; Algorithmic Milestones</div>
                         <div class="ats-entry">
                             <div class="ats-entry-header">
-                                <div class="ats-entry-title">Competitive Programming &amp; Core Data Structures</div>
-                                <div class="ats-entry-date">Total Solved: <strong><c:out value="${profile.totalDsaProblemsSolved}" default="0" /> Problems</strong></div>
+                                <div class="ats-entry-title">
+                                    <c:choose>
+                                        <c:when test="${profile.codingProfile != null && profile.codingProfile.leetCodeSynced}">
+                                            Competitive Programming &amp; LeetCode (@<c:out value="${profile.codingProfile.leetcodeUsername}" />)
+                                        </c:when>
+                                        <c:otherwise>
+                                            Competitive Programming &amp; Core Data Structures
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                                <div class="ats-entry-date">
+                                    <c:choose>
+                                        <c:when test="${profile.codingProfile != null && profile.codingProfile.leetCodeSynced}">
+                                            Verified Solved: <strong><c:out value="${profile.codingProfile.leetcodeTotalSolved}" /> Problems</strong>
+                                        </c:when>
+                                        <c:otherwise>
+                                            Total Solved: <strong><c:out value="${profile.totalDsaProblemsSolved}" default="0" /> Problems</strong>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
                             </div>
                             <ul class="ats-bullets">
-                                <li>Consistently practiced and solved coding problems covering <strong>Arrays, Strings, Two Pointers, Linked Lists, Binary Search, Trees, and Dynamic Programming</strong>.</li>
+                                <c:choose>
+                                    <c:when test="${profile.codingProfile != null && profile.codingProfile.leetCodeSynced}">
+                                        <li>Verified LeetCode Profile: Solved <strong><c:out value="${profile.codingProfile.leetcodeTotalSolved}" /> coding problems</strong> &mdash; <strong><c:out value="${profile.codingProfile.leetcodeEasySolved}" /> Easy</strong>, <strong><c:out value="${profile.codingProfile.leetcodeMediumSolved}" /> Medium</strong>, and <strong><c:out value="${profile.codingProfile.leetcodeHardSolved}" /> Hard</strong><c:if test="${profile.codingProfile.leetcodeRanking > 0}"> with Global Rank <strong>#<c:out value="${profile.codingProfile.leetcodeRanking}" /></strong></c:if>.</li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li>Consistently practiced and solved coding problems covering <strong>Arrays, Strings, Two Pointers, Linked Lists, Binary Search, Trees, and Dynamic Programming</strong>.</li>
+                                    </c:otherwise>
+                                </c:choose>
                                 <li>Placement Readiness Index independently evaluated at <strong><c:out value="${readiness.formattedOverall}" default="0" />%</strong> benchmark compliance for <c:out value="${student.targetRoleTitle}" default="Software Engineering" /> hiring cutoffs.</li>
                             </ul>
                         </div>

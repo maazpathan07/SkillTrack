@@ -226,10 +226,59 @@
                                     </small>
                                 </div>
 
+                                <!-- Section 4: Verified Coding Platforms (LeetCode & GitHub) -->
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h3 class="h6 font-weight-bold text-muted mb-0" style="font-size: 0.8125rem; letter-spacing: -0.01em;">
+                                            ⚡ Verified Coding Profiles &amp; API Sync
+                                        </h3>
+                                        <a href="${pageContext.request.contextPath}/app/student/dsa" class="small text-primary font-weight-bold text-decoration-none">
+                                            Open DSA Tracker &rarr;
+                                        </a>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 mb-3">
+                                            <label for="leetcodeUsername" class="ios-form-label d-flex justify-content-between align-items-center">
+                                                <span>LeetCode Username</span>
+                                                <c:if test="${profile.codingProfile != null && profile.codingProfile.leetCodeSynced}">
+                                                    <span class="ios-badge ios-badge-orange" style="font-size: 0.68rem; padding: 2px 8px;">
+                                                        ✓ <c:out value="${profile.codingProfile.leetcodeTotalSolved}" /> Solved
+                                                    </span>
+                                                </c:if>
+                                            </label>
+                                            <div class="position-relative">
+                                                <input type="text" class="ios-form-control" id="leetcodeUsername" name="leetcodeUsername" value="<c:out value='${profile.codingProfile != null ? profile.codingProfile.leetcodeUsername : ""}' />" placeholder="e.g. maaz_code" style="padding-left: 2.25rem;">
+                                                <span class="position-absolute" style="left: 10px; top: 10px; color: #f59e0b; font-weight: bold; font-size: 0.85rem;" aria-hidden="true">
+                                                    LC
+                                                </span>
+                                            </div>
+                                            <small class="text-muted d-block mt-1">Live API auto-fetches Easy, Medium, Hard problem breakdown &amp; ranking.</small>
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-3">
+                                            <label for="githubUsername" class="ios-form-label d-flex justify-content-between align-items-center">
+                                                <span>GitHub Username</span>
+                                                <c:if test="${profile.codingProfile != null && profile.codingProfile.gitHubSynced}">
+                                                    <span class="ios-badge ios-badge-blue" style="font-size: 0.68rem; padding: 2px 8px;">
+                                                        ✓ <c:out value="${profile.codingProfile.githubReposCount}" /> Repos
+                                                    </span>
+                                                </c:if>
+                                            </label>
+                                            <div class="position-relative">
+                                                <input type="text" class="ios-form-control" id="githubUsername" name="githubUsername" value="<c:out value='${profile.codingProfile != null ? profile.codingProfile.githubUsername : ""}' />" placeholder="e.g. octocat" style="padding-left: 2.25rem;">
+                                                <span class="position-absolute" style="left: 10px; top: 10px; color: #64748b;" aria-hidden="true">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                                </span>
+                                            </div>
+                                            <small class="text-muted d-block mt-1">Live API auto-fetches repositories, followers, and portfolio link.</small>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="pt-3 border-top d-flex justify-content-start">
                                     <button type="submit" class="ios-btn-primary" style="padding: 0.75rem 2rem;">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        Save Profile Changes
+                                        Save &amp; Auto-Sync Profile
                                     </button>
                                 </div>
                             </form>

@@ -22,6 +22,7 @@ public class StudentDsaServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(StudentDsaServlet.class.getName());
 
     private final StudentService studentService = new StudentService();
+    private final com.skilltrack.services.CodePlatformSyncService syncService = new com.skilltrack.services.CodePlatformSyncService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,6 +35,7 @@ public class StudentDsaServlet extends HttpServlet {
 
         try {
             List<StudentDsaProgress> progressList = studentService.getDsaProgress(studentId);
+            com.skilltrack.models.StudentCodingProfile codingProfile = syncService.getStudentCodingProfile(studentId);
 
             int totalSolved = 0;
             int completedTopics = 0;
@@ -49,6 +51,7 @@ public class StudentDsaServlet extends HttpServlet {
             }
 
             request.setAttribute("progressList", progressList);
+            request.setAttribute("codingProfile", codingProfile);
             request.setAttribute("totalSolved", totalSolved);
             request.setAttribute("completedTopics", completedTopics);
             request.setAttribute("inProgressTopics", inProgressTopics);

@@ -3,6 +3,7 @@ package com.skilltrack.dto;
 import com.skilltrack.models.Certification;
 import com.skilltrack.models.Project;
 import com.skilltrack.models.Student;
+import com.skilltrack.models.StudentCodingProfile;
 import com.skilltrack.models.StudentDsaProgress;
 import com.skilltrack.models.StudentSkill;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class StudentProfileDTO implements Serializable {
     private List<Certification> certifications = new ArrayList<>();
     private List<StudentDsaProgress> dsaProgressList = new ArrayList<>();
     private int totalDsaProblemsSolved;
+    private StudentCodingProfile codingProfile;
 
     public StudentProfileDTO() {
     }
@@ -68,5 +70,13 @@ public class StudentProfileDTO implements Serializable {
 
     public void setTotalDsaProblemsSolved(int totalDsaProblemsSolved) {
         this.totalDsaProblemsSolved = totalDsaProblemsSolved;
+    }
+
+    public StudentCodingProfile getCodingProfile() {
+        return codingProfile;
+    }
+
+    public void setCodingProfile(StudentCodingProfile codingProfile) {
+        this.codingProfile = codingProfile;
     }
 }

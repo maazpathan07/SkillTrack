@@ -33,6 +33,7 @@ public class StudentService {
     private final CertificationDAO certificationDAO;
     private final DsaProgressDAO dsaProgressDAO;
     private final TaskDAO taskDAO;
+    private final com.skilltrack.dao.CodingProfileDAO codingProfileDAO;
 
     public StudentService() {
         this.studentDAO = new StudentDAO();
@@ -41,6 +42,7 @@ public class StudentService {
         this.certificationDAO = new CertificationDAO();
         this.dsaProgressDAO = new DsaProgressDAO();
         this.taskDAO = new TaskDAO();
+        this.codingProfileDAO = new com.skilltrack.dao.CodingProfileDAO();
     }
 
     public Student getStudentById(int studentId) {
@@ -64,6 +66,7 @@ public class StudentService {
             profile.setCertifications(certificationDAO.findByStudentId(studentId));
             profile.setDsaProgressList(dsaProgressDAO.getStudentDsaProgress(studentId));
             profile.setTotalDsaProblemsSolved(dsaProgressDAO.getTotalProblemsSolved(studentId));
+            profile.setCodingProfile(codingProfileDAO.findByStudentId(studentId));
 
             return profile;
         } catch (SQLException e) {

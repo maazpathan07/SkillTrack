@@ -188,6 +188,33 @@ CREATE TABLE IF NOT EXISTS student_dsa_progress (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
+-- Table 11B: STUDENT_CODING_PROFILES (Live LeetCode & GitHub Sync)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS student_coding_profiles (
+    student_id INT PRIMARY KEY,
+    leetcode_username VARCHAR(100) NULL,
+    leetcode_total_solved INT NOT NULL DEFAULT 0,
+    leetcode_easy_solved INT NOT NULL DEFAULT 0,
+    leetcode_medium_solved INT NOT NULL DEFAULT 0,
+    leetcode_hard_solved INT NOT NULL DEFAULT 0,
+    leetcode_ranking INT NOT NULL DEFAULT 0,
+    leetcode_contest_rating VARCHAR(50) NULL,
+    leetcode_synced_at DATETIME NULL,
+    github_username VARCHAR(100) NULL,
+    github_repos_count INT NOT NULL DEFAULT 0,
+    github_followers INT NOT NULL DEFAULT 0,
+    github_bio TEXT NULL,
+    github_avatar_url VARCHAR(255) NULL,
+    github_profile_url VARCHAR(255) NULL,
+    github_synced_at DATETIME NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_coding_prof_student FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    INDEX idx_coding_leetcode (leetcode_username),
+    INDEX idx_coding_github (github_username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------
 -- Table 12: PREPARATION_TASKS (Actionable Checklist)
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS preparation_tasks (

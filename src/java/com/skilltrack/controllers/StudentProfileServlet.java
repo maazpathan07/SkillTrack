@@ -25,6 +25,7 @@ public class StudentProfileServlet extends HttpServlet {
 
     private final StudentService studentService = new StudentService();
     private final TargetRoleDAO targetRoleDAO = new TargetRoleDAO();
+    private final com.skilltrack.services.CodePlatformSyncService syncService = new com.skilltrack.services.CodePlatformSyncService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -121,6 +122,8 @@ public class StudentProfileServlet extends HttpServlet {
         String cgpaStr = request.getParameter("cgpa");
         String targetRoleIdStr = request.getParameter("targetRoleId");
         String profileImage = request.getParameter("profileImage");
+        String leetcodeUsername = request.getParameter("leetcodeUsername");
+        String githubUsername = request.getParameter("githubUsername");
 
         int gradYear = ValidationUtil.parsePositiveInt(gradYearStr, 0);
         double cgpa = ValidationUtil.parseDouble(cgpaStr, 0.0);
@@ -131,6 +134,9 @@ public class StudentProfileServlet extends HttpServlet {
             studentService.updateProfile(studentId, fullName, rollNumber, department, gradYear, cgpa, roleId);
             if (profileImage != null && !profileImage.trim().isEmpty()) {
                 studentService.updateProfileImage(studentId, profileImage.trim());
+            }
+            if ((leetcodeUsername != null && !leetcodeUsername.trim().isEmpty()) || (githubUsername != null && !githubUsername.trim().isEmpty())) {
+                syncService.syncPlatforms(studentId, leetcodeUsername, githubUsername, true);
             }
             // Update session name if changed
             request.getSession().setAttribute(AppConstants.SESSION_USER_NAME, fullName.trim());

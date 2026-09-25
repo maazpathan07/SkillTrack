@@ -24,19 +24,19 @@
                     <h1 class="h3 font-weight-bold text-gray-800 mb-0" style="letter-spacing: -0.03em;">Institution Cohort Summary</h1>
                     <p class="text-muted small mb-0 mt-1">Official institutional placement readiness &amp; department analytics summary</p>
                 </div>
-                <div class="d-flex align-items-center gap-2" style="gap: 0.5rem;">
-                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center" onclick="window.print()" style="padding: 0.65rem 1.25rem; font-size: 0.875rem;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                <div class="d-flex align-items-center flex-wrap flex-sm-nowrap gap-2 mt-3 mt-lg-0 w-100 w-lg-auto" style="gap: 0.5rem;">
+                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" onclick="window.print()" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                         Print / Save PDF
                     </button>
-                    <a href="${pageContext.request.contextPath}/app/admin/dashboard" class="ios-btn-secondary" style="padding: 0.65rem 1.25rem; font-size: 0.875rem;">Back to Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/app/admin/dashboard" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap;">Back to Dashboard</a>
                 </div>
             </div>
 
             <!-- Single Page Printable Container -->
-            <div class="ios-card p-4 p-md-5 mb-5" style="box-shadow: var(--ios-shadow-glass); border-radius: var(--ios-radius-lg);">
+            <div class="ios-card p-3 p-md-5 mb-5" style="box-shadow: var(--ios-shadow-glass); border-radius: var(--ios-radius-lg);">
                 <!-- Card Header -->
-                <div class="d-flex justify-content-between align-items-start pb-4 mb-4 border-bottom" style="border-color: #e2e8f0 !important;">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 pb-4 mb-4 border-bottom" style="border-color: #e2e8f0 !important;">
                     <div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <span class="ios-badge ios-badge-blue">Placement Readiness Summary</span>
@@ -46,8 +46,8 @@
                             Institutional Aggregation Report &bull; Generated on: <strong class="text-dark"><c:out value="${generatedTimestamp}" /></strong>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.9rem; padding: 0.5rem 1.25rem;">
+                    <div class="mt-2 mt-md-0">
+                        <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.875rem; padding: 0.45rem 1.1rem; white-space: nowrap;">
                             Total Cohort: <c:out value="${summary.totalStudents}" /> Students
                         </span>
                     </div>
@@ -117,7 +117,7 @@
                             Department Readiness Breakdown
                         </h3>
                     </div>
-                    <div class="table-responsive" style="border: 1px solid #e2e8f0; border-radius: var(--ios-radius-md); overflow: hidden;">
+                    <div class="table-responsive" style="border: 1px solid #e2e8f0; border-radius: var(--ios-radius-md);">
                         <table class="table table-hover mb-0" style="border-collapse: separate;">
                             <thead class="bg-light">
                                 <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -150,7 +150,7 @@
                             Top Placement-Ready Candidates (${summary.topReadyStudents.size()})
                         </h3>
                     </div>
-                    <div class="table-responsive" style="border: 1px solid #e2e8f0; border-radius: var(--ios-radius-md); overflow: hidden;">
+                    <div class="table-responsive" style="border: 1px solid #e2e8f0; border-radius: var(--ios-radius-md);">
                         <table class="table table-hover mb-0" style="border-collapse: separate;">
                             <thead class="bg-light">
                                 <tr style="border-bottom: 1px solid #e2e8f0;">

@@ -59,14 +59,22 @@
                         </button>
                     </div>
 
-                    <!-- Row 2: Readiness Card & Skill Gap in 1 Single Line -->
+                    <!-- Row 2: ATS Resume, Readiness Card & Skill Gap in 1 Single Line -->
                     <div class="dash-action-duo-row">
-                        <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary dash-action-btn text-nowrap">
+                        <a href="${pageContext.request.contextPath}/app/student/ats-resume" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: var(--ios-blue); border-color: rgba(0, 113, 227, 0.3);">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
                                 <line x1="16" y1="13" x2="8" y2="13"></line>
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            ATS Resume
+                        </a>
+                        <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary dash-action-btn text-nowrap">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
                             </svg>
                             Readiness Card
                         </a>
@@ -146,6 +154,37 @@
                         <small class="text-muted font-weight-semibold">
                             <c:out value="${dashboard.projectsCount}" /> Verified, <c:out value="${dashboard.certsCount}" /> Credentials
                         </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATS PLACEMENT SUITE BANNER -->
+            <div class="ios-card p-3 p-md-3.5 mb-4" style="background: linear-gradient(135deg, rgba(0, 113, 227, 0.05) 0%, rgba(88, 86, 214, 0.05) 100%); border: 1px solid rgba(0, 113, 227, 0.18);">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                    <div class="d-flex align-items-center" style="gap: 0.9rem;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px; border-radius: 12px; background: rgba(0, 113, 227, 0.12); color: var(--ios-blue);">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-0.5">
+                                <h3 class="h6 font-weight-bold text-dark mb-0" style="font-size: 0.975rem;">ATS Placement &amp; Resume Intelligence</h3>
+                                <span class="ios-badge ios-badge-blue font-weight-bold" style="font-size: 0.7rem;">New</span>
+                            </div>
+                            <small class="text-muted">Scan your resume against campus drive criteria or generate a 1-click ATS-compliant single-page PDF</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0" style="gap: 0.5rem;">
+                        <a href="${pageContext.request.contextPath}/app/student/ats-scanner" class="ios-btn-secondary d-inline-flex align-items-center text-nowrap" style="padding: 0.45rem 1rem; font-size: 0.825rem; font-weight: 600;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            ATS Scanner
+                        </a>
+                        <a href="${pageContext.request.contextPath}/app/student/ats-resume" class="ios-btn-primary d-inline-flex align-items-center text-nowrap" style="padding: 0.45rem 1.15rem; font-size: 0.825rem; font-weight: 600; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                            ATS Resume Builder &rarr;
+                        </a>
                     </div>
                 </div>
             </div>

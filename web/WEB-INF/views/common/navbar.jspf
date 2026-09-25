@@ -57,6 +57,8 @@
                     <a class="ios-capsule-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">Checklist</a>
                     <a class="ios-capsule-link ${activeNav == 'skill-gap' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/skill-gap">Skill Gap</a>
                     <a class="ios-capsule-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">Cutoffs</a>
+                    <a class="ios-capsule-link ${activeNav == 'ats-resume' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/ats-resume">ATS Resume</a>
+                    <a class="ios-capsule-link ${activeNav == 'ats-scanner' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/ats-scanner">ATS Scanner</a>
                 </c:otherwise>
             </c:choose>
         </nav>
@@ -102,6 +104,14 @@
                             <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/readiness-card">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                                 Official Readiness Card
+                            </a>
+                            <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/ats-resume">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-primary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                                ATS Placement Resume
+                            </a>
+                            <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/ats-scanner">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-primary"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                ATS Resume Scanner
                             </a>
                             <div class="dropdown-divider"></div>
                         </c:if>
@@ -274,6 +284,16 @@
                     <a class="ios-mobile-link ${activeNav == 'placement-criteria' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/placement-criteria">
                         <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
                         <span class="ios-mobile-link-text">Company Cutoffs</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'ats-resume' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/ats-resume">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></span>
+                        <span class="ios-mobile-link-text">ATS Placement Resume</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'ats-scanner' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/ats-scanner">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                        <span class="ios-mobile-link-text">ATS Resume Scanner</span>
                         <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </a>
                     <a class="ios-mobile-link" href="${pageContext.request.contextPath}/passport" target="_blank" style="background: rgba(52, 199, 89, 0.08); border-radius: var(--ios-radius-sm); margin-top: 0.25rem;">

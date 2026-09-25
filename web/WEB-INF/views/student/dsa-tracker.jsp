@@ -325,8 +325,8 @@
             <div class="modal fade" id="syncPlatformsModal" tabindex="-1" role="dialog" aria-labelledby="syncPlatformsModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" style="border-radius: var(--ios-radius-lg); border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-                        <form id="syncPlatformForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms" onsubmit="event.preventDefault(); performLivePlatformSync();">
-                            <input type="hidden" name="csrfToken" id="syncCsrfToken" value="${sessionScope.CSRF_TOKEN}">
+                        <form id="syncPlatformForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms" onsubmit="return handleSyncFormSubmit(this);">
+                            <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
                             <input type="hidden" name="redirectUri" value="/app/student/dsa">
                             <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
                                 <div class="d-flex align-items-center gap-2">
@@ -340,8 +340,6 @@
                                 </button>
                             </div>
                             <div class="modal-body p-4">
-                                <div id="syncModalAlert" class="alert alert-info py-2 px-3 small d-none mb-3" style="border-radius: 8px;"></div>
-
                                 <!-- LeetCode Username -->
                                 <div class="form-group mb-3">
                                     <label for="syncLeetcodeUser" class="ios-form-label d-flex justify-content-between">
@@ -465,66 +463,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function performLivePlatformSync() {
-    var leetcodeUser = $('#syncLeetcodeUser').val() ? $('#syncLeetcodeUser').val().trim() : '';
-    var githubUser = $('#syncGithubUser').val() ? $('#syncGithubUser').val().trim() : '';
-    var autoDistribute = $('#autoDistributeDsa').is(':checked');
-    var csrfToken = $('#syncCsrfToken').val() || '${sessionScope.CSRF_TOKEN}';
+function handleSyncFormSubmit(form) {
+    var leetcodeUser = (form.leetcodeUsername && form.leetcodeUsername.value) ? form.leetcodeUsername.value.trim() : '';
+    var githubUser = (form.githubUsername && form.githubUsername.value) ? form.githubUsername.value.trim() : '';
 
     if (!leetcodeUser && !githubUser) {
-        $('#syncModalAlert').removeClass('d-none alert-success alert-danger alert-info').addClass('alert-warning').text('Please enter your LeetCode or GitHub username.');
-        return;
+        alert('Please enter your LeetCode or GitHub username to sync.');
+        return false;
     }
 
-    var btn = $('#triggerLiveSyncBtn');
-    var spinner = $('#syncBtnSpinner');
-    var btnText = $('#syncBtnText');
-    var alertBox = $('#syncModalAlert');
+    var btn = document.getElementById('triggerLiveSyncBtn');
+    var spinner = document.getElementById('syncBtnSpinner');
+    var btnText = document.getElementById('syncBtnText');
 
-    btn.prop('disabled', true);
-    spinner.removeClass('d-none');
-    btnText.text('Connecting & Fetching...');
-    alertBox.removeClass('d-none alert-danger alert-warning alert-success').addClass('alert-info').text('Querying LeetCode & GitHub APIs in real-time...');
+    if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.75';
+    }
+    if (spinner) spinner.classList.remove('d-none');
+    if (btnText) btnText.textContent = 'Querying APIs & Syncing...';
 
-    $.ajax({
-        url: '${pageContext.request.contextPath}/app/student/sync-platforms',
-        type: 'POST',
-        data: {
-            csrfToken: csrfToken,
-            leetcodeUsername: leetcodeUser,
-            githubUsername: githubUser,
-            autoDistribute: autoDistribute ? 'true' : 'false'
-        },
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-Token': csrfToken
-        },
-        success: function(resp) {
-            btn.prop('disabled', false);
-            spinner.addClass('d-none');
-            btnText.text('🚀 Fetch & Sync Live Stats');
-
-            if (resp && resp.success) {
-                alertBox.removeClass('d-none alert-info alert-warning alert-danger').addClass('alert-success').html('<strong>✓ Live Sync Complete!</strong> ' + (resp.message || 'Stats successfully updated.'));
-                setTimeout(function() {
-                    window.location.reload();
-                }, 1200);
-            } else {
-                alertBox.removeClass('d-none alert-info alert-success').addClass('alert-warning').html('<strong>⚠️ Notice:</strong> ' + (resp.message || 'Warning during sync. Please verify the handle.'));
-            }
-        },
-        error: function(xhr) {
-            btn.prop('disabled', false);
-            spinner.addClass('d-none');
-            btnText.text('🚀 Fetch & Sync Live Stats');
-            var errMsg = 'Unable to reach coding platform APIs. Please verify your internet connection or handles.';
-            try {
-                var errObj = JSON.parse(xhr.responseText);
-                if (errObj && errObj.message) errMsg = errObj.message;
-            } catch(e) {}
-            alertBox.removeClass('d-none alert-info alert-success alert-warning').addClass('alert-danger').html('<strong>❌ Error:</strong> ' + errMsg);
-        }
-    });
+    // Allow form to submit natively to servlet
+    return true;
 }
 </script>
 

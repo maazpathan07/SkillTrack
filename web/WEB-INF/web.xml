@@ -20,6 +20,25 @@
         </cookie-config>
     </session-config>
 
+    <!-- OAuth 2.0 Controllers -->
+    <servlet>
+        <servlet-name>OAuthLoginServlet</servlet-name>
+        <servlet-class>com.skilltrack.controllers.OAuthLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OAuthLoginServlet</servlet-name>
+        <url-pattern>/auth/oauth/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OAuthCallbackServlet</servlet-name>
+        <servlet-class>com.skilltrack.controllers.OAuthCallbackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OAuthCallbackServlet</servlet-name>
+        <url-pattern>/auth/oauth/callback</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/views/common/error-404.jsp</location>

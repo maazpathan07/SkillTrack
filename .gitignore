@@ -23,3 +23,7 @@ desktop.ini
 .settings/
 .project
 .classpath
+
+# Sensitive OAuth Credentials
+/src/java/oauth.properties
+oauth.properties

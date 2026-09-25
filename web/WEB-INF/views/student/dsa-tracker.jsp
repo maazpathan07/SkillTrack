@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="pageTitle" value="DSA Progress Tracker" />
 <c:set var="activeNav" value="dsa" />
 <%@ include file="/WEB-INF/views/common/header.jspf" %>
@@ -61,10 +62,10 @@
                     <div class="ios-metric-card ios-metric-blue">
                         <div class="ios-metric-label" style="color: #005bb5;">DSA Readiness Index</div>
                         <div class="ios-metric-value">
-                            <c:out value="${totalSolved >= 150 ? 100 : (totalSolved * 100 / 150)}" default="0" />%
+                            <fmt:formatNumber value="${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}" maxFractionDigits="1" minFractionDigits="1" />%
                         </div>
                         <div class="ios-progress-thin mt-2" style="height: 6px; border-radius: var(--ios-radius-full); background: #f1f5f9; overflow: hidden;">
-                            <div class="ios-progress-bar" style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100 / 150)}%; background: linear-gradient(90deg, #0071e3, #32ade6); height: 100%; border-radius: var(--ios-radius-full); transition: width 0.6s ease;"></div>
+                            <div class="ios-progress-bar" style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}%; background: linear-gradient(90deg, #0071e3, #32ade6); height: 100%; border-radius: var(--ios-radius-full); transition: width 0.6s ease;"></div>
                         </div>
                     </div>
                 </div>
@@ -79,9 +80,9 @@
                     </div>
 
                     <!-- Search & Filter Controls -->
-                    <div class="d-flex flex-wrap align-items-center gap-2">
+                    <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2 w-100 w-md-auto mt-2 mt-md-0">
                         <!-- Search Box -->
-                        <div class="position-relative" style="min-width: 220px;">
+                        <div class="position-relative flex-grow-1" style="min-width: 180px;">
                             <input type="text" id="topicSearchInput" class="ios-form-control" placeholder="Search DSA topics..." aria-label="Search DSA topics" style="padding-left: 2.25rem; font-size: 0.85rem; height: 38px; border-radius: var(--ios-radius-sm);">
                             <span class="position-absolute" style="left: 10px; top: 10px; color: var(--ios-text-tertiary);" aria-hidden="true">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -90,10 +91,10 @@
 
                         <!-- Status Filter Pills -->
                         <div class="ios-segmented-control" style="height: 38px; border-radius: var(--ios-radius-sm);">
-                            <button type="button" class="ios-segment-btn active filter-status-btn" data-status="ALL">All (18)</button>
-                            <button type="button" class="ios-segment-btn filter-status-btn" data-status="COMPLETED">Completed (${completedTopics})</button>
-                            <button type="button" class="ios-segment-btn filter-status-btn" data-status="IN_PROGRESS">In Progress (${inProgressTopics})</button>
-                            <button type="button" class="ios-segment-btn filter-status-btn" data-status="NOT_STARTED">Not Started</button>
+                            <button type="button" class="ios-segment-btn active filter-status-btn text-nowrap" data-status="ALL">All (18)</button>
+                            <button type="button" class="ios-segment-btn filter-status-btn text-nowrap" data-status="COMPLETED">Completed (${completedTopics})</button>
+                            <button type="button" class="ios-segment-btn filter-status-btn text-nowrap" data-status="IN_PROGRESS">In Progress (${inProgressTopics})</button>
+                            <button type="button" class="ios-segment-btn filter-status-btn text-nowrap" data-status="NOT_STARTED">Not Started</button>
                         </div>
                     </div>
                 </div>

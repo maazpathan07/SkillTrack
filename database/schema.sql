@@ -17,14 +17,17 @@ USE skilltrack_db;
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(120) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    salt VARCHAR(64) NOT NULL,
+    password_hash VARCHAR(255) NULL,
+    salt VARCHAR(64) NULL,
     role ENUM('STUDENT', 'ADMIN') NOT NULL,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
+    oauth_provider VARCHAR(20) NOT NULL DEFAULT 'LOCAL',
+    oauth_id VARCHAR(100) NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_users_email (email),
-    INDEX idx_users_role (role)
+    INDEX idx_users_role (role),
+    INDEX idx_users_oauth (oauth_provider, oauth_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------

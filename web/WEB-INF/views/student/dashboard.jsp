@@ -38,10 +38,10 @@
                 </div>
 
                 <!-- Quick Action Buttons -->
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center mt-3 mt-md-0 w-100 w-md-auto" style="gap: 0.5rem;">
                     <!-- Usability Fix 7: Standardized Document Dossier Icon -->
-                    <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary text-nowrap" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
                             <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -49,8 +49,8 @@
                         </svg>
                         Readiness Card
                     </a>
-                    <a href="${pageContext.request.contextPath}/app/student/skill-gap" class="ios-btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                    <a href="${pageContext.request.contextPath}/app/student/skill-gap" class="ios-btn-primary text-nowrap" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
                         Skill Gap Radar &rarr;
                     </a>
                 </div>
@@ -141,7 +141,7 @@
                                 </h2>
                                 <small class="text-muted">Deterministic scoring based on industry cutoff models</small>
                             </div>
-                            <span class="ios-badge ios-badge-gray">4 Pillars</span>
+                            <span class="ios-badge ios-badge-gray text-nowrap">5 Pillars</span>
                         </div>
                         <div class="p-0">
                             <div class="table-responsive">
@@ -149,72 +149,72 @@
                                 <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
                                     <thead style="background: #f8fafc; color: var(--ios-text-secondary); font-size: 0.775rem; text-transform: uppercase; letter-spacing: 0.05em;">
                                         <tr>
-                                            <th class="border-top-0 px-4 py-3" style="width: 32%;">Evaluation Pillar</th>
-                                            <th class="border-top-0 py-3" style="width: 18%;">Weight</th>
-                                            <th class="border-top-0 py-3" style="width: 35%;">Readiness Progress</th>
-                                            <th class="border-top-0 px-4 py-3 text-right" style="width: 15%;">Score</th>
+                                            <th class="border-top-0 px-3 px-sm-4 py-3" style="width: 35%;">Evaluation Pillar</th>
+                                            <th class="border-top-0 py-3 text-center" style="width: 15%;">Weight</th>
+                                            <th class="border-top-0 py-3" style="width: 32%;">Readiness Progress</th>
+                                            <th class="border-top-0 px-3 px-sm-4 py-3 text-right" style="width: 18%;">Score</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="px-4 font-weight-bold" style="color: var(--ios-text-primary);">
+                                            <td class="px-3 px-sm-4 font-weight-bold" style="color: var(--ios-text-primary);">
                                                 Technical Skills Match
                                             </td>
-                                            <td><span class="ios-badge ios-badge-gray"><c:out value="${dashboard.readinessScore.weightSkills * 100}" />%</span></td>
+                                            <td class="text-center"><span class="ios-badge ios-badge-gray text-nowrap"><c:out value="${dashboard.readinessScore.weightSkills * 100}" />%</span></td>
                                             <td>
                                                 <div class="ios-progress-md">
                                                     <div class="ios-progress-bar" style="width: ${dashboard.readinessScore.skillReadiness}%; background: var(--ios-blue);"></div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 text-right font-weight-bold" style="color: var(--ios-blue);"><c:out value="${dashboard.readinessScore.formattedSkill}" />%</td>
+                                            <td class="px-3 px-sm-4 text-right font-weight-bold" style="color: var(--ios-blue);"><c:out value="${dashboard.readinessScore.formattedSkill}" />%</td>
                                         </tr>
                                         <tr>
-                                            <td class="px-4 font-weight-bold" style="color: var(--ios-text-primary);">
+                                            <td class="px-3 px-sm-4 font-weight-bold" style="color: var(--ios-text-primary);">
                                                 DSA Problem Solving
                                             </td>
-                                            <td><span class="ios-badge ios-badge-gray"><c:out value="${dashboard.readinessScore.weightDsa * 100}" />%</span></td>
+                                            <td class="text-center"><span class="ios-badge ios-badge-gray text-nowrap"><c:out value="${dashboard.readinessScore.weightDsa * 100}" />%</span></td>
                                             <td>
                                                 <div class="ios-progress-md">
                                                     <div class="ios-progress-bar" style="width: ${dashboard.readinessScore.dsaReadiness}%; background: var(--ios-orange);"></div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 text-right font-weight-bold" style="color: var(--ios-orange);"><c:out value="${dashboard.readinessScore.formattedDsa}" />%</td>
+                                            <td class="px-3 px-sm-4 text-right font-weight-bold" style="color: var(--ios-orange);"><c:out value="${dashboard.readinessScore.formattedDsa}" />%</td>
                                         </tr>
                                         <tr>
-                                            <td class="px-4 font-weight-bold" style="color: var(--ios-text-primary);">
+                                            <td class="px-3 px-sm-4 font-weight-bold" style="color: var(--ios-text-primary);">
                                                 Verified Projects
                                             </td>
-                                            <td><span class="ios-badge ios-badge-gray"><c:out value="${dashboard.readinessScore.weightProjects * 100}" />%</span></td>
+                                            <td class="text-center"><span class="ios-badge ios-badge-gray text-nowrap"><c:out value="${dashboard.readinessScore.weightProjects * 100}" />%</span></td>
                                             <td>
                                                 <div class="ios-progress-md">
                                                     <div class="ios-progress-bar" style="width: ${dashboard.readinessScore.projectReadiness}%; background: var(--ios-purple);"></div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 text-right font-weight-bold" style="color: var(--ios-purple);"><c:out value="${dashboard.readinessScore.formattedProject}" />%</td>
+                                            <td class="px-3 px-sm-4 text-right font-weight-bold" style="color: var(--ios-purple);"><c:out value="${dashboard.readinessScore.formattedProject}" />%</td>
                                         </tr>
                                         <tr>
-                                            <td class="px-4 font-weight-bold" style="color: var(--ios-text-primary);">
+                                            <td class="px-3 px-sm-4 font-weight-bold" style="color: var(--ios-text-primary);">
                                                 Verified Certifications
                                             </td>
-                                            <td><span class="ios-badge ios-badge-gray"><c:out value="${dashboard.readinessScore.weightCerts * 100}" />%</span></td>
+                                            <td class="text-center"><span class="ios-badge ios-badge-gray text-nowrap"><c:out value="${dashboard.readinessScore.weightCerts * 100}" />%</span></td>
                                             <td>
                                                 <div class="ios-progress-md">
                                                     <div class="ios-progress-bar" style="width: ${dashboard.readinessScore.certReadiness}%; background: var(--ios-green-dark);"></div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 text-right font-weight-bold" style="color: var(--ios-green-dark);"><c:out value="${dashboard.readinessScore.formattedCert}" />%</td>
+                                            <td class="px-3 px-sm-4 text-right font-weight-bold" style="color: var(--ios-green-dark);"><c:out value="${dashboard.readinessScore.formattedCert}" />%</td>
                                         </tr>
                                         <tr>
-                                            <td class="px-4 font-weight-bold" style="color: var(--ios-text-primary);">
+                                            <td class="px-3 px-sm-4 font-weight-bold" style="color: var(--ios-text-primary);">
                                                 Preparation Milestones
                                             </td>
-                                            <td><span class="ios-badge ios-badge-gray"><c:out value="${dashboard.readinessScore.weightTasks * 100}" />%</span></td>
+                                            <td class="text-center"><span class="ios-badge ios-badge-gray text-nowrap"><c:out value="${dashboard.readinessScore.weightTasks * 100}" />%</span></td>
                                             <td>
                                                 <div class="ios-progress-md">
                                                     <div class="ios-progress-bar" style="width: ${dashboard.readinessScore.taskReadiness}%; background: var(--ios-text-secondary);"></div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 text-right font-weight-bold" style="color: var(--ios-text-secondary);"><c:out value="${dashboard.readinessScore.formattedTask}" />%</td>
+                                            <td class="px-3 px-sm-4 text-right font-weight-bold" style="color: var(--ios-text-secondary);"><c:out value="${dashboard.readinessScore.formattedTask}" />%</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -234,7 +234,7 @@
                                 </h2>
                                 <small class="text-muted">Live multidimensional profile balance</small>
                             </div>
-                            <span class="ios-badge ios-badge-blue">Real-Time</span>
+                            <span class="ios-badge ios-badge-blue text-nowrap">Real-Time</span>
                         </div>
                         <div class="ios-card-body d-flex align-items-center justify-content-center p-3">
                             <canvas id="readinessChart" style="max-height: 250px; width: 100%;"></canvas>
@@ -255,7 +255,7 @@
                                 </h2>
                                 <small class="text-muted">Daily milestones to boost readiness</small>
                             </div>
-                            <a href="${pageContext.request.contextPath}/app/student/tasks" class="small font-weight-bold" style="color: var(--ios-blue);">
+                            <a href="${pageContext.request.contextPath}/app/student/tasks" class="small font-weight-bold text-nowrap flex-shrink-0" style="color: var(--ios-blue);">
                                 View All &rarr;
                             </a>
                         </div>
@@ -308,7 +308,7 @@
                                 </h2>
                                 <small class="text-muted">Showcase applications and GitHub repositories</small>
                             </div>
-                            <a href="${pageContext.request.contextPath}/app/student/projects" class="small font-weight-bold" style="color: var(--ios-blue);">
+                            <a href="${pageContext.request.contextPath}/app/student/projects" class="small font-weight-bold text-nowrap flex-shrink-0" style="color: var(--ios-blue);">
                                 View All &rarr;
                             </a>
                         </div>

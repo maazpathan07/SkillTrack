@@ -60,7 +60,7 @@
                 <a class="ios-btn-primary mr-2" href="${pageContext.request.contextPath}/register" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;">
                     Get Started
                 </a>
-                <button type="button" class="ios-mobile-toggle" id="iosMobileNavToggle" aria-label="Toggle navigation menu">
+                <button type="button" class="ios-mobile-toggle" id="iosMobileNavToggle" aria-label="Toggle navigation menu" onclick="window.toggleSkillTrackMobileDrawer(event)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -957,7 +957,116 @@
         <!-- Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=4.5"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=4.7"></script>
+
+        <!-- Apple iOS 18 Dynamic ScrollSpy & Smooth Section Navigation -->
+        <script>
+        (function() {
+            var sectionIds = ['overview', 'comparison', 'features', 'roadmap', 'tpo-portal', 'faq'];
+            var sections = [];
+            sectionIds.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) sections.push({ id: id, el: el });
+            });
+
+            var capsuleLinks = document.querySelectorAll('.ios-capsule-nav .ios-capsule-link');
+            var mobileLinks = document.querySelectorAll('#iosMobileDrawer .ios-mobile-link');
+
+            function updateActiveNav(activeId) {
+                if (!activeId) return;
+                capsuleLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href === '#' + activeId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                mobileLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href === '#' + activeId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            var isManualScrolling = false;
+            var manualScrollTimeout = null;
+
+            function handleScrollSpy() {
+                if (isManualScrolling) return;
+
+                var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                var windowHeight = window.innerHeight;
+                var docHeight = document.documentElement.scrollHeight;
+
+                // Check bottom of page -> highlight last item (FAQ)
+                if ((scrollY + windowHeight) >= (docHeight - 90)) {
+                    if (sections.length > 0) {
+                        updateActiveNav(sections[sections.length - 1].id);
+                        return;
+                    }
+                }
+
+                var headerOffset = 130;
+                var currentId = sectionIds[0];
+
+                for (var i = 0; i < sections.length; i++) {
+                    var sectionTop = sections[i].el.getBoundingClientRect().top + scrollY - headerOffset;
+                    var sectionHeight = sections[i].el.offsetHeight;
+
+                    if (scrollY >= sectionTop && scrollY < (sectionTop + sectionHeight)) {
+                        currentId = sections[i].id;
+                        break;
+                    } else if (scrollY >= sectionTop) {
+                        currentId = sections[i].id;
+                    }
+                }
+
+                updateActiveNav(currentId);
+            }
+
+            window.addEventListener('scroll', handleScrollSpy, { passive: true });
+            window.addEventListener('resize', handleScrollSpy, { passive: true });
+            handleScrollSpy();
+
+            // Smooth click handler with navbar offset
+            document.querySelectorAll('.ios-capsule-nav a[href^="#"], #iosMobileDrawer a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href').replace('#', '');
+                    var targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        isManualScrolling = true;
+                        updateActiveNav(targetId);
+
+                        var headerOffset = 78;
+                        var targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        if (manualScrollTimeout) clearTimeout(manualScrollTimeout);
+                        manualScrollTimeout = setTimeout(function() {
+                            isManualScrolling = false;
+                            handleScrollSpy();
+                        }, 700);
+
+                        // Close mobile drawer if open
+                        var drawer = document.getElementById('iosMobileDrawer');
+                        if (drawer && drawer.classList.contains('is-open')) {
+                            drawer.classList.remove('is-open');
+                        }
+                    }
+                });
+            });
+        })();
+        </script>
 
         <!-- Interactive Hero Role Switcher Demo Script -->
         <script>

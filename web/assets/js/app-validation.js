@@ -194,3 +194,36 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", handleNavbarScroll, { passive: true });
     handleNavbarScroll();
 });
+
+// 5. Global Mobile Drawer Controller (Accessible from anywhere)
+window.toggleSkillTrackMobileDrawer = function(e) {
+    if (e) {
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+    }
+    var drawer = document.getElementById('mobileNavDrawer') || document.getElementById('iosMobileDrawer');
+    if (!drawer) return;
+    var isCurrentlyOpen = drawer.classList.contains('is-open');
+    if (isCurrentlyOpen) {
+        drawer.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    } else {
+        drawer.classList.add('is-open');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeSkillTrackMobileDrawer = function(e) {
+    if (e) {
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+    }
+    var drawer = document.getElementById('mobileNavDrawer') || document.getElementById('iosMobileDrawer');
+    if (drawer) {
+        drawer.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+};

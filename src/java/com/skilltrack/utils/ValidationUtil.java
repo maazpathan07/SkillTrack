@@ -67,4 +67,13 @@ public final class ValidationUtil {
             return defaultValue;
         }
     }
+
+    public static String urlEncode(String input) {
+        if (input == null) return "";
+        try {
+            return java.net.URLEncoder.encode(input, "UTF-8");
+        } catch (java.io.UnsupportedEncodingException e) {
+            return input;
+        }
+    }
 }

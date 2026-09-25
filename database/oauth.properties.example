@@ -1,0 +1,21 @@
+# =====================================================================
+# SkillTrack OAuth 2.0 Credentials Configuration
+# =====================================================================
+
+# 1. Google OAuth 2.0 (Google Cloud Console -> APIs & Services -> Credentials)
+# Authorized redirect URI: http://localhost:8080/SkillTrack/auth/oauth/callback
+google.client.id=YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com
+google.client.secret=YOUR_GOOGLE_CLIENT_SECRET
+google.redirect.uri=http://localhost:8080/SkillTrack/auth/oauth/callback
+
+# 2. GitHub OAuth (GitHub.com -> Settings -> Developer settings -> OAuth Apps)
+# Authorization callback URL: http://localhost:8080/SkillTrack/auth/oauth/callback
+github.client.id=YOUR_GITHUB_CLIENT_ID
+github.client.secret=YOUR_GITHUB_CLIENT_SECRET
+github.redirect.uri=http://localhost:8080/SkillTrack/auth/oauth/callback
+
+# 3. LinkedIn OAuth 2.0 (LinkedIn Developer Portal -> Auth)
+# Authorized redirect URL: http://localhost:8080/SkillTrack/auth/oauth/callback
+linkedin.client.id=YOUR_LINKEDIN_CLIENT_ID
+linkedin.client.secret=YOUR_LINKEDIN_CLIENT_SECRET
+linkedin.redirect.uri=http://localhost:8080/SkillTrack/auth/oauth/callback

@@ -74,9 +74,9 @@
 
                                 <div class="form-group mb-3">
                                     <label for="githubUrl" class="ios-form-label">GitHub Repository URL</label>
-                                    <div class="position-relative">
-                                        <input type="url" class="ios-form-control" id="githubUrl" name="githubUrl" value="<c:out value='${editProject.githubUrl}' />" placeholder="https://github.com/username/project">
-                                        <span class="position-absolute" style="right: 12px; top: 12px; color: var(--ios-text-tertiary);">
+                                    <div class="ios-input-icon-wrapper">
+                                        <input type="url" class="ios-form-control" id="githubUrl" name="githubUrl" value="<c:out value='${editProject.githubUrl}' />" placeholder="https://github.com/user/project">
+                                        <span class="ios-input-icon">
                                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                                         </span>
                                     </div>
@@ -84,9 +84,9 @@
 
                                 <div class="form-group mb-4">
                                     <label for="liveDemoUrl" class="ios-form-label">Live Deployment / Demo URL</label>
-                                    <div class="position-relative">
+                                    <div class="ios-input-icon-wrapper">
                                         <input type="url" class="ios-form-control" id="liveDemoUrl" name="liveDemoUrl" value="<c:out value='${editProject.liveDemoUrl}' />" placeholder="https://project.vercel.app">
-                                        <span class="position-absolute" style="right: 12px; top: 12px; color: var(--ios-text-tertiary);">
+                                        <span class="ios-input-icon">
                                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                                         </span>
                                     </div>
@@ -102,11 +102,12 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="small" style="color: #475569; font-weight: 600;">20% of Placement Score</div>
-                                            <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.75rem; font-size: 0.875rem;">
-                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                                Save Project
-                                            </button>
+                                            <div class="d-flex justify-content-end w-100">
+                                                <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.75rem; font-size: 0.875rem;">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                    Save Project
+                                                </button>
+                                            </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

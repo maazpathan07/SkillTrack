@@ -1,5 +1,6 @@
 package com.skilltrack.models;
 
+import com.skilltrack.constants.OAuthProvider;
 import com.skilltrack.constants.UserRole;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,6 +14,8 @@ public class User implements Serializable {
     private String salt;
     private UserRole role;
     private boolean active;
+    private OAuthProvider oauthProvider = OAuthProvider.LOCAL;
+    private String oauthId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -26,6 +29,18 @@ public class User implements Serializable {
         this.salt = salt;
         this.role = role;
         this.active = active;
+        this.oauthProvider = OAuthProvider.LOCAL;
+    }
+
+    public User(int userId, String email, String passwordHash, String salt, UserRole role, boolean active, OAuthProvider oauthProvider, String oauthId) {
+        this.userId = userId;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.salt = salt;
+        this.role = role;
+        this.active = active;
+        this.oauthProvider = (oauthProvider != null) ? oauthProvider : OAuthProvider.LOCAL;
+        this.oauthId = oauthId;
     }
 
     public int getUserId() {
@@ -74,6 +89,22 @@ public class User implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public OAuthProvider getOAuthProvider() {
+        return oauthProvider;
+    }
+
+    public void setOAuthProvider(OAuthProvider oauthProvider) {
+        this.oauthProvider = oauthProvider;
+    }
+
+    public String getOAuthId() {
+        return oauthId;
+    }
+
+    public void setOAuthId(String oauthId) {
+        this.oauthId = oauthId;
     }
 
     public LocalDateTime getCreatedAt() {

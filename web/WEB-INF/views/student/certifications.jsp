@@ -74,9 +74,9 @@
 
                                 <div class="form-group mb-4">
                                     <label for="credentialUrl" class="ios-form-label">Credential Verification URL (Credly / Badge)</label>
-                                    <div class="position-relative">
+                                    <div class="ios-input-icon-wrapper">
                                         <input type="url" class="ios-form-control" id="credentialUrl" name="credentialUrl" value="<c:out value='${editCert.credentialUrl}' />" placeholder="https://www.credly.com/badges/...">
-                                        <span class="position-absolute" style="right: 12px; top: 12px; color: var(--ios-text-tertiary);">
+                                        <span class="ios-input-icon">
                                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                                         </span>
                                     </div>
@@ -93,11 +93,12 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="small" style="color: #475569; font-weight: 600;">15% of Placement Score</div>
-                                            <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.75rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
-                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                                Save Credential
-                                            </button>
+                                            <div class="d-flex justify-content-end w-100">
+                                                <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.75rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                    Save Credential
+                                                </button>
+                                            </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

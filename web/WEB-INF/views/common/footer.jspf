@@ -6,9 +6,9 @@
             <div class="small" style="color: #64748b; font-weight: 500;">
                 &copy; 2026 <strong style="color: var(--ios-text-primary); font-weight: 700;">SkillTrack</strong> — Placement Readiness Platform.
             </div>
-            <div class="small d-inline-flex align-items-center justify-content-center" style="color: #64748b; font-weight: 500;">
-                <span class="mr-1">Developed by</span>&nbsp;
-                <a href="https://www.linkedin.com/in/maazpathan/" target="_blank" rel="noopener noreferrer" class="st-dev-link" style="text-decoration: none;">
+            <div class="small d-inline-flex align-items-center justify-content-center flex-wrap" style="color: #64748b; font-weight: 500;">
+                <span>Developed by</span>&nbsp;
+                <a href="https://www.linkedin.com/in/maazpathan/" target="_blank" rel="noopener noreferrer" class="st-dev-link text-nowrap" style="text-decoration: none;">
                     <span>Maaz Pathan</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1" style="vertical-align: middle;">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -45,6 +45,6 @@
     <!-- Bootstrap 4.6.2 Bundle (Includes Popper) -->
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <!-- Application Helper & Glassmorphic Validation Script -->
-    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=4.5"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/app-validation.js?v=4.7"></script>
 </body>
 </html>

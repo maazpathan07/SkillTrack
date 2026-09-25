@@ -67,7 +67,7 @@
         <c:choose>
             <c:when test="${not empty sessionScope.SESSION_USER_ID}">
                 <!-- Mobile Drawer Toggle Button (Mobile Only) -->
-                <button class="ios-mobile-toggle d-lg-none" type="button" id="mobileNavToggleBtn" aria-label="Open Navigation Menu">
+                <button class="ios-mobile-toggle d-lg-none" type="button" id="mobileNavToggleBtn" aria-label="Open Navigation Menu" onclick="window.toggleSkillTrackMobileDrawer(event)">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -125,9 +125,19 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="d-flex align-items-center gap-2">
-                    <a class="ios-btn-secondary mr-2" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/login">Sign In</a>
-                    <a class="ios-btn-primary" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/register">Get Started &rarr;</a>
+                <div class="d-flex align-items-center">
+                    <c:choose>
+                        <c:when test="${pageTitle == 'Sign In'}">
+                            <a class="ios-btn-primary text-nowrap" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/register">Get Started &rarr;</a>
+                        </c:when>
+                        <c:when test="${pageTitle == 'Student Registration'}">
+                            <a class="ios-btn-primary text-nowrap" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/login">Sign In &rarr;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="ios-btn-secondary mr-2 d-none d-sm-inline-flex text-nowrap" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/login">Sign In</a>
+                            <a class="ios-btn-primary text-nowrap" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" href="${pageContext.request.contextPath}/register">Get Started &rarr;</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -148,7 +158,7 @@
                 </span>
                 <span>SkillTrack</span>
             </a>
-            <button type="button" class="ios-drawer-close-btn" id="mobileNavCloseBtn" aria-label="Cancel and Close Menu">
+            <button type="button" class="ios-drawer-close-btn" id="mobileNavCloseBtn" aria-label="Cancel and Close Menu" onclick="window.closeSkillTrackMobileDrawer(event)">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -298,52 +308,58 @@
 
     <script>
     (function() {
-        function initMobileNav() {
-            var toggleBtn = document.getElementById('mobileNavToggleBtn');
-            var closeBtn = document.getElementById('mobileNavCloseBtn');
+        window.toggleSkillTrackMobileDrawer = function(e) {
+            if (e) {
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+            }
             var drawer = document.getElementById('mobileNavDrawer');
             if (!drawer) return;
-
-            function openMenu() {
-                drawer.classList.add('is-open');
-                drawer.setAttribute('aria-hidden', 'false');
-            }
-
-            function closeMenu() {
+            var isCurrentlyOpen = drawer.classList.contains('is-open');
+            if (isCurrentlyOpen) {
                 drawer.classList.remove('is-open');
                 drawer.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            } else {
+                drawer.classList.add('is-open');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
             }
+        };
 
+        window.closeSkillTrackMobileDrawer = function(e) {
+            if (e) {
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+            }
+            var drawer = document.getElementById('mobileNavDrawer');
+            if (drawer) {
+                drawer.classList.remove('is-open');
+                drawer.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        };
+
+        // Also add delegated click listener as additional fail-safe
+        document.addEventListener('click', function(e) {
+            var toggleBtn = e.target.closest ? e.target.closest('#mobileNavToggleBtn, .ios-mobile-toggle') : null;
             if (toggleBtn) {
-                toggleBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (drawer.classList.contains('is-open')) {
-                        closeMenu();
-                    } else {
-                        openMenu();
-                    }
-                });
+                window.toggleSkillTrackMobileDrawer(e);
+                return;
             }
 
+            var closeBtn = e.target.closest ? e.target.closest('#mobileNavCloseBtn, .ios-drawer-close-btn') : null;
             if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    closeMenu();
-                });
+                window.closeSkillTrackMobileDrawer(e);
+                return;
             }
+        }, false);
 
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-                    closeMenu();
-                }
-            });
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initMobileNav);
-        } else {
-            initMobileNav();
-        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.closeSkillTrackMobileDrawer(e);
+            }
+        });
     })();
     </script>
 </c:if>

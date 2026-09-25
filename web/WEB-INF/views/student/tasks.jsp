@@ -81,21 +81,24 @@
                                     </c:if>
                                 </div>
 
-                                <div class="d-flex justify-content-between align-items-center pt-3 mt-2 border-top">
+                                <div class="d-flex justify-content-center align-items-center pt-3 mt-2 border-top">
                                     <c:choose>
                                         <c:when test="${not empty editTask}">
-                                            <a href="${pageContext.request.contextPath}/app/student/tasks" class="ios-btn-secondary" style="padding: 0.65rem 1.25rem; font-size: 0.875rem;">Cancel</a>
-                                            <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.5rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
-                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                                Update Task
-                                            </button>
+                                            <div class="d-flex justify-content-center align-items-center gap-2 w-100" style="gap: 0.75rem;">
+                                                <a href="${pageContext.request.contextPath}/app/student/tasks" class="ios-btn-secondary" style="padding: 0.65rem 1.25rem; font-size: 0.875rem;">Cancel</a>
+                                                <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.5rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    Update Task
+                                                </button>
+                                            </div>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="small" style="color: #475569; font-weight: 600;">Auto-tracked in score</div>
-                                            <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 1.75rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
-                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                                Save Task
-                                            </button>
+                                            <div class="d-flex justify-content-center w-100">
+                                                <button type="submit" class="ios-btn-primary" style="padding: 0.65rem 2rem; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                    Save Task
+                                                </button>
+                                            </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

@@ -1379,6 +1379,14 @@ main {
   }
 }
 
+@media (max-width: 575.98px) {
+  .st-footer {
+    padding-top: 0.85rem !important;
+    padding-bottom: 1rem !important;
+    text-align: center !important;
+  }
+}
+
 .st-footer .text-muted {
   color: #475569 !important;
 }

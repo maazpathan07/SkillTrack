@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <footer class="st-footer py-3 mt-auto no-print">
-        <div class="container-fluid px-md-4 d-flex flex-column flex-sm-row justify-content-between align-items-center">
-            <div class="mb-2 mb-sm-0 small" style="color: #64748b; font-weight: 500;">
+        <div class="container-fluid px-3 px-md-4 d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center text-center text-sm-left" style="gap: 0.4rem;">
+            <div class="small" style="color: #64748b; font-weight: 500;">
                 &copy; 2026 <strong style="color: var(--ios-text-primary); font-weight: 700;">SkillTrack</strong> — Placement Readiness Platform.
             </div>
-            <div class="small d-flex align-items-center" style="color: #64748b; font-weight: 500;">
+            <div class="small d-inline-flex align-items-center justify-content-center" style="color: #64748b; font-weight: 500;">
                 <span class="mr-1">Developed by</span>&nbsp;
                 <a href="https://www.linkedin.com/in/maazpathan/" target="_blank" rel="noopener noreferrer" class="st-dev-link" style="text-decoration: none;">
                     <span>Maaz Pathan</span>

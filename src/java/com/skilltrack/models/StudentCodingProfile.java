@@ -178,7 +178,31 @@ public class StudentCodingProfile implements Serializable {
         return leetcodeUsername != null && !leetcodeUsername.trim().isEmpty() && leetcodeSyncedAt != null;
     }
 
+    public boolean isLeetcodeSynced() {
+        return isLeetCodeSynced();
+    }
+
+    public boolean getLeetCodeSynced() {
+        return isLeetCodeSynced();
+    }
+
+    public boolean getLeetcodeSynced() {
+        return isLeetCodeSynced();
+    }
+
     public boolean isGitHubSynced() {
         return githubUsername != null && !githubUsername.trim().isEmpty() && githubSyncedAt != null;
+    }
+
+    public boolean isGithubSynced() {
+        return isGitHubSynced();
+    }
+
+    public boolean getGitHubSynced() {
+        return isGitHubSynced();
+    }
+
+    public boolean getGithubSynced() {
+        return isGitHubSynced();
     }
 }

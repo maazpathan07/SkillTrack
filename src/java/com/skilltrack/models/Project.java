@@ -65,6 +65,10 @@ public class Project implements Serializable {
         return techStack;
     }
 
+    public String getTechnologies() {
+        return techStack;
+    }
+
     public void setTechStack(String techStack) {
         this.techStack = techStack;
     }
@@ -78,6 +82,10 @@ public class Project implements Serializable {
     }
 
     public String getLiveDemoUrl() {
+        return liveDemoUrl;
+    }
+
+    public String getLiveUrl() {
         return liveDemoUrl;
     }
 

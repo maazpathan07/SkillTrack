@@ -68,6 +68,11 @@ public class PlacementCriteriaEvaluationDTO implements Serializable {
         this.resultItems = resultItems;
     }
 
+    public double getPassedPercentage() {
+        if (totalChecks == 0) return 100.0;
+        return ((double) passedCount / totalChecks) * 100.0;
+    }
+
     public String getFormattedPassedPercentage() {
         if (totalChecks == 0) return "100.0";
         double pct = ((double) passedCount / totalChecks) * 100.0;

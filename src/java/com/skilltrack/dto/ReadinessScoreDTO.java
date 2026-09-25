@@ -216,6 +216,16 @@ public class ReadinessScoreDTO implements Serializable {
         return String.format("%.1f", taskReadiness);
     }
 
+    public int getOverallScore() {
+        return (int) Math.round(overallReadiness);
+    }
+
+    public String getTier() {
+        if (overallReadiness >= 75.0) return "Placement Ready";
+        if (overallReadiness >= 50.0) return "Moderate Readiness";
+        return "Developing Foundation";
+    }
+
     public String getReadinessBadgeClass() {
         if (overallReadiness >= 75.0) return "badge-success";
         if (overallReadiness >= 50.0) return "badge-warning";

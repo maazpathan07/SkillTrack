@@ -20,7 +20,7 @@ public class StudentDAO {
 
     public Student findByUserId(int userId) throws SQLException {
         String sql = "SELECT s.student_id, s.user_id, s.full_name, s.roll_number, s.department, " +
-                     "s.graduation_year, s.cgpa, s.target_role_id, tr.role_title, u.email, " +
+                     "s.graduation_year, s.cgpa, s.target_role_id, s.profile_image, tr.role_title, u.email, " +
                      "s.created_at, s.updated_at " +
                      "FROM students s " +
                      "JOIN users u ON s.user_id = u.user_id " +
@@ -43,7 +43,7 @@ public class StudentDAO {
 
     public Student findById(int studentId) throws SQLException {
         String sql = "SELECT s.student_id, s.user_id, s.full_name, s.roll_number, s.department, " +
-                     "s.graduation_year, s.cgpa, s.target_role_id, tr.role_title, u.email, " +
+                     "s.graduation_year, s.cgpa, s.target_role_id, s.profile_image, tr.role_title, u.email, " +
                      "s.created_at, s.updated_at " +
                      "FROM students s " +
                      "JOIN users u ON s.user_id = u.user_id " +
@@ -59,6 +59,32 @@ public class StudentDAO {
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error finding student by studentId: " + studentId, e);
+            throw e;
+        }
+        return null;
+    }
+
+    public Student findByRollNumber(String rollNumber) throws SQLException {
+        if (rollNumber == null || rollNumber.trim().isEmpty()) {
+            return null;
+        }
+        String sql = "SELECT s.student_id, s.user_id, s.full_name, s.roll_number, s.department, " +
+                     "s.graduation_year, s.cgpa, s.target_role_id, s.profile_image, tr.role_title, u.email, " +
+                     "s.created_at, s.updated_at " +
+                     "FROM students s " +
+                     "JOIN users u ON s.user_id = u.user_id " +
+                     "LEFT JOIN target_roles tr ON s.target_role_id = tr.role_id " +
+                     "WHERE LOWER(TRIM(s.roll_number)) = LOWER(TRIM(?))";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, rollNumber.trim());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToStudent(rs);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error finding student by rollNumber: " + rollNumber, e);
             throw e;
         }
         return null;
@@ -159,7 +185,7 @@ public class StudentDAO {
                                          int offset, int limit) throws SQLException {
         StringBuilder sql = new StringBuilder(
             "SELECT DISTINCT s.student_id, s.user_id, s.full_name, s.roll_number, s.department, " +
-            "s.graduation_year, s.cgpa, s.target_role_id, tr.role_title, u.email, " +
+            "s.graduation_year, s.cgpa, s.target_role_id, s.profile_image, tr.role_title, u.email, " +
             "s.created_at, s.updated_at " +
             "FROM students s " +
             "JOIN users u ON s.user_id = u.user_id " +
@@ -313,7 +339,7 @@ public class StudentDAO {
 
     public List<Student> findAll() throws SQLException {
         String sql = "SELECT s.student_id, s.user_id, s.full_name, s.roll_number, s.department, " +
-                     "s.graduation_year, s.cgpa, s.target_role_id, tr.role_title, u.email, " +
+                     "s.graduation_year, s.cgpa, s.target_role_id, s.profile_image, tr.role_title, u.email, " +
                      "s.created_at, s.updated_at " +
                      "FROM students s " +
                      "JOIN users u ON s.user_id = u.user_id " +
@@ -330,6 +356,19 @@ public class StudentDAO {
         return list;
     }
 
+    public boolean updateProfileImage(int studentId, String profileImage) throws SQLException {
+        String sql = "UPDATE students SET profile_image = ? WHERE student_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, profileImage != null && !profileImage.trim().isEmpty() ? profileImage.trim() : null);
+            ps.setInt(2, studentId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error updating profile image for student: " + studentId, e);
+            throw e;
+        }
+    }
+
     private Student mapResultSetToStudent(ResultSet rs) throws SQLException {
         Student s = new Student();
         s.setStudentId(rs.getInt("student_id"));
@@ -343,6 +382,7 @@ public class StudentDAO {
         if (!rs.wasNull()) {
             s.setTargetRoleId(trId);
         }
+        s.setProfileImage(rs.getString("profile_image"));
         s.setTargetRoleTitle(rs.getString("role_title"));
         s.setEmail(rs.getString("email"));
         if (rs.getTimestamp("created_at") != null) {

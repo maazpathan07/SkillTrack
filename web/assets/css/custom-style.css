@@ -889,20 +889,27 @@ main {
     gap: 1rem !important;
   }
 
-  .ios-dash-header > div:last-child {
+  .dash-quick-actions-grid {
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 0.5rem !important;
   }
 
-  .ios-dash-header .ios-btn-primary,
-  .ios-dash-header .ios-btn-secondary {
+  .dash-action-duo-row {
     width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .dash-action-duo-row .dash-action-btn {
+    width: 100% !important;
+    padding: 0.6rem 0.35rem !important;
+    font-size: 0.78rem !important;
     text-align: center;
     justify-content: center;
-    margin-right: 0 !important;
-    margin-bottom: 0 !important;
+    margin: 0 !important;
   }
 
   .ios-card .table td,
@@ -1115,8 +1122,8 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.8rem;
-  font-size: 0.775rem;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   border-radius: var(--ios-radius-full);
   max-width: 100%;
@@ -1126,6 +1133,11 @@ main {
 }
 
 .ios-badge-blue   { background: #edf5ff; color: #005bb5; border: 1px solid rgba(0, 91, 181, 0.2); }
+.ios-badge-teal   { background: rgba(20, 184, 166, 0.12); color: #0d9488; border: 1px solid rgba(20, 184, 166, 0.25); }
+.ios-badge-purple { background: rgba(175, 82, 222, 0.12); color: #7e22ce; border: 1px solid rgba(175, 82, 222, 0.25); }
+.ios-badge-indigo { background: rgba(88, 86, 214, 0.12); color: #5856d6; border: 1px solid rgba(88, 86, 214, 0.25); }
+.ios-badge-cyan   { background: rgba(6, 182, 212, 0.12); color: #0891b2; border: 1px solid rgba(6, 182, 212, 0.25); }
+.ios-badge-amber  { background: rgba(245, 158, 11, 0.12); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.25); }
 .ios-badge-green  { background: var(--ios-green-light); color: var(--ios-green-dark); border: 1px solid rgba(52, 199, 89, 0.2); }
 .ios-badge-orange { background: var(--ios-orange-light); color: #c2410c; border: 1px solid rgba(255, 149, 0, 0.2); }
 .ios-badge-red    { background: var(--ios-red-light); color: #b91c1c; border: 1px solid rgba(255, 59, 48, 0.2); }
@@ -1662,6 +1674,82 @@ button[data-toggle="collapse"]:not(.collapsed) svg {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  position: relative;
+  z-index: 30;
+}
+
+/* Compact Header Meta Pills */
+.dash-meta-strip {
+  gap: 0.5rem;
+}
+
+.dash-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border-radius: var(--ios-radius-full);
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+  line-height: 1.35;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.meta-pill-divider {
+  display: inline-block;
+  margin: 0 0.55rem;
+  color: #94a3b8;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.dash-meta-pill.dash-meta-role {
+  background: #edf5ff;
+  color: #005bb5;
+  border-color: rgba(0, 91, 181, 0.25);
+  font-weight: 700;
+}
+
+/* Dashboard Action Grid & Duo Rows */
+.dash-quick-actions-grid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dash-action-duo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-action-btn {
+  padding: 0.55rem 1rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--ios-radius-xs);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dash-btn-qr {
+  border-color: rgba(52, 199, 89, 0.45) !important;
+  color: #15803d !important;
+  background: #f0fdf4 !important;
+}
+
+.dash-btn-qr:hover {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  border-color: #22c55e !important;
+  transform: translateY(-1px);
 }
 
 .ios-metric-card {
@@ -2402,4 +2490,1152 @@ button[data-toggle="collapse"]:not(.collapsed) svg {
   padding: 0 0.85rem;
 }
 
+/* =====================================================================
+   SkillTrack Placement Passport Certificate Poster (Exact Reference)
+   ===================================================================== */
+.passport-page-container {
+  background: #f1f5f9;
+  min-height: 100vh;
+}
 
+.passport-poster-frame {
+  background: #ffffff;
+  border: 1.5px solid #0284c7;
+  border-radius: 22px;
+  box-shadow: 0 20px 50px -10px rgba(2, 132, 199, 0.18), 0 0 0 1px rgba(2, 132, 199, 0.08);
+  overflow: hidden;
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+  position: relative;
+}
+
+/* 1. Header Banner */
+.poster-header-banner {
+  background: linear-gradient(135deg, #001233 0%, #003087 50%, #0066eb 100%);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-header-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.poster-brand-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.poster-brand-name {
+  font-size: 1.65rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.poster-brand-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: #e0f2fe;
+}
+
+.poster-brand-actions {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #93c5fd;
+}
+
+.poster-cursive-tagline {
+  font-family: 'Caveat', cursive, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.8), 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.poster-3d-cap-graphic {
+  flex-shrink: 0;
+}
+
+/* 2. Title Row */
+.poster-passport-title {
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #0c2340;
+  line-height: 1.1;
+}
+
+.poster-passport-subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.poster-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+  border-radius: var(--ios-radius-full);
+  padding: 0.28rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.poster-code-text {
+  font-size: 0.76rem;
+  color: #334155;
+  font-family: monospace;
+}
+
+/* Section Header Icons */
+.poster-section-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 3. Cards & Hero */
+.poster-card {
+  background: #ffffff;
+  border: 1.5px solid #dbeafe;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.04);
+}
+
+.candidate-hero-card {
+  background: linear-gradient(180deg, #f8fbff 0%, #f0f6ff 100%);
+  border: 1.5px solid #bfdbfe;
+}
+
+.candidate-avatar-frame {
+  width: 86px;
+  height: 86px;
+  border-radius: 18px;
+  border: 2.5px solid #38bdf8;
+  padding: 2px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.2);
+  overflow: hidden;
+}
+
+.candidate-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.candidate-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0f2fe;
+}
+
+.candidate-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.candidate-sub-meta {
+  font-size: 0.76rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.candidate-target-role-badge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(90deg, #4f46e5 0%, #0284c7 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--ios-radius-full);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.candidate-micro-pill {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.meta-pill-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.meta-pill-text-wrap {
+  line-height: 1.15;
+}
+
+.meta-strip-label {
+  font-size: 0.62rem;
+  color: #64748b;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.meta-strip-val {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+/* QR */
+.poster-qr-card {
+  background: #ffffff;
+}
+
+.poster-qr-card .qr-box {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.poster-qr-card .qr-box canvas,
+.poster-qr-card .qr-box img {
+  width: 105px !important;
+  height: 105px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 4. Gauge & Quotes */
+.poster-tier-pill {
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--ios-radius-full);
+}
+
+.readiness-gauge-circle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: conic-gradient(#0284c7 calc(var(--score-pct, 37) * 3.6deg), #e2e8f0 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.18);
+}
+
+.readiness-gauge-inner {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.readiness-gauge-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.readiness-gauge-lbl {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.poster-quote-card {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+  border-color: #bae6fd;
+}
+
+.quote-symbol-graphic {
+  font-size: 2.2rem;
+  font-family: Georgia, serif;
+  color: #93c5fd;
+  line-height: 0.7;
+  font-weight: bold;
+}
+
+.poster-quote-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #0369a1;
+  line-height: 1.35;
+}
+
+/* 5. DSA & Academic KPI Tiles */
+.dsa-kpi-tile {
+  border-radius: 10px;
+  padding: 0.45rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-icon-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.dsa-kpi-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.dsa-kpi-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+
+.dsa-kpi-primary {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+}
+
+.dsa-kpi-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.dsa-kpi-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.dsa-kpi-sub {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.academic-kpi-row {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+}
+
+.academic-row-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 6. Tech Skills */
+.tech-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: #ffffff;
+  border: 1.5px solid #dbeafe;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.05);
+  font-size: 0.8rem;
+}
+
+.tech-brand-name {
+  font-weight: 700;
+  color: #1e293b;
+  margin-right: 0.4rem;
+}
+
+.tech-level-pill {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.tech-level-pill.intermediate {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.tech-level-pill.advanced {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tech-level-pill.beginner {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* 7. 4-Pillar Trust Bar */
+.poster-trust-bar {
+  background: #f8fbff;
+  border: 1.5px solid #dbeafe;
+  border-radius: 14px;
+}
+
+.trust-bar-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 8. Footer */
+.poster-footer-bar {
+  border-color: #e2e8f0 !important;
+}
+
+.poster-signature-wrap svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Toolbar & Toast */
+.passport-toolbar {
+  position: relative;
+  z-index: 10;
+}
+
+.passport-action-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.passport-btn-compact {
+  padding: 0.5rem 0.9rem !important;
+  font-size: 0.84rem !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.passport-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.75rem 1.35rem;
+  border-radius: var(--ios-radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 9999;
+}
+
+.passport-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 576px) {
+  .passport-poster-frame {
+    padding: 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  .poster-header-banner {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .poster-cursive-tagline {
+    font-size: 1.1rem !important;
+  }
+
+  .poster-3d-cap-graphic svg {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .poster-passport-title {
+    font-size: 1.35rem !important;
+  }
+
+  .candidate-name {
+    font-size: 1.25rem !important;
+  }
+
+  .candidate-avatar-frame {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .passport-action-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .passport-action-group .passport-btn-compact:last-child {
+    grid-column: span 2;
+  }
+
+  .passport-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    text-align: center;
+  }
+}
+
+/* =====================================================================
+   A4 1-Page PDF Print Rules (Full Page Fill, 0 Margins, Zero Cut)
+   ===================================================================== */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  *, *::before, *::after {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .no-print, .ios-navbar, header, footer, .passport-toolbar {
+    display: none !important;
+  }
+
+  .passport-page-container {
+    background: #ffffff !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .passport-poster-frame {
+    border: 2.5px solid #0284c7 !important;
+    border-radius: 0 !important;
+    padding: 16px 22px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: #ffffff !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .poster-header-banner {
+    background: linear-gradient(135deg, #001233 0%, #003087 50%, #0066eb 100%) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color: #ffffff !important;
+    padding: 10px 16px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .poster-header-banner * {
+    color: #ffffff !important;
+  }
+
+  .poster-brand-actions {
+    color: #93c5fd !important;
+  }
+
+  .poster-cursive-tagline span {
+    color: #ffffff !important;
+  }
+
+  .candidate-hero-card {
+    background: #f8fbff !important;
+    border: 1px solid #dbeafe !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .candidate-target-role-badge {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .candidate-micro-pill {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .meta-pill-icon-wrap {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .poster-section-icon {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .kpi-icon-circle {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .dsa-kpi-success {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .dsa-kpi-warning {
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .dsa-kpi-primary {
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .academic-kpi-row {
+    background: #f8fafc !important;
+    border: 1px solid #f1f5f9 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .academic-row-icon {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .readiness-gauge-circle {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .poster-quote-card {
+    background: #f0f7ff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .poster-trust-bar {
+    background: #f8fbff !important;
+    border: 1px solid #dbeafe !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .trust-bar-icon-wrap {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .tech-brand-pill {
+    background: #ffffff !important;
+    border: 1px solid #dbeafe !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .tech-level-pill {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .progress-bar {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .badge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* =====================================================================
+   Apple iOS Segmented Filter Pill Bar
+   ===================================================================== */
+.ios-filter-bar-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  background: #f1f5f9;
+  padding: 0.35rem;
+  border-radius: var(--ios-radius-lg);
+  border: 1px solid #e2e8f0;
+}
+
+.ios-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.48rem 1rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--ios-radius-md);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none !important;
+  user-select: none;
+  white-space: nowrap;
+  gap: 0.35rem;
+}
+
+.ios-filter-pill svg {
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-filter-pill:hover {
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.ios-filter-pill:hover svg {
+  transform: scale(1.1);
+}
+
+.ios-filter-pill.active {
+  color: #0f172a;
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ios-pill-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  margin-left: 0.4rem;
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+}
+
+.ios-filter-pill.active .ios-pill-count {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.ios-filter-pill.ios-pill-green.active {
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+.ios-filter-pill.ios-pill-green.active .ios-pill-count {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.ios-filter-pill.ios-pill-orange.active {
+  color: #b45309;
+  border-color: #fde68a;
+}
+.ios-filter-pill.ios-pill-orange.active .ios-pill-count {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.ios-filter-pill.ios-pill-red.active {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+.ios-filter-pill.ios-pill-red.active .ios-pill-count {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* =====================================================================
+   Executive Candidate Table & Avatar Styling
+   ===================================================================== */
+.candidate-table-card {
+  border-radius: var(--ios-radius-lg);
+  box-shadow: var(--ios-shadow-glass);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.candidate-avatar-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: #0284c7;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.candidate-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.candidate-name-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+}
+
+.candidate-name-link:hover {
+  color: #0284c7;
+}
+
+.candidate-meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+.candidate-roll-badge {
+  font-family: monospace, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+/* =====================================================================
+   Placement Drive Executive Hero Card (Apple Liquid Glass)
+   ===================================================================== */
+.ios-drive-hero-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--ios-radius-lg);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ios-drive-hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #6366f1 100%);
+}
+
+.ios-drive-hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ios-drive-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ios-drive-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  border: 1.5px solid #ffffff;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ios-drive-avatar-pulse {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px rgba(16, 185, 129, 0.3);
+}
+
+.ios-drive-info {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ios-drive-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.2rem;
+}
+
+.ios-drive-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ios-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0284c7;
+  flex-shrink: 0;
+}
+
+.ios-drive-role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #0369a1;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--ios-radius-full);
+  white-space: nowrap;
+}
+
+.ios-drive-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--ios-radius-full);
+  white-space: nowrap;
+}
+
+.ios-live-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #10b981;
+  animation: iosPulse 2s infinite ease-in-out;
+}
+
+@keyframes iosPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.ios-drive-subline {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ios-drive-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.ios-drive-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--ios-radius-md);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.ios-drive-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.ios-drive-btn-primary {
+  background: #0284c7;
+  color: #ffffff !important;
+  border-color: #0284c7;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.28);
+}
+
+.ios-drive-btn-primary:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+
+@media (max-width: 768px) {
+  .ios-drive-hero-card {
+    padding: 1rem 1.15rem;
+  }
+  .ios-drive-identity {
+    width: 100%;
+  }
+  .ios-drive-actions {
+    width: 100%;
+    display: flex;
+    gap: 0.35rem;
+  }
+  .ios-drive-actions .dropdown {
+    flex: 1 1 auto;
+  }
+  .ios-drive-actions .dropdown .ios-drive-btn,
+  .ios-drive-actions a.ios-drive-btn {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.78rem;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+

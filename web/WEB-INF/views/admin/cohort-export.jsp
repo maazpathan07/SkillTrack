@@ -25,16 +25,16 @@
                     <p class="text-muted small mb-0 mt-1">Official institutional placement readiness &amp; department analytics summary</p>
                 </div>
                 <div class="d-flex align-items-center flex-wrap flex-sm-nowrap gap-2 mt-3 mt-lg-0 w-100 w-lg-auto" style="gap: 0.5rem;">
-                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" onclick="window.print()" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                        Print / Save PDF
+                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" id="downloadCohortPdfBtn" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download PDF
                     </button>
                     <a href="${pageContext.request.contextPath}/app/admin/dashboard" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap;">Back to Dashboard</a>
                 </div>
             </div>
 
             <!-- Single Page Printable Container -->
-            <div class="ios-card p-3 p-md-5 mb-5" style="box-shadow: var(--ios-shadow-glass); border-radius: var(--ios-radius-lg);">
+            <div class="ios-card p-3 p-md-5 mb-5" id="cohortSummaryDoc" style="box-shadow: var(--ios-shadow-glass); border-radius: var(--ios-radius-lg);">
                 <!-- Card Header -->
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 pb-4 mb-4 border-bottom" style="border-color: #e2e8f0 !important;">
                     <div>
@@ -193,5 +193,55 @@
         </main>
     </div>
 </div>
+
+<script>
+(function() {
+    var btn = document.getElementById('downloadCohortPdfBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            var element = document.getElementById('cohortSummaryDoc');
+            if (!element) return;
+
+            if (typeof html2pdf === 'undefined') {
+                window.print();
+                return;
+            }
+
+            var originalHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm mr-1.5" style="width: 12px; height: 12px; border-width: 2px;" role="status"></span> Generating PDF...';
+
+            var opt = {
+                margin:       [4, 4, 4, 4],
+                filename:     "SkillTrack_Cohort_Placement_Summary.pdf",
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2.2, 
+                    useCORS: true, 
+                    logging: false,
+                    letterRendering: true,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' },
+                singlePage:   true
+            };
+
+            html2pdf().set(opt).from(element).save().then(function() {
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                if (typeof showToast === 'function') {
+                    showToast("✓ Cohort Placement Summary PDF downloaded!");
+                }
+            }).catch(function(err) {
+                console.error("Direct PDF export error:", err);
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                window.print();
+            });
+        });
+    }
+})();
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

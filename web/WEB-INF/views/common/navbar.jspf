@@ -91,6 +91,10 @@
                         </div>
                         
                         <c:if test="${sessionScope.SESSION_USER_ROLE == 'STUDENT'}">
+                            <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/passport" target="_blank">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-success"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                                Verified QR Passport
+                            </a>
                             <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/profile">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 My Academic Profile
@@ -271,6 +275,11 @@
                         <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
                         <span class="ios-mobile-link-text">Company Cutoffs</span>
                         <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link" href="${pageContext.request.contextPath}/passport" target="_blank" style="background: rgba(52, 199, 89, 0.08); border-radius: var(--ios-radius-sm); margin-top: 0.25rem;">
+                        <span class="ios-mobile-link-icon" style="color: #15803d;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+                        <span class="ios-mobile-link-text font-weight-bold" style="color: #15803d;">Verified QR Passport</span>
+                        <span class="ios-mobile-link-chevron" style="color: #15803d;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </a>
                 </c:otherwise>
             </c:choose>

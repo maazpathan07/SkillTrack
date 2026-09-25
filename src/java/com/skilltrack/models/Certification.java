@@ -49,11 +49,19 @@ public class Certification implements Serializable {
         return title;
     }
 
+    public String getCertificateName() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
     public String getIssuingOrg() {
+        return issuingOrg;
+    }
+
+    public String getIssuingOrganization() {
         return issuingOrg;
     }
 

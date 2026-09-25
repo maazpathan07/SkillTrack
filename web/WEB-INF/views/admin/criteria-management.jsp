@@ -211,7 +211,15 @@
                                                     </span>
                                                 </td>
                                                 <td class="text-right py-3 px-4" style="vertical-align: middle;">
-                                                    <div class="d-flex align-items-center justify-content-end gap-2" style="gap: 0.35rem;">
+                                                    <div class="d-flex align-items-center justify-content-end" style="gap: 0.4rem;">
+                                                        <a href="${pageContext.request.contextPath}/app/admin/criteria/shortlist?criteriaId=${c.criteriaId}" class="ios-btn-primary d-inline-flex align-items-center text-nowrap" style="padding: 0.38rem 0.85rem; font-size: 0.785rem; font-weight: 700; border-radius: var(--ios-radius-sm); white-space: nowrap; gap: 0.35rem;" title="View Eligible Shortlist">
+                                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                                <circle cx="8.5" cy="7" r="4"></circle>
+                                                                <polyline points="17 11 19 13 23 9"></polyline>
+                                                            </svg>
+                                                            <span>Shortlist &rarr;</span>
+                                                        </a>
                                                         <a href="${pageContext.request.contextPath}/app/admin/criteria?criteriaId=${c.criteriaId}" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center" style="border-radius: var(--ios-radius-sm); padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 600;" aria-label="Edit criteria <c:out value='${c.companyName}' />">
                                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                                             Edit

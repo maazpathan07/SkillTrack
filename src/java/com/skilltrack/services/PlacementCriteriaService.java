@@ -9,6 +9,7 @@ import com.skilltrack.dao.ProjectDAO;
 import com.skilltrack.dao.SkillDAO;
 import com.skilltrack.dao.StudentDAO;
 import com.skilltrack.dto.CriteriaResultItemDTO;
+import com.skilltrack.dto.DriveShortlistDTO;
 import com.skilltrack.dto.PlacementCriteriaEvaluationDTO;
 import com.skilltrack.models.CriteriaSkillRequirement;
 import com.skilltrack.models.PlacementCriteria;
@@ -312,5 +313,83 @@ public class PlacementCriteriaService {
             eval.setOverallStatus(CriteriaStatus.NOT_APPLICABLE);
             return eval;
         }
+    }
+
+    public DriveShortlistDTO generateDriveShortlist(int criteriaId) {
+        DriveShortlistDTO shortlist = new DriveShortlistDTO();
+        try {
+            PlacementCriteria criteria = criteriaDAO.findById(criteriaId);
+            if (criteria == null) {
+                return shortlist;
+            }
+            shortlist.setCriteria(criteria);
+
+            List<Student> allStudents = studentDAO.findAllStudents(null, null, null, null, null, null, null, 0, 2000);
+            List<PlacementCriteriaEvaluationDTO> allEvals = new ArrayList<>();
+            List<PlacementCriteriaEvaluationDTO> eligible = new ArrayList<>();
+            List<PlacementCriteriaEvaluationDTO> nearEligible = new ArrayList<>();
+            List<PlacementCriteriaEvaluationDTO> nonEligible = new ArrayList<>();
+            Map<String, Integer> deptMap = new HashMap<>();
+
+            double totalEligibleCgpa = 0.0;
+
+            for (Student s : allStudents) {
+                PlacementCriteriaEvaluationDTO eval = evaluateStudentAgainstCriteria(s.getStudentId(), criteriaId);
+                allEvals.add(eval);
+
+                if (eval.getOverallStatus() == CriteriaStatus.MEETS_REQUIREMENT) {
+                    eligible.add(eval);
+                    totalEligibleCgpa += s.getCgpa();
+                    deptMap.put(s.getDepartment(), deptMap.getOrDefault(s.getDepartment(), 0) + 1);
+                } else if (eval.getOverallStatus() == CriteriaStatus.NEEDS_IMPROVEMENT) {
+                    nearEligible.add(eval);
+                } else {
+                    nonEligible.add(eval);
+                }
+            }
+
+            shortlist.setAllEvaluations(allEvals);
+            shortlist.setEligibleCandidates(eligible);
+            shortlist.setNearEligibleCandidates(nearEligible);
+            shortlist.setNonEligibleCandidates(nonEligible);
+            shortlist.setTotalEvaluated(allStudents.size());
+            shortlist.setEligibleCount(eligible.size());
+            shortlist.setNearEligibleCount(nearEligible.size());
+            shortlist.setNonEligibleCount(nonEligible.size());
+            shortlist.setDeptBreakdown(deptMap);
+
+            if (!allStudents.isEmpty()) {
+                shortlist.setEligibilityRate(((double) eligible.size() / allStudents.size()) * 100.0);
+            }
+            if (!eligible.isEmpty()) {
+                shortlist.setAvgEligibleCgpa(totalEligibleCgpa / eligible.size());
+            }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error generating drive shortlist for criteriaId: " + criteriaId, e);
+        }
+        return shortlist;
+    }
+
+    public Map<Integer, Integer> getEligibleCountMapForAllCriteria() {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        try {
+            List<PlacementCriteria> allCriteria = criteriaDAO.findAll(false);
+            List<Student> allStudents = studentDAO.findAllStudents(null, null, null, null, null, null, null, 0, 2000);
+
+            for (PlacementCriteria c : allCriteria) {
+                int eligibleCount = 0;
+                for (Student s : allStudents) {
+                    PlacementCriteriaEvaluationDTO eval = evaluateStudentAgainstCriteria(s.getStudentId(), c.getCriteriaId());
+                    if (eval.getOverallStatus() == CriteriaStatus.MEETS_REQUIREMENT) {
+                        eligibleCount++;
+                    }
+                }
+                countMap.put(c.getCriteriaId(), eligibleCount);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error computing eligible counts map", e);
+        }
+        return countMap;
     }
 }

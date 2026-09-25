@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "StudentDetailServlet", urlPatterns = {"/app/admin/student-detail"})
+@WebServlet(name = "StudentDetailServlet", urlPatterns = {"/app/admin/student-detail", "/app/admin/students/detail"})
 public class StudentDetailServlet extends HttpServlet {
 
     private final StudentService studentService = new StudentService();
@@ -26,6 +26,9 @@ public class StudentDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String studentIdStr = request.getParameter("studentId");
+        if (studentIdStr == null || studentIdStr.trim().isEmpty()) {
+            studentIdStr = request.getParameter("id");
+        }
         int studentId = ValidationUtil.parsePositiveInt(studentIdStr, 0);
 
         if (studentId <= 0) {

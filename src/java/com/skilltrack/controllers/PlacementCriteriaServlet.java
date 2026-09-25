@@ -26,7 +26,30 @@ public class PlacementCriteriaServlet extends HttpServlet {
         }
 
         List<PlacementCriteriaEvaluationDTO> evaluations = placementCriteriaService.evaluateStudentAgainstAllCriteria(studentId);
+        int eligibleCount = 0;
+        int nearCount = 0;
+        int ineligibleCount = 0;
+
+        for (PlacementCriteriaEvaluationDTO eval : evaluations) {
+            if (eval.getOverallStatus() != null) {
+                switch (eval.getOverallStatus()) {
+                    case MEETS_REQUIREMENT:
+                        eligibleCount++;
+                        break;
+                    case NEEDS_IMPROVEMENT:
+                        nearCount++;
+                        break;
+                    default:
+                        ineligibleCount++;
+                        break;
+                }
+            }
+        }
+
         request.setAttribute("evaluations", evaluations);
+        request.setAttribute("eligibleCount", eligibleCount);
+        request.setAttribute("nearCount", nearCount);
+        request.setAttribute("ineligibleCount", ineligibleCount);
 
         request.getRequestDispatcher("/WEB-INF/views/student/placement-criteria.jsp").forward(request, response);
     }

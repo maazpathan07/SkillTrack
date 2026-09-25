@@ -71,6 +71,10 @@ public class StudentSkill implements Serializable {
         return proficiencyLevel;
     }
 
+    public String getLevel() {
+        return proficiencyLevel != null ? proficiencyLevel.name() : "BEGINNER";
+    }
+
     public void setProficiencyLevel(SkillLevel proficiencyLevel) {
         this.proficiencyLevel = proficiencyLevel;
     }

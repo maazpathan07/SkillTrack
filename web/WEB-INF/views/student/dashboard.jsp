@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="pageTitle" value="Student Dashboard" />
 <c:set var="activeNav" value="dashboard" />
 <%@ include file="/WEB-INF/views/common/header.jspf" %>
@@ -13,7 +14,7 @@
             <%@ include file="/WEB-INF/views/common/alerts.jspf" %>
 
             <!-- 1. APPLE GLASS HERO WELCOME HEADER & ACTION CONTROLS -->
-            <div class="ios-dash-header">
+            <div class="ios-dash-header d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3">
                 <div>
                     <!-- Usability Fix 9: Non-clickable clear category label -->
                     <div class="text-uppercase text-muted font-weight-bold mb-1" style="font-size: 0.725rem; letter-spacing: 0.08em;">
@@ -23,36 +24,57 @@
                     <h1 class="font-weight-bold mb-1" style="font-size: 1.85rem; letter-spacing: -0.035em; color: var(--ios-text-primary);">
                         Welcome back, <c:out value="${dashboard.student.fullName}" />
                     </h1>
-                    <div class="d-flex align-items-center flex-wrap gap-2 mt-2">
+                    <div class="d-flex align-items-center flex-wrap mt-2" style="gap: 0.4rem;">
                         <span class="ios-badge ios-badge-gray">
-                            Roll: <c:out value="${dashboard.student.rollNumber}" />
+                            <span class="text-muted font-weight-normal mr-1">Roll:</span><c:out value="${dashboard.student.rollNumber}" />
                         </span>
                         <span class="ios-badge ios-badge-gray">
-                            Dept: <c:out value="${dashboard.student.department}" />
+                            <span class="text-muted font-weight-normal mr-1">Dept:</span><c:out value="${dashboard.student.department}" />
                         </span>
                         <span class="ios-badge ios-badge-blue">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                             <c:out value="${dashboard.student.targetRoleTitle}" default="Target Role Not Selected" />
                         </span>
                     </div>
                 </div>
 
-                <!-- Quick Action Buttons -->
-                <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center mt-3 mt-md-0 w-100 w-md-auto" style="gap: 0.5rem;">
-                    <!-- Usability Fix 7: Standardized Document Dossier Icon -->
-                    <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary text-nowrap" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                        </svg>
-                        Readiness Card
-                    </a>
-                    <a href="${pageContext.request.contextPath}/app/student/skill-gap" class="ios-btn-primary text-nowrap" style="padding: 0.6rem 1.25rem; font-size: 0.875rem;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                        Skill Gap Radar &rarr;
-                    </a>
+                <!-- Unified Action Toolbar (2x2 Duo Rows on Mobile, Single Line on Desktop) -->
+                <div class="dash-quick-actions-grid mt-3 mt-lg-0 w-100 w-lg-auto justify-content-start justify-content-lg-end">
+                    <!-- Row 1: QR Actions in 1 Single Line -->
+                    <div class="dash-action-duo-row">
+                        <a href="${pageContext.request.contextPath}/passport" class="ios-btn-secondary dash-action-btn dash-btn-qr text-nowrap" target="_blank">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <polyline points="9 12 11 14 15 10"></polyline>
+                            </svg>
+                            QR Passport &rarr;
+                        </a>
+                        <button type="button" class="ios-btn-secondary dash-action-btn dash-btn-qr text-nowrap" id="dashDownloadQrBtn" title="Download Live QR Card as PNG">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Save QR (PNG)
+                        </button>
+                    </div>
+
+                    <!-- Row 2: Readiness Card & Skill Gap in 1 Single Line -->
+                    <div class="dash-action-duo-row">
+                        <a href="${pageContext.request.contextPath}/app/student/readiness-card" class="ios-btn-secondary dash-action-btn text-nowrap">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            Readiness Card
+                        </a>
+                        <a href="${pageContext.request.contextPath}/app/student/skill-gap" class="ios-btn-primary dash-action-btn text-nowrap">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                            Skill Gap &rarr;
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -459,7 +481,153 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // Direct QR Code PNG Download from Dashboard
+    var dashQrBtn = document.getElementById('dashDownloadQrBtn');
+    if (dashQrBtn) {
+        dashQrBtn.addEventListener('click', function() {
+            var roll = "<c:out value='${dashboard.student.rollNumber}' />";
+            var fullName = "<c:out value='${dashboard.student.fullName}' />";
+            var dept = "<c:out value='${dashboard.student.department}' />";
+            var year = "<c:out value='${dashboard.student.graduationYear}' />";
+            var verifyUrl = window.location.origin + "${pageContext.request.contextPath}/passport?code=" + encodeURIComponent(roll);
+            var verCode = "ST-" + year + "-" + roll.replace(/[^a-zA-Z0-9_-]/g, "").toUpperCase();
+
+            // Create offscreen container
+            var tempDiv = document.createElement('div');
+            tempDiv.style.display = 'none';
+            document.body.appendChild(tempDiv);
+
+            try {
+                new QRCode(tempDiv, {
+                    text: verifyUrl,
+                    width: 256,
+                    height: 256,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+
+                setTimeout(function() {
+                    var canvas = tempDiv.querySelector('canvas');
+                    var img = tempDiv.querySelector('img');
+                    var source = canvas || img;
+
+                    if (source) {
+                        var outW = 500;
+                        var outH = 620;
+                        var outCanvas = document.createElement('canvas');
+                        outCanvas.width = outW;
+                        outCanvas.height = outH;
+                        var ctx = outCanvas.getContext('2d');
+
+                        // 1. White Background Fill
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, outW, outH);
+
+                        // 2. Top Banner Gradient
+                        var grad = ctx.createLinearGradient(0, 0, outW, 85);
+                        grad.addColorStop(0, '#001233');
+                        grad.addColorStop(0.5, '#003087');
+                        grad.addColorStop(1, '#0066eb');
+                        ctx.fillStyle = grad;
+                        ctx.fillRect(0, 0, outW, 85);
+
+                        // Header Branding
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('SKILLTRACK PLACEMENT PASSPORT', outW / 2, 36);
+
+                        ctx.fillStyle = '#38bdf8';
+                        ctx.font = 'bold 10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.fillText('OFFICIAL DIGITAL CREDENTIAL PASS • VERIFIED CANDIDATE', outW / 2, 58);
+
+                        // 3. QR Code Box
+                        var qrSize = 300;
+                        var qrX = (outW - qrSize) / 2;
+                        var qrY = 110;
+
+                        // QR shadow & container
+                        ctx.fillStyle = '#ffffff';
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+                        ctx.shadowBlur = 12;
+                        ctx.shadowOffsetY = 4;
+                        ctx.fillRect(qrX - 10, qrY - 10, qrSize + 20, qrSize + 20);
+                        ctx.shadowColor = 'transparent';
+
+                        ctx.strokeStyle = '#e2e8f0';
+                        ctx.lineWidth = 1.5;
+                        ctx.strokeRect(qrX - 10, qrY - 10, qrSize + 20, qrSize + 20);
+
+                        // Draw QR Image
+                        ctx.imageSmoothingEnabled = false;
+                        ctx.drawImage(source, qrX, qrY, qrSize, qrSize);
+
+                        // 4. Candidate Identification
+                        ctx.fillStyle = '#0f172a';
+                        ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText(fullName, outW / 2, 465);
+
+                        ctx.fillStyle = '#475569';
+                        ctx.font = '600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.fillText((dept ? dept + " Engineering" : "Engineering") + " • Batch of " + year, outW / 2, 490);
+
+                        // Pill Badge for Roll & Code
+                        var pillText = "Roll No: " + roll + "   |   CODE: " + verCode;
+                        ctx.font = 'bold 11px monospace, -apple-system, sans-serif';
+                        var pillWidth = ctx.measureText(pillText).width + 30;
+                        var pillX = (outW - pillWidth) / 2;
+                        var pillY = 510;
+                        var pillH = 28;
+
+                        ctx.fillStyle = '#f0f9ff';
+                        ctx.beginPath();
+                        ctx.arc(pillX + pillH/2, pillY + pillH/2, pillH/2, Math.PI/2, Math.PI*3/2);
+                        ctx.arc(pillX + pillWidth - pillH/2, pillY + pillH/2, pillH/2, -Math.PI/2, Math.PI/2);
+                        ctx.closePath();
+                        ctx.fill();
+
+                        ctx.strokeStyle = '#bae6fd';
+                        ctx.lineWidth = 1.5;
+                        ctx.stroke();
+
+                        ctx.fillStyle = '#0284c7';
+                        ctx.fillText(pillText, outW / 2, pillY + 18);
+
+                        // 5. Bottom Verified Footer
+                        ctx.fillStyle = '#10b981';
+                        ctx.font = 'bold 10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.fillText('✓ Authenticated Live Profile • Scan with Phone to Verify', outW / 2, 575);
+
+                        ctx.fillStyle = '#94a3b8';
+                        ctx.font = '500 9px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                        ctx.fillText('SkillTrack Career & Placement Readiness Intelligence Platform', outW / 2, 595);
+
+                        // 6. Outer Card Border
+                        ctx.strokeStyle = '#0284c7';
+                        ctx.lineWidth = 3;
+                        ctx.strokeRect(1.5, 1.5, outW - 3, outH - 3);
+
+                        // Download
+                        var link = document.createElement('a');
+                        link.download = "SkillTrack_QR_" + roll.replace(/[^a-zA-Z0-9_-]/g, "") + ".png";
+                        link.href = outCanvas.toDataURL('image/png');
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                    document.body.removeChild(tempDiv);
+                }, 100);
+            } catch (err) {
+                console.error("Dashboard QR Download Error:", err);
+                if (document.body.contains(tempDiv)) document.body.removeChild(tempDiv);
+            }
+        });
+    }
 });
 </script>
+<script src="${pageContext.request.contextPath}/assets/js/qrcode.min.js"></script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

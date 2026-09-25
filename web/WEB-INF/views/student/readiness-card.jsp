@@ -39,15 +39,22 @@
                             </a>
                         </c:otherwise>
                     </c:choose>
-                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;" onclick="window.print()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                        Print / Save as PDF
+                    <a href="${pageContext.request.contextPath}/passport?id=${profile.student.studentId}" class="ios-btn-secondary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; white-space: nowrap; border-color: rgba(52, 199, 89, 0.4); color: #15803d; background: #f0fdf4;" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                        Public QR Passport &rarr;
+                    </a>
+                    <button type="button" class="ios-btn-primary d-inline-flex align-items-center justify-content-center flex-grow-1 flex-sm-grow-0" id="downloadDossierPdfBtn" style="padding: 0.6rem 1.25rem; font-size: 0.875rem; white-space: nowrap;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download PDF
                     </button>
                 </div>
             </div>
 
             <!-- Single Page Printable Dossier Card -->
-            <div class="ios-dossier-card">
+            <div class="ios-dossier-card" id="readinessDossierCard">
                 <!-- Dossier Card Header -->
                 <div class="ios-dossier-header">
                     <div>
@@ -315,5 +322,58 @@
         </main>
     </div>
 </div>
+
+<script>
+(function() {
+    var btn = document.getElementById('downloadDossierPdfBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            var element = document.getElementById('readinessDossierCard');
+            if (!element) return;
+
+            if (typeof html2pdf === 'undefined') {
+                window.print();
+                return;
+            }
+
+            var originalHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm mr-1.5" style="width: 12px; height: 12px; border-width: 2px;" role="status"></span> Generating PDF...';
+
+            var safeName = "<c:out value='${student.fullName}' />".replace(/[^a-zA-Z0-9_-]/g, "_");
+            var fileName = "Readiness_Card_" + (safeName || "Student") + ".pdf";
+
+            var opt = {
+                margin:       [4, 4, 4, 4],
+                filename:     fileName,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2.2, 
+                    useCORS: true, 
+                    logging: false,
+                    letterRendering: true,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                singlePage:   true
+            };
+
+            html2pdf().set(opt).from(element).save().then(function() {
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                if (typeof showToast === 'function') {
+                    showToast("✓ Readiness Card PDF downloaded!");
+                }
+            }).catch(function(err) {
+                console.error("Direct PDF export error:", err);
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                window.print();
+            });
+        });
+    }
+})();
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>

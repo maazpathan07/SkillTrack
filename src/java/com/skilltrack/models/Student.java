@@ -15,6 +15,7 @@ public class Student implements Serializable {
     private double cgpa;
     private Integer targetRoleId;
     private String targetRoleTitle;
+    private String profileImage;
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -92,6 +93,14 @@ public class Student implements Serializable {
 
     public void setTargetRoleTitle(String targetRoleTitle) {
         this.targetRoleTitle = targetRoleTitle;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getEmail() {

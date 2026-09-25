@@ -62,12 +62,65 @@ public class StudentProfileServlet extends HttpServlet {
             return;
         }
 
+        String action = request.getParameter("action");
+        String isAjax = request.getHeader("X-Requested-With");
+
+        // Handle Avatar Update / Remove
+        if ("updateAvatar".equals(action)) {
+            String profileImage = request.getParameter("profileImage");
+            try {
+                studentService.updateProfileImage(studentId, profileImage);
+                if ("XMLHttpRequest".equalsIgnoreCase(isAjax)) {
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write("{\"success\":true,\"message\":\"Profile photo updated successfully.\"}");
+                    return;
+                }
+                request.getSession().setAttribute(AppConstants.FLASH_SUCCESS, "Profile photo updated successfully.");
+                response.sendRedirect(request.getContextPath() + "/app/student/profile");
+                return;
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Database error updating profile photo for student: " + studentId, e);
+                if ("XMLHttpRequest".equalsIgnoreCase(isAjax)) {
+                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write("{\"success\":false,\"message\":\"Database error updating profile photo.\"}");
+                    return;
+                }
+                request.getSession().setAttribute(AppConstants.FLASH_ERROR, "Failed to update profile photo.");
+                response.sendRedirect(request.getContextPath() + "/app/student/profile");
+                return;
+            }
+        }
+
+        if ("removeAvatar".equals(action)) {
+            try {
+                studentService.updateProfileImage(studentId, null);
+                if ("XMLHttpRequest".equalsIgnoreCase(isAjax)) {
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write("{\"success\":true,\"message\":\"Profile photo removed successfully.\"}");
+                    return;
+                }
+                request.getSession().setAttribute(AppConstants.FLASH_SUCCESS, "Profile photo removed.");
+                response.sendRedirect(request.getContextPath() + "/app/student/profile");
+                return;
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Database error removing profile photo for student: " + studentId, e);
+                request.getSession().setAttribute(AppConstants.FLASH_ERROR, "Failed to remove profile photo.");
+                response.sendRedirect(request.getContextPath() + "/app/student/profile");
+                return;
+            }
+        }
+
         String fullName = request.getParameter("fullName");
         String rollNumber = request.getParameter("rollNumber");
         String department = request.getParameter("department");
         String gradYearStr = request.getParameter("graduationYear");
         String cgpaStr = request.getParameter("cgpa");
         String targetRoleIdStr = request.getParameter("targetRoleId");
+        String profileImage = request.getParameter("profileImage");
 
         int gradYear = ValidationUtil.parsePositiveInt(gradYearStr, 0);
         double cgpa = ValidationUtil.parseDouble(cgpaStr, 0.0);
@@ -76,6 +129,9 @@ public class StudentProfileServlet extends HttpServlet {
 
         try {
             studentService.updateProfile(studentId, fullName, rollNumber, department, gradYear, cgpa, roleId);
+            if (profileImage != null && !profileImage.trim().isEmpty()) {
+                studentService.updateProfileImage(studentId, profileImage.trim());
+            }
             // Update session name if changed
             request.getSession().setAttribute(AppConstants.SESSION_USER_NAME, fullName.trim());
             request.getSession().setAttribute(AppConstants.FLASH_SUCCESS, "Profile updated successfully.");

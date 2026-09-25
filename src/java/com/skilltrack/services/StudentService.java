@@ -302,4 +302,8 @@ public class StudentService {
     public boolean deleteTask(int studentId, int taskId) throws SQLException {
         return taskDAO.deleteTask(taskId, studentId);
     }
+
+    public boolean updateProfileImage(int studentId, String profileImage) throws SQLException {
+        return studentDAO.updateProfileImage(studentId, profileImage);
+    }
 }

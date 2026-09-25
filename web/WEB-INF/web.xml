@@ -39,6 +39,20 @@
         <url-pattern>/auth/oauth/callback</url-pattern>
     </servlet-mapping>
 
+    <!-- Placement Passport Public Verification Controller -->
+    <servlet>
+        <servlet-name>PassportServlet</servlet-name>
+        <servlet-class>com.skilltrack.controllers.PassportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PassportServlet</servlet-name>
+        <url-pattern>/passport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassportServlet</servlet-name>
+        <url-pattern>/verify</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/views/common/error-404.jsp</location>

@@ -1,121 +1,128 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${not empty sessionScope.flashSuccess}">
-    <div class="ios-alert ios-alert-success alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${sessionScope.flashSuccess}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <c:remove var="flashSuccess" scope="session" />
-</c:if>
+<c:if test="${not empty sessionScope.flashSuccess or not empty flashSuccess or not empty sessionScope.flashError or not empty flashError or not empty sessionScope.flashInfo or not empty flashInfo}">
+    <div class="ios-toast-container" aria-live="polite" aria-atomic="true">
+        <c:if test="${not empty sessionScope.flashSuccess}">
+            <div class="ios-alert ios-alert-success ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${sessionScope.flashSuccess}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <c:remove var="flashSuccess" scope="session" />
+        </c:if>
 
-<c:if test="${not empty flashSuccess}">
-    <div class="ios-alert ios-alert-success alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${flashSuccess}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</c:if>
+        <c:if test="${not empty flashSuccess}">
+            <div class="ios-alert ios-alert-success ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${flashSuccess}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
 
-<c:if test="${not empty sessionScope.flashError}">
-    <div class="ios-alert ios-alert-danger alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${sessionScope.flashError}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <c:remove var="flashError" scope="session" />
-</c:if>
+        <c:if test="${not empty sessionScope.flashError}">
+            <div class="ios-alert ios-alert-danger ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${sessionScope.flashError}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <c:remove var="flashError" scope="session" />
+        </c:if>
 
-<c:if test="${not empty flashError}">
-    <div class="ios-alert ios-alert-danger alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${flashError}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</c:if>
+        <c:if test="${not empty flashError}">
+            <div class="ios-alert ios-alert-danger ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${flashError}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
 
-<c:if test="${not empty sessionScope.flashInfo}">
-    <div class="ios-alert ios-alert-info alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${sessionScope.flashInfo}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <c:remove var="flashInfo" scope="session" />
-</c:if>
+        <c:if test="${not empty sessionScope.flashInfo}">
+            <div class="ios-alert ios-alert-info ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${sessionScope.flashInfo}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <c:remove var="flashInfo" scope="session" />
+        </c:if>
 
-<c:if test="${not empty flashInfo}">
-    <div class="ios-alert ios-alert-info alert-dismissible fade show" role="alert">
-        <span class="ios-alert-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-        </span>
-        <div class="flex-grow-1"><c:out value="${flashInfo}" /></div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <c:if test="${not empty flashInfo}">
+            <div class="ios-alert ios-alert-info ios-toast alert-dismissible fade show" role="alert">
+                <span class="ios-alert-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <div class="flex-grow-1"><c:out value="${flashInfo}" /></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
     </div>
 </c:if>
 
 <script>
     (function() {
+        function dismissToast(el) {
+            if (!el || el.dataset.dismissing === 'true') return;
+            el.dataset.dismissing = 'true';
+            el.style.transition = "all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            el.style.opacity = "0";
+            el.style.transform = "translateX(40px) scale(0.95)";
+            setTimeout(function() {
+                if (el.parentNode) {
+                    var container = el.parentNode;
+                    container.removeChild(el);
+                    if (container.classList && container.classList.contains('ios-toast-container') && container.children.length === 0) {
+                        if (container.parentNode) container.parentNode.removeChild(container);
+                    }
+                }
+            }, 360);
+        }
+
         setTimeout(function() {
-            var alerts = document.querySelectorAll(".ios-alert, .alert-dismissible");
-            alerts.forEach(function(alert) {
-                alert.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
-                alert.style.opacity = "0";
-                alert.style.transform = "translateY(-6px)";
-                setTimeout(function() {
-                    alert.style.maxHeight = "0";
-                    alert.style.paddingTop = "0";
-                    alert.style.paddingBottom = "0";
-                    alert.style.marginTop = "0";
-                    alert.style.marginBottom = "0";
-                    alert.style.border = "none";
-                    alert.style.overflow = "hidden";
-                    setTimeout(function() {
-                        if (alert.parentNode) alert.parentNode.removeChild(alert);
-                    }, 350);
-                }, 100);
+            var toasts = document.querySelectorAll(".ios-toast-container .ios-toast, .ios-alert-dismissible");
+            toasts.forEach(function(t) {
+                dismissToast(t);
             });
         }, 2000);
     })();

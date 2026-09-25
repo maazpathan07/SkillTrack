@@ -5,29 +5,47 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Auto-dismiss alert messages smoothly after 2 seconds (2000ms)
+    // 1. Auto-dismiss alert messages & floating toasts smoothly after 2 seconds (2000ms)
     function dismissAlertSmoothly(alertEl) {
         if (!alertEl || alertEl.dataset.dismissing === 'true') return;
         alertEl.dataset.dismissing = 'true';
-        alertEl.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
-        alertEl.style.opacity = "0";
-        alertEl.style.transform = "translateY(-6px)";
         
-        setTimeout(function () {
-            alertEl.style.maxHeight = "0px";
-            alertEl.style.paddingTop = "0px";
-            alertEl.style.paddingBottom = "0px";
-            alertEl.style.marginTop = "0px";
-            alertEl.style.marginBottom = "0px";
-            alertEl.style.borderWidth = "0px";
-            alertEl.style.overflow = "hidden";
-        }, 100);
+        var isToast = alertEl.classList.contains('ios-toast') || (alertEl.parentNode && alertEl.parentNode.classList.contains('ios-toast-container'));
+        
+        if (isToast) {
+            alertEl.style.transition = "all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            alertEl.style.opacity = "0";
+            alertEl.style.transform = "translateX(40px) scale(0.95)";
+            setTimeout(function () {
+                if (alertEl.parentNode) {
+                    var container = alertEl.parentNode;
+                    container.removeChild(alertEl);
+                    if (container.classList && container.classList.contains('ios-toast-container') && container.children.length === 0) {
+                        if (container.parentNode) container.parentNode.removeChild(container);
+                    }
+                }
+            }, 360);
+        } else {
+            alertEl.style.transition = "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            alertEl.style.opacity = "0";
+            alertEl.style.transform = "translateY(-6px)";
+            
+            setTimeout(function () {
+                alertEl.style.maxHeight = "0px";
+                alertEl.style.paddingTop = "0px";
+                alertEl.style.paddingBottom = "0px";
+                alertEl.style.marginTop = "0px";
+                alertEl.style.marginBottom = "0px";
+                alertEl.style.borderWidth = "0px";
+                alertEl.style.overflow = "hidden";
+            }, 100);
 
-        setTimeout(function () {
-            if (alertEl.parentNode) {
-                alertEl.parentNode.removeChild(alertEl);
-            }
-        }, 450);
+            setTimeout(function () {
+                if (alertEl.parentNode) {
+                    alertEl.parentNode.removeChild(alertEl);
+                }
+            }, 450);
+        }
     }
 
     setTimeout(function () {

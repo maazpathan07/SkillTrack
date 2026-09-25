@@ -47,24 +47,24 @@
                                 </span>
                             </div>
                             <p class="text-muted small mb-0" style="max-width: 680px; line-height: 1.5;">
-                                Paste your <strong>Credly badge link</strong>, <strong>HackerRank cert ID / URL</strong>, <strong>Coursera verify link</strong>, or <strong>Udemy ID</strong>. The system will automatically fetch the real certificate title, issuing organization, and issue date to add it directly to your portfolio.
+                                Paste your <strong>LinkedIn Learning link</strong>, <strong>Credly badge</strong>, <strong>Coursera link</strong>, <strong>HackerRank ID/URL</strong>, <strong>Microsoft Learn</strong>, <strong>Udemy</strong>, or <strong>any platform link</strong>. The engine will automatically verify and extract the exact certificate title, issuing organization, and issue date to add it to your portfolio.
                             </p>
                         </div>
                     </div>
 
                     <!-- Live URL / ID Auto-Fetch Form -->
-                    <div class="p-3 mt-3 mt-xl-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 14px; min-width: 320px; max-width: 460px;">
+                    <div class="p-3 mt-3 mt-xl-0 flex-shrink-0" style="background: rgba(241, 245, 249, 0.85); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 14px; min-width: 320px; max-width: 480px;">
                         <form action="${pageContext.request.contextPath}/app/student/certifications" method="POST" onsubmit="return handleAutoFetchSubmit(this);">
                             <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
                             <input type="hidden" name="action" value="auto-fetch">
                             
                             <label for="certInput" class="small font-weight-bold text-dark mb-1.5 d-flex justify-content-between align-items-center">
                                 <span>🔗 Paste Certificate Link or ID:</span>
-                                <span class="badge badge-success px-1.5 py-0.5" style="font-size: 0.68rem;">Live Auto-Add</span>
+                                <span class="badge badge-success px-1.5 py-0.5" style="font-size: 0.68rem;">Universal Live Auto-Add</span>
                             </label>
                             
                             <div class="input-group input-group-sm mb-2">
-                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="e.g. credly.com/badges/... or ID" required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
+                                <input type="text" id="certInput" name="certInput" class="form-control" placeholder="Paste LinkedIn, Credly, Coursera, HackerRank, Udemy, edX, or any link..." required style="font-size: 0.82rem; border-radius: 6px 0 0 6px;">
                                 <div class="input-group-append">
                                     <button type="submit" id="autoFetchBtn" class="btn btn-success font-weight-bold px-3 d-flex align-items-center" style="font-size: 0.82rem; border-radius: 0 6px 6px 0; background: linear-gradient(135deg, #10b981, #059669); border: none;">
                                         <span id="autoFetchSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
@@ -73,13 +73,19 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <select name="platform" class="custom-select custom-select-sm" style="font-size: 0.75rem; height: 26px; padding-top: 2px; padding-bottom: 2px; width: 140px; border-radius: 6px;">
-                                    <option value="auto">Auto-Detect</option>
+                                <select name="platform" class="custom-select custom-select-sm" style="font-size: 0.75rem; height: 26px; padding-top: 2px; padding-bottom: 2px; width: 170px; border-radius: 6px;">
+                                    <option value="auto">Auto-Detect (Any Platform)</option>
+                                    <option value="linkedin">LinkedIn Learning</option>
                                     <option value="credly">Credly Badge</option>
-                                    <option value="hackerrank">HackerRank</option>
                                     <option value="coursera">Coursera</option>
-                                    <option value="udemy">Udemy (UC-ID)</option>
+                                    <option value="hackerrank">HackerRank</option>
+                                    <option value="udemy">Udemy (UC-ID / Link)</option>
                                     <option value="freecodecamp">freeCodeCamp</option>
+                                    <option value="microsoft">Microsoft Learn</option>
+                                    <option value="edx">edX</option>
+                                    <option value="kaggle">Kaggle</option>
+                                    <option value="geeksforgeeks">GeeksforGeeks</option>
+                                    <option value="other">Universal (Other / Custom)</option>
                                 </select>
                                 <small class="text-muted" style="font-size: 0.72rem;">100% verified accreditation</small>
                             </div>

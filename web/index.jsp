@@ -699,7 +699,210 @@
             </div>
         </section>
 
-        <!-- 4. STEP-BY-STEP STUDENT ROADMAP -->
+        <!-- 4. IN-BROWSER LIVE CODE PLAYGROUND SHOWCASE -->
+        <section class="py-5 bg-white border-top border-bottom" id="playground">
+            <div class="container py-4">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mb-5 mb-lg-0">
+                        <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Algorithmic Sandbox</span>
+                        <h2 class="ios-section-title font-weight-bold mb-3" style="color: #0f172a; letter-spacing: -0.025em;">
+                            Code, Test &amp; Benchmark Directly In Your Browser
+                        </h2>
+                        <p class="text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+                            Zero setup required. Compile, execute, and verify algorithms against test cases across <strong>7+ programming languages</strong> with microsecond profiling.
+                        </p>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(0, 113, 227, 0.1); color: #0071e3;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Multi-Language Runtime Engine</h6>
+                                <p class="text-muted small mb-0">Native execution support for Java 17, Python 3, C++17, JavaScript (Node.js), Go, C, and Rust.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.1); color: #059669;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Curated Algorithm Presets</h6>
+                                <p class="text-muted small mb-0">Instant access to interview classics: Two Sum, Binary Search, LRU Cache, Fast-Slow Pointers, and Dynamic Programming.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.1); color: #7c3aed;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Automated DSA Sync &amp; Profiling</h6>
+                                <p class="text-muted small mb-0">Solved problem counts automatically update your topic progress matrix and boost placement readiness.</p>
+                            </div>
+                        </div>
+
+                        <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary" style="padding: 0.75rem 1.75rem; font-size: 0.9rem;">
+                            Try Code Playground &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Right Column: Live Monaco-style Code Sandbox Preview Frame -->
+                    <div class="col-lg-7">
+                        <div class="p-0 border shadow-lg" style="background: #1e1e1e; border-radius: 18px; overflow: hidden; border: 1px solid #334155;">
+                            <!-- Dark Window Top Bar -->
+                            <div class="d-flex justify-content-between align-items-center px-4 py-2.5" style="background: #2d3748; border-bottom: 1px solid #4a5568;">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-3" style="gap: 6px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                                    </div>
+                                    <span class="text-white-50 font-weight-bold small" style="font-family: monospace;">Solution.java &bull; TwoSum_Optimal</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge badge-primary px-2 py-1" style="font-size: 0.7rem; font-weight: 600;">Java 17 OpenJDK</span>
+                                </div>
+                            </div>
+
+                            <!-- Code Editor Area -->
+                            <div class="p-4" style="background: #1a202c; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 0.85rem; line-height: 1.6; color: #e2e8f0;">
+                                <div style="color: #68d391;">// Optimal Hash-Map Strategy: Time O(N) | Space O(N)</div>
+                                <div><span style="color: #e53e3e;">class</span> <span style="color: #f6e05e;">Solution</span> {</div>
+                                <div class="pl-3"><span style="color: #e53e3e;">public int</span>[] <span style="color: #63b3ed;">twoSum</span>(<span style="color: #e53e3e;">int</span>[] nums, <span style="color: #e53e3e;">int</span> target) {</div>
+                                <div class="pl-4">Map&lt;Integer, Integer&gt; map = <span style="color: #e53e3e;">new</span> HashMap&lt;&gt;();</div>
+                                <div class="pl-4"><span style="color: #e53e3e;">for</span> (<span style="color: #e53e3e;">int</span> i = 0; i &lt; nums.length; i++) {</div>
+                                <div class="pl-5"><span style="color: #e53e3e;">int</span> complement = target - nums[i];</div>
+                                <div class="pl-5"><span style="color: #e53e3e;">if</span> (map.containsKey(complement)) {</div>
+                                <div class="pl-5" style="padding-left: 2rem !important;"><span style="color: #e53e3e;">return new int</span>[] { map.get(complement), i };</div>
+                                <div class="pl-5">}</div>
+                                <div class="pl-5">map.put(nums[i], i);</div>
+                                <div class="pl-4">}</div>
+                                <div class="pl-4"><span style="color: #e53e3e;">return new int</span>[] {};</div>
+                                <div class="pl-3">}</div>
+                                <div>}</div>
+                            </div>
+
+                            <!-- Terminal Output Console -->
+                            <div class="px-4 py-3" style="background: #111827; border-top: 1px solid #374151;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge badge-success px-2 py-1 font-weight-bold" style="font-size: 0.72rem;">✓ PASSED (3/3 Test Cases)</span>
+                                        <span class="text-white-50 small" style="font-size: 0.75rem;">Runtime: <strong>42 ms</strong> (Beats 94.2%)</span>
+                                    </div>
+                                    <span class="text-white-50 small" style="font-size: 0.75rem;">Memory: <strong>41.8 MB</strong></span>
+                                </div>
+                                <div class="p-2 rounded" style="background: #1f2937; font-family: monospace; font-size: 0.775rem; color: #a7f3d0;">
+                                    <span>&gt; TestCase 1: nums=[2,7,11,15], target=9 &rarr; Output: [0, 1] ✓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 24/7 AI PLACEMENT COACH SHOWCASE -->
+        <section class="py-5" id="ai-coach" style="background: var(--ios-bg-base);">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <!-- Left Column: Interactive Glass AI Chat Demo Widget -->
+                    <div class="col-lg-6 mb-5 mb-lg-0 order-2 order-lg-1">
+                        <div class="ios-glass-card p-4" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04); border-radius: 20px;">
+                            <!-- AI Chat Header -->
+                            <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom" style="border-color: #f1f5f9 !important;">
+                                <div class="d-flex align-items-center">
+                                    <div class="st-avatar-xs mr-2.5" style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #6366f1); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 0.95rem;">SkillTrack AI Placement Coach</h6>
+                                        <small class="text-success font-weight-bold" style="font-size: 0.72rem;">● Active &bull; SDE Placement Specialist</small>
+                                    </div>
+                                </div>
+                                <span class="ios-badge ios-badge-blue" style="font-size: 0.7rem;">AI Powered</span>
+                            </div>
+
+                            <!-- Student Query Message -->
+                            <div class="d-flex justify-content-end mb-3">
+                                <div class="p-3 rounded-lg text-white" style="background: #0071e3; border-radius: 16px 16px 4px 16px; max-width: 85%; font-size: 0.85rem; line-height: 1.5; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);">
+                                    How do I explain Two-Pointer approach vs Hash-Map in Amazon SDE-1 interview?
+                                </div>
+                            </div>
+
+                            <!-- AI Coach Response -->
+                            <div class="d-flex justify-content-start mb-3">
+                                <div class="p-3 rounded-lg" style="background: #f1f5f9; border-radius: 16px 16px 16px 4px; max-width: 90%; font-size: 0.85rem; line-height: 1.55; color: #1e293b; border: 1px solid #e2e8f0;">
+                                    <div class="font-weight-bold mb-1" style="color: #0071e3; font-size: 0.8rem;">💡 Key Interview Distinction:</div>
+                                    <ul class="pl-3 mb-2" style="font-size: 0.825rem;">
+                                        <li class="mb-1"><strong>Two-Pointer:</strong> Requires a sorted array. Achieves <code>O(N)</code> time and <code>O(1)</code> space (Optimal for memory).</li>
+                                        <li><strong>Hash-Map:</strong> Works on unsorted arrays in single pass. Achieves <code>O(N)</code> time and <code>O(N)</code> extra space.</li>
+                                    </ul>
+                                    <span class="small text-muted font-weight-bold">Amazon Interview Tip: Always state the Space-Time trade-off first before writing code!</span>
+                                </div>
+                            </div>
+
+                            <!-- Quick Action Chips -->
+                            <div class="d-flex flex-wrap gap-1.5 pt-2 border-top" style="border-color: #f1f5f9 !important;">
+                                <span class="ios-badge ios-badge-blue mr-1" style="font-size: 0.72rem;">🧪 Open in Playground</span>
+                                <span class="ios-badge ios-badge-green mr-1" style="font-size: 0.72rem;">📈 Add to DSA Tracker</span>
+                                <span class="ios-badge ios-badge-purple" style="font-size: 0.72rem;">🎯 Amazon Mock Questions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: AI Mentorship Description -->
+                    <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                        <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">24/7 Placement Mentorship</span>
+                        <h2 class="ios-section-title font-weight-bold mb-3" style="color: #0f172a; letter-spacing: -0.025em;">
+                            Your Personal AI Coach &amp; Algorithmic Architect
+                        </h2>
+                        <p class="text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+                            Never get stuck on hard algorithmic problems or complex system design interviews. SkillTrack's AI Placement Coach provides instant personalized guidance at every step of your preparation.
+                        </p>
+
+                        <!-- Feature Point 1 -->
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(0, 113, 227, 0.1); color: #0071e3;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Step-by-Step Hints (No Spoilers)</h6>
+                                <p class="text-muted small mb-0">Receive progressive hints and edge case checklists to develop algorithmic problem-solving intuition.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature Point 2 -->
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(16, 185, 129, 0.1); color: #059669;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Company-Tailored Mock Questions</h6>
+                                <p class="text-muted small mb-0">Simulate actual hiring rounds for Google, Amazon, Microsoft, and startups with role-specific question sets.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature Point 3 -->
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="ios-circle-icon mr-3 flex-shrink-0" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.1); color: #7c3aed;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Draggable Smart Floating Assistant</h6>
+                                <p class="text-muted small mb-0">Accessible across all student portal pages with persistent drag positioning so it never covers your content.</p>
+                            </div>
+                        </div>
+
+                        <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary" style="padding: 0.75rem 1.75rem; font-size: 0.9rem;">
+                            Get Started with AI Coach &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. STEP-BY-STEP STUDENT ROADMAP -->
         <section class="py-5 bg-white border-top border-bottom" id="roadmap">
             <div class="container py-5">
                 <div class="text-center mb-5">
@@ -1134,7 +1337,7 @@
         <!-- Apple iOS 18 Dynamic ScrollSpy & Smooth Section Navigation -->
         <script>
         (function() {
-            var sectionIds = ['overview', 'comparison', 'features', 'roadmap', 'tpo-portal', 'faq'];
+            var sectionIds = ['overview', 'comparison', 'features', 'playground', 'ai-coach', 'roadmap', 'tpo-portal', 'faq'];
             var sections = [];
             sectionIds.forEach(function(id) {
                 var el = document.getElementById(id);

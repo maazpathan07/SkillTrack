@@ -39,6 +39,9 @@
         </div>
     </div>
 
+    <!-- Universal SkillTrack Floating AI Assistant Widget -->
+    <%@ include file="/WEB-INF/views/common/ai-floating-widget.jspf" %>
+
 
     <!-- jQuery 3.6.0 -->
     <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

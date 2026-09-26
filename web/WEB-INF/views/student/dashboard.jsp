@@ -61,7 +61,7 @@
 
                     <!-- Row 2: ATS Resume, Readiness Card & Skill Gap in 1 Single Line -->
                     <div class="dash-action-duo-row">
-                        <a href="${pageContext.request.contextPath}/app/student/ai-coach" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: #6366f1; border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.05);">
+                        <a href="javascript:void(0);" onclick="if(document.getElementById('aiFloatTriggerBtn'))document.getElementById('aiFloatTriggerBtn').click();" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: #6366f1; border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.05);">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
                                 <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
                                 <rect x="4" y="8" width="16" height="12" rx="2"></rect>
@@ -69,7 +69,7 @@
                                 <circle cx="15" cy="13" r="1.5"></circle>
                                 <path d="M10 17h4"></path>
                             </svg>
-                            AI Coach
+                            Ask AI ✨
                         </a>
                         <a href="${pageContext.request.contextPath}/app/student/ats-resume" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: var(--ios-blue); border-color: rgba(0, 113, 227, 0.3);">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
@@ -111,17 +111,17 @@
                         </div>
                         <div>
                             <div class="d-flex align-items-center flex-wrap mb-1" style="gap: 0.5rem;">
-                                <h3 class="h6 font-weight-bold mb-0" style="color: var(--ios-text-primary); font-size: 1.05rem;">AI Placement Readiness Coach</h3>
-                                <span class="ios-badge" style="background: rgba(99, 102, 241, 0.15); color: #4f46e5; font-size: 0.7rem; font-weight: 700; border-radius: 6px; padding: 2px 7px;">AI MENTOR</span>
+                                <h3 class="h6 font-weight-bold mb-0" style="color: var(--ios-text-primary); font-size: 1.05rem;">SkillTrack AI Assistant</h3>
+                                <span class="ios-badge" style="background: rgba(99, 102, 241, 0.15); color: #4f46e5; font-size: 0.7rem; font-weight: 700; border-radius: 6px; padding: 2px 7px;">24/7 AI MENTOR</span>
                             </div>
-                            <p class="text-muted small mb-0" style="max-width: 620px;">Get real-time profile audits, personalized 7-day study plans, and ChatGPT-style interview coaching tailored to your target role.</p>
+                            <p class="text-muted small mb-0" style="max-width: 620px;">Ask anything! Get instant help with coding problems, DSA concepts, OOPs, DBMS, system design, or interview preparation.</p>
                         </div>
                     </div>
                     <div class="flex-shrink-0 mt-2 mt-md-0">
-                        <a href="${pageContext.request.contextPath}/app/student/ai-coach" class="ios-btn-primary d-inline-flex align-items-center text-nowrap" style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); padding: 0.55rem 1.25rem;">
-                            <span>Launch AI Coach</span>
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="ml-1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </a>
+                        <button type="button" onclick="if(document.getElementById('aiFloatTriggerBtn'))document.getElementById('aiFloatTriggerBtn').click();" class="ios-btn-primary d-inline-flex align-items-center text-nowrap" style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); padding: 0.55rem 1.25rem; cursor: pointer;">
+                            <span>Chat with AI</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="ml-1.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -78,22 +78,7 @@ public class StudentDreamJobServlet extends HttpServlet {
                 }
             }
 
-            // If no specific criteria requested, pick the first preset or match default top company
-            if (currentMatch == null) {
-                if (!allPresets.isEmpty()) {
-                    currentMatch = matchingService.matchAgainstCriteria(studentId, allPresets.get(0).getCriteriaId());
-                } else {
-                    currentMatch = matchingService.matchAgainstCustomJd(
-                        studentId,
-                        "Google",
-                        "Software Development Engineer (SDE)",
-                        "Requirements: Strong in Data Structures and Algorithms, Graphs, Dynamic Programming, System Design, Java, Python, Cloud infrastructure.",
-                        "PRESET_CRITERIA",
-                        null
-                    );
-                }
-            }
-
+            // If no criteriaId or evalId is passed, matchResult remains null (allowing toggle off / deselect)
             request.setAttribute("matchResult", currentMatch);
             request.getRequestDispatcher("/WEB-INF/views/student/dream-job-matcher.jsp").forward(request, response);
 

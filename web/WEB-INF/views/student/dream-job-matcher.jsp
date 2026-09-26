@@ -172,8 +172,13 @@
 
                 <div class="row g-3">
                     <c:forEach items="${companyPresets}" var="c">
+                        <c:url var="cardToggleUrl" value="/app/student/dream-job">
+                            <c:if test="${matchResult.criteriaId != c.criteriaId}">
+                                <c:param name="criteriaId" value="${c.criteriaId}" />
+                            </c:if>
+                        </c:url>
                         <div class="col-xl-4 col-md-6 col-12 mb-3">
-                            <a href="${pageContext.request.contextPath}/app/student/dream-job?criteriaId=${c.criteriaId}" class="text-decoration-none text-dark">
+                            <a href="${cardToggleUrl}" class="text-decoration-none text-dark" title="${matchResult.criteriaId == c.criteriaId ? 'Click to deselect' : 'Click to select'}">
                                 <div class="company-preset-card p-3 h-100 ${matchResult.criteriaId == c.criteriaId ? 'active-preset' : ''}">
                                     <div class="d-flex align-items-center justify-content-between mb-2.5">
                                         <div class="d-flex align-items-center" style="gap: 0.75rem;">
@@ -616,12 +621,22 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <div class="ios-card p-5 text-center shadow-sm">
-                                <div class="text-muted mb-3">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <div class="ios-card p-5 text-center shadow-sm" style="background: #ffffff; border-radius: var(--ios-radius-md, 16px); min-height: 480px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div class="mb-3.5 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 72px; height: 72px; background: rgba(0, 113, 227, 0.08); color: #0071e3;">
+                                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
                                 </div>
-                                <h3 class="h5 font-weight-bold text-dark">No Job Selected Yet</h3>
-                                <p class="text-muted small">Select any company preset above or paste a custom Job Description to run real-time multi-pillar matching.</p>
+                                <h3 class="h5 font-weight-bold text-dark mb-1.5" style="letter-spacing: -0.02em;">Ready for Job Matching</h3>
+                                <p class="text-muted small mx-auto mb-4" style="max-width: 440px; line-height: 1.55;">
+                                    Click on any top company preset above or enter a custom Job Description on the left to calculate your live readiness match.
+                                </p>
+                                <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
+                                    <span class="badge badge-light border text-muted px-3 py-1.5 font-weight-semibold" style="border-radius: 12px; font-size: 0.78rem;">
+                                        &bull; 5-Pillar Dynamic Matching
+                                    </span>
+                                    <span class="badge badge-light border text-muted px-3 py-1.5 font-weight-semibold" style="border-radius: 12px; font-size: 0.78rem;">
+                                        &bull; Live LeetCode &amp; GitHub Sync
+                                    </span>
+                                </div>
                             </div>
                         </c:otherwise>
                     </c:choose>

@@ -7,40 +7,71 @@
 <%@ include file="/WEB-INF/views/common/navbar.jspf" %>
 
 <style>
+    /* =========================================================
+       SkillTrack Apple Glassmorphism - DSA Progress Tracker
+       ========================================================= */
+    :root {
+        --dsa-primary: #0071e3;
+        --dsa-amber: #f59e0b;
+        --dsa-emerald: #10b981;
+        --dsa-rose: #ef4444;
+        --dsa-purple: #8b5cf6;
+        --dsa-card-bg: rgba(255, 255, 255, 0.92);
+        --dsa-card-border: rgba(226, 232, 240, 0.85);
+        --dsa-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+        --dsa-radius: 16px;
+    }
+
     .dsa-page-wrapper {
-        max-width: 1440px;
+        max-width: 1400px;
         margin: 0 auto;
     }
 
-    /* Glassmorphic Page Header */
+    /* Page Header */
     .dsa-header-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(226, 232, 240, 0.8);
-        border-radius: 16px;
-        padding: 1.25rem 1.5rem;
-        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        background: var(--dsa-card-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--dsa-card-border);
+        border-radius: var(--dsa-radius);
+        padding: 1.35rem 1.75rem;
+        box-shadow: var(--dsa-shadow);
         margin-bottom: 1.5rem;
     }
 
     /* LeetCode Auto-Sync Banner */
     .leetcode-sync-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-        border: 1px solid rgba(226, 232, 240, 0.95);
-        border-radius: 16px;
-        padding: 1.25rem 1.5rem;
-        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(254, 249, 235, 0.45) 100%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        border-radius: var(--dsa-radius);
+        padding: 1.35rem 1.75rem;
+        box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.06);
         margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .leetcode-sync-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+        border-top-left-radius: var(--dsa-radius);
+        border-bottom-left-radius: var(--dsa-radius);
     }
 
     .leetcode-icon-box {
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
         border-radius: 14px;
         background: linear-gradient(135deg, #fffbeb, #fef3c7);
-        border: 1.5px solid rgba(245, 158, 11, 0.3);
-        box-shadow: 0 8px 16px -4px rgba(245, 158, 11, 0.25);
+        border: 1.5px solid rgba(245, 158, 11, 0.35);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -49,18 +80,18 @@
 
     /* Standard Cards */
     .dsa-card {
-        background: #ffffff;
-        border: 1px solid rgba(226, 232, 240, 0.85);
-        border-radius: 16px;
-        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        background: var(--dsa-card-bg);
+        border: 1px solid var(--dsa-card-border);
+        border-radius: var(--dsa-radius);
+        box-shadow: var(--dsa-shadow);
         margin-bottom: 1.5rem;
         overflow: hidden;
     }
 
     .dsa-card-header {
         padding: 1.15rem 1.5rem;
-        background: rgba(248, 250, 252, 0.7);
-        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        background: rgba(248, 250, 252, 0.85);
+        border-bottom: 1px solid var(--dsa-card-border);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -68,35 +99,46 @@
         gap: 0.75rem;
     }
 
-    .dsa-card-body {
-        padding: 1.5rem;
-    }
-
-    /* Metric Cards - Strictly vertical flex with clean layout */
+    /* Metric Cards */
     .dsa-metric-card {
         background: #ffffff;
-        border: 1px solid rgba(226, 232, 240, 0.85);
-        border-radius: 16px;
-        padding: 1.25rem 1.5rem;
-        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        border: 1px solid var(--dsa-card-border);
+        border-radius: var(--dsa-radius);
+        padding: 1.35rem 1.5rem;
+        box-shadow: var(--dsa-shadow);
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
     }
 
     .dsa-metric-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.08);
     }
+
+    .dsa-metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+    }
+
+    .dsa-metric-card.card-amber::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .dsa-metric-card.card-emerald::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .dsa-metric-card.card-blue::before { background: linear-gradient(90deg, #0071e3, #38bdf8); }
 
     .dsa-metric-label {
         font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.35rem;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4rem;
     }
 
     .dsa-metric-value {
@@ -105,7 +147,6 @@
         line-height: 1.1;
         letter-spacing: -0.03em;
         color: #0f172a;
-        margin-bottom: 0.75rem;
     }
 
     /* Form Controls */
@@ -113,13 +154,13 @@
         font-size: 0.825rem;
         font-weight: 600;
         color: #334155;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.45rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    .dsa-input {
+    .dsa-input, .dsa-select {
         background: #ffffff;
         border: 1.5px solid #e2e8f0;
         border-radius: 12px;
@@ -131,10 +172,10 @@
         transition: all 0.2s ease;
     }
 
-    .dsa-input:focus {
-        border-color: #3b82f6;
+    .dsa-input:focus, .dsa-select:focus {
+        border-color: #0071e3;
         outline: none;
-        box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.12);
+        box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.12);
     }
 
     .dsa-textarea {
@@ -152,9 +193,9 @@
     }
 
     .dsa-textarea:focus {
-        border-color: #3b82f6;
+        border-color: #0071e3;
         outline: none;
-        box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.12);
+        box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.12);
     }
 
     /* Badges & Tags */
@@ -170,31 +211,31 @@
     }
 
     .ios-pill-blue {
-        background: rgba(59, 130, 246, 0.1);
-        color: #2563eb;
-        border: 1px solid rgba(59, 130, 246, 0.2);
+        background: rgba(0, 113, 227, 0.09);
+        color: #0071e3;
+        border: 1px solid rgba(0, 113, 227, 0.2);
     }
 
     .ios-pill-emerald {
-        background: rgba(16, 185, 129, 0.1);
+        background: rgba(16, 185, 129, 0.09);
         color: #059669;
         border: 1px solid rgba(16, 185, 129, 0.2);
     }
 
     .ios-pill-amber {
-        background: rgba(245, 158, 11, 0.1);
+        background: rgba(245, 158, 11, 0.09);
         color: #d97706;
         border: 1px solid rgba(245, 158, 11, 0.2);
     }
 
     .ios-pill-rose {
-        background: rgba(239, 68, 68, 0.1);
+        background: rgba(239, 68, 68, 0.09);
         color: #dc2626;
         border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
     .ios-pill-purple {
-        background: rgba(139, 92, 246, 0.1);
+        background: rgba(139, 92, 246, 0.09);
         color: #7c3aed;
         border: 1px solid rgba(139, 92, 246, 0.2);
     }
@@ -238,7 +279,7 @@
     /* Search Box */
     .dsa-search-wrapper {
         position: relative;
-        min-width: 220px;
+        min-width: 240px;
     }
 
     .dsa-search-input {
@@ -254,9 +295,9 @@
     }
 
     .dsa-search-input:focus {
-        border-color: #3b82f6;
+        border-color: #0071e3;
         outline: none;
-        box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.12);
+        box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.12);
     }
 
     .dsa-search-icon {
@@ -266,6 +307,8 @@
         transform: translateY(-50%);
         color: #94a3b8;
         pointer-events: none;
+        display: flex;
+        align-items: center;
     }
 
     /* Buttons */
@@ -280,7 +323,7 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.4);
+        box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.35);
         transition: all 0.2s ease;
         cursor: pointer;
         text-decoration: none !important;
@@ -288,7 +331,31 @@
 
     .btn-dsa-sync:hover {
         transform: translateY(-1px);
-        box-shadow: 0 6px 18px -2px rgba(245, 158, 11, 0.5);
+        box-shadow: 0 6px 18px -2px rgba(245, 158, 11, 0.45);
+        color: #ffffff;
+    }
+
+    .btn-apple-primary {
+        background: #0071e3;
+        color: #ffffff;
+        border: none;
+        border-radius: 12px;
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.28);
+        transition: all 0.2s ease;
+        text-decoration: none !important;
+        cursor: pointer;
+    }
+
+    .btn-apple-primary:hover {
+        background: #0077ed;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(0, 113, 227, 0.38);
         color: #ffffff;
     }
 
@@ -376,7 +443,7 @@
                 <p class="text-muted small mb-0 mt-1">Systematically track your topic-wise problem solving progress across 18 core DSA topics</p>
             </div>
             <div class="d-flex align-items-center gap-2 flex-wrap">
-                <a href="${pageContext.request.contextPath}/app/student/code-playground" class="btn-action-light" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: #ffffff; border: none; padding: 0.6rem 1.15rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
+                <a href="${pageContext.request.contextPath}/app/student/code-playground" class="btn-apple-primary">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     <span>Code Playground</span>
                 </a>
@@ -453,10 +520,19 @@
     <div class="row mb-4">
         <!-- Total Solved -->
         <div class="col-md-4 mb-3">
-            <div class="dsa-metric-card" style="border-top: 4px solid #f59e0b;">
+            <div class="dsa-metric-card card-amber">
                 <div>
-                    <div class="dsa-metric-label" style="color: #d97706;">Total Problems Solved</div>
-                    <div class="dsa-metric-value"><c:out value="${totalSolved}" default="0" /></div>
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="dsa-metric-label" style="color: #d97706;">Total Problems Solved</div>
+                        <span class="ios-pill-badge ios-pill-amber" style="padding: 2px 7px; font-size: 0.7rem;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Practiced
+                        </span>
+                    </div>
+                    <div class="dsa-metric-value mb-2"><c:out value="${totalSolved}" default="0" /></div>
+                    <div class="w-100 mb-2" style="height: 5px; border-radius: 999px; background: #fef3c7; overflow: hidden;">
+                        <div style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}%; background: linear-gradient(90deg, #f59e0b, #d97706); height: 100%; border-radius: 999px;"></div>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center small pt-2 border-top" style="color: #64748b;">
                     <span>Target Benchmark</span>
@@ -467,12 +543,21 @@
 
         <!-- Topic Coverage -->
         <div class="col-md-4 mb-3">
-            <div class="dsa-metric-card" style="border-top: 4px solid #10b981;">
+            <div class="dsa-metric-card card-emerald">
                 <div>
-                    <div class="dsa-metric-label" style="color: #059669;">Topic Coverage</div>
-                    <div class="dsa-metric-value">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="dsa-metric-label" style="color: #059669;">Topic Coverage</div>
+                        <span class="ios-pill-badge ios-pill-emerald" style="padding: 2px 7px; font-size: 0.7rem;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            18 Core
+                        </span>
+                    </div>
+                    <div class="dsa-metric-value mb-2">
                         <c:out value="${completedTopics}" default="0" /> 
                         <span style="font-size: 1.15rem; font-weight: 600; color: #64748b;">/ <c:out value="${totalTopics}" default="18" /> topics</span>
+                    </div>
+                    <div class="w-100 mb-2" style="height: 5px; border-radius: 999px; background: #d1fae5; overflow: hidden;">
+                        <div style="width: ${(completedTopics * 100.0) / (totalTopics > 0 ? totalTopics : 18)}%; background: linear-gradient(90deg, #10b981, #059669); height: 100%; border-radius: 999px;"></div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center small pt-2 border-top" style="color: #64748b;">
@@ -484,17 +569,25 @@
 
         <!-- Readiness Index -->
         <div class="col-md-4 mb-3">
-            <div class="dsa-metric-card" style="border-top: 4px solid #3b82f6;">
+            <div class="dsa-metric-card card-blue">
                 <div>
-                    <div class="dsa-metric-label" style="color: #2563eb;">DSA Readiness Index</div>
-                    <div class="dsa-metric-value">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="dsa-metric-label" style="color: #0071e3;">DSA Readiness Index</div>
+                        <span class="ios-pill-badge ios-pill-blue" style="padding: 2px 7px; font-size: 0.7rem;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Benchmark
+                        </span>
+                    </div>
+                    <div class="dsa-metric-value mb-2">
                         <fmt:formatNumber value="${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}" maxFractionDigits="1" minFractionDigits="1" />%
                     </div>
-                </div>
-                <div class="pt-2 border-top">
-                    <div class="w-100" style="height: 6px; border-radius: 999px; background: #f1f5f9; overflow: hidden;">
-                        <div style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}%; background: linear-gradient(90deg, #3b82f6, #06b6d4); height: 100%; border-radius: 999px; transition: width 0.6s ease;"></div>
+                    <div class="w-100 mb-2" style="height: 5px; border-radius: 999px; background: #e0f2fe; overflow: hidden;">
+                        <div style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}%; background: linear-gradient(90deg, #0071e3, #38bdf8); height: 100%; border-radius: 999px; transition: width 0.6s ease;"></div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center small pt-2 border-top" style="color: #64748b;">
+                    <span>Placement Cutoff Goal</span>
+                    <strong class="text-dark">80%+ Ready</strong>
                 </div>
             </div>
         </div>
@@ -520,7 +613,7 @@
 
                 <!-- Status Filter Segmented Control -->
                 <div class="segmented-control-wrapper">
-                    <button type="button" class="segmented-control-btn active filter-status-btn" data-status="ALL">All (18)</button>
+                    <button type="button" class="segmented-control-btn active filter-status-btn" data-status="ALL">All (${totalTopics > 0 ? totalTopics : 18})</button>
                     <button type="button" class="segmented-control-btn filter-status-btn" data-status="COMPLETED">Completed (${completedTopics})</button>
                     <button type="button" class="segmented-control-btn filter-status-btn" data-status="IN_PROGRESS">In Progress (${inProgressTopics})</button>
                     <button type="button" class="segmented-control-btn filter-status-btn" data-status="NOT_STARTED">Not Started</button>
@@ -654,7 +747,7 @@
                     <div class="modal-body p-4" style="background: #ffffff;">
                         <div class="form-group mb-3">
                             <label for="modalStatus" class="dsa-form-label">Topic Preparation Status</label>
-                            <select class="dsa-input" id="modalStatus" name="status">
+                            <select class="dsa-select" id="modalStatus" name="status">
                                 <option value="NOT_STARTED">Not Started</option>
                                 <option value="IN_PROGRESS">In Progress</option>
                                 <option value="COMPLETED">Completed</option>

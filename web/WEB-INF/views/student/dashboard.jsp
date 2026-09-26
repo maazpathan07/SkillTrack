@@ -61,6 +61,16 @@
 
                     <!-- Row 2: ATS Resume, Readiness Card & Skill Gap in 1 Single Line -->
                     <div class="dash-action-duo-row">
+                        <a href="${pageContext.request.contextPath}/app/student/ai-coach" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: #6366f1; border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.05);">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
+                                <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                                <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                                <circle cx="9" cy="13" r="1.5"></circle>
+                                <circle cx="15" cy="13" r="1.5"></circle>
+                                <path d="M10 17h4"></path>
+                            </svg>
+                            AI Coach
+                        </a>
                         <a href="${pageContext.request.contextPath}/app/student/ats-resume" class="ios-btn-secondary dash-action-btn text-nowrap" style="color: var(--ios-blue); border-color: rgba(0, 113, 227, 0.3);">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -79,8 +89,38 @@
                             Readiness Card
                         </a>
                         <a href="${pageContext.request.contextPath}/app/student/skill-gap" class="ios-btn-primary dash-action-btn text-nowrap">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
                             Skill Gap &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Placement Coach Quick Intelligent Banner -->
+            <div class="card mb-4 border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08)); border: 1px solid rgba(99, 102, 241, 0.22) !important; border-radius: 18px; backdrop-filter: blur(16px);">
+                <div class="card-body p-3 p-md-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between" style="gap: 1rem;">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center mr-3 flex-shrink-0" style="width: 48px; height: 48px; background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                                <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                                <circle cx="9" cy="13" r="1.5"></circle>
+                                <circle cx="15" cy="13" r="1.5"></circle>
+                                <path d="M10 17h4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center flex-wrap mb-1" style="gap: 0.5rem;">
+                                <h3 class="h6 font-weight-bold mb-0" style="color: var(--ios-text-primary); font-size: 1.05rem;">AI Placement Readiness Coach</h3>
+                                <span class="ios-badge" style="background: rgba(99, 102, 241, 0.15); color: #4f46e5; font-size: 0.7rem; font-weight: 700; border-radius: 6px; padding: 2px 7px;">AI MENTOR</span>
+                            </div>
+                            <p class="text-muted small mb-0" style="max-width: 620px;">Get real-time profile audits, personalized 7-day study plans, and ChatGPT-style interview coaching tailored to your target role.</p>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 mt-2 mt-md-0">
+                        <a href="${pageContext.request.contextPath}/app/student/ai-coach" class="ios-btn-primary d-inline-flex align-items-center text-nowrap" style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); padding: 0.55rem 1.25rem;">
+                            <span>Launch AI Coach</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="ml-1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </a>
                     </div>
                 </div>

@@ -171,19 +171,21 @@
                     <h2 class="h6 font-weight-bold text-muted text-uppercase mb-0" style="letter-spacing: 0.05em; font-size: 0.78rem;">
                         Target Placement Drives &amp; Company Presets
                     </h2>
-                    <small class="text-muted font-weight-500">Click any company to calculate real-time readiness</small>
+                    <a href="${pageContext.request.contextPath}/app/student/dream-job" class="btn btn-sm btn-light border font-weight-semibold text-dark d-inline-flex align-items-center px-2.5 py-1" style="border-radius: 12px; font-size: 0.76rem; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.04);" title="Unselect any selected company preset">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        Clean / Unselect Preset
+                    </a>
                 </div>
 
                 <div class="row g-3">
                     <c:forEach items="${companyPresets}" var="c">
-                        <c:url var="cardToggleUrl" value="/app/student/dream-job">
-                            <c:if test="${empty matchResult or empty matchResult.criteriaId or matchResult.criteriaId != c.criteriaId}">
-                                <c:param name="criteriaId" value="${c.criteriaId}" />
-                            </c:if>
-                        </c:url>
+                        <c:set var="isThisActive" value="${not empty matchResult and not empty matchResult.criteriaId and matchResult.criteriaId == c.criteriaId}" />
                         <div class="col-xl-4 col-md-6 col-12 mb-3">
-                            <a href="${cardToggleUrl}" class="text-decoration-none text-dark" title="${not empty matchResult and matchResult.criteriaId == c.criteriaId ? 'Click to deselect' : 'Click to select'}">
-                                <div class="company-preset-card p-3 h-100 ${not empty matchResult and matchResult.criteriaId == c.criteriaId ? 'active-preset' : ''}">
+                            <a href="${isThisActive ? pageContext.request.contextPath.concat('/app/student/dream-job') : pageContext.request.contextPath.concat('/app/student/dream-job?criteriaId=').concat(c.criteriaId)}" 
+                               class="text-decoration-none text-dark preset-card-link ${isThisActive ? 'is-active-link' : ''}" 
+                               data-criteria-id="${c.criteriaId}"
+                               title="${isThisActive ? 'Click to unselect' : 'Click to analyze'}">
+                                <div class="company-preset-card p-3 h-100 ${isThisActive ? 'active-preset' : ''}">
                                     <div class="d-flex align-items-center justify-content-between mb-2.5">
                                         <div class="d-flex align-items-center" style="gap: 0.75rem;">
                                             <!-- Official High-Resolution Vector Company Logos -->
@@ -685,6 +687,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Preset cards click handler - if clicked on active card, unselect immediately
+    var activeLinks = document.querySelectorAll('.preset-card-link.is-active-link');
+    activeLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '${pageContext.request.contextPath}/app/student/dream-job';
+        });
+    });
 
     // Interactive "Add to Preparation Checklist" AJAX handler
     var addTaskButtons = document.querySelectorAll('.add-task-btn');

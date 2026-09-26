@@ -386,67 +386,6 @@
                 </div>
             </div>
 
-            <!-- SECTION 3: Recent Scans History -->
-            <c:if test="${not empty recentScans}">
-                <div class="ios-card mt-2 mb-4">
-                    <div class="ios-card-header p-3 d-flex justify-content-between align-items-center">
-                        <div>
-                            <h3 class="h6 font-weight-bold text-dark mb-0" style="font-size: 0.95rem;">
-                                Recent Scanned Job Descriptions
-                            </h3>
-                            <small class="text-muted">Your past evaluations and match trajectories</small>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0" style="font-size: 0.85rem;">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th>Target Company</th>
-                                    <th>Role Title</th>
-                                    <th>Source Type</th>
-                                    <th>Match Score</th>
-                                    <th>DSA</th>
-                                    <th>Projects</th>
-                                    <th>Certs</th>
-                                    <th>Evaluated Date</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${recentScans}" var="scan">
-                                    <tr>
-                                        <td class="font-weight-bold text-dark"><c:out value="${scan.targetCompany}" /></td>
-                                        <td><c:out value="${scan.targetRole}" /></td>
-                                        <td><span class="badge badge-light border"><c:out value="${scan.sourceType}" /></span></td>
-                                        <td>
-                                            <span class="badge ${scan.overallMatchScore >= 80 ? 'badge-success' : scan.overallMatchScore >= 55 ? 'badge-warning' : 'badge-danger'} px-2 py-1 font-weight-bold">
-                                                ${scan.overallMatchScore}%
-                                            </span>
-                                        </td>
-                                        <td>${scan.dsaScore}%</td>
-                                        <td>${scan.projectScore}%</td>
-                                        <td>${scan.certScore}%</td>
-                                        <td class="text-muted">${scan.evaluatedAt}</td>
-                                        <td class="text-right">
-                                            <a href="${pageContext.request.contextPath}/app/student/dream-job?evalId=${scan.evalId}" class="btn btn-sm btn-primary py-1 px-2 font-weight-bold" style="font-size: 0.75rem;">
-                                                View Match
-                                            </a>
-                                            <form action="${pageContext.request.contextPath}/app/student/dream-job" method="post" class="d-inline ml-1">
-                                                <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}" />
-                                                <input type="hidden" name="action" value="delete-eval" />
-                                                <input type="hidden" name="evalId" value="${scan.evalId}" />
-                                                <button type="submit" class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size: 0.75rem;" onclick="return confirm('Remove this evaluation record from history?');">
-                                                    &times;
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </c:if>
         </main>
     </div>
 </div>

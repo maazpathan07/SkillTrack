@@ -275,15 +275,19 @@
                 <!-- Left: Paste Any Custom Job Description / URL Form -->
                 <div class="col-lg-5 mb-4">
                     <div class="ios-card h-100 shadow-sm">
-                        <div class="ios-card-header p-3.5 border-bottom bg-white">
-                            <div class="d-flex align-items-center justify-content-between">
+                        <div class="ios-card-header border-bottom bg-white" style="padding: 1.1rem 1.25rem;">
+                            <div class="d-flex align-items-start justify-content-between" style="gap: 0.75rem;">
                                 <div>
-                                    <h2 class="h6 font-weight-bold text-dark mb-0" style="font-size: 1.05rem; letter-spacing: -0.02em;">
+                                    <h2 class="h6 font-weight-bold text-dark mb-1" style="font-size: 1.02rem; letter-spacing: -0.02em;">
                                         Paste Any Job Description
                                     </h2>
-                                    <small class="text-muted">Zero-hardcoded dynamic evaluation against any real JD</small>
+                                    <p class="text-muted small mb-0" style="font-size: 0.76rem; line-height: 1.35; max-width: 290px;">
+                                        Dynamic evaluation against any real JD text or link
+                                    </p>
                                 </div>
-                                <span class="ios-badge ios-badge-green" style="font-size: 0.7rem;">100% Dynamic</span>
+                                <span class="ios-badge ios-badge-green flex-shrink-0" style="font-size: 0.72rem; white-space: nowrap; margin-top: 2px;">
+                                    100% Dynamic
+                                </span>
                             </div>
                         </div>
 
@@ -594,14 +598,14 @@
 
                             <!-- Personalized Dynamic Gap Roadmap -->
                             <div class="ios-card mb-4 shadow-sm">
-                                <div class="ios-card-header p-3.5 d-flex justify-content-between align-items-center border-bottom bg-white">
+                                <div class="ios-card-header d-flex justify-content-between align-items-start border-bottom bg-white" style="padding: 1.1rem 1.25rem; gap: 0.75rem;">
                                     <div>
-                                        <h3 class="h6 font-weight-bold text-dark mb-0" style="font-size: 1rem;">
+                                        <h3 class="h6 font-weight-bold text-dark mb-1" style="font-size: 1rem; letter-spacing: -0.01em;">
                                             Personalized Gap-Bridging Action Roadmap
                                         </h3>
-                                        <small class="text-muted">Exact milestones required to reach 100% readiness for this role</small>
+                                        <small class="text-muted d-block" style="font-size: 0.76rem; line-height: 1.35;">Exact milestones required to reach 100% readiness for this role</small>
                                     </div>
-                                    <span class="ios-badge ios-badge-blue font-weight-bold" style="font-size: 0.72rem;">${fn:length(matchResult.roadmapItems)} Actions</span>
+                                    <span class="ios-badge ios-badge-blue font-weight-bold flex-shrink-0" style="font-size: 0.72rem; white-space: nowrap; margin-top: 2px;">${fn:length(matchResult.roadmapItems)} Actions</span>
                                 </div>
 
                                 <div class="list-group list-group-flush">

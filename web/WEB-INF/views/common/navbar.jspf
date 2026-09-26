@@ -55,7 +55,7 @@
 
                     <!-- Career & Placements Dropdown -->
                     <div class="dropdown">
-                        <a class="ios-capsule-link ${activeNav == 'dream-job' || activeNav == 'placement-criteria' || activeNav == 'skill-gap' ? 'active' : ''} dropdown-toggle" href="javascript:void(0);" id="careerNavDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="ios-capsule-link ${activeNav == 'dream-job' || activeNav == 'placement-criteria' || activeNav == 'skill-gap' ? 'active' : ''} dropdown-toggle" href="javascript:void(0);" id="careerNavDropdown" role="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
                             <span>Career</span>
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ios-capsule-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </a>
@@ -77,7 +77,7 @@
 
                     <!-- ATS Resume Suite Dropdown -->
                     <div class="dropdown">
-                        <a class="ios-capsule-link ${activeNav == 'ats-resume' || activeNav == 'ats-scanner' ? 'active' : ''} dropdown-toggle" href="javascript:void(0);" id="resumeNavDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="ios-capsule-link ${activeNav == 'ats-resume' || activeNav == 'ats-scanner' ? 'active' : ''} dropdown-toggle" href="javascript:void(0);" id="resumeNavDropdown" role="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
                             <span>ATS Resume</span>
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ios-capsule-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </a>

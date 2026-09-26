@@ -265,6 +265,11 @@ a.ios-capsule-link.dropdown-toggle::after,
 }
 
 .ios-capsule-dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  left: auto !important;
+  transform: none !important;
   min-width: 220px !important;
   border-radius: 16px !important;
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
@@ -273,12 +278,12 @@ a.ios-capsule-link.dropdown-toggle::after,
   border: 1px solid rgba(226, 232, 240, 0.9) !important;
   padding: 6px !important;
   margin-top: 8px !important;
-  animation: iosCapsuleFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: iosCapsuleFadeIn 0.15s ease-out;
 }
 
 @keyframes iosCapsuleFadeIn {
-  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .ios-capsule-dropdown-item {

@@ -8,11 +8,11 @@
 <%@ include file="/WEB-INF/views/common/navbar.jspf" %>
 
 <style>
-    /* Premium iOS Glassmorphic Styles for Dream Job Matcher */
+    /* Premium Apple Glassmorphism Styles for Dream Job Matcher */
     .company-preset-card {
         border-radius: var(--ios-radius-md, 16px);
         background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.07);
+        border: 1.5px solid rgba(0, 0, 0, 0.08);
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: pointer;
         position: relative;
@@ -20,18 +20,30 @@
     }
     .company-preset-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-        border-color: rgba(0, 113, 227, 0.3);
+        box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.09), 0 8px 12px -6px rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 113, 227, 0.35);
     }
     .company-preset-card.active-preset {
         background: linear-gradient(180deg, rgba(0, 113, 227, 0.04) 0%, rgba(255, 255, 255, 1) 100%);
         border: 2px solid #0071e3 !important;
-        box-shadow: 0 8px 20px rgba(0, 113, 227, 0.15) !important;
+        box-shadow: 0 8px 22px rgba(0, 113, 227, 0.16) !important;
+    }
+    .company-logo-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
     .sample-chip {
         font-size: 0.75rem;
         font-weight: 600;
-        padding: 0.3rem 0.75rem;
+        padding: 0.35rem 0.8rem;
         border-radius: 20px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         background: #f8f9fa;
@@ -40,7 +52,7 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 0.25rem;
+        gap: 0.3rem;
     }
     .sample-chip:hover {
         background: #e9ecef;
@@ -71,29 +83,43 @@
         justify-content: center;
         flex-shrink: 0;
     }
-    .skill-pill-matched {
-        background: rgba(52, 199, 89, 0.1);
-        color: #248a3d;
-        border: 1px solid rgba(52, 199, 89, 0.25);
-        border-radius: 20px;
-        padding: 0.35rem 0.85rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
+    
+    /* Studio Competency Dual Split Cards */
+    .competency-box-matched {
+        background: linear-gradient(180deg, rgba(52, 199, 89, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+        border: 1.5px solid rgba(52, 199, 89, 0.25);
+        border-radius: 14px;
+        padding: 1.1rem;
+        height: 100%;
     }
-    .skill-pill-missing {
-        background: rgba(239, 68, 68, 0.08);
-        color: #dc2626;
-        border: 1px solid rgba(239, 68, 68, 0.25);
-        border-radius: 20px;
-        padding: 0.35rem 0.85rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-flex;
+    .competency-box-missing {
+        background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+        border: 1.5px solid rgba(239, 68, 68, 0.22);
+        border-radius: 14px;
+        padding: 1.1rem;
+        height: 100%;
+    }
+    .skill-card-matched {
+        background: #ffffff;
+        border: 1px solid rgba(52, 199, 89, 0.3);
+        border-radius: 10px;
+        padding: 0.45rem 0.75rem;
+        box-shadow: 0 1px 4px rgba(52, 199, 89, 0.08);
+        display: flex;
         align-items: center;
-        gap: 0.35rem;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    .skill-card-missing {
+        background: #ffffff;
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        border-radius: 10px;
+        padding: 0.45rem 0.75rem;
+        box-shadow: 0 1px 4px rgba(239, 68, 68, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
     }
 </style>
 
@@ -120,7 +146,7 @@
                         Company-Specific Dream Job Matcher
                     </h1>
                     <p class="text-muted small mb-0" style="max-width: 720px; line-height: 1.5;">
-                        Dynamically match your real LeetCode stats, verified GitHub repositories, certifications, and technical proficiencies against top tier companies or any custom job posting.
+                        Dynamically match your real LeetCode solve counts, verified GitHub projects, credentials, and technical proficiencies against top tier companies or any custom job posting.
                     </p>
                 </div>
                 <div class="d-flex align-items-center flex-wrap gap-2 mt-3 mt-lg-0">
@@ -150,51 +176,86 @@
                             <a href="${pageContext.request.contextPath}/app/student/dream-job?criteriaId=${c.criteriaId}" class="text-decoration-none text-dark">
                                 <div class="company-preset-card p-3 h-100 ${matchResult.criteriaId == c.criteriaId ? 'active-preset' : ''}">
                                     <div class="d-flex align-items-center justify-content-between mb-2.5">
-                                        <div class="d-flex align-items-center">
-                                            <!-- Dynamic Brand Colored Avatar -->
-                                            <div class="rounded-circle d-flex align-items-center justify-content-center font-weight-bold mr-2.5 text-white shadow-sm"
-                                                 style="width: 38px; height: 38px; font-size: 0.95rem; 
-                                                 background: <c:choose>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'Google')}">linear-gradient(135deg, #4285F4, #34A853)</c:when>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'Amazon')}">linear-gradient(135deg, #FF9900, #232F3E)</c:when>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'Microsoft')}">linear-gradient(135deg, #00A4EF, #7FBA00)</c:when>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'Deloitte')}">linear-gradient(135deg, #86BC25, #111827)</c:when>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'Swiggy')}">linear-gradient(135deg, #FC8019, #E23744)</c:when>
-                                                     <c:when test="${fn:containsIgnoreCase(c.companyName, 'TCS')}">linear-gradient(135deg, #004B87, #00A3E0)</c:when>
-                                                     <c:otherwise>linear-gradient(135deg, #0071e3, #5856d6)</c:otherwise>
-                                                 </c:choose>;">
+                                        <div class="d-flex align-items-center" style="gap: 0.75rem;">
+                                            <!-- Official High-Resolution Vector Company Logos -->
+                                            <div class="company-logo-badge">
                                                 <c:choose>
-                                                    <c:when test="${not empty c.companyName}"><c:out value="${fn:substring(c.companyName, 0, 1)}" /></c:when>
-                                                    <c:otherwise>C</c:otherwise>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'Google')}">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24">
+                                                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                                                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                                                            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.04 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                                                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'Amazon')}">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M13.9 14.8c-2.4 1.8-5.9 2.7-8.9 2.7-4.2 0-8-1.5-10.9-4-.2-.2 0-.5.3-.3 3.2 1.8 7.1 2.9 11.1 2.9 2.7 0 5.7-.6 8.5-1.9.4-.2.7.2.4.6z" fill="#FF9900"/>
+                                                            <path d="M15.1 13.5c-.3-.4-2-.2-2.7-.1-.2 0-.3-.2-.1-.3 1.2-.9 3.2-.6 3.5-.2.3.4-.1 2.4-1.2 3.4-.2.1-.3 0-.2-.2.4-.7.9-2.2.7-2.6z" fill="#FF9900"/>
+                                                            <path d="M12.8 4.2c-2.9 0-4.9 1.6-4.9 3.9 0 2.4 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.4-1.8v1.5c0 .2.1.3.3.3h1.8c.2 0 .3-.1.3-.3V6.8c0-1.8-1.4-2.6-4.6-2.6zm.5 5c-.6.7-1.4 1.1-2.2 1.1-1.1 0-1.8-.6-1.8-1.7 0-1.3.8-2 2.3-2 .7 0 1.3.1 1.7.3v2.3z" fill="#232F3E"/>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'Microsoft')}">
+                                                        <svg width="22" height="22" viewBox="0 0 23 23">
+                                                            <path fill="#f25022" d="M1 1h10v10H1z"/>
+                                                            <path fill="#00a4ef" d="M1 12h10v10H1z"/>
+                                                            <path fill="#7fba00" d="M12 1h10v10H12z"/>
+                                                            <path fill="#ffb900" d="M12 12h10v10H12z"/>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'Deloitte')}">
+                                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                                            <rect x="2" y="2" width="20" height="20" rx="6" fill="#111827"/>
+                                                            <text x="5.5" y="16.5" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="14">D</text>
+                                                            <circle cx="17" cy="15.5" r="2.2" fill="#86BC25"/>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'Swiggy')}">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 7.13 11.45 7.43 11.71.34.29.8.29 1.14 0C12.87 21.45 20 15.25 20 10c0-4.42-3.58-8-8-8zm0 16.55C9.77 16.2 6 12.44 6 10c0-3.31 2.69-6 6-6s6 2.69 6 6c0 2.44-3.77 6.2-6 8.55z" fill="#FC8019"/>
+                                                            <path d="M12 7c-1.66 0-3 1.34-3 3 0 .7.24 1.34.64 1.85L12 14.5l2.36-2.65c.4-.51.64-1.15.64-1.85 0-1.66-1.34-3-3-3z" fill="#FC8019"/>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:when test="${fn:containsIgnoreCase(c.companyName, 'TCS')}">
+                                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                                            <rect x="2" y="2" width="20" height="20" rx="6" fill="#004B87"/>
+                                                            <text x="3.5" y="16" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="9.5" letter-spacing="0.5">TCS</text>
+                                                        </svg>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                                    </c:otherwise>
                                                 </c:choose>
                                             </div>
+
                                             <div>
-                                                <h3 class="font-weight-bold text-dark mb-0" style="font-size: 0.95rem; line-height: 1.2;">
+                                                <h3 class="font-weight-bold text-dark mb-0" style="font-size: 0.98rem; line-height: 1.2;">
                                                     <c:out value="${c.companyName}" />
                                                 </h3>
-                                                <span class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">
+                                                <span class="text-muted d-block mt-0.5" style="font-size: 0.78rem; line-height: 1.25;">
                                                     <c:out value="${c.roleTitle}" />
                                                 </span>
                                             </div>
                                         </div>
+
                                         <c:if test="${matchResult.criteriaId == c.criteriaId}">
-                                            <span class="badge badge-primary px-2 py-1" style="font-size: 0.68rem; border-radius: 10px;">&check; Active</span>
+                                            <span class="badge badge-primary px-2 py-1 font-weight-semibold" style="font-size: 0.7rem; border-radius: 10px; background: #0071e3; box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);">&check; Active</span>
                                         </c:if>
                                     </div>
 
                                     <!-- Technical Cutoffs Pill Row -->
-                                    <div class="d-flex align-items-center justify-content-between pt-2 border-top mt-2" style="font-size: 0.76rem; color: #6e6e73;">
+                                    <div class="d-flex align-items-center justify-content-between pt-2.5 border-top mt-2" style="font-size: 0.78rem; color: #6e6e73;">
                                         <span class="d-inline-flex align-items-center">
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                            DSA: <strong class="ml-0.5 text-dark">${c.minDsaProblems}+</strong>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                            DSA: <strong class="ml-1 text-dark">${c.minDsaProblems}+</strong>
                                         </span>
                                         <span class="d-inline-flex align-items-center">
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.2" class="mr-1"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                                            Projects: <strong class="ml-0.5 text-dark">${c.minProjects}+</strong>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.2" class="mr-1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                            Projects: <strong class="ml-1 text-dark">${c.minProjects}+</strong>
                                         </span>
                                         <span class="d-inline-flex align-items-center">
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                                            CGPA: <strong class="ml-0.5 text-dark">${c.minCgpa}</strong>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                                            CGPA: <strong class="ml-1 text-dark">${c.minCgpa}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -428,45 +489,88 @@
                                 </div>
                             </div>
 
-                            <!-- Skills Matched vs Missing Matrix -->
-                            <div class="ios-card mb-4 p-3.5 shadow-sm">
-                                <h3 class="h6 font-weight-bold text-dark mb-3 d-flex align-items-center" style="font-size: 0.95rem;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-primary"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    Technical Competency Alignment
-                                </h3>
-
-                                <div class="mb-3">
-                                    <div class="small font-weight-bold text-success mb-2 d-flex align-items-center">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        Matched Competencies (${fn:length(matchResult.matchedSkills)})
+                            <!-- SECTION: High-End Dual Split Technical Competency Alignment Matrix -->
+                            <div class="ios-card mb-4 shadow-sm p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3.5 pb-2 border-bottom flex-wrap gap-2">
+                                    <div>
+                                        <h3 class="h6 font-weight-bold text-dark mb-0.5 d-flex align-items-center" style="font-size: 1.05rem;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                            Technical Competency Alignment
+                                        </h3>
+                                        <small class="text-muted">Direct comparison between candidate profile proficiencies and job requirements</small>
                                     </div>
-                                    <div class="d-flex flex-wrap" style="gap: 0.5rem;">
-                                        <c:forEach items="${matchResult.matchedSkills}" var="s">
-                                            <span class="skill-pill-matched">
-                                                &check; <c:out value="${s}" />
-                                            </span>
-                                        </c:forEach>
-                                        <c:if test="${empty matchResult.matchedSkills}">
-                                            <span class="text-muted small font-italic py-1">No verified skills matched yet for this target role.</span>
-                                        </c:if>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge badge-success-soft font-weight-bold px-2.5 py-1 text-success" style="background: rgba(52, 199, 89, 0.12); border-radius: 12px; font-size: 0.78rem;">
+                                            &check; ${fn:length(matchResult.matchedSkills)} Matched
+                                        </span>
+                                        <span class="badge badge-danger-soft font-weight-bold px-2.5 py-1 text-danger" style="background: rgba(239, 68, 68, 0.1); border-radius: 12px; font-size: 0.78rem;">
+                                            &times; ${fn:length(matchResult.missingSkills)} Gaps
+                                        </span>
                                     </div>
                                 </div>
 
-                                <c:if test="${not empty matchResult.missingSkills}">
-                                    <div class="pt-2 border-top mt-3">
-                                        <div class="small font-weight-bold text-danger mb-2 d-flex align-items-center">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                            Missing Required Skills (${fn:length(matchResult.missingSkills)})
-                                        </div>
-                                        <div class="d-flex flex-wrap" style="gap: 0.5rem;">
-                                            <c:forEach items="${matchResult.missingSkills}" var="ms">
-                                                <span class="skill-pill-missing">
-                                                    &plus; <c:out value="${ms}" />
+                                <div class="row g-3">
+                                    <!-- Left Column: Matched Competencies -->
+                                    <div class="col-md-6 mb-3">
+                                        <div class="competency-box-matched">
+                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-1 border-bottom" style="border-color: rgba(52, 199, 89, 0.2) !important;">
+                                                <span class="font-weight-bold text-success d-flex align-items-center" style="font-size: 0.88rem;">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                                    Matched Competencies (${fn:length(matchResult.matchedSkills)})
                                                 </span>
-                                            </c:forEach>
+                                                <span class="text-muted font-weight-semibold" style="font-size: 0.72rem;">Verified</span>
+                                            </div>
+
+                                            <div class="d-flex flex-column" style="gap: 0.5rem;">
+                                                <c:forEach items="${matchResult.matchedSkills}" var="s">
+                                                    <div class="skill-card-matched">
+                                                        <span class="font-weight-bold text-dark d-flex align-items-center" style="font-size: 0.84rem;">
+                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center mr-2 text-white" style="width: 18px; height: 18px; background: #34c759; font-size: 0.65rem;">&check;</span>
+                                                            <c:out value="${s}" />
+                                                        </span>
+                                                        <span class="badge badge-success font-weight-semibold py-0.5 px-2" style="font-size: 0.68rem; border-radius: 10px; background: rgba(52, 199, 89, 0.2); color: #248a3d;">Ready</span>
+                                                    </div>
+                                                </c:forEach>
+                                                <c:if test="${empty matchResult.matchedSkills}">
+                                                    <div class="text-center py-4 text-muted small">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.5" class="mb-1"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                                        <div class="font-weight-500">No verified skills matched yet.</div>
+                                                    </div>
+                                                </c:if>
+                                            </div>
                                         </div>
                                     </div>
-                                </c:if>
+
+                                    <!-- Right Column: Missing Required Skills -->
+                                    <div class="col-md-6 mb-3">
+                                        <div class="competency-box-missing">
+                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-1 border-bottom" style="border-color: rgba(239, 68, 68, 0.2) !important;">
+                                                <span class="font-weight-bold text-danger d-flex align-items-center" style="font-size: 0.88rem;">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                    Missing Required Skills (${fn:length(matchResult.missingSkills)})
+                                                </span>
+                                                <span class="text-danger font-weight-semibold" style="font-size: 0.72rem;">Action Needed</span>
+                                            </div>
+
+                                            <div class="d-flex flex-column" style="gap: 0.5rem;">
+                                                <c:forEach items="${matchResult.missingSkills}" var="ms">
+                                                    <div class="skill-card-missing">
+                                                        <span class="font-weight-bold text-dark d-flex align-items-center" style="font-size: 0.84rem;">
+                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center mr-2 text-white" style="width: 18px; height: 18px; background: #ef4444; font-size: 0.7rem;">&plus;</span>
+                                                            <c:out value="${ms}" />
+                                                        </span>
+                                                        <span class="badge badge-danger font-weight-semibold py-0.5 px-2" style="font-size: 0.68rem; border-radius: 10px; background: rgba(239, 68, 68, 0.15); color: #dc2626;">Target Gap</span>
+                                                    </div>
+                                                </c:forEach>
+                                                <c:if test="${empty matchResult.missingSkills}">
+                                                    <div class="text-center py-4 text-success small font-weight-bold">
+                                                        &check; Zero skill gaps! You match all requirements.
+                                                    </div>
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Personalized Dynamic Gap Roadmap -->

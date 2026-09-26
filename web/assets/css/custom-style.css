@@ -232,6 +232,57 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
 }
 
+.ios-capsule-nav .dropdown {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.ios-capsule-nav .dropdown-toggle::after {
+  display: none !important;
+}
+
+.ios-capsule-dropdown-menu {
+  min-width: 215px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  padding: 6px !important;
+  margin-top: 8px !important;
+  animation: iosCapsuleFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes iosCapsuleFadeIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ios-capsule-dropdown-item {
+  border-radius: 10px !important;
+  font-size: 0.835rem !important;
+  font-weight: 600 !important;
+  padding: 0.55rem 0.85rem !important;
+  color: #334155 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.15s ease !important;
+}
+
+.ios-capsule-dropdown-item:hover {
+  background: rgba(0, 113, 227, 0.08) !important;
+  color: #0071e3 !important;
+  text-decoration: none !important;
+}
+
+.ios-capsule-dropdown-item.active {
+  background: rgba(0, 113, 227, 0.12) !important;
+  color: #0071e3 !important;
+  font-weight: 700 !important;
+}
+
 /* =====================================================================
    Full-Screen Apple iOS 18 Mobile Navigation Drawer System
    ===================================================================== */

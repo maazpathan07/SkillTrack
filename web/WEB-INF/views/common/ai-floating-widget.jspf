@@ -141,7 +141,7 @@
 
     <!-- 3. STYLING FOR FLOATING AI WIDGET (Glassmorphic iOS 18 Design) -->
     <style>
-    /* Trigger Floating Button */
+    /* Trigger Floating Button (Draggable) */
     .ai-float-trigger {
         position: fixed;
         bottom: 24px;
@@ -153,21 +153,30 @@
         color: #ffffff;
         border: 2px solid rgba(255, 255, 255, 0.85);
         box-shadow: 0 8px 24px rgba(0, 113, 227, 0.4), 0 2px 6px rgba(99, 102, 241, 0.3);
-        cursor: pointer;
+        cursor: grab;
         z-index: 1040;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
         outline: none !important;
+        user-select: none;
+        touch-action: none;
     }
     .ai-float-trigger:hover {
         transform: scale(1.08) translateY(-2px);
         box-shadow: 0 12px 32px rgba(0, 113, 227, 0.5), 0 4px 12px rgba(99, 102, 241, 0.4);
     }
     .ai-float-trigger:active {
+        cursor: grabbing;
         transform: scale(0.96);
+    }
+    .ai-float-trigger.is-dragging {
+        cursor: grabbing !important;
+        transition: none !important;
+        box-shadow: 0 18px 40px rgba(0, 113, 227, 0.65), 0 6px 16px rgba(99, 102, 241, 0.5) !important;
+        transform: scale(1.12) !important;
     }
     .ai-trigger-inner {
         position: relative;
@@ -578,7 +587,151 @@
             if (iconClose) iconClose.style.display = 'none';
         }
 
-        if (triggerBtn) triggerBtn.addEventListener('click', toggleAiChat);
+        // ============================================
+        // DRAGGABLE FLOATING AI BUTTON ENGINE
+        // ============================================
+        var isDragging = false;
+        var hasMoved = false;
+        var startX, startY;
+        var initialLeft, initialTop;
+        var dragThreshold = 6;
+
+        function restorePosition() {
+            try {
+                var savedPos = localStorage.getItem('skilltrack_ai_float_pos');
+                if (savedPos && triggerBtn) {
+                    var pos = JSON.parse(savedPos);
+                    var maxX = window.innerWidth - (triggerBtn.offsetWidth || 58) - 10;
+                    var maxY = window.innerHeight - (triggerBtn.offsetHeight || 58) - 10;
+                    var left = Math.max(10, Math.min(pos.x, maxX));
+                    var top = Math.max(10, Math.min(pos.y, maxY));
+                    triggerBtn.style.left = left + 'px';
+                    triggerBtn.style.top = top + 'px';
+                    triggerBtn.style.right = 'auto';
+                    triggerBtn.style.bottom = 'auto';
+                    updatePopupAlignment(left, top);
+                }
+            } catch (e) {}
+        }
+
+        function updatePopupAlignment(btnLeft, btnTop) {
+            if (!popupWindow) return;
+            var winWidth = window.innerWidth;
+            var winHeight = window.innerHeight;
+            if (winWidth <= 576) return;
+
+            if (btnLeft < winWidth / 2) {
+                popupWindow.style.left = Math.min(btnLeft + 70, winWidth - 400) + 'px';
+                popupWindow.style.right = 'auto';
+            } else {
+                popupWindow.style.right = Math.max(winWidth - btnLeft + 10, 24) + 'px';
+                popupWindow.style.left = 'auto';
+            }
+
+            if (btnTop < winHeight / 2) {
+                popupWindow.style.top = Math.max(btnTop, 20) + 'px';
+                popupWindow.style.bottom = 'auto';
+            } else {
+                popupWindow.style.bottom = Math.max(winHeight - btnTop - 58, 24) + 'px';
+                popupWindow.style.top = 'auto';
+            }
+        }
+
+        function onDragStart(e) {
+            if (e.type === 'mousedown' && e.button !== 0) return;
+
+            var clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+            var clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+            startX = clientX;
+            startY = clientY;
+
+            var rect = triggerBtn.getBoundingClientRect();
+            initialLeft = rect.left;
+            initialTop = rect.top;
+
+            hasMoved = false;
+            isDragging = true;
+
+            if (e.type === 'mousedown') {
+                document.addEventListener('mousemove', onDragMove, { passive: false });
+                document.addEventListener('mouseup', onDragEnd);
+            } else if (e.type === 'touchstart') {
+                document.addEventListener('touchmove', onDragMove, { passive: false });
+                document.addEventListener('touchend', onDragEnd);
+                document.addEventListener('touchcancel', onDragEnd);
+            }
+        }
+
+        function onDragMove(e) {
+            if (!isDragging) return;
+
+            var clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+            var clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+            var dx = clientX - startX;
+            var dy = clientY - startY;
+
+            if (!hasMoved && (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold)) {
+                hasMoved = true;
+                triggerBtn.classList.add('is-dragging');
+            }
+
+            if (hasMoved) {
+                e.preventDefault();
+
+                var btnWidth = triggerBtn.offsetWidth || 58;
+                var btnHeight = triggerBtn.offsetHeight || 58;
+                var maxX = window.innerWidth - btnWidth - 10;
+                var maxY = window.innerHeight - btnHeight - 10;
+
+                var newLeft = Math.max(10, Math.min(initialLeft + dx, maxX));
+                var newTop = Math.max(10, Math.min(initialTop + dy, maxY));
+
+                triggerBtn.style.left = newLeft + 'px';
+                triggerBtn.style.top = newTop + 'px';
+                triggerBtn.style.right = 'auto';
+                triggerBtn.style.bottom = 'auto';
+            }
+        }
+
+        function onDragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            triggerBtn.classList.remove('is-dragging');
+
+            document.removeEventListener('mousemove', onDragMove);
+            document.removeEventListener('mouseup', onDragEnd);
+            document.removeEventListener('touchmove', onDragMove);
+            document.removeEventListener('touchend', onDragEnd);
+            document.removeEventListener('touchcancel', onDragEnd);
+
+            if (hasMoved) {
+                var rect = triggerBtn.getBoundingClientRect();
+                try {
+                    localStorage.setItem('skilltrack_ai_float_pos', JSON.stringify({ x: rect.left, y: rect.top }));
+                } catch (err) {}
+                updatePopupAlignment(rect.left, rect.top);
+            }
+        }
+
+        if (triggerBtn) {
+            triggerBtn.addEventListener('mousedown', onDragStart);
+            triggerBtn.addEventListener('touchstart', onDragStart, { passive: true });
+
+            triggerBtn.addEventListener('click', function(e) {
+                if (hasMoved) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    hasMoved = false;
+                    return false;
+                }
+                toggleAiChat(e);
+            });
+
+            restorePosition();
+        }
+
         if (closeBtn) closeBtn.addEventListener('click', closeAiChat);
 
         if (clearBtn) {

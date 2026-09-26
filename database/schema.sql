@@ -279,6 +279,32 @@ CREATE TABLE IF NOT EXISTS app_settings (
     INDEX idx_settings_key (setting_key)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ---------------------------------------------------------------------
+-- Table 16: CUSTOM_JD_EVALUATIONS (Live & Custom JD Match Records)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS custom_jd_evaluations (
+    eval_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    target_company VARCHAR(150) NOT NULL,
+    target_role VARCHAR(150) NOT NULL,
+    source_type ENUM('PRESET_CRITERIA', 'CUSTOM_PASTE', 'URL_FETCH') NOT NULL DEFAULT 'CUSTOM_PASTE',
+    source_url VARCHAR(255) NULL,
+    raw_jd_text MEDIUMTEXT NULL,
+    overall_match_score INT NOT NULL DEFAULT 0,
+    dsa_score INT NOT NULL DEFAULT 0,
+    project_score INT NOT NULL DEFAULT 0,
+    cert_score INT NOT NULL DEFAULT 0,
+    skill_score INT NOT NULL DEFAULT 0,
+    academic_score INT NOT NULL DEFAULT 0,
+    matched_skills_json TEXT NULL,
+    missing_skills_json TEXT NULL,
+    action_items_json TEXT NULL,
+    evaluated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_custom_jd_student FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    INDEX idx_jd_student (student_id),
+    INDEX idx_jd_evaluated_at (evaluated_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- =====================================================================
 -- SEED DATA
 -- =====================================================================
@@ -445,15 +471,18 @@ INSERT INTO dsa_topics (topic_id, topic_name, category) VALUES
 (18, 'System Design Basics (DSA-focused)', 'ADVANCED_DSA')
 ON DUPLICATE KEY UPDATE topic_name=VALUES(topic_name);
 
--- 7. Placement Criteria Profiles (3 Pre-seeded Mock Criteria)
+-- 7. Placement Criteria Profiles (6 Real-World Placement Criteria)
 INSERT INTO placement_criteria (criteria_id, company_name, role_title, min_cgpa, min_dsa_problems, min_projects, min_certifications, allowed_departments, is_active) VALUES
-(1, 'Tier-1 Product Company', 'Software Development Engineer (SDE-1)', 7.50, 150, 3, 1, 'CSE,IT,ECE', 1),
-(2, 'High-Growth Startup', 'Full Stack Developer', 6.50, 80, 3, 1, 'CSE,IT,ECE,EEE', 1),
-(3, 'Enterprise IT Services', 'Systems Engineer', 6.00, 40, 1, 1, 'ALL', 1)
-ON DUPLICATE KEY UPDATE company_name=VALUES(company_name);
+(1, 'Google', 'Software Development Engineer (SDE-1)', 7.50, 150, 3, 1, 'CSE,IT,ECE', 1),
+(2, 'Amazon', 'Software Development Engineer (SDE-1)', 7.00, 140, 3, 1, 'CSE,IT,ECE,EEE', 1),
+(3, 'Microsoft', 'Software Engineer (Full Stack & Cloud)', 7.20, 120, 3, 1, 'CSE,IT,ECE', 1),
+(4, 'Swiggy / Startups', 'Full Stack Developer (React / Spring Boot)', 6.50, 80, 3, 1, 'CSE,IT,ECE,EEE,MECH,CIVIL', 1),
+(5, 'TCS Digital / Prime', 'Digital Systems Engineer', 6.50, 60, 2, 1, 'ALL', 1),
+(6, 'Deloitte Consulting', 'Technology Analyst & Cloud Associate', 6.00, 40, 2, 1, 'ALL', 1)
+ON DUPLICATE KEY UPDATE company_name=VALUES(company_name), role_title=VALUES(role_title), min_cgpa=VALUES(min_cgpa), min_dsa_problems=VALUES(min_dsa_problems), min_projects=VALUES(min_projects), min_certifications=VALUES(min_certifications), allowed_departments=VALUES(allowed_departments);
 
 -- 8. Criteria Skill Requirements
--- Criteria 1: Tier-1 SDE-1
+-- Criteria 1: Google SDE-1
 INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
 (1, 20, 'ADVANCED', 1),     -- DSA (ADVANCED)
 (1, 1, 'INTERMEDIATE', 1),   -- Java (INTERMEDIATE)
@@ -462,18 +491,46 @@ INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency,
 (1, 23, 'INTERMEDIATE', 1)   -- OS (INTERMEDIATE)
 ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
 
--- Criteria 2: High-Growth Startup (Full Stack)
+-- Criteria 2: Amazon SDE-1
 INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
-(2, 3, 'INTERMEDIATE', 1),   -- JavaScript
-(2, 8, 'INTERMEDIATE', 1),   -- React.js
-(2, 11, 'INTERMEDIATE', 1),  -- RESTful APIs
-(2, 12, 'INTERMEDIATE', 1),  -- MySQL
-(2, 16, 'INTERMEDIATE', 1)   -- Git & GitHub
+(2, 20, 'ADVANCED', 1),     -- DSA (ADVANCED)
+(2, 1, 'INTERMEDIATE', 1),   -- Java
+(2, 18, 'INTERMEDIATE', 1),  -- AWS Core
+(2, 21, 'ADVANCED', 1),      -- OOP
+(2, 22, 'INTERMEDIATE', 1)   -- DBMS
 ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
 
--- Criteria 3: Enterprise IT Services (Systems Engineer)
+-- Criteria 3: Microsoft Software Engineer
 INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
-(3, 1, 'BEGINNER', 1),       -- Java
-(3, 5, 'BEGINNER', 1),       -- SQL
-(3, 21, 'BEGINNER', 1)       -- OOP
+(3, 20, 'INTERMEDIATE', 1),  -- DSA
+(3, 1, 'INTERMEDIATE', 1),   -- Java / C#
+(3, 8, 'INTERMEDIATE', 1),   -- React.js
+(3, 11, 'INTERMEDIATE', 1),  -- RESTful APIs
+(3, 15, 'BEGINNER', 1)       -- Docker
 ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
+
+-- Criteria 4: Swiggy / Startups (Full Stack)
+INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
+(4, 3, 'INTERMEDIATE', 1),   -- JavaScript
+(4, 8, 'INTERMEDIATE', 1),   -- React.js
+(4, 7, 'INTERMEDIATE', 1),   -- Spring Boot
+(4, 12, 'INTERMEDIATE', 1),  -- MySQL
+(4, 16, 'INTERMEDIATE', 1)   -- Git & GitHub
+ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
+
+-- Criteria 5: TCS Digital (Systems Engineer)
+INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
+(5, 1, 'INTERMEDIATE', 1),   -- Java
+(5, 5, 'INTERMEDIATE', 1),   -- SQL
+(5, 20, 'INTERMEDIATE', 1),  -- DSA
+(5, 21, 'BEGINNER', 1)       -- OOP
+ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
+
+-- Criteria 6: Deloitte Consulting (Tech Analyst)
+INSERT INTO criteria_skill_requirements (criteria_id, skill_id, min_proficiency, is_mandatory) VALUES
+(6, 1, 'BEGINNER', 1),       -- Java
+(6, 5, 'INTERMEDIATE', 1),   -- SQL
+(6, 18, 'BEGINNER', 1),      -- AWS Core
+(6, 22, 'BEGINNER', 1)       -- DBMS
+ON DUPLICATE KEY UPDATE min_proficiency=VALUES(min_proficiency);
+

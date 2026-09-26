@@ -80,8 +80,11 @@
                 <div class="ai-msg-row ai-msg-ai">
                     <div class="ai-msg-avatar">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+                            <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                            <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+                            <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+                            <path d="M10 17h4"></path>
                         </svg>
                     </div>
                     <div class="ai-msg-bubble">
@@ -97,7 +100,11 @@
                 <div id="aiTypingIndicator" class="ai-msg-row ai-msg-ai" style="display: none;">
                     <div class="ai-msg-avatar">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                            <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+                            <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+                            <path d="M10 17h4"></path>
                         </svg>
                     </div>
                     <div class="ai-msg-bubble ai-typing-bubble">
@@ -683,7 +690,7 @@
                     aiBubble.className = 'ai-msg-row ai-msg-ai';
                     aiBubble.innerHTML = 
                         '<div class="ai-msg-avatar">' +
-                            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>' +
+                            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><circle cx="9" cy="13" r="1.5" fill="currentColor"></circle><circle cx="15" cy="13" r="1.5" fill="currentColor"></circle><path d="M10 17h4"></path></svg>' +
                         '</div>' +
                         '<div class="ai-msg-bubble">' +
                             '<div class="ai-msg-text">' + formatAiMarkdown(data.message) + '</div>' +

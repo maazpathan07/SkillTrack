@@ -82,40 +82,48 @@
     .editor-topbar {
         background: #16161c;
         border-bottom: 1px solid #272732;
-        padding: 8px 14px;
+        padding: 8px 12px;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+    }
+    .editor-topbar::-webkit-scrollbar {
+        display: none;
     }
 
     /* Language Pills */
     .lang-tabs-group {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
         background: #0f0f13;
         padding: 3px 4px;
-        border-radius: 12px;
+        border-radius: 10px;
         border: 1px solid #272732;
+        flex-shrink: 0;
     }
 
     .lang-pill-btn {
         background: transparent;
         color: #94a3b8;
         border: none;
-        padding: 5px 12px;
-        border-radius: 9px;
-        font-size: 0.82rem;
+        padding: 4px 10px;
+        border-radius: 7px;
+        font-size: 0.8rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.18s ease;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         font-family: inherit;
         line-height: 1.2;
+        white-space: nowrap;
     }
 
     .lang-pill-btn svg {
@@ -467,13 +475,13 @@
                     </div>
 
                     <!-- Right Quick Tools -->
-                    <div class="d-flex align-items-center gap-2">
-                        <select id="snippetSelector" class="snippet-select-dark" onchange="loadPresetSnippet(this.value)">
-                            <option value="">⚡ Algorithm Templates...</option>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <select id="snippetSelector" class="snippet-select-dark" onchange="loadPresetSnippet(this.value)" style="max-width: 155px;">
+                            <option value="">⚡ Templates...</option>
                             <option value="hello">Hello World</option>
-                            <option value="twosum">Two Sum (Hash Map)</option>
+                            <option value="twosum">Two Sum</option>
                             <option value="binarysearch">Binary Search</option>
-                            <option value="fibonacci">Fibonacci Numbers</option>
+                            <option value="fibonacci">Fibonacci</option>
                             <option value="reverse">String Reversal</option>
                         </select>
 

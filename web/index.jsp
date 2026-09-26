@@ -480,163 +480,218 @@
             </div>
         </section>
 
-        <!-- 3. FOUR CORE CAPABILITIES (APPLE GLASS CARDS) -->
+        <!-- 3. FOUR CORE PLACEMENT ENGINES (APPLE GLASS CARDS) -->
         <section class="py-5" id="features" style="background: var(--ios-bg-base);">
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Core Capabilities</span>
-                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
-                        Four Modular Placement Engines
+                    <h2 class="ios-section-title font-weight-bold" style="color: #0f172a; letter-spacing: -0.025em;">
+                        Four Modular Placement Intelligence Engines
                     </h2>
-                    <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
-                        Built on clean data models to guide you step-by-step to your campus offer letter.
+                    <p class="text-muted" style="max-width: 680px; margin: auto; font-size: 1.05rem; line-height: 1.6;">
+                        Built on deterministic data models to benchmark skills, track algorithmic mastery, and guide you directly to top-tier campus offers.
                     </p>
                 </div>
 
                 <div class="row">
-                    <!-- Feature Card 1: Role Skill Gap Engine -->
+                    <!-- Engine Card 1: LeetCode Auto-Sync & 18-Topic DSA Matrix -->
                     <div class="col-lg-6 mb-4">
-                        <div class="ios-feature-card">
+                        <div class="ios-feature-card h-100" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; padding: 1.75rem; box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="ios-icon-box ios-icon-blue mr-3 flex-shrink-0">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1.5px solid rgba(245, 158, 11, 0.35); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.18);">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFA116">
+                                        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/>
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Role Skill Gap Engine</h5>
-                                    <small class="text-muted" style="display: block; margin-top: 2px;">Target Competency Benchmarking</small>
+                                    <h5 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 1.1rem; line-height: 1.3;">LeetCode Auto-Sync &amp; 18-Topic DSA Matrix</h5>
+                                    <small class="text-muted" style="font-size: 0.775rem;">Real-time API Sync &bull; Automated Allocation</small>
                                 </div>
                             </div>
-                            <p class="text-muted small mb-4">
-                                Select your target role (Full Stack, Backend, Cloud DevOps) and immediately discover acquired proficiencies vs missing requirements.
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">
+                                Auto-sync problem counts (Easy, Medium, Hard breakdown) directly from your LeetCode profile. Progress is automatically mapped across 18 core algorithmic topics without manual entry.
                             </p>
 
-                            <!-- Enhanced Apple Glass Skill Tracker -->
-                            <div class="p-3 bg-light rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
-                                <div class="d-flex justify-content-between small font-weight-bold mb-1">
-                                    <span style="color: var(--ios-text-primary);">Java / Spring Boot Core</span>
-                                    <span class="text-success font-weight-bold">Matched (Advanced)</span>
-                                </div>
-                                <div class="progress mb-3" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
-                                    <div class="progress-bar bg-success" style="width: 100%;"></div>
-                                </div>
-
-                                <div class="d-flex justify-content-between small font-weight-bold mb-1">
-                                    <span style="color: var(--ios-text-primary);">Docker & Containerization</span>
-                                    <span style="color: #c2410c;" class="font-weight-bold">Needs Level Up (Basic ➔ Interm)</span>
-                                </div>
-                                <div class="progress mb-3" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
-                                    <div class="progress-bar" style="width: 65%; background: var(--ios-orange);"></div>
+                            <!-- Glass LeetCode Live Container -->
+                            <div class="p-3 rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: 14px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="d-flex align-items-center gap-1.5">
+                                        <span class="font-weight-bold text-dark small">LeetCode Benchmark:</span>
+                                        <span class="ios-badge ios-badge-green" style="font-size: 0.7rem;">156 / 150 Solved (104%)</span>
+                                    </div>
+                                    <span class="ios-badge ios-badge-blue" style="font-size: 0.7rem;">18 Core Topics</span>
                                 </div>
 
-                                <div class="d-flex justify-content-between small font-weight-bold mb-1">
-                                    <span style="color: var(--ios-text-primary);">Kubernetes Orchestration</span>
-                                    <span class="text-danger font-weight-bold">Missing Competency</span>
+                                <div class="row text-center no-gutters mb-2" style="gap: 5px;">
+                                    <div class="col p-1.5 rounded border bg-white">
+                                        <div class="font-weight-bold text-success" style="font-size: 0.95rem;">84</div>
+                                        <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🟢 Easy</small>
+                                    </div>
+                                    <div class="col p-1.5 rounded border bg-white">
+                                        <div class="font-weight-bold text-warning" style="font-size: 0.95rem;">52</div>
+                                        <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🟡 Medium</small>
+                                    </div>
+                                    <div class="col p-1.5 rounded border bg-white">
+                                        <div class="font-weight-bold text-danger" style="font-size: 0.95rem;">20</div>
+                                        <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🔴 Hard</small>
+                                    </div>
                                 </div>
-                                <div class="progress" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
-                                    <div class="progress-bar bg-danger" style="width: 15%;"></div>
+
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span class="ios-badge ios-badge-gray mr-1 mb-1" style="font-size: 0.68rem;">Arrays &amp; Strings</span>
+                                    <span class="ios-badge ios-badge-gray mr-1 mb-1" style="font-size: 0.68rem;">Two Pointers</span>
+                                    <span class="ios-badge ios-badge-gray mr-1 mb-1" style="font-size: 0.68rem;">Binary Search</span>
+                                    <span class="ios-badge ios-badge-gray mr-1 mb-1" style="font-size: 0.68rem;">Dynamic Programming</span>
+                                    <span class="ios-badge ios-badge-gray mb-1" style="font-size: 0.68rem;">+14 More</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Feature Card 2: DSA Problem Solving Engine -->
+                    <!-- Engine Card 2: ATS Placement Resume & Keyword Scanner -->
                     <div class="col-lg-6 mb-4">
-                        <div class="ios-feature-card">
+                        <div class="ios-feature-card h-100" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; padding: 1.75rem; box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="ios-icon-box ios-icon-green mr-3 flex-shrink-0">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+                                <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.18);">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">DSA & Problem Solving Engine</h5>
-                                    <small class="text-muted" style="display: block; margin-top: 2px;">Topic-Wise Algorithmic Milestones</small>
+                                    <h5 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 1.1rem; line-height: 1.3;">ATS Resume &amp; Diagnostic Engine</h5>
+                                    <small class="text-muted" style="font-size: 0.775rem;">Ivy-League A4 Layout &bull; 0-100% Keyword Score</small>
                                 </div>
                             </div>
-                            <p class="text-muted small mb-4">
-                                Maintain structured daily logs across Arrays, Trees, Graphs, and Dynamic Programming with difficulty breakdown counters.
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">
+                                Audit your placement resume against enterprise applicant tracking systems (ATS). Optimize action verbs, quantified bullet points, and export Ivy-League standard 1-page A4 PDF resumes.
                             </p>
 
-                            <!-- Enhanced Apple Glass DSA Counters -->
-                            <div class="row text-center mb-3">
-                                <div class="col-4">
-                                    <div class="p-3 rounded border bg-white shadow-xs">
-                                        <div class="font-weight-bold text-success" style="font-size: 1.5rem; line-height: 1;">84</div>
-                                        <span class="ios-badge ios-badge-green small mt-2">Easy</span>
-                                    </div>
+                            <!-- Enhanced ATS Diagnostic Container -->
+                            <div class="p-3 rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: 14px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small font-weight-bold text-dark">ATS Keyword Match Diagnostic</span>
+                                    <span class="font-weight-bold text-success" style="font-size: 0.9rem;">94 / 100 &bull; Grade A+</span>
                                 </div>
-                                <div class="col-4">
-                                    <div class="p-3 rounded border bg-white shadow-xs">
-                                        <div class="font-weight-bold" style="font-size: 1.5rem; line-height: 1; color: var(--ios-orange);">52</div>
-                                        <span class="ios-badge ios-badge-orange small mt-2">Medium</span>
-                                    </div>
+                                
+                                <div class="d-flex justify-content-between small font-weight-bold mb-1">
+                                    <span class="text-muted">Target Role Skill Keywords</span>
+                                    <span class="text-success">95% Matched</span>
                                 </div>
-                                <div class="col-4">
-                                    <div class="p-3 rounded border bg-white shadow-xs">
-                                        <div class="font-weight-bold text-danger" style="font-size: 1.5rem; line-height: 1;">20</div>
-                                        <span class="ios-badge ios-badge-red small mt-2">Hard</span>
-                                    </div>
+                                <div class="progress mb-2" style="height: 5px; border-radius: 3px; background: #e2e8f0;">
+                                    <div class="progress-bar bg-success" style="width: 95%;"></div>
                                 </div>
-                            </div>
-                            <div class="text-center">
-                                <span class="text-muted small font-weight-bold">156 Solved Questions Across 12 Algorithmic Topics</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Feature Card 3: Project & Certification Portfolio -->
-                    <div class="col-lg-6 mb-4">
-                        <div class="ios-feature-card">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="ios-icon-box ios-icon-purple mr-3 flex-shrink-0">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                <div class="d-flex justify-content-between small font-weight-bold mb-1">
+                                    <span class="text-muted">Impact Action Verbs &amp; Metrics</span>
+                                    <span style="color: #0071e3;">88% Optimized</span>
                                 </div>
-                                <div>
-                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Project & Certification Portfolio</h5>
-                                    <small class="text-muted" style="display: block; margin-top: 2px;">Verified Proof-of-Work</small>
+                                <div class="progress mb-2" style="height: 5px; border-radius: 3px; background: #e2e8f0;">
+                                    <div class="progress-bar" style="width: 88%; background: #0071e3;"></div>
                                 </div>
-                            </div>
-                            <p class="text-muted small mb-3">
-                                Showcase real-world GitHub repositories, live deployed application URLs, tech stacks, and industry certification credentials.
-                            </p>
-                            
-                            <!-- Enhanced Project Card -->
-                            <div class="p-3 bg-light rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
-                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-                                    <div class="d-flex align-items-center">
-                                        <span class="mr-2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--ios-green); display: inline-block;"></span>
-                                        <span class="font-weight-bold small" style="color: var(--ios-text-primary);">E-Commerce Microservices Platform</span>
-                                    </div>
-                                    <span class="ios-badge ios-badge-blue">Live Demo</span>
-                                </div>
-                                <div class="mt-2 text-muted small">
-                                    <span>Stack: Java, Spring Cloud, Kafka, Docker, MySQL</span>
+
+                                <div class="d-flex justify-content-between align-items-center pt-1 border-top" style="font-size: 0.725rem;">
+                                    <span class="text-muted">📄 Single-Column Ivy-League A4 Format</span>
+                                    <span class="text-success font-weight-bold">100% Compliant ✓</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Feature Card 4: Placement Cutoff Matcher -->
+                    <!-- Engine Card 3: Dream Job Matcher & Skill Gap Radar -->
                     <div class="col-lg-6 mb-4">
-                        <div class="ios-feature-card">
+                        <div class="ios-feature-card h-100" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; padding: 1.75rem; box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="ios-icon-box ios-icon-orange mr-3 flex-shrink-0">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(0, 113, 227, 0.1); border: 1.5px solid rgba(0, 113, 227, 0.3); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.18);">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="6"></circle>
+                                        <circle cx="12" cy="12" r="2"></circle>
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h5 class="font-weight-bold mb-0" style="color: var(--ios-text-primary); line-height: 1.25;">Placement Cutoff Matcher</h5>
-                                    <small class="text-muted" style="display: block; margin-top: 2px;">Real-Time Company Eligibility</small>
+                                    <h5 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 1.1rem; line-height: 1.3;">Dream Job Matcher &amp; Gap Radar</h5>
+                                    <small class="text-muted" style="font-size: 0.775rem;">Company Standards &bull; Dynamic Competency Radar</small>
                                 </div>
                             </div>
-                            <p class="text-muted small mb-3">
-                                Automated evaluation against hiring criteria (CGPA threshold, allowed backlogs, mandatory skills) with real-time match status.
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">
+                                Benchmark your readiness against Tier-1 company cutoffs (Google, Amazon, Microsoft, TCS, Infosys). Uncover required technical competencies, DSA goals, and missing skill levels.
                             </p>
-                            
-                            <!-- Enhanced Criteria Matcher Box -->
-                            <div class="p-3 bg-light rounded-lg border d-flex flex-wrap justify-content-between align-items-center gap-2" style="background: rgba(248, 250, 252, 0.95); border-radius: var(--ios-radius-sm);">
-                                <div>
-                                    <div class="font-weight-bold small" style="color: var(--ios-text-primary);">Tier-1 Product Company Cutoff</div>
-                                    <small class="text-muted">Min CGPA: 8.0 | Max Backlogs: 0 | Score &ge; 80</small>
+
+                            <!-- Enhanced Company Matching Box -->
+                            <div class="p-3 rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: 14px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small font-weight-bold text-dark">Target Role: Full Stack Developer</span>
+                                    <span class="ios-badge ios-badge-green" style="font-size: 0.7rem;">Ready (88%)</span>
                                 </div>
-                                <span class="ios-badge ios-badge-green font-weight-bold">Eligible ✓</span>
+
+                                <div class="p-2 mb-2 rounded bg-white border d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="font-weight-bold text-dark" style="font-size: 0.8rem;">Tier-1 Product Tech Preset (Amazon / SDE-1)</div>
+                                        <small class="text-muted" style="font-size: 0.68rem;">Min CGPA: 7.5 &bull; DSA: 150+ &bull; Projects: 2+ Full Stack</small>
+                                    </div>
+                                    <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Eligible ✓</span>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-1 pt-1">
+                                    <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.68rem;">Java / Spring Boot (Advanced)</span>
+                                    <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.68rem;">React.js (Proficient)</span>
+                                    <span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.68rem;">Docker (Level Up)</span>
+                                    <span class="ios-badge ios-badge-red mb-1" style="font-size: 0.68rem;">System Design (Prep)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Engine Card 4: Public Verified Placement Passport & QR Engine -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="ios-feature-card h-100" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; padding: 1.75rem; box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(139, 92, 246, 0.1); border: 1.5px solid rgba(139, 92, 246, 0.3); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.18);">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 1.1rem; line-height: 1.3;">Verified Placement Passport &amp; QR</h5>
+                                    <small class="text-muted" style="font-size: 0.775rem;">Tamper-Proof Credential &bull; 1-Click Verification</small>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">
+                                Share an official public placement profile (<code style="color: #7c3aed;">/passport/{hash}</code>) with verified GitHub repositories, live deployments, LeetCode ratings, and university seal.
+                            </p>
+
+                            <!-- Enhanced Passport Preview Box -->
+                            <div class="p-3 rounded-lg border" style="background: rgba(248, 250, 252, 0.95); border-radius: 14px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="st-avatar-xs" style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #0071e3, #5856d6); color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;">
+                                            MP
+                                        </div>
+                                        <div>
+                                            <div class="font-weight-bold text-dark small">Maaz Pathan</div>
+                                            <small class="text-muted" style="font-size: 0.65rem;">B.Tech CSE &bull; CGPA 8.85</small>
+                                        </div>
+                                    </div>
+                                    <span class="ios-badge ios-badge-purple font-weight-bold" style="font-size: 0.68rem;">Verified Passport ✓</span>
+                                </div>
+
+                                <div class="p-2 mb-2 rounded bg-white border d-flex justify-content-between align-items-center" style="font-size: 0.75rem;">
+                                    <div class="d-flex align-items-center gap-1.5">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>4 GitHub Repos &bull; Live Deployments</span>
+                                    </div>
+                                    <span class="badge badge-success px-2 py-0.5" style="font-size: 0.65rem;">Active</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-1 border-top" style="font-size: 0.725rem;">
+                                    <span class="text-muted">🔗 Shareable Verification URL</span>
+                                    <span class="font-weight-bold" style="color: #7c3aed;">skilltrack.edu/passport/a9f1...</span>
+                                </div>
                             </div>
                         </div>
                     </div>

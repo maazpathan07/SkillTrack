@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="pageTitle" value="Dream Job Matcher" />
 <c:set var="activeNav" value="dream-job" />
 <%@ include file="/WEB-INF/views/common/header.jspf" %>
@@ -61,7 +62,12 @@
                                     <div class="d-flex align-items-center justify-content-between mb-2">
                                         <div class="d-flex align-items-center">
                                             <div class="rounded-circle d-flex align-items-center justify-content-center font-weight-bold mr-2.5 text-white" style="width: 34px; height: 34px; background: linear-gradient(135deg, #0071e3, #5856d6); font-size: 0.85rem;">
-                                                <c:out value="${c.companyName.substring(0, 1)}" />
+                                                <c:choose>
+                                                    <c:when test="${not empty c.companyName}">
+                                                        <c:out value="${fn:substring(c.companyName, 0, 1)}" />
+                                                    </c:when>
+                                                    <c:otherwise>C</c:otherwise>
+                                                </c:choose>
                                             </div>
                                             <div>
                                                 <h3 class="font-weight-bold text-dark mb-0" style="font-size: 0.95rem; line-height: 1.2;"><c:out value="${c.companyName}" /></h3>
@@ -154,12 +160,12 @@
                     <c:choose>
                         <c:when test="${not empty matchResult}">
                             <!-- Overall Score Gauge Card -->
-                            <div class="ios-card mb-4" style="border-left: 4px solid <c:choose><c:when test='${matchResult.overallScore >= 80}'>var(--ios-green)</c:when><c:when test='${matchResult.overallScore >= 55}'>var(--ios-orange)</c:when><c:otherwise>var(--ios-red)</c:otherwise></c:choose>;">
+                            <div class="ios-card mb-4" style="border-left: 4px solid <c:choose><c:when test='${matchResult.overallScore >= 80}'>#34c759</c:when><c:when test='${matchResult.overallScore >= 55}'>#ff9500</c:when><c:otherwise>#ff3b30</c:otherwise></c:choose>;">
                                 <div class="ios-card-body p-4">
                                     <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
                                         <div>
                                             <div class="d-flex align-items-center gap-2 mb-1.5 flex-wrap">
-                                                <span class="ios-badge <c:choose><c:when test='${matchResult.statusBadge == \"READY\"}'>ios-badge-green</c:when><c:when test='${matchResult.statusBadge == \"NEAR_READY\"}'>ios-badge-orange</c:when><c:otherwise>ios-badge-red</c:otherwise></c:choose> font-weight-bold">
+                                                <span class="ios-badge <c:choose><c:when test='${matchResult.statusBadge == \"READY\" || matchResult.statusBadge == \"READY\"}'>ios-badge-green</c:when><c:when test='${matchResult.statusBadge == \"NEAR_READY\"}'>ios-badge-orange</c:when><c:otherwise>ios-badge-red</c:otherwise></c:choose> font-weight-bold">
                                                     <c:out value="${matchResult.statusTitle}" />
                                                 </span>
                                                 <span class="badge badge-light border text-muted px-2 py-1" style="font-size: 0.72rem;">
@@ -180,7 +186,7 @@
                                                 <svg width="100" height="100" viewBox="0 0 100 100">
                                                     <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="9" fill="none" />
                                                     <circle cx="50" cy="50" r="42"
-                                                            stroke="<c:choose><c:when test='${matchResult.overallScore >= 80}'>#34c759</c:when><c:when test='${matchResult.overallScore >= 55}'>#ff9500</c:when><c:otherwise>#ff3b30</c:otherwise></c:choose>'"
+                                                            stroke="<c:choose><c:when test='${matchResult.overallScore >= 80}'>#34c759</c:when><c:when test='${matchResult.overallScore >= 55}'>#ff9500</c:when><c:otherwise>#ff3b30</c:otherwise></c:choose>"
                                                             stroke-width="9" fill="none"
                                                             stroke-dasharray="264"
                                                             stroke-dashoffset="${264 - (264 * matchResult.overallScore / 100)}"
@@ -275,7 +281,7 @@
                                         <div class="progress mb-2" style="height: 6px; border-radius: 4px; background: rgba(0,0,0,0.05);">
                                             <div class="progress-bar ${matchResult.skillScore >= 80 ? 'bg-success' : matchResult.skillScore >= 50 ? 'bg-warning' : 'bg-danger'}" role="progressbar" style="width: ${matchResult.skillScore}%;"></div>
                                         </div>
-                                        <small class="text-muted d-block font-weight-500 mb-0.5">${matchResult.matchedSkills.size()} of ${matchResult.requiredSkills.size()} Tech Skills Matched</small>
+                                        <small class="text-muted d-block font-weight-500 mb-0.5">${fn:length(matchResult.matchedSkills)} of ${fn:length(matchResult.requiredSkills)} Tech Skills Matched</small>
                                         <small class="text-secondary font-italic" style="font-size: 0.75rem;"><c:out value="${matchResult.studentAcademicSummary}" /></small>
                                     </div>
                                 </div>
@@ -289,7 +295,7 @@
                                 </h3>
 
                                 <div class="mb-3">
-                                    <div class="small font-weight-bold text-success mb-1.5">&check; Matched Competencies (${matchResult.matchedSkills.size()})</div>
+                                    <div class="small font-weight-bold text-success mb-1.5">&check; Matched Competencies (${fn:length(matchResult.matchedSkills)})</div>
                                     <div class="d-flex flex-wrap gap-1.5" style="gap: 0.4rem;">
                                         <c:forEach items="${matchResult.matchedSkills}" var="s">
                                             <span class="badge badge-success-soft text-success px-2.5 py-1 font-weight-semibold" style="background: rgba(52, 199, 89, 0.1); border: 1px solid rgba(52, 199, 89, 0.25); border-radius: 20px; font-size: 0.78rem;">
@@ -304,7 +310,7 @@
 
                                 <c:if test="${not empty matchResult.missingSkills}">
                                     <div>
-                                        <div class="small font-weight-bold text-danger mb-1.5">&times; Missing Required Skills (${matchResult.missingSkills.size()})</div>
+                                        <div class="small font-weight-bold text-danger mb-1.5">&times; Missing Required Skills (${fn:length(matchResult.missingSkills)})</div>
                                         <div class="d-flex flex-wrap gap-1.5" style="gap: 0.4rem;">
                                             <c:forEach items="${matchResult.missingSkills}" var="ms">
                                                 <span class="badge badge-danger-soft text-danger px-2.5 py-1 font-weight-semibold" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 20px; font-size: 0.78rem;">
@@ -325,7 +331,7 @@
                                         </h3>
                                         <small class="text-muted">Exact milestones required to reach 100% readiness for this role</small>
                                     </div>
-                                    <span class="ios-badge ios-badge-blue" style="font-size: 0.72rem;">${matchResult.roadmapItems.size()} Actions</span>
+                                    <span class="ios-badge ios-badge-blue" style="font-size: 0.72rem;">${fn:length(matchResult.roadmapItems)} Actions</span>
                                 </div>
 
                                 <div class="list-group list-group-flush">

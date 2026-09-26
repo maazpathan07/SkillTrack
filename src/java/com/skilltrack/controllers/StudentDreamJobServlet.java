@@ -142,7 +142,7 @@ public class StudentDreamJobServlet extends HttpServlet {
             }
 
             String sourceType = (sourceUrl != null && !sourceUrl.trim().isEmpty()) ? "URL_FETCH" : "CUSTOM_PASTE";
-            DreamJobMatchDTO match = matchingService.matchAgainstCustomJd(studentId, targetCompany, targetRole, rawJdText, sourceType, sourceUrl);
+            DreamJobMatchDTO match = matchingService.matchAgainstCustomJd(studentId, targetCompany, targetRole, rawJdText, sourceType, sourceUrl, true);
 
             session.setAttribute("successMessage", "Live JD evaluation complete! Match score: " + match.getOverallScore() + "%.");
             response.sendRedirect(request.getContextPath() + "/app/student/dream-job?evalId=" + match.getEvalId());

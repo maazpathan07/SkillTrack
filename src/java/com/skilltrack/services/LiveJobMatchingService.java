@@ -114,7 +114,7 @@ public class LiveJobMatchingService {
                 }
             }
 
-            DreamJobMatchDTO match = matchAgainstCustomJd(studentId, criteria.getCompanyName(), criteria.getRoleTitle(), jdBuilder.toString(), "PRESET_CRITERIA", null);
+            DreamJobMatchDTO match = matchAgainstCustomJd(studentId, criteria.getCompanyName(), criteria.getRoleTitle(), jdBuilder.toString(), "PRESET_CRITERIA", null, false);
             match.setCriteriaId(criteriaId);
             return match;
 
@@ -125,9 +125,16 @@ public class LiveJobMatchingService {
     }
 
     /**
-     * Matches student against any raw Job Description text or fetched URL.
+     * Matches student against any raw Job Description text or fetched URL without persisting.
      */
     public DreamJobMatchDTO matchAgainstCustomJd(int studentId, String companyName, String roleTitle, String rawJdText, String sourceType, String sourceUrl) {
+        return matchAgainstCustomJd(studentId, companyName, roleTitle, rawJdText, sourceType, sourceUrl, false);
+    }
+
+    /**
+     * Matches student against any raw Job Description text or fetched URL with optional database persistence.
+     */
+    public DreamJobMatchDTO matchAgainstCustomJd(int studentId, String companyName, String roleTitle, String rawJdText, String sourceType, String sourceUrl, boolean persistRecord) {
         DreamJobMatchDTO match = new DreamJobMatchDTO();
         match.setTargetCompany(companyName != null && !companyName.trim().isEmpty() ? companyName.trim() : "Target Company");
         match.setTargetRole(roleTitle != null && !roleTitle.trim().isEmpty() ? roleTitle.trim() : "Software Engineer");
@@ -318,29 +325,31 @@ public class LiveJobMatchingService {
             List<JobGapRoadmapItemDTO> roadmap = generateActionRoadmap(reqs, match, effectiveDsaSolved, projectCount, certCount, studentSkills, missingSkills);
             match.setRoadmapItems(roadmap);
 
-            // 9. Persist evaluation history record into DB
-            CustomJdEvaluation evalRecord = new CustomJdEvaluation();
-            evalRecord.setStudentId(studentId);
-            evalRecord.setTargetCompany(match.getTargetCompany());
-            evalRecord.setTargetRole(match.getTargetRole());
-            evalRecord.setSourceType(match.getSourceType());
-            evalRecord.setSourceUrl(match.getSourceUrl());
-            evalRecord.setRawJdText(rawJdText != null && rawJdText.length() > 5000 ? rawJdText.substring(0, 5000) : rawJdText);
-            evalRecord.setOverallMatchScore(overallScore);
-            evalRecord.setDsaScore(dsaScore);
-            evalRecord.setProjectScore(projectScore);
-            evalRecord.setCertScore(certScore);
-            evalRecord.setSkillScore(skillScore);
-            evalRecord.setAcademicScore(academicScore);
-            evalRecord.setMatchedSkillsJson(buildJsonList(matchedSkills));
-            evalRecord.setMissingSkillsJson(buildJsonList(missingSkills));
-            evalRecord.setActionItemsJson(buildRoadmapJson(roadmap));
+            // 9. Persist evaluation history record into DB if requested
+            if (persistRecord) {
+                CustomJdEvaluation evalRecord = new CustomJdEvaluation();
+                evalRecord.setStudentId(studentId);
+                evalRecord.setTargetCompany(match.getTargetCompany());
+                evalRecord.setTargetRole(match.getTargetRole());
+                evalRecord.setSourceType(match.getSourceType());
+                evalRecord.setSourceUrl(match.getSourceUrl());
+                evalRecord.setRawJdText(rawJdText != null && rawJdText.length() > 5000 ? rawJdText.substring(0, 5000) : rawJdText);
+                evalRecord.setOverallMatchScore(overallScore);
+                evalRecord.setDsaScore(dsaScore);
+                evalRecord.setProjectScore(projectScore);
+                evalRecord.setCertScore(certScore);
+                evalRecord.setSkillScore(skillScore);
+                evalRecord.setAcademicScore(academicScore);
+                evalRecord.setMatchedSkillsJson(buildJsonList(matchedSkills));
+                evalRecord.setMissingSkillsJson(buildJsonList(missingSkills));
+                evalRecord.setActionItemsJson(buildRoadmapJson(roadmap));
 
-            try {
-                int evalId = customJdEvaluationDAO.saveEvaluation(evalRecord);
-                match.setEvalId(evalId);
-            } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "Failed to persist evaluation record for student: " + studentId, e);
+                try {
+                    int evalId = customJdEvaluationDAO.saveEvaluation(evalRecord);
+                    match.setEvalId(evalId);
+                } catch (SQLException e) {
+                    LOGGER.log(Level.WARNING, "Failed to persist evaluation record for student: " + studentId, e);
+                }
             }
 
             return match;
@@ -589,17 +598,20 @@ public class LiveJobMatchingService {
         return sb.toString();
     }
 
-    private static class ParsedJdRequirements {
-        boolean isTier1HeavyDsa = false;
-        boolean isStartupProduct = false;
-        Set<String> requiredSkills = new LinkedHashSet<>();
-        int targetDsaCount = 80;
-        String dsaFocusLabel = "Core Problem Solving";
-        int targetProjectCount = 2;
-        String projectFocusLabel = "Web Architecture";
-        int targetCertCount = 1;
-        String certFocusLabel = "Industry Credential";
-        double minCgpaCutoff = 6.50;
-        String allowedDepts = "All Branches";
+    public static class ParsedJdRequirements {
+        public boolean isTier1HeavyDsa = false;
+        public boolean isStartupProduct = false;
+        public Set<String> requiredSkills = new LinkedHashSet<>();
+        public int targetDsaCount = 80;
+        public String dsaFocusLabel = "Core Problem Solving";
+        public int targetProjectCount = 2;
+        public String projectFocusLabel = "Web Architecture";
+        public int targetCertCount = 1;
+        public String certFocusLabel = "Industry Credential";
+        public double minCgpaCutoff = 6.50;
+        public String allowedDepts = "All Branches";
+
+        public ParsedJdRequirements() {
+        }
     }
 }

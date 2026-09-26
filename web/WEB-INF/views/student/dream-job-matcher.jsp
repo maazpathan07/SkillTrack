@@ -308,22 +308,18 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-1.5 flex-wrap">
-                                        <label class="ios-form-label font-weight-semibold mb-0" style="font-size: 0.82rem;">Job Description (JD) Text</label>
-                                        <div class="d-flex align-items-center flex-wrap" style="gap: 0.35rem;">
-                                            <button type="button" class="sample-chip chip-sde" id="sampleSdeBtn">&plus; SDE</button>
-                                            <button type="button" class="sample-chip chip-ai" id="sampleAiBtn">&plus; AI/ML</button>
-                                            <button type="button" class="sample-chip chip-mern" id="sampleFullstackBtn">&plus; MERN</button>
-                                            <button type="button" class="sample-chip" id="clearJdBtn">&times; Clear</button>
-                                        </div>
-                                    </div>
+                                    <label class="ios-form-label font-weight-semibold mb-1" style="font-size: 0.82rem;">Job Description (JD) Text</label>
                                     <textarea class="ios-form-control" name="rawJdText" id="rawJdText" rows="9" placeholder="Paste the job description, required skills, DSA expectations, responsibilities, or minimum qualification text here..." style="font-size: 0.85rem; line-height: 1.55;"><c:out value="${matchResult.rawJdText}" /></textarea>
                                 </div>
 
-                                <div class="pt-1">
-                                    <button type="submit" class="ios-btn-primary w-100 d-flex align-items-center justify-content-center shadow-sm" style="padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 700; background: linear-gradient(135deg, #0071e3, #5856d6);">
+                                <div class="pt-1 d-flex align-items-center" style="gap: 0.75rem;">
+                                    <button type="submit" class="ios-btn-primary flex-grow-1 d-flex align-items-center justify-content-center shadow-sm" style="padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 700; background: linear-gradient(135deg, #0071e3, #5856d6);">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
                                         Scan &amp; Compute Live Match
+                                    </button>
+                                    <button type="button" class="btn btn-light border font-weight-semibold text-muted d-flex align-items-center justify-content-center" id="clearJdBtn" style="padding: 0.75rem 1.25rem; border-radius: var(--ios-radius-sm, 12px); font-size: 0.88rem; transition: all 0.2s ease;" title="Clear Form Fields">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                        Clear
                                     </button>
                                 </div>
                             </form>
@@ -638,57 +634,18 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Sample JD Auto-loaders
-    var sdeBtn = document.getElementById('sampleSdeBtn');
-    if (sdeBtn) {
-        sdeBtn.addEventListener('click', function() {
-            document.getElementById('targetCompany').value = 'Google';
-            document.getElementById('targetRole').value = 'Software Development Engineer (SDE-1)';
-            document.getElementById('rawJdText').value = 
-                "Role: Software Development Engineer (SDE-1)\n" +
-                "Minimum Qualifications:\n" +
-                "- Bachelor's degree with minimum 7.5 CGPA.\n" +
-                "- Strong in Data Structures and Algorithms (Dynamic Programming, Trees, Graphs, System Scalability).\n" +
-                "- Proficiency in Java, C++, or Go.\n" +
-                "- Experience with cloud backends and distributed systems.";
-        });
-    }
-
-    var aiBtn = document.getElementById('sampleAiBtn');
-    if (aiBtn) {
-        aiBtn.addEventListener('click', function() {
-            document.getElementById('targetCompany').value = 'OpenAI';
-            document.getElementById('targetRole').value = 'Machine Learning Engineer';
-            document.getElementById('rawJdText').value = 
-                "Role: Machine Learning Engineer\n" +
-                "Requirements:\n" +
-                "- Strong fundamentals in Python, Machine Learning, Deep Learning, and Math.\n" +
-                "- Hands-on experience with PyTorch or TensorFlow, Pandas, and NumPy.\n" +
-                "- Experience developing API endpoints (FastAPI / Flask) and Docker.";
-        });
-    }
-
-    var fullstackBtn = document.getElementById('sampleFullstackBtn');
-    if (fullstackBtn) {
-        fullstackBtn.addEventListener('click', function() {
-            document.getElementById('targetCompany').value = 'Swiggy';
-            document.getElementById('targetRole').value = 'MERN Stack Developer';
-            document.getElementById('rawJdText').value = 
-                "Role: MERN Full-Stack Developer\n" +
-                "Requirements:\n" +
-                "- Proficiency in React.js, Node.js, Express.js, and MongoDB.\n" +
-                "- Solid experience building RESTful APIs, Git version control, and clean state management.\n" +
-                "- Familiarity with responsive UI using Tailwind CSS.";
-        });
-    }
-
+    // Clear Job Details button handler with user confirmation
     var clearBtn = document.getElementById('clearJdBtn');
     if (clearBtn) {
-        clearBtn.addEventListener('click', function() {
-            document.getElementById('targetCompany').value = '';
-            document.getElementById('targetRole').value = '';
-            document.getElementById('rawJdText').value = '';
-            if (document.getElementById('sourceUrl')) document.getElementById('sourceUrl').value = '';
+        clearBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to clear all entered job fields and description?')) {
+                document.getElementById('targetCompany').value = '';
+                document.getElementById('targetRole').value = '';
+                document.getElementById('rawJdText').value = '';
+                var urlInput = document.getElementById('sourceUrl');
+                if (urlInput) urlInput.value = '';
+            }
         });
     }
 

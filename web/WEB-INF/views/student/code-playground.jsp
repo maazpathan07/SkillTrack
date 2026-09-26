@@ -5,9 +5,8 @@
 <%@ include file="/WEB-INF/views/common/header.jspf" %>
 <%@ include file="/WEB-INF/views/common/navbar.jspf" %>
 
-<!-- Ace Editor CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js" integrity="sha512-NX4+9h5t0m8b8q26Z91w39w2j8t3G0B9+H57z9e27k8x5n9wQj012984k3b2901m9x1b194m23k2" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ext-language_tools.min.js"></script>
+<!-- Local Ace Editor -->
+<script src="${pageContext.request.contextPath}/assets/js/ace/ace.js"></script>
 
 <style>
     .playground-container {
@@ -21,6 +20,10 @@
         border: 1px solid rgba(226, 232, 240, 0.9);
         box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
         background: #1e1e1e;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 590px;
     }
 
     .editor-header-bar {
@@ -63,10 +66,25 @@
 
     #aceEditor {
         width: 100%;
-        height: 520px;
-        font-size: 14px;
+        height: 480px;
+        font-size: 14.5px;
         font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-        line-height: 1.5;
+        line-height: 1.55;
+    }
+
+    #fallbackCodeEditor {
+        width: 100%;
+        height: 480px;
+        background: #1e1e1e;
+        color: #f8fafc;
+        border: none;
+        padding: 16px;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 14.5px;
+        line-height: 1.55;
+        resize: none;
+        outline: none;
+        display: none;
     }
 
     .terminal-console {
@@ -82,7 +100,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        min-height: 575px;
+        min-height: 590px;
     }
 
     .terminal-header {
@@ -100,8 +118,8 @@
         overflow-y: auto;
         white-space: pre-wrap;
         word-break: break-word;
-        max-height: 380px;
-        min-height: 240px;
+        max-height: 390px;
+        min-height: 250px;
     }
 
     .terminal-stdin-box {
@@ -150,7 +168,7 @@
         color: #ffffff;
         font-weight: 700;
         font-size: 0.95rem;
-        padding: 8px 22px;
+        padding: 8px 24px;
         border-radius: 12px;
         border: none;
         box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
@@ -273,11 +291,14 @@
                         </div>
                     </div>
 
-                    <!-- Ace Code Editor -->
+                    <!-- Primary Ace Code Editor -->
                     <div id="aceEditor"></div>
 
+                    <!-- Direct Editable Fallback Textarea (in case Ace isn't loaded) -->
+                    <textarea id="fallbackCodeEditor" placeholder="Type your code here..."></textarea>
+
                     <!-- Editor Bottom Bar with Shortcut Tip & Run Button -->
-                    <div class="d-flex justify-content-between align-items-center p-3" style="background: #18181b; border-top: 1px solid #27272a;">
+                    <div class="d-flex justify-content-between align-items-center p-3 mt-auto" style="background: #18181b; border-top: 1px solid #27272a;">
                         <span class="text-term-muted small d-none d-sm-inline">
                             Tip: Press <kbd style="background: #27272a; color: #e4e4e7; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Ctrl + Enter</kbd> to Run Code
                         </span>
@@ -357,7 +378,8 @@
         System.out.println("Hello SkillTrack!");
     }
 }`,
-        python: `def main():
+        python: `# Python 3 Program
+def main():
     print("Hello SkillTrack from Python!")
 
 if __name__ == "__main__":
@@ -375,13 +397,12 @@ int main() {
     printf("Hello SkillTrack from C!\\n");
     return 0;
 }`,
-        javascript: `// Interactive JavaScript Sandbox
+        javascript: `// JavaScript (Node.js) Program
 function greet(name) {
     return "Hello " + name + "! Welcome to SkillTrack.";
 }
 
-console.log(greet("SkillTrack Developer"));
-`
+console.log(greet("SkillTrack Developer"));`
     };
 
     // Preset algorithms snippets
@@ -692,33 +713,79 @@ console.log("Reversed:", str.split("").reverse().join(""));`
     let currentLanguage = 'java';
     let editor = null;
 
-    // Initialize Ace Editor
+    // Initialize Ace Editor with local files and fallback
     document.addEventListener("DOMContentLoaded", function() {
-        if (window.ace) {
-            editor = ace.edit("aceEditor");
-            editor.setTheme("ace/theme/tomorrow_night");
-            editor.session.setMode("ace/mode/java");
-            editor.setValue(CODE_TEMPLATES.java, -1);
-            editor.setShowPrintMargin(false);
-            editor.setOptions({
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-                fontSize: "14px",
-                tabSize: 4,
-                useSoftTabs: true
-            });
+        const fallbackTextarea = document.getElementById('fallbackCodeEditor');
+        const aceDiv = document.getElementById('aceEditor');
 
-            // Keyboard shortcut: Ctrl+Enter / Cmd+Enter to Run
-            editor.commands.addCommand({
-                name: 'runCode',
-                bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
-                exec: function() {
-                    runCurrentCode();
-                }
-            });
+        if (window.ace) {
+            try {
+                ace.config.set('basePath', '${pageContext.request.contextPath}/assets/js/ace');
+                editor = ace.edit("aceEditor");
+                editor.setTheme("ace/theme/tomorrow_night");
+                editor.session.setMode("ace/mode/java");
+                editor.setValue(CODE_TEMPLATES.java, -1);
+                editor.setShowPrintMargin(false);
+                editor.setOptions({
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true,
+                    enableSnippets: true,
+                    fontSize: "14.5px",
+                    tabSize: 4,
+                    useSoftTabs: true
+                });
+
+                // Keyboard shortcut: Ctrl+Enter / Cmd+Enter to Run
+                editor.commands.addCommand({
+                    name: 'runCode',
+                    bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
+                    exec: function() {
+                        runCurrentCode();
+                    }
+                });
+
+                aceDiv.style.display = 'block';
+                if (fallbackTextarea) fallbackTextarea.style.display = 'none';
+            } catch (e) {
+                console.warn("Ace init error, switching to native editor:", e);
+                initFallback();
+            }
+        } else {
+            initFallback();
+        }
+
+        function initFallback() {
+            if (aceDiv) aceDiv.style.display = 'none';
+            if (fallbackTextarea) {
+                fallbackTextarea.style.display = 'block';
+                fallbackTextarea.value = CODE_TEMPLATES.java;
+                fallbackTextarea.addEventListener('keydown', function(e) {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                        e.preventDefault();
+                        runCurrentCode();
+                    }
+                });
+            }
         }
     });
+
+    function getEditorCode() {
+        if (editor) {
+            return editor.getValue();
+        }
+        const fallbackTextarea = document.getElementById('fallbackCodeEditor');
+        return fallbackTextarea ? fallbackTextarea.value : '';
+    }
+
+    function setEditorCode(code) {
+        if (editor) {
+            editor.setValue(code, -1);
+        }
+        const fallbackTextarea = document.getElementById('fallbackCodeEditor');
+        if (fallbackTextarea) {
+            fallbackTextarea.value = code;
+        }
+    }
 
     function switchLanguage(lang) {
         currentLanguage = lang;
@@ -728,7 +795,8 @@ console.log("Reversed:", str.split("").reverse().join(""));`
         const activeBtn = document.getElementById('tab-' + lang);
         if (activeBtn) activeBtn.classList.add('active');
 
-        // Set Ace Editor mode
+        // Set Ace Editor mode & template
+        const templateCode = CODE_TEMPLATES[lang] || "";
         if (editor) {
             let mode = "ace/mode/java";
             if (lang === 'python') mode = "ace/mode/python";
@@ -736,27 +804,28 @@ console.log("Reversed:", str.split("").reverse().join(""));`
             else if (lang === 'javascript') mode = "ace/mode/javascript";
 
             editor.session.setMode(mode);
-            editor.setValue(CODE_TEMPLATES[lang] || "", -1);
+            editor.setValue(templateCode, -1);
+        } else {
+            setEditorCode(templateCode);
         }
     }
 
     function resetToTemplate() {
-        if (editor && CODE_TEMPLATES[currentLanguage]) {
-            editor.setValue(CODE_TEMPLATES[currentLanguage], -1);
-        }
+        const templateCode = CODE_TEMPLATES[currentLanguage] || "";
+        setEditorCode(templateCode);
     }
 
     function loadPresetSnippet(snippetKey) {
         if (!snippetKey || !PRESET_SNIPPETS[snippetKey]) return;
         const snippetObj = PRESET_SNIPPETS[snippetKey];
-        if (editor && snippetObj[currentLanguage]) {
-            editor.setValue(snippetObj[currentLanguage], -1);
+        if (snippetObj[currentLanguage]) {
+            setEditorCode(snippetObj[currentLanguage]);
         }
     }
 
     function copyCode() {
-        if (!editor) return;
-        const code = editor.getValue();
+        const code = getEditorCode();
+        if (!code) return;
         navigator.clipboard.writeText(code).then(() => {
             alert("Code copied to clipboard!");
         }).catch(err => {
@@ -781,10 +850,8 @@ console.log("Reversed:", str.split("").reverse().join(""));`
             .replace(/'/g, "&#039;");
     }
 
-    // Client-side Python runner via Skulpt / WebWorker fallback or direct backend execution
     function runCurrentCode() {
-        if (!editor) return;
-        const code = editor.getValue();
+        const code = getEditorCode();
         const stdin = document.getElementById('stdinInput') ? document.getElementById('stdinInput').value : '';
         const runBtn = document.getElementById('runCodeBtn');
         const outputEl = document.getElementById('terminalOutput');

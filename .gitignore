@@ -24,6 +24,8 @@ desktop.ini
 .project
 .classpath
 
-# Sensitive OAuth Credentials
+# Sensitive OAuth & API Credentials
 /src/java/oauth.properties
 oauth.properties
+/src/java/gemini.properties
+gemini.properties

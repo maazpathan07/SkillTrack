@@ -108,7 +108,7 @@
             </div>
         </header>
 
-        <!-- 1. HERO SECTION (HIGH IMPACT TYPOGRAPHY & INTERACTIVE TERMINAL WIDGET) -->
+        <!-- 1. HERO SECTION (HIGH IMPACT SAAS SHOWCASE & VERIFIED PASSPORT CARD) -->
         <section class="ios-ambient-canvas py-5" id="overview" style="padding-top: 4.5rem !important; padding-bottom: 4.5rem !important;">
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row align-items-center">
@@ -143,210 +143,105 @@
                             </a>
                         </div>
 
-                        <!-- Micro Feature Ribbon with Clean Vector Badges -->
-                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2 pt-1" style="gap: 8px;">
-                            <span class="ios-badge" style="background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; font-size: 0.775rem; padding: 0.35rem 0.75rem;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFA116" class="mr-1.5"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/></svg>
+                        <!-- 4 Core Capabilities in 1 Clean Single Line -->
+                        <div class="d-none d-md-flex align-items-center flex-nowrap text-muted pt-2" style="font-size: 0.8rem; font-weight: 600; color: #64748b; gap: 10px;">
+                            <span class="d-inline-flex align-items-center text-nowrap">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA116" class="mr-1.5"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/></svg>
                                 LeetCode Auto-Sync
                             </span>
-                            <span class="ios-badge" style="background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; font-size: 0.775rem; padding: 0.35rem 0.75rem;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            <span class="text-muted opacity-50">&bull;</span>
+                            <span class="d-inline-flex align-items-center text-nowrap">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                                 Code Playground
                             </span>
-                            <span class="ios-badge" style="background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; font-size: 0.775rem; padding: 0.35rem 0.75rem;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            <span class="text-muted opacity-50">&bull;</span>
+                            <span class="d-inline-flex align-items-center text-nowrap">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
                                 ATS Resume Scanner
                             </span>
-                            <span class="ios-badge" style="background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; font-size: 0.775rem; padding: 0.35rem 0.75rem;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.2" class="mr-1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            <span class="text-muted opacity-50">&bull;</span>
+                            <span class="d-inline-flex align-items-center text-nowrap">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.2" class="mr-1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                                 Verified Passport
                             </span>
                         </div>
                     </div>
 
-                    <!-- Right Column: Interactive Multi-Engine Terminal Widget -->
+                    <!-- Right Column: Clean Placement Intelligence Passport Card -->
                     <div class="col-lg-5">
-                        <div class="ios-glass-card p-4" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04); border-radius: 20px;">
-                            <!-- macOS Window Header Bar -->
-                            <div class="d-flex justify-content-between align-items-center mb-3 pb-2.5 border-bottom" style="border-color: #f1f5f9 !important;">
+                        <div class="p-4" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);">
+                            <!-- Top Window Controls & Card Header -->
+                            <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom" style="border-color: #f1f5f9 !important;">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-2.5" style="gap: 5px;">
+                                    <div class="d-flex align-items-center mr-3" style="gap: 6px;">
                                         <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
                                         <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
                                         <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
                                     </div>
-                                    <span class="font-weight-bold" style="font-size: 0.825rem; color: #334155;">Placement Intelligence Terminal</span>
+                                    <span class="font-weight-bold" style="font-size: 0.85rem; color: #334155; letter-spacing: -0.01em;">Placement Readiness Passport</span>
                                 </div>
-                                <span class="ios-badge ios-badge-green" style="font-size: 0.7rem; padding: 2px 8px;">
-                                    ● Live Preview
+                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem; padding: 3px 10px;">
+                                    ● Tier-1 Verified
                                 </span>
                             </div>
 
-                            <!-- 3 Mode Segmented Control (Readiness, LeetCode, ATS Scanner) -->
-                            <div class="ios-segmented-control mb-3" style="background: #f1f5f9; padding: 3px; border-radius: 12px; width: 100%;">
-                                <button type="button" class="ios-segment-btn active flex-fill" onclick="switchTerminalTab('readiness')" id="tabBtnReadiness" style="font-size: 0.775rem;">
-                                    Readiness Score
-                                </button>
-                                <button type="button" class="ios-segment-btn flex-fill" onclick="switchTerminalTab('leetcode')" id="tabBtnLeetcode" style="font-size: 0.775rem;">
-                                    LeetCode Sync
-                                </button>
-                                <button type="button" class="ios-segment-btn flex-fill" onclick="switchTerminalTab('ats')" id="tabBtnAts" style="font-size: 0.775rem;">
-                                    ATS Resume
-                                </button>
-                            </div>
-
-                            <!-- TAB 1: READINESS SCORE VIEW -->
-                            <div id="terminalTabReadiness">
-                                <!-- Role Selector Pills -->
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="text-uppercase font-weight-bold text-muted" style="font-size: 0.7rem; letter-spacing: 0.05em;">Target Role:</span>
-                                    <div class="d-flex gap-1" style="gap: 4px;">
-                                        <button type="button" onclick="switchPreviewRole('fullstack')" id="btnRole1" style="font-size: 0.72rem; padding: 2px 8px; background: #e2e8f0; border: none; border-radius: 6px; font-weight: 700; color: #0f172a; cursor: pointer;">Full Stack</button>
-                                        <button type="button" onclick="switchPreviewRole('data')" id="btnRole2" style="font-size: 0.72rem; padding: 2px 8px; background: transparent; border: none; border-radius: 6px; font-weight: 600; color: #64748b; cursor: pointer;">Data Eng</button>
-                                        <button type="button" onclick="switchPreviewRole('cloud')" id="btnRole3" style="font-size: 0.72rem; padding: 2px 8px; background: transparent; border: none; border-radius: 6px; font-weight: 600; color: #64748b; cursor: pointer;">Cloud</button>
+                            <!-- Student Profile Row with Large Readiness Score Badge -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center mr-3 text-white font-weight-bold" style="width: 48px; height: 48px; background: linear-gradient(135deg, #0071e3 0%, #6366f1 100%); font-size: 1.05rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);">
+                                        MP
+                                    </div>
+                                    <div>
+                                        <h5 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 1.1rem;">Maaz Pathan</h5>
+                                        <small class="text-muted font-weight-medium">B.Tech CSE &bull; Final Year</small>
                                     </div>
                                 </div>
-
-                                <!-- Score Gauge Box -->
-                                <div class="p-3 mb-2.5 rounded-lg" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
-                                    <div class="d-flex justify-content-between align-items-center mb-1.5">
-                                        <span class="small font-weight-bold" id="previewRoleTitle" style="color: #0f172a;">Full Stack Engineer</span>
-                                        <span class="font-weight-bold" style="font-size: 1.25rem; color: #0071e3;" id="previewScoreText">88 / 100</span>
-                                    </div>
-                                    <div class="progress" style="height: 7px; border-radius: 4px; background: #e2e8f0;">
-                                        <div class="progress-bar" id="previewProgressBar" role="progressbar" style="width: 88%; background: #10b981; border-radius: 4px; transition: width 0.4s ease;"></div>
-                                    </div>
-                                </div>
-
-                                <!-- 4 Metrics Tiles -->
-                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-color: #e2e8f0 !important; border-radius: 10px;">
-                                            <div class="font-weight-bold text-primary" style="font-size: 1.05rem; line-height: 1.1;" id="previewDsaCount">156</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">DSA Solved</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-color: #e2e8f0 !important; border-radius: 10px;">
-                                            <div class="font-weight-bold text-success" style="font-size: 1.05rem; line-height: 1.1;" id="previewSkillCount">9 / 10</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Skills</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-color: #e2e8f0 !important; border-radius: 10px;">
-                                            <div class="font-weight-bold" style="font-size: 1.05rem; line-height: 1.1; color: #7c3aed;" id="previewProjectsCount">4 Proj</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Verified</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-color: #e2e8f0 !important; border-radius: 10px;">
-                                            <div class="font-weight-bold" style="font-size: 1.05rem; line-height: 1.1; color: #d97706;" id="previewCriteriaCount">95%</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Eligibility</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Required Skills -->
-                                <div class="mb-3">
-                                    <div id="previewSkillChips" class="d-flex flex-wrap gap-1">
-                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Java Core</span>
-                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Spring Boot</span>
-                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">React.js</span>
-                                        <span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Docker (Interm)</span>
-                                    </div>
+                                <div class="text-right">
+                                    <div class="font-weight-bold" style="font-size: 2rem; line-height: 1; color: #0071e3; letter-spacing: -0.03em;">94%</div>
+                                    <small class="font-weight-bold text-success" style="font-size: 0.72rem;">Placement Ready</small>
                                 </div>
                             </div>
 
-                            <!-- TAB 2: LEETCODE AUTO-SYNC VIEW -->
-                            <div id="terminalTabLeetcode" class="d-none">
-                                <div class="p-3 mb-2.5 rounded-lg" style="background: #fffbeb; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px;">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFA116"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/></svg>
-                                            <span class="font-weight-bold text-dark ml-1" style="font-size: 0.875rem;">@maaz_sde</span>
-                                        </div>
-                                        <span class="ios-badge ios-badge-green" style="font-size: 0.68rem;">✓ Live Synced</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-baseline mb-1">
-                                        <span class="small font-weight-bold text-muted">156 / 150 Solved</span>
-                                        <span class="font-weight-bold text-success" style="font-size: 0.8rem;">Target Met 104%</span>
-                                    </div>
-                                    <div class="progress" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
-                                        <div class="progress-bar" style="width: 100%; background: #f59e0b;"></div>
-                                    </div>
+                            <!-- Clean 3 Metrics Strip (No heavy borders, soft subtle background) -->
+                            <div class="row text-center mb-4 no-gutters" style="background: #f8fafc; border-radius: 14px; padding: 14px 6px;">
+                                <div class="col-4 border-right" style="border-color: #e2e8f0 !important;">
+                                    <div class="font-weight-bold text-dark" style="font-size: 1.25rem; line-height: 1.1;">156</div>
+                                    <small class="text-muted font-weight-bold" style="font-size: 0.7rem;">LeetCode Solved</small>
                                 </div>
-
-                                <!-- Difficulty Breakdown Chips -->
-                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-success" style="font-size: 1.05rem; line-height: 1.1;">84</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🟢 Easy</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-warning" style="font-size: 1.05rem; line-height: 1.1;">52</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🟡 Medium</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-danger" style="font-size: 1.05rem; line-height: 1.1;">20</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">🔴 Hard</small>
-                                        </div>
-                                    </div>
+                                <div class="col-4 border-right" style="border-color: #e2e8f0 !important;">
+                                    <div class="font-weight-bold text-success" style="font-size: 1.25rem; line-height: 1.1;">10 / 10</div>
+                                    <small class="text-muted font-weight-bold" style="font-size: 0.7rem;">Skills Verified</small>
                                 </div>
-
-                                <div class="p-2 mb-3 rounded bg-light border d-flex justify-content-between align-items-center" style="font-size: 0.75rem; border-radius: 10px;">
-                                    <span class="text-muted">18-Topic Allocation:</span>
-                                    <span class="badge badge-success px-2 py-0.5" style="font-size: 0.68rem;">100% Automated ✓</span>
+                                <div class="col-4">
+                                    <div class="font-weight-bold text-primary" style="font-size: 1.25rem; line-height: 1.1;">95%</div>
+                                    <small class="text-muted font-weight-bold" style="font-size: 0.7rem;">ATS Score</small>
                                 </div>
                             </div>
 
-                            <!-- TAB 3: ATS RESUME SCANNER VIEW -->
-                            <div id="terminalTabAts" class="d-none">
-                                <div class="p-3 mb-2.5 rounded-lg" style="background: #f0fdf4; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px;">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <span class="small font-weight-bold text-dark">ATS Match Diagnostic</span>
-                                        <span class="font-weight-bold text-success" style="font-size: 0.95rem;">94 / 100 (Grade A+)</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
-                                        <div class="progress-bar bg-success" style="width: 94%;"></div>
-                                    </div>
-                                    <div class="small text-muted" style="font-size: 0.725rem;">📄 Single-Column Ivy-League A4 Layout &bull; 100% Compliant</div>
+                            <!-- Verified Skill Stack Chips -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-uppercase font-weight-bold text-muted" style="font-size: 0.68rem; letter-spacing: 0.05em;">Audited Competencies</span>
+                                    <span class="text-success font-weight-bold" style="font-size: 0.7rem;">5 Verified</span>
                                 </div>
-
-                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-success" style="font-size: 1rem; line-height: 1.1;">95%</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Keywords</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-primary" style="font-size: 1rem; line-height: 1.1;">88%</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Action Verbs</small>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="p-2 border rounded" style="background: #ffffff; border-radius: 10px;">
-                                            <div class="font-weight-bold text-success" style="font-size: 1rem; line-height: 1.1;">100%</div>
-                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Format</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="p-2 mb-3 rounded bg-light border d-flex justify-content-between align-items-center" style="font-size: 0.75rem; border-radius: 10px;">
-                                    <span class="text-muted">Target Company Cutoffs:</span>
-                                    <span class="badge badge-success px-2 py-0.5" style="font-size: 0.68rem;">Tier-1 Eligible ✓</span>
+                                <div class="d-flex flex-wrap" style="gap: 6px;">
+                                    <span class="ios-badge" style="background: #f1f5f9; color: #334155; font-size: 0.75rem; padding: 4px 10px;">Java 17</span>
+                                    <span class="ios-badge" style="background: #f1f5f9; color: #334155; font-size: 0.75rem; padding: 4px 10px;">Spring Boot</span>
+                                    <span class="ios-badge" style="background: #f1f5f9; color: #334155; font-size: 0.75rem; padding: 4px 10px;">React.js</span>
+                                    <span class="ios-badge" style="background: #f1f5f9; color: #334155; font-size: 0.75rem; padding: 4px 10px;">PostgreSQL</span>
+                                    <span class="ios-badge" style="background: #f1f5f9; color: #334155; font-size: 0.75rem; padding: 4px 10px;">Docker</span>
                                 </div>
                             </div>
 
-                            <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary btn-block text-center" style="border-radius: 12px; font-size: 0.9rem; padding: 0.7rem; font-weight: 700;">
-                                Launch Your Student Portal &rarr;
-                            </a>
+                            <!-- Passport Verification Bottom Strip -->
+                            <div class="d-flex align-items-center justify-content-between p-2.5 rounded-lg" style="background: #f0fdf4; border: 1px solid rgba(16, 185, 129, 0.2); font-size: 0.75rem;">
+                                <div class="d-flex align-items-center">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                    <span class="font-weight-bold text-success">Passport Hash:</span>
+                                    <span class="ml-1 text-muted font-mono" style="font-size: 0.72rem;">#SKT-2026-984F</span>
+                                </div>
+                                <span class="font-weight-bold text-success">Shortlist Ready &check;</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1625,118 +1520,6 @@
         };
         </script>
 
-        <!-- Interactive Hero Terminal & Role Switcher Demo Script -->
-        <script>
-        function switchTerminalTab(tabKey) {
-            var tabBtnReadiness = document.getElementById('tabBtnReadiness');
-            var tabBtnLeetcode = document.getElementById('tabBtnLeetcode');
-            var tabBtnAts = document.getElementById('tabBtnAts');
-
-            var tabContentReadiness = document.getElementById('terminalTabReadiness');
-            var tabContentLeetcode = document.getElementById('terminalTabLeetcode');
-            var tabContentAts = document.getElementById('terminalTabAts');
-
-            [tabBtnReadiness, tabBtnLeetcode, tabBtnAts].forEach(function(b) {
-                if (b) b.classList.remove('active');
-            });
-            [tabContentReadiness, tabContentLeetcode, tabContentAts].forEach(function(c) {
-                if (c) c.classList.add('d-none');
-            });
-
-            if (tabKey === 'readiness') {
-                if (tabBtnReadiness) tabBtnReadiness.classList.add('active');
-                if (tabContentReadiness) tabContentReadiness.classList.remove('d-none');
-            } else if (tabKey === 'leetcode') {
-                if (tabBtnLeetcode) tabBtnLeetcode.classList.add('active');
-                if (tabContentLeetcode) tabContentLeetcode.classList.remove('d-none');
-            } else if (tabKey === 'ats') {
-                if (tabBtnAts) tabBtnAts.classList.add('active');
-                if (tabContentAts) tabContentAts.classList.remove('d-none');
-            }
-        }
-
-        function switchPreviewRole(roleKey) {
-            var title = document.getElementById('previewRoleTitle');
-            var score = document.getElementById('previewScoreText');
-            var bar = document.getElementById('previewProgressBar');
-            var dsa = document.getElementById('previewDsaCount');
-            var skills = document.getElementById('previewSkillCount');
-            var chips = document.getElementById('previewSkillChips');
-
-            var btn1 = document.getElementById('btnRole1');
-            var btn2 = document.getElementById('btnRole2');
-            var btn3 = document.getElementById('btnRole3');
-
-            [btn1, btn2, btn3].forEach(function(b) {
-                if (b) {
-                    b.style.background = "transparent";
-                    b.style.color = "#64748b";
-                    b.style.fontWeight = "600";
-                }
-            });
-
-            if (roleKey === 'fullstack') {
-                if (btn1) {
-                    btn1.style.background = "#e2e8f0";
-                    btn1.style.color = "#0f172a";
-                    btn1.style.fontWeight = "700";
-                }
-                if (title) title.textContent = "Full Stack Engineer";
-                if (score) score.textContent = "88 / 100";
-                if (bar) {
-                    bar.style.width = "88%";
-                    bar.style.background = "#10b981";
-                }
-                if (dsa) dsa.textContent = "156";
-                if (skills) skills.textContent = "9 / 10";
-                if (chips) {
-                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Java Core</span>' +
-                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Spring Boot</span>' +
-                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">React.js</span>' +
-                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Docker (Interm)</span>';
-                }
-            } else if (roleKey === 'data') {
-                if (btn2) {
-                    btn2.style.background = "#e2e8f0";
-                    btn2.style.color = "#0f172a";
-                    btn2.style.fontWeight = "700";
-                }
-                if (title) title.textContent = "Data Engineer";
-                if (score) score.textContent = "76 / 100";
-                if (bar) {
-                    bar.style.width = "76%";
-                    bar.style.background = "#0071e3";
-                }
-                if (dsa) dsa.textContent = "118";
-                if (skills) skills.textContent = "7 / 9";
-                if (chips) {
-                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Python 3</span>' +
-                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">SQL / MySQL</span>' +
-                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Apache Spark</span>' +
-                                      '<span class="ios-badge ios-badge-red mr-1 mb-1" style="font-size: 0.72rem;">Kafka (Missing)</span>';
-                }
-            } else if (roleKey === 'cloud') {
-                if (btn3) {
-                    btn3.style.background = "#e2e8f0";
-                    btn3.style.color = "#0f172a";
-                    btn3.style.fontWeight = "700";
-                }
-                if (title) title.textContent = "Cloud DevOps Architect";
-                if (score) score.textContent = "64 / 100";
-                if (bar) {
-                    bar.style.width = "64%";
-                    bar.style.background = "#f59e0b";
-                }
-                if (dsa) dsa.textContent = "94";
-                if (skills) skills.textContent = "5 / 8";
-                if (chips) {
-                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Linux / Bash</span>' +
-                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Docker Containers</span>' +
-                                      '<span class="ios-badge ios-badge-red mr-1 mb-1" style="font-size: 0.72rem;">Kubernetes (Missing)</span>' +
-                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Terraform (Basic)</span>';
-                }
-            }
-        }
 
         function switchTpoPreset(presetKey) {
             var btn1 = document.getElementById('tpoBtnTier1');

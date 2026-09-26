@@ -167,12 +167,12 @@
 
             <!-- SECTION 1: Dynamic Company Presets & Campus Drives Grid -->
             <div class="mb-4">
-                <div class="d-flex align-items-center justify-content-between mb-2.5">
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-1" style="gap: 0.75rem;">
                     <h2 class="h6 font-weight-bold text-muted text-uppercase mb-0" style="letter-spacing: 0.05em; font-size: 0.78rem;">
                         Target Placement Drives &amp; Company Presets
                     </h2>
-                    <a href="${pageContext.request.contextPath}/app/student/dream-job" class="btn btn-sm btn-light border font-weight-semibold text-dark d-inline-flex align-items-center px-2.5 py-1" style="border-radius: 12px; font-size: 0.76rem; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.04);" title="Unselect any selected company preset">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <a href="${pageContext.request.contextPath}/app/student/dream-job" class="btn btn-sm btn-light border font-weight-semibold text-dark d-inline-flex align-items-center" style="border-radius: 12px; font-size: 0.78rem; padding: 0.4rem 0.85rem; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.04); gap: 0.45rem;" title="Unselect any selected company preset">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         Clean / Unselect Preset
                     </a>
                 </div>

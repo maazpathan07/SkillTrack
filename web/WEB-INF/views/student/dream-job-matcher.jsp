@@ -160,12 +160,14 @@
                     <c:choose>
                         <c:when test="${not empty matchResult}">
                             <!-- Overall Score Gauge Card -->
-                            <div class="ios-card mb-4" style="border-left: 4px solid <c:choose><c:when test='${matchResult.overallScore >= 80}'>#34c759</c:when><c:when test='${matchResult.overallScore >= 55}'>#ff9500</c:when><c:otherwise>#ff3b30</c:otherwise></c:choose>;">
+                            <c:set var="gaugeColor" value="${matchResult.overallScore >= 80 ? '#34c759' : (matchResult.overallScore >= 55 ? '#ff9500' : '#ff3b30')}" />
+                            <c:set var="statusBadgeClass" value="${matchResult.statusBadge == 'READY' ? 'ios-badge-green' : (matchResult.statusBadge == 'NEAR_READY' ? 'ios-badge-orange' : 'ios-badge-red')}" />
+                            <div class="ios-card mb-4" style="border-left: 4px solid ${gaugeColor};">
                                 <div class="ios-card-body p-4">
                                     <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
                                         <div>
                                             <div class="d-flex align-items-center gap-2 mb-1.5 flex-wrap">
-                                                <span class="ios-badge <c:choose><c:when test='${matchResult.statusBadge == \"READY\" || matchResult.statusBadge == \"READY\"}'>ios-badge-green</c:when><c:when test='${matchResult.statusBadge == \"NEAR_READY\"}'>ios-badge-orange</c:when><c:otherwise>ios-badge-red</c:otherwise></c:choose> font-weight-bold">
+                                                <span class="ios-badge ${statusBadgeClass} font-weight-bold">
                                                     <c:out value="${matchResult.statusTitle}" />
                                                 </span>
                                                 <span class="badge badge-light border text-muted px-2 py-1" style="font-size: 0.72rem;">
@@ -186,7 +188,7 @@
                                                 <svg width="100" height="100" viewBox="0 0 100 100">
                                                     <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="9" fill="none" />
                                                     <circle cx="50" cy="50" r="42"
-                                                            stroke="<c:choose><c:when test='${matchResult.overallScore >= 80}'>#34c759</c:when><c:when test='${matchResult.overallScore >= 55}'>#ff9500</c:when><c:otherwise>#ff3b30</c:otherwise></c:choose>"
+                                                            stroke="${gaugeColor}"
                                                             stroke-width="9" fill="none"
                                                             stroke-dasharray="264"
                                                             stroke-dashoffset="${264 - (264 * matchResult.overallScore / 100)}"

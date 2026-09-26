@@ -39,6 +39,16 @@
         <url-pattern>/auth/oauth/callback</url-pattern>
     </servlet-mapping>
 
+    <!-- Dream Job Matcher Controller -->
+    <servlet>
+        <servlet-name>StudentDreamJobServlet</servlet-name>
+        <servlet-class>com.skilltrack.controllers.StudentDreamJobServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentDreamJobServlet</servlet-name>
+        <url-pattern>/app/student/dream-job</url-pattern>
+    </servlet-mapping>
+
     <!-- Placement Passport Public Verification Controller -->
     <servlet>
         <servlet-name>PassportServlet</servlet-name>

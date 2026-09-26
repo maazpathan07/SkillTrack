@@ -547,6 +547,9 @@
     <!-- 4. CLIENT JAVASCRIPT ENGINE FOR FLOATING AI CHAT -->
     <script>
     (function() {
+        if (window.__SKILLTRACK_AI_WIDGET_INIT__) return;
+        window.__SKILLTRACK_AI_WIDGET_INIT__ = true;
+
         var triggerBtn = document.getElementById('aiFloatTriggerBtn');
         var popupWindow = document.getElementById('aiChatPopupWindow');
         var closeBtn = document.getElementById('aiCloseChatBtn');

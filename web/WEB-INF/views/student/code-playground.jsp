@@ -571,7 +571,6 @@
 </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jspf" %>
-<%@ include file="/WEB-INF/views/common/ai-floating-widget.jspf" %>
 
 <script>
     // Templates for various languages

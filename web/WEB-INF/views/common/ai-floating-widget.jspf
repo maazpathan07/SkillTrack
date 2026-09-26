@@ -1,0 +1,754 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%-- Only render Floating AI Assistant for authenticated students --%>
+<c:if test="${not empty sessionScope.SESSION_USER_ID and sessionScope.SESSION_USER_ROLE == 'STUDENT'}">
+
+    <!-- 1. FLOATING CIRCULAR AI BOT TRIGGER BUTTON -->
+    <div id="aiFloatingWidgetRoot" class="no-print">
+        <button type="button" id="aiFloatTriggerBtn" class="ai-float-trigger" aria-label="Open SkillTrack AI Assistant" title="Chat with AI Assistant">
+            <div class="ai-trigger-inner">
+                <!-- Glowing Pulsing Ring -->
+                <span class="ai-trigger-pulse"></span>
+                
+                <!-- Open Icon (Robot / Sparkles) -->
+                <span class="ai-trigger-icon-open">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                        <rect x="4" y="8" width="16" height="12" rx="3"></rect>
+                        <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+                        <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+                        <path d="M10 17h4"></path>
+                    </svg>
+                </span>
+
+                <!-- Close Icon (X) when open -->
+                <span class="ai-trigger-icon-close" style="display: none;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </span>
+
+                <!-- Online Active Badge -->
+                <span class="ai-online-dot"></span>
+            </div>
+            <span class="ai-float-label-tooltip">Ask AI ✨</span>
+        </button>
+
+        <!-- 2. FLOATING CHATPOPUP WINDOW (ChatGPT Style) -->
+        <div id="aiChatPopupWindow" class="ai-popup-window" aria-hidden="true">
+            <!-- Header -->
+            <div class="ai-popup-header">
+                <div class="d-flex align-items-center" style="gap: 10px;">
+                    <div class="ai-popup-avatar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+                            <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+                            <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+                            <path d="M10 17h4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="ai-popup-title">SkillTrack AI Assistant</div>
+                        <div class="ai-popup-status"><span class="ai-status-dot"></span> Online &bull; Ask me anything</div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center" style="gap: 6px;">
+                    <!-- Clear Chat History Button -->
+                    <button type="button" class="ai-header-btn" id="aiClearChatBtn" title="Clear conversation" aria-label="Clear conversation">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                    <!-- Close / Minimize Button -->
+                    <button type="button" class="ai-header-btn" id="aiCloseChatBtn" title="Close chat" aria-label="Close chat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Message Stream -->
+            <div id="aiChatStream" class="ai-popup-body">
+                <!-- Welcome greeting bubble -->
+                <div class="ai-msg-row ai-msg-ai">
+                    <div class="ai-msg-avatar">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+                        </svg>
+                    </div>
+                    <div class="ai-msg-bubble">
+                        <div class="ai-msg-text">
+                            👋 <strong>Hi there!</strong> I'm your <strong>SkillTrack AI Assistant</strong>.<br><br>
+                            You can ask me <strong>anything</strong> — whether it's solving coding problems, explaining concepts (OOPs, DBMS, OS, Networks), system design, resume tips, or interview questions!
+                        </div>
+                        <div class="ai-msg-time" id="aiInitTime">Just now</div>
+                    </div>
+                </div>
+
+                <!-- Typing indicator -->
+                <div id="aiTypingIndicator" class="ai-msg-row ai-msg-ai" style="display: none;">
+                    <div class="ai-msg-avatar">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div class="ai-msg-bubble ai-typing-bubble">
+                        <span class="ai-dot"></span>
+                        <span class="ai-dot"></span>
+                        <span class="ai-dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Follow-Up Prompt Chips -->
+            <div class="ai-chips-container" id="aiPromptChips">
+                <button type="button" class="ai-chip" onclick="window.sendAiQuickPrompt('Explain OOPs Concepts with code')">Explain OOPs Concepts</button>
+                <button type="button" class="ai-chip" onclick="window.sendAiQuickPrompt('How to reverse a Linked List in Java?')">Reverse Linked List</button>
+                <button type="button" class="ai-chip" onclick="window.sendAiQuickPrompt('What is Dynamic Programming?')">Dynamic Programming</button>
+                <button type="button" class="ai-chip" onclick="window.sendAiQuickPrompt('Tell me about yourself interview answer')">HR STAR Method</button>
+            </div>
+
+            <!-- Footer Input -->
+            <div class="ai-popup-footer">
+                <form id="aiPopupForm" autocomplete="off" class="d-flex align-items-center m-0 w-100" style="gap: 8px;">
+                    <input type="hidden" id="aiWidgetCsrfToken" value="${sessionScope.CSRF_TOKEN}" />
+                    <input type="text" id="aiWidgetInput" class="ai-input-field" placeholder="Ask anything (e.g. explain OOPs, code, doubts)..." maxlength="1000" autocomplete="off" required />
+                    <button type="submit" id="aiWidgetSendBtn" class="ai-send-btn" aria-label="Send message" title="Send">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. STYLING FOR FLOATING AI WIDGET (Glassmorphic iOS 18 Design) -->
+    <style>
+    /* Trigger Floating Button */
+    .ai-float-trigger {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0071e3 0%, #6366f1 100%);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 8px 24px rgba(0, 113, 227, 0.4), 0 2px 6px rgba(99, 102, 241, 0.3);
+        cursor: pointer;
+        z-index: 1040;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        outline: none !important;
+    }
+    .ai-float-trigger:hover {
+        transform: scale(1.08) translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0, 113, 227, 0.5), 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+    .ai-float-trigger:active {
+        transform: scale(0.96);
+    }
+    .ai-trigger-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ai-online-dot {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 13px;
+        height: 13px;
+        background: #34c759;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(52, 199, 89, 0.8);
+    }
+    .ai-trigger-pulse {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: inherit;
+        opacity: 0.4;
+        animation: aiPulse 2.4s infinite ease-out;
+        pointer-events: none;
+        z-index: -1;
+    }
+    @keyframes aiPulse {
+        0% { transform: scale(1); opacity: 0.6; }
+        70% { transform: scale(1.35); opacity: 0; }
+        100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    /* Tooltip */
+    .ai-float-label-tooltip {
+        position: absolute;
+        right: 68px;
+        background: rgba(15, 23, 42, 0.92);
+        backdrop-filter: blur(8px);
+        color: #ffffff;
+        font-size: 0.775rem;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(8px);
+        transition: all 0.25s ease;
+    }
+    .ai-float-trigger:hover .ai-float-label-tooltip {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Popup Chatbox Window */
+    .ai-popup-window {
+        position: fixed;
+        bottom: 94px;
+        right: 24px;
+        width: 400px;
+        max-width: calc(100vw - 32px);
+        height: 560px;
+        max-height: calc(100vh - 120px);
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 22px;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06);
+        z-index: 1045;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.95);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ai-popup-window.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Popup Header */
+    .ai-popup-header {
+        padding: 14px 18px;
+        background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.95));
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+    }
+    .ai-popup-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #0071e3, #6366f1);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 113, 227, 0.3);
+    }
+    .ai-popup-title {
+        font-size: 0.925rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.2;
+    }
+    .ai-popup-status {
+        font-size: 0.725rem;
+        color: #64748b;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .ai-status-dot {
+        width: 7px;
+        height: 7px;
+        background: #34c759;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .ai-header-btn {
+        background: rgba(15, 23, 42, 0.05);
+        border: none;
+        color: #64748b;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .ai-header-btn:hover {
+        background: rgba(15, 23, 42, 0.1);
+        color: #0f172a;
+    }
+
+    /* Popup Body / Stream */
+    .ai-popup-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        scroll-behavior: smooth;
+    }
+    .ai-popup-body::-webkit-scrollbar {
+        width: 5px;
+    }
+    .ai-popup-body::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.4);
+        border-radius: 10px;
+    }
+
+    /* Message Bubbles */
+    .ai-msg-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        animation: aiFadeIn 0.25s ease-out;
+    }
+    @keyframes aiFadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .ai-msg-user {
+        justify-content: flex-end;
+    }
+    .ai-msg-ai {
+        justify-content: flex-start;
+    }
+    .ai-msg-avatar {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #0071e3, #6366f1);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    .ai-msg-bubble {
+        max-width: 82%;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        word-break: break-word;
+    }
+    .ai-msg-user .ai-msg-bubble {
+        background: linear-gradient(135deg, #0071e3, #5856d6);
+        color: #ffffff;
+        border-bottom-right-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+    }
+    .ai-msg-ai .ai-msg-bubble {
+        background: #f8fafc;
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        color: #1e293b;
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .ai-msg-text pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.775rem;
+        overflow-x: auto;
+        margin: 8px 0;
+    }
+    .ai-msg-text code {
+        font-family: Consolas, Monaco, monospace;
+        font-size: 0.8em;
+    }
+    .ai-msg-text p {
+        margin-bottom: 6px;
+    }
+    .ai-msg-text p:last-child {
+        margin-bottom: 0;
+    }
+    .ai-msg-time {
+        font-size: 0.65rem;
+        color: #94a3b8;
+        margin-top: 4px;
+        text-align: right;
+    }
+    .ai-msg-user .ai-msg-time {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Typing Dots */
+    .ai-typing-bubble {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 14px;
+    }
+    .ai-dot {
+        width: 6px;
+        height: 6px;
+        background: #6366f1;
+        border-radius: 50%;
+        animation: aiBounce 1.4s infinite ease-in-out both;
+    }
+    .ai-dot:nth-child(1) { animation-delay: -0.32s; }
+    .ai-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes aiBounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1); }
+    }
+
+    /* Chips Container */
+    .ai-chips-container {
+        padding: 6px 14px;
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-top: 1px solid rgba(226, 232, 240, 0.5);
+        background: rgba(248, 250, 252, 0.8);
+        flex-shrink: 0;
+    }
+    .ai-chips-container::-webkit-scrollbar {
+        height: 3px;
+    }
+    .ai-chips-container::-webkit-scrollbar-thumb {
+        background: rgba(203, 213, 225, 0.6);
+        border-radius: 4px;
+    }
+    .ai-chip {
+        background: #ffffff;
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        color: #475569;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .ai-chip:hover {
+        background: #eef2ff;
+        border-color: #6366f1;
+        color: #4f46e5;
+    }
+
+    /* Footer Input Form */
+    .ai-popup-footer {
+        padding: 12px 14px;
+        background: #ffffff;
+        border-top: 1px solid rgba(226, 232, 240, 0.8);
+        flex-shrink: 0;
+    }
+    .ai-input-field {
+        flex: 1;
+        background: #f1f5f9;
+        border: 1px solid rgba(203, 213, 225, 0.6);
+        border-radius: 20px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        color: #0f172a;
+        outline: none;
+        transition: all 0.2s;
+    }
+    .ai-input-field:focus {
+        background: #ffffff;
+        border-color: #0071e3;
+        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+    }
+    .ai-send-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0071e3, #6366f1);
+        color: #ffffff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .ai-send-btn:hover {
+        transform: scale(1.06);
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35);
+    }
+    .ai-send-btn:active {
+        transform: scale(0.95);
+    }
+
+    @media (max-width: 576px) {
+        .ai-float-trigger {
+            bottom: 18px;
+            right: 18px;
+            width: 52px;
+            height: 52px;
+        }
+        .ai-popup-window {
+            bottom: 78px;
+            right: 12px;
+            left: 12px;
+            width: auto;
+            max-width: none;
+            height: calc(100vh - 100px);
+            border-radius: 18px;
+        }
+    }
+    </style>
+
+    <!-- 4. CLIENT JAVASCRIPT ENGINE FOR FLOATING AI CHAT -->
+    <script>
+    (function() {
+        var triggerBtn = document.getElementById('aiFloatTriggerBtn');
+        var popupWindow = document.getElementById('aiChatPopupWindow');
+        var closeBtn = document.getElementById('aiCloseChatBtn');
+        var clearBtn = document.getElementById('aiClearChatBtn');
+        var chatForm = document.getElementById('aiPopupForm');
+        var inputField = document.getElementById('aiWidgetInput');
+        var chatStream = document.getElementById('aiChatStream');
+        var typingIndicator = document.getElementById('aiTypingIndicator');
+        var chipsContainer = document.getElementById('aiPromptChips');
+        var iconOpen = document.querySelector('.ai-trigger-icon-open');
+        var iconClose = document.querySelector('.ai-trigger-icon-close');
+
+        function toggleAiChat(e) {
+            if (e) e.preventDefault();
+            var isOpen = popupWindow.classList.contains('is-open');
+            if (isOpen) {
+                closeAiChat();
+            } else {
+                openAiChat();
+            }
+        }
+
+        function openAiChat() {
+            popupWindow.classList.add('is-open');
+            popupWindow.setAttribute('aria-hidden', 'false');
+            if (iconOpen) iconOpen.style.display = 'none';
+            if (iconClose) iconClose.style.display = 'inline-flex';
+            setTimeout(function() {
+                inputField.focus();
+                scrollAiToBottom();
+            }, 100);
+        }
+
+        function closeAiChat() {
+            popupWindow.classList.remove('is-open');
+            popupWindow.setAttribute('aria-hidden', 'true');
+            if (iconOpen) iconOpen.style.display = 'inline-flex';
+            if (iconClose) iconClose.style.display = 'none';
+        }
+
+        if (triggerBtn) triggerBtn.addEventListener('click', toggleAiChat);
+        if (closeBtn) closeBtn.addEventListener('click', closeAiChat);
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function() {
+                if (confirm("Clear conversation history?")) {
+                    // Keep only first welcome message and typing indicator
+                    var welcome = chatStream.firstElementChild;
+                    chatStream.innerHTML = '';
+                    if (welcome) chatStream.appendChild(welcome);
+                    if (typingIndicator) chatStream.appendChild(typingIndicator);
+                }
+            });
+        }
+
+        function scrollAiToBottom() {
+            if (chatStream) {
+                chatStream.scrollTop = chatStream.scrollHeight;
+            }
+        }
+
+        function getFormattedTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            return hours + ':' + minutes + ' ' + ampm;
+        }
+
+        function escapeHtml(text) {
+            var map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        function formatAiMarkdown(raw) {
+            if (!raw) return '';
+            var html = escapeHtml(raw);
+
+            // Code blocks
+            html = html.replace(/```([a-z]*)\n([\s\S]*?)```/g, function(match, lang, code) {
+                return '<pre><code>' + code + '</code></pre>';
+            });
+
+            // Inline code
+            html = html.replace(/`([^`]+)`/g, '<code style="background: rgba(99,102,241,0.1); color: #4f46e5; padding: 2px 5px; border-radius: 4px;">$1</code>');
+
+            // Bold
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+            // Line breaks
+            html = html.replace(/\n/g, '<br>');
+
+            return html;
+        }
+
+        function submitAiMessage(text) {
+            var userText = text.trim();
+            if (!userText) return;
+
+            // 1. Append user message bubble
+            var timeStr = getFormattedTime();
+            var userBubble = document.createElement('div');
+            userBubble.className = 'ai-msg-row ai-msg-user';
+            userBubble.innerHTML = 
+                '<div class="ai-msg-bubble">' +
+                    '<div class="ai-msg-text">' + escapeHtml(userText) + '</div>' +
+                    '<div class="ai-msg-time">' + timeStr + '</div>' +
+                '</div>';
+
+            // Insert before typing indicator
+            chatStream.insertBefore(userBubble, typingIndicator);
+            inputField.value = '';
+            scrollAiToBottom();
+
+            // 2. Show typing animation
+            typingIndicator.style.display = 'flex';
+            chatStream.appendChild(typingIndicator);
+            scrollAiToBottom();
+
+            // 3. Make AJAX Call
+            var csrfToken = document.getElementById('aiWidgetCsrfToken').value;
+            var params = new URLSearchParams();
+            params.append('action', 'chat-query');
+            params.append('csrfToken', csrfToken);
+            params.append('query', userText);
+
+            fetch('${pageContext.request.contextPath}/app/student/ai-coach', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: params.toString()
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                typingIndicator.style.display = 'none';
+
+                if (data.status === 'success') {
+                    var aiBubble = document.createElement('div');
+                    aiBubble.className = 'ai-msg-row ai-msg-ai';
+                    aiBubble.innerHTML = 
+                        '<div class="ai-msg-avatar">' +
+                            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>' +
+                        '</div>' +
+                        '<div class="ai-msg-bubble">' +
+                            '<div class="ai-msg-text">' + formatAiMarkdown(data.message) + '</div>' +
+                            '<div class="ai-msg-time">' + (data.formattedTime || getFormattedTime()) + '</div>' +
+                        '</div>';
+
+                    chatStream.insertBefore(aiBubble, typingIndicator);
+                    scrollAiToBottom();
+
+                    // Render updated recommendation chips
+                    if (data.followups && data.followups.length > 0 && chipsContainer) {
+                        chipsContainer.innerHTML = '';
+                        data.followups.forEach(function(prompt) {
+                            var btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'ai-chip';
+                            btn.textContent = prompt;
+                            btn.onclick = function() { window.sendAiQuickPrompt(prompt); };
+                            chipsContainer.appendChild(btn);
+                        });
+                    }
+                } else {
+                    var errBubble = document.createElement('div');
+                    errBubble.className = 'ai-msg-row ai-msg-ai';
+                    errBubble.innerHTML = 
+                        '<div class="ai-msg-bubble" style="color: #ef4444; background: #fee2e2;">' +
+                            '<div class="ai-msg-text">' + (data.message || 'Error processing request.') + '</div>' +
+                        '</div>';
+                    chatStream.insertBefore(errBubble, typingIndicator);
+                    scrollAiToBottom();
+                }
+            })
+            .catch(function(err) {
+                typingIndicator.style.display = 'none';
+                var errBubble = document.createElement('div');
+                errBubble.className = 'ai-msg-row ai-msg-ai';
+                errBubble.innerHTML = 
+                    '<div class="ai-msg-bubble" style="color: #ef4444; background: #fee2e2;">' +
+                        '<div class="ai-msg-text">Failed to connect to AI Assistant. Please check your network and try again.</div>' +
+                    '</div>';
+                chatStream.insertBefore(errBubble, typingIndicator);
+                scrollAiToBottom();
+            });
+        }
+
+        if (chatForm) {
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitAiMessage(inputField.value);
+            });
+        }
+
+        window.sendAiQuickPrompt = function(promptText) {
+            if (!popupWindow.classList.contains('is-open')) {
+                openAiChat();
+            }
+            submitAiMessage(promptText);
+        };
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && popupWindow.classList.contains('is-open')) {
+                closeAiChat();
+            }
+        });
+    })();
+    </script>
+</c:if>

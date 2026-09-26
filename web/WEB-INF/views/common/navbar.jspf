@@ -138,6 +138,10 @@
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-info"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                                 Official Readiness Card
                             </a>
+                            <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/code-playground">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-primary"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Code Playground
+                            </a>
                             <a class="dropdown-item rounded small font-weight-semibold py-2 d-flex align-items-center" href="${pageContext.request.contextPath}/app/student/projects">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-warning"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                                 Projects Portfolio
@@ -314,6 +318,11 @@
                     <a class="ios-mobile-link ${activeNav == 'dsa' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/dsa">
                         <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>
                         <span class="ios-mobile-link-text">DSA Milestones</span>
+                        <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </a>
+                    <a class="ios-mobile-link ${activeNav == 'playground' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/code-playground">
+                        <span class="ios-mobile-link-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+                        <span class="ios-mobile-link-text">Code Playground</span>
                         <span class="ios-mobile-link-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </a>
                     <a class="ios-mobile-link ${activeNav == 'tasks' ? 'active' : ''}" href="${pageContext.request.contextPath}/app/student/tasks">

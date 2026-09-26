@@ -72,7 +72,7 @@
         padding: 1.5rem;
     }
 
-    /* Metric Cards */
+    /* Metric Cards - Strictly vertical flex with clean layout */
     .dsa-metric-card {
         background: #ffffff;
         border: 1px solid rgba(226, 232, 240, 0.85);
@@ -81,7 +81,7 @@
         box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
         height: 100%;
         display: flex;
-        flex-column;
+        flex-direction: column;
         justify-content: space-between;
         transition: all 0.2s ease;
     }
@@ -105,7 +105,7 @@
         line-height: 1.1;
         letter-spacing: -0.03em;
         color: #0f172a;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
     }
 
     /* Form Controls */
@@ -377,10 +377,10 @@
             </div>
             <div class="d-flex align-items-center gap-2 flex-wrap">
                 <a href="${pageContext.request.contextPath}/app/student/code-playground" class="btn-action-light" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: #ffffff; border: none; padding: 0.6rem 1.15rem; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    <span>⚡ Code Playground</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <span>Code Playground</span>
                 </a>
-                <span class="ios-pill-badge ios-pill-emerald" style="font-size: 0.825rem; padding: 0.45rem 0.95rem;">
+                <span class="ios-pill-badge ios-pill-emerald" style="font-size: 0.825rem; padding: 0.5rem 1rem;">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     150 Problems Benchmark
                 </span>
@@ -491,7 +491,7 @@
                         <fmt:formatNumber value="${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}" maxFractionDigits="1" minFractionDigits="1" />%
                     </div>
                 </div>
-                <div>
+                <div class="pt-2 border-top">
                     <div class="w-100" style="height: 6px; border-radius: 999px; background: #f1f5f9; overflow: hidden;">
                         <div style="width: ${totalSolved >= 150 ? 100 : (totalSolved * 100.0 / 150)}%; background: linear-gradient(90deg, #3b82f6, #06b6d4); height: 100%; border-radius: 999px; transition: width 0.6s ease;"></div>
                     </div>

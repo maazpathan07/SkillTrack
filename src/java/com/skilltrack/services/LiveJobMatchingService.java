@@ -360,12 +360,21 @@ public class LiveJobMatchingService {
             match.setStudentCertSummary(certCount + " Verified Certifications");
 
             // 4. Evaluate Pillar 4: Technical Skills & Proficiencies with Canonical Mapping (0-100)
+            Set<String> canonicalRequiredSkills = new LinkedHashSet<>();
+            if (reqs.requiredSkills != null) {
+                for (String r : reqs.requiredSkills) {
+                    if (r == null || r.trim().isEmpty()) continue;
+                    String c = findCanonicalSkillName(r);
+                    canonicalRequiredSkills.add(c != null ? c : r.trim());
+                }
+            }
+
             Set<String> matchedSkills = new LinkedHashSet<>();
             Set<String> missingSkills = new LinkedHashSet<>();
             double totalSkillWeight = 0;
             double earnedSkillWeight = 0;
 
-            for (String reqSkill : reqs.requiredSkills) {
+            for (String reqSkill : canonicalRequiredSkills) {
                 totalSkillWeight += 1.0;
                 StudentSkill possessedSkill = findMatchingStudentSkill(reqSkill, studentSkills);
 
@@ -399,7 +408,18 @@ public class LiveJobMatchingService {
                         matchedSkills.add(reqSkill + " (Project Proof)");
                         earnedSkillWeight += 0.75;
                     } else {
-                        missingSkills.add(reqSkill);
+                        // Double check it wasn't already covered in matchedSkills
+                        boolean alreadyCovered = false;
+                        for (String m : matchedSkills) {
+                            String mClean = m.replace(" (Project Proof)", "").trim();
+                            if (findCanonicalSkillName(mClean).equalsIgnoreCase(findCanonicalSkillName(reqSkill))) {
+                                alreadyCovered = true;
+                                break;
+                            }
+                        }
+                        if (!alreadyCovered) {
+                            missingSkills.add(reqSkill);
+                        }
                     }
                 }
             }
@@ -408,6 +428,7 @@ public class LiveJobMatchingService {
             match.setSkillScore(skillScore);
             match.setMatchedSkills(new ArrayList<>(matchedSkills));
             match.setMissingSkills(new ArrayList<>(missingSkills));
+            match.setRequiredSkills(new ArrayList<>(canonicalRequiredSkills));
 
             // 5. Evaluate Pillar 5: Academic Benchmarks (0-100)
             int academicScore;

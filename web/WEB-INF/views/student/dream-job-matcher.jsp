@@ -86,40 +86,44 @@
     
     /* Studio Competency Dual Split Cards */
     .competency-box-matched {
-        background: linear-gradient(180deg, rgba(52, 199, 89, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
-        border: 1.5px solid rgba(52, 199, 89, 0.25);
-        border-radius: 14px;
-        padding: 1.1rem;
+        background: #fbfdfb;
+        border: 1.5px solid rgba(52, 199, 89, 0.3);
+        border-radius: var(--ios-radius-md, 14px);
+        padding: 1.15rem;
         height: 100%;
+        box-shadow: 0 2px 8px rgba(52, 199, 89, 0.04);
     }
     .competency-box-missing {
-        background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
-        border: 1.5px solid rgba(239, 68, 68, 0.22);
-        border-radius: 14px;
-        padding: 1.1rem;
+        background: #fdfbfb;
+        border: 1.5px solid rgba(239, 68, 68, 0.25);
+        border-radius: var(--ios-radius-md, 14px);
+        padding: 1.15rem;
         height: 100%;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.04);
     }
     .skill-card-matched {
         background: #ffffff;
-        border: 1px solid rgba(52, 199, 89, 0.3);
+        border: 1px solid rgba(52, 199, 89, 0.25);
         border-radius: 10px;
-        padding: 0.45rem 0.75rem;
-        box-shadow: 0 1px 4px rgba(52, 199, 89, 0.08);
+        padding: 0.5rem 0.8rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
+        transition: transform 0.15s ease;
     }
     .skill-card-missing {
         background: #ffffff;
-        border: 1px solid rgba(239, 68, 68, 0.25);
+        border: 1px solid rgba(239, 68, 68, 0.22);
         border-radius: 10px;
-        padding: 0.45rem 0.75rem;
-        box-shadow: 0 1px 4px rgba(239, 68, 68, 0.06);
+        padding: 0.5rem 0.8rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
+        transition: transform 0.15s ease;
     }
 </style>
 
@@ -492,20 +496,22 @@
 
                             <!-- SECTION: High-End Dual Split Technical Competency Alignment Matrix -->
                             <div class="ios-card mb-4 shadow-sm p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3.5 pb-2 border-bottom flex-wrap gap-2">
+                                <div class="d-flex align-items-center justify-content-between pb-3 mb-4 border-bottom flex-wrap gap-2">
                                     <div>
-                                        <h3 class="h6 font-weight-bold text-dark mb-0.5 d-flex align-items-center" style="font-size: 1.05rem;">
+                                        <h3 class="h6 font-weight-bold text-dark mb-1 d-flex align-items-center" style="font-size: 1.05rem;">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                             Technical Competency Alignment
                                         </h3>
                                         <small class="text-muted">Direct comparison between candidate profile proficiencies and job requirements</small>
                                     </div>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge badge-success-soft font-weight-bold px-2.5 py-1 text-success" style="background: rgba(52, 199, 89, 0.12); border-radius: 12px; font-size: 0.78rem;">
-                                            &check; ${fn:length(matchResult.matchedSkills)} Matched
+                                    <div class="d-flex align-items-center" style="gap: 0.5rem;">
+                                        <span class="badge font-weight-bold px-2.5 py-1 text-success d-inline-flex align-items-center" style="background: rgba(52, 199, 89, 0.12); border-radius: 12px; font-size: 0.78rem; gap: 0.35rem;">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            ${fn:length(matchResult.matchedSkills)} Matched
                                         </span>
-                                        <span class="badge badge-danger-soft font-weight-bold px-2.5 py-1 text-danger" style="background: rgba(239, 68, 68, 0.1); border-radius: 12px; font-size: 0.78rem;">
-                                            &times; ${fn:length(matchResult.missingSkills)} Gaps
+                                        <span class="badge font-weight-bold px-2.5 py-1 text-danger d-inline-flex align-items-center" style="background: rgba(239, 68, 68, 0.1); border-radius: 12px; font-size: 0.78rem; gap: 0.35rem;">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                            ${fn:length(matchResult.missingSkills)} Gaps
                                         </span>
                                     </div>
                                 </div>
@@ -514,22 +520,30 @@
                                     <!-- Left Column: Matched Competencies -->
                                     <div class="col-md-6 mb-3">
                                         <div class="competency-box-matched">
-                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-1 border-bottom" style="border-color: rgba(52, 199, 89, 0.2) !important;">
-                                                <span class="font-weight-bold text-success d-flex align-items-center" style="font-size: 0.88rem;">
-                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Matched Competencies (${fn:length(matchResult.matchedSkills)})
-                                                </span>
-                                                <span class="text-muted font-weight-semibold" style="font-size: 0.72rem;">Verified</span>
+                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom" style="border-color: rgba(52, 199, 89, 0.25) !important;">
+                                                <div class="d-flex align-items-center" style="gap: 0.5rem;">
+                                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 22px; height: 22px; background: rgba(52, 199, 89, 0.15); color: #34c759; flex-shrink: 0;">
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    </span>
+                                                    <span class="font-weight-bold text-success" style="font-size: 0.88rem; letter-spacing: -0.01em;">
+                                                        Matched Competencies (${fn:length(matchResult.matchedSkills)})
+                                                    </span>
+                                                </div>
+                                                <span class="badge badge-light border text-muted font-weight-semibold px-2 py-0.5" style="font-size: 0.7rem; border-radius: 8px;">Verified</span>
                                             </div>
 
                                             <div class="d-flex flex-column" style="gap: 0.5rem;">
                                                 <c:forEach items="${matchResult.matchedSkills}" var="s">
                                                     <div class="skill-card-matched">
-                                                        <span class="font-weight-bold text-dark d-flex align-items-center" style="font-size: 0.84rem;">
-                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center mr-2 text-white" style="width: 18px; height: 18px; background: #34c759; font-size: 0.65rem;">&check;</span>
-                                                            <c:out value="${s}" />
-                                                        </span>
-                                                        <span class="badge badge-success font-weight-semibold py-0.5 px-2" style="font-size: 0.68rem; border-radius: 10px; background: rgba(52, 199, 89, 0.2); color: #248a3d;">Ready</span>
+                                                        <div class="d-flex align-items-center" style="gap: 0.55rem;">
+                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 19px; height: 19px; background: #34c759;">
+                                                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                            </span>
+                                                            <span class="font-weight-semibold text-dark" style="font-size: 0.85rem;">
+                                                                <c:out value="${s}" />
+                                                            </span>
+                                                        </div>
+                                                        <span class="badge font-weight-semibold py-1 px-2" style="font-size: 0.68rem; border-radius: 8px; background: rgba(52, 199, 89, 0.12); color: #248a3d;">Ready</span>
                                                     </div>
                                                 </c:forEach>
                                                 <c:if test="${empty matchResult.matchedSkills}">
@@ -545,22 +559,30 @@
                                     <!-- Right Column: Missing Required Skills -->
                                     <div class="col-md-6 mb-3">
                                         <div class="competency-box-missing">
-                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-1 border-bottom" style="border-color: rgba(239, 68, 68, 0.2) !important;">
-                                                <span class="font-weight-bold text-danger d-flex align-items-center" style="font-size: 0.88rem;">
-                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-1.5"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                                    Missing Required Skills (${fn:length(matchResult.missingSkills)})
-                                                </span>
-                                                <span class="text-danger font-weight-semibold" style="font-size: 0.72rem;">Action Needed</span>
+                                            <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom" style="border-color: rgba(239, 68, 68, 0.25) !important;">
+                                                <div class="d-flex align-items-center" style="gap: 0.5rem;">
+                                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 22px; height: 22px; background: rgba(239, 68, 68, 0.15); color: #ef4444; flex-shrink: 0;">
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                    </span>
+                                                    <span class="font-weight-bold text-danger" style="font-size: 0.88rem; letter-spacing: -0.01em;">
+                                                        Missing Required Skills (${fn:length(matchResult.missingSkills)})
+                                                    </span>
+                                                </div>
+                                                <span class="badge badge-light border text-danger font-weight-semibold px-2 py-0.5" style="font-size: 0.7rem; border-radius: 8px;">Action Needed</span>
                                             </div>
 
                                             <div class="d-flex flex-column" style="gap: 0.5rem;">
                                                 <c:forEach items="${matchResult.missingSkills}" var="ms">
                                                     <div class="skill-card-missing">
-                                                        <span class="font-weight-bold text-dark d-flex align-items-center" style="font-size: 0.84rem;">
-                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center mr-2 text-white" style="width: 18px; height: 18px; background: #ef4444; font-size: 0.7rem;">&plus;</span>
-                                                            <c:out value="${ms}" />
-                                                        </span>
-                                                        <span class="badge badge-danger font-weight-semibold py-0.5 px-2" style="font-size: 0.68rem; border-radius: 10px; background: rgba(239, 68, 68, 0.15); color: #dc2626;">Target Gap</span>
+                                                        <div class="d-flex align-items-center" style="gap: 0.55rem;">
+                                                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 19px; height: 19px; background: #ef4444;">
+                                                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                            </span>
+                                                            <span class="font-weight-semibold text-dark" style="font-size: 0.85rem;">
+                                                                <c:out value="${ms}" />
+                                                            </span>
+                                                        </div>
+                                                        <span class="badge font-weight-semibold py-1 px-2" style="font-size: 0.68rem; border-radius: 8px; background: rgba(239, 68, 68, 0.1); color: #dc2626;">Target Gap</span>
                                                     </div>
                                                 </c:forEach>
                                                 <c:if test="${empty matchResult.missingSkills}">

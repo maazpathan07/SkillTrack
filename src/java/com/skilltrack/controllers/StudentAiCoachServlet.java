@@ -105,6 +105,9 @@ public class StudentAiCoachServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String query = request.getParameter("query");
+        if (query == null || query.trim().isEmpty()) {
+            query = request.getParameter("message");
+        }
         String criteriaIdParam = request.getParameter("criteriaId");
         Integer criteriaId = null;
         if (criteriaIdParam != null && !criteriaIdParam.trim().isEmpty()) {

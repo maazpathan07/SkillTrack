@@ -49,6 +49,16 @@
         <url-pattern>/app/student/dream-job</url-pattern>
     </servlet-mapping>
 
+    <!-- AI Placement Readiness Coach Controller -->
+    <servlet>
+        <servlet-name>StudentAiCoachServlet</servlet-name>
+        <servlet-class>com.skilltrack.controllers.StudentAiCoachServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentAiCoachServlet</servlet-name>
+        <url-pattern>/app/student/ai-coach</url-pattern>
+    </servlet-mapping>
+
     <!-- Placement Passport Public Verification Controller -->
     <servlet>
         <servlet-name>PassportServlet</servlet-name>

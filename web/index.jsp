@@ -955,52 +955,69 @@
         <section class="py-5" id="tpo-portal" style="background: var(--ios-bg-base);">
             <div class="container py-5">
                 <div class="row align-items-center">
+                    <!-- Left Column: TPO Enterprise Features -->
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Faculty &amp; TPO Console</span>
-                        <h2 class="ios-section-title font-weight-bold mb-3" style="color: var(--ios-text-primary);">
-                            Enterprise Intelligence for Placement Officers
+                        <h2 class="ios-section-title font-weight-bold mb-3" style="color: #0f172a; letter-spacing: -0.025em;">
+                            Enterprise Intelligence for Placement Cells
                         </h2>
                         <p class="text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6;">
-                            Give your college Training &amp; Placement Cell (TPO) the real-time analytics needed to boost campus placement conversions, filter eligible batches, and generate reports in seconds.
+                            Empower Training &amp; Placement Officers (TPOs) and department faculty with deterministic cohort filtering, dynamic drive criteria matching, and verified student audits in seconds.
                         </p>
                         
-                        <!-- Feature 1 -->
-                        <div class="d-flex align-items-start mb-4 p-3 rounded-lg" style="background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.04); border-radius: var(--ios-radius-md); transition: var(--ios-ease);">
-                            <div class="ios-icon-box ios-icon-blue mr-3 flex-shrink-0" style="width: 44px; height: 44px; margin-bottom: 0; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.15);">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        <!-- Feature 1: Drive Shortlisting Simulator -->
+                        <div class="d-flex align-items-start mb-3.5 p-3 rounded-lg border" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 16px; border-color: rgba(226, 232, 240, 0.9);">
+                            <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(0, 113, 227, 0.1); border: 1.5px solid rgba(0, 113, 227, 0.25); display: flex; align-items: center; justify-content: center; color: #0071e3;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line>
+                                    <line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line>
+                                    <line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line>
+                                </svg>
                             </div>
                             <div>
-                                <h6 class="font-weight-bold mb-1" style="color: var(--ios-text-primary); font-size: 0.95rem;">Instant Cohort Intelligence &amp; PDF/Excel Export</h6>
-                                <p class="text-muted small mb-0" style="line-height: 1.5;">Filter candidates by department, CGPA range, and readiness score with one-click exportable rosters.</p>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Multi-Factor Drive Shortlisting Simulator</h6>
+                                <p class="text-muted small mb-0" style="line-height: 1.5;">Instantly filter 1,000+ student batches by CGPA cutoffs, active backlog count, LeetCode solved counts, and mandatory technical competencies.</p>
                             </div>
                         </div>
 
-                        <!-- Feature 2 -->
-                        <div class="d-flex align-items-start mb-4 p-3 rounded-lg" style="background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.04); border-radius: var(--ios-radius-md); transition: var(--ios-ease);">
-                            <div class="ios-icon-box ios-icon-green mr-3 flex-shrink-0" style="width: 44px; height: 44px; margin-bottom: 0; box-shadow: 0 4px 12px rgba(52, 199, 89, 0.15);">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <!-- Feature 2: Verified Academic & Project Proofs -->
+                        <div class="d-flex align-items-start mb-3.5 p-3 rounded-lg border" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 16px; border-color: rgba(226, 232, 240, 0.9);">
+                            <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; color: #059669;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
                             </div>
                             <div>
-                                <h6 class="font-weight-bold mb-1" style="color: var(--ios-text-primary); font-size: 0.95rem;">Dynamic Company Hiring Criteria Rules</h6>
-                                <p class="text-muted small mb-0" style="line-height: 1.5;">Configure company-specific cutoff parameters (minimum CGPA, max backlogs, required skills) with instant match stats.</p>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">Cryptographically Verified Placement Passports</h6>
+                                <p class="text-muted small mb-0" style="line-height: 1.5;">Audit real GitHub repositories, live deployment links, verified LeetCode stats, and ATS Ivy-League resumes with 1-click verification.</p>
                             </div>
                         </div>
 
-                        <!-- Feature 3 -->
-                        <div class="d-flex align-items-start p-3 rounded-lg" style="background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.04); border-radius: var(--ios-radius-md); transition: var(--ios-ease);">
-                            <div class="ios-icon-box ios-icon-purple mr-3 flex-shrink-0" style="width: 44px; height: 44px; margin-bottom: 0; box-shadow: 0 4px 12px rgba(175, 82, 222, 0.15);">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <!-- Feature 3: Institutional Export -->
+                        <div class="d-flex align-items-start mb-4 p-3 rounded-lg border" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 16px; border-color: rgba(226, 232, 240, 0.9);">
+                            <div class="ios-icon-box mr-3 flex-shrink-0" style="width: 44px; height: 44px; border-radius: 12px; background: rgba(139, 92, 246, 0.1); border: 1.5px solid rgba(139, 92, 246, 0.25); display: flex; align-items: center; justify-content: center; color: #7c3aed;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
                             </div>
                             <div>
-                                <h6 class="font-weight-bold mb-1" style="color: var(--ios-text-primary); font-size: 0.95rem;">360° Verified Student Academic Profile</h6>
-                                <p class="text-muted small mb-0" style="line-height: 1.5;">Inspect student skill proofs, GitHub project links, DSA completion ratios, and full audit logs.</p>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a; font-size: 0.95rem;">1-Click Excel, CSV &amp; Vector PDF Rosters</h6>
+                                <p class="text-muted small mb-0" style="line-height: 1.5;">Export company-specific candidate rosters, institutional placement analytics, and student readiness scorecards ready for corporate recruiters.</p>
                             </div>
                         </div>
+
+                        <a href="${pageContext.request.contextPath}/login" class="ios-btn-primary" style="padding: 0.75rem 1.75rem; font-size: 0.9rem;">
+                            Access Placement Console &rarr;
+                        </a>
                     </div>
 
-                    <!-- Right Demo Console -->
+                    <!-- Right Column: Interactive TPO Live Drive Simulator Console -->
                     <div class="col-lg-6">
-                        <div class="ios-card p-4" style="background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04); border-radius: var(--ios-radius-lg);">
+                        <div class="ios-glass-card p-4" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04); border-radius: 20px;">
                             <!-- Top macOS window bar -->
                             <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom" style="border-color: #f1f5f9 !important;">
                                 <div class="d-flex align-items-center">
@@ -1010,122 +1027,149 @@
                                         <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
                                     </div>
                                     <div>
-                                        <h3 class="h6 font-weight-bold mb-0" style="color: var(--ios-text-primary); font-size: 0.95rem;">TPO Management Console</h3>
-                                        <small class="text-muted" style="font-size: 0.75rem;">Live Batch Filtering &amp; Intelligence</small>
+                                        <h6 class="font-weight-bold mb-0" style="color: #0f172a; font-size: 0.95rem;">TPO Drive Shortlisting Simulator</h6>
+                                        <small class="text-muted" style="font-size: 0.72rem;">2026 Batch &bull; 142 Active Candidates</small>
                                     </div>
                                 </div>
-                                <span class="ios-badge ios-badge-blue font-weight-bold" style="font-size: 0.75rem;">Live Demo</span>
+                                <span class="ios-badge ios-badge-blue" style="font-size: 0.7rem;">Interactive Demo</span>
                             </div>
 
-                            <!-- Table -->
-                            <div class="table-responsive" style="border-radius: var(--ios-radius-sm); overflow: hidden; border: 1px solid #f1f5f9;">
-                                <table class="table table-hover mb-0 text-center" style="font-size: 0.85rem; border-collapse: separate;">
-                                    <thead class="bg-light">
+                            <!-- Interactive Company Preset Filter Tabs -->
+                            <div class="mb-3">
+                                <label class="small text-muted font-weight-bold mb-1.5 d-block" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Select Company Hiring Preset:</label>
+                                <div class="d-flex flex-wrap gap-1.5" style="gap: 6px;">
+                                    <button type="button" id="tpoBtnTier1" onclick="switchTpoPreset('tier1')" class="btn btn-sm font-weight-bold" style="font-size: 0.75rem; border-radius: 8px; padding: 0.35rem 0.75rem; background: #0071e3; color: #ffffff; border: 1px solid #0071e3; transition: all 0.2s ease;">
+                                        Amazon SDE (CGPA ≥ 8.5)
+                                    </button>
+                                    <button type="button" id="tpoBtnTcs" onclick="switchTpoPreset('tcs')" class="btn btn-sm font-weight-bold" style="font-size: 0.75rem; border-radius: 8px; padding: 0.35rem 0.75rem; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; transition: all 0.2s ease;">
+                                        TCS Digital (CGPA ≥ 7.5)
+                                    </button>
+                                    <button type="button" id="tpoBtnFintech" onclick="switchTpoPreset('fintech')" class="btn btn-sm font-weight-bold" style="font-size: 0.75rem; border-radius: 8px; padding: 0.35rem 0.75rem; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; transition: all 0.2s ease;">
+                                        Fintech (Java / DSA 150+)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Live Candidate Roster Table -->
+                            <div class="table-responsive" style="border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0;">
+                                <table class="table table-hover mb-0 text-center" style="font-size: 0.825rem; border-collapse: separate;">
+                                    <thead style="background: #f8fafc;">
                                         <tr style="border-bottom: 1px solid #e2e8f0;">
-                                            <th class="text-left font-weight-bold small text-uppercase py-2 px-3" style="color: #334155; letter-spacing: 0.05em;">Candidate</th>
-                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #334155; letter-spacing: 0.05em;">Dept</th>
-                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #334155; letter-spacing: 0.05em;">CGPA</th>
-                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #334155; letter-spacing: 0.05em;">Readiness</th>
-                                            <th class="font-weight-bold small text-uppercase py-2 px-3 text-right" style="color: #334155; letter-spacing: 0.05em;">Status</th>
+                                            <th class="text-left font-weight-bold small text-uppercase py-2 px-3" style="color: #475569;">Candidate</th>
+                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #475569;">Dept</th>
+                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #475569;">CGPA</th>
+                                            <th class="font-weight-bold small text-uppercase py-2" style="color: #475569;">DSA</th>
+                                            <th class="font-weight-bold small text-uppercase py-2 px-3 text-right" style="color: #475569;">Drive Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr style="border-bottom: 1px solid #f8fafc;">
+                                        <!-- Candidate 1 -->
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
                                             <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="st-avatar-xs mr-2" style="background: rgba(0, 113, 227, 0.1); color: var(--ios-blue); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
+                                                    <div class="st-avatar-xs mr-2" style="background: linear-gradient(135deg, #3b82f6, #6366f1); color: #fff; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
                                                         RS
                                                     </div>
-                                                    <span style="color: var(--ios-text-primary);">Rahul Sharma</span>
+                                                    <span style="color: #0f172a;">Rahul Sharma</span>
                                                 </div>
                                             </td>
-                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">CSE</span></td>
-                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">8.85</td>
-                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">92 / 100</span></td>
-                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
-                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.7rem;">CSE</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0f172a;">8.85</td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0071e3;">184</td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;" id="tpoStatus1">
+                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>
                                             </td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid #f8fafc;">
+
+                                        <!-- Candidate 2 -->
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
                                             <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="st-avatar-xs mr-2" style="background: rgba(175, 82, 222, 0.1); color: var(--ios-purple); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
-                                                        PP
-                                                    </div>
-                                                    <span style="color: var(--ios-text-primary);">Priya Patel</span>
-                                                </div>
-                                            </td>
-                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">IT</span></td>
-                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">8.40</td>
-                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">84 / 100</span></td>
-                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
-                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #f8fafc;">
-                                            <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="st-avatar-xs mr-2" style="background: rgba(52, 199, 89, 0.12); color: var(--ios-green-dark); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
+                                                    <div class="st-avatar-xs mr-2" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
                                                         SG
                                                     </div>
-                                                    <span style="color: var(--ios-text-primary);">Sneha Gupta</span>
+                                                    <span style="color: #0f172a;">Sneha Gupta</span>
                                                 </div>
                                             </td>
-                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">AI &amp; DS</span></td>
-                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">9.12</td>
-                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">96 / 100</span></td>
-                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
-                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.7rem;">AI &amp; DS</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0f172a;">9.12</td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0071e3;">210</td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;" id="tpoStatus2">
+                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Top Pick ★</span>
                                             </td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid #f8fafc;">
+
+                                        <!-- Candidate 3 -->
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
                                             <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="st-avatar-xs mr-2" style="background: rgba(255, 149, 0, 0.1); color: var(--ios-orange); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
-                                                        AK
+                                                    <div class="st-avatar-xs mr-2" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
+                                                        PP
                                                     </div>
-                                                    <span style="color: var(--ios-text-primary);">Amit Kumar</span>
+                                                    <span style="color: #0f172a;">Priya Patel</span>
                                                 </div>
                                             </td>
-                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">ECE</span></td>
-                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">7.60</td>
-                                            <td style="vertical-align: middle;"><span class="font-weight-bold" style="color: #b45309;">68 / 100</span></td>
-                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
-                                                <span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">In Progress</span>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.7rem;">IT</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0f172a;">8.40</td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0071e3;">142</td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;" id="tpoStatus3">
+                                                <span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">CGPA &lt; 8.5</span>
                                             </td>
                                         </tr>
+
+                                        <!-- Candidate 4 -->
+                                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                                            <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="st-avatar-xs mr-2" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
+                                                        AK
+                                                    </div>
+                                                    <span style="color: #0f172a;">Amit Kumar</span>
+                                                </div>
+                                            </td>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.7rem;">ECE</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0f172a;">7.60</td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0071e3;">94</td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;" id="tpoStatus4">
+                                                <span class="ios-badge ios-badge-red font-weight-bold" style="font-size: 0.72rem;">Screened Out</span>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Candidate 5 -->
                                         <tr>
                                             <td class="text-left font-weight-bold py-2 px-3" style="vertical-align: middle;">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="st-avatar-xs mr-2" style="background: rgba(88, 86, 214, 0.1); color: var(--ios-indigo); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;" aria-hidden="true">
+                                                    <div class="st-avatar-xs mr-2" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
                                                         RV
                                                     </div>
-                                                    <span style="color: var(--ios-text-primary);">Rohan Verma</span>
+                                                    <span style="color: #0f172a;">Rohan Verma</span>
                                                 </div>
                                             </td>
-                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">CSE</span></td>
-                                            <td style="vertical-align: middle; font-weight: 600; color: #334155;">8.05</td>
-                                            <td style="vertical-align: middle;"><span class="font-weight-bold text-success">78 / 100</span></td>
-                                            <td class="text-right py-2 px-3" style="vertical-align: middle;">
-                                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Ready</span>
+                                            <td style="vertical-align: middle;"><span class="ios-badge ios-badge-gray" style="font-size: 0.7rem;">CSE</span></td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0f172a;">8.05</td>
+                                            <td style="vertical-align: middle; font-weight: 600; color: #0071e3;">126</td>
+                                            <td class="text-right py-2 px-3" style="vertical-align: middle;" id="tpoStatus5">
+                                                <span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">CGPA &lt; 8.5</span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <!-- Bottom Card Summary Toolbar -->
+                            <!-- Bottom Simulator Toolbar & Metrics -->
                             <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 pt-2">
-                                <div class="small text-muted font-weight-semibold">
-                                    <span>Showing <strong>5 of 142</strong> eligible candidates</span>
+                                <div class="small font-weight-bold" id="tpoSummaryCount" style="color: #475569;">
+                                    Shortlisted: <strong class="text-dark" id="tpoCountText">2 of 5</strong> Candidates
                                 </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">
-                                        94% Placement Ready
+                                <div class="d-flex align-items-center" style="gap: 8px;">
+                                    <span class="ios-badge ios-badge-green font-weight-bold" id="tpoConversionBadge" style="font-size: 0.72rem;">
+                                        40% Drive Match
+                                    </span>
+                                    <span class="ios-badge ios-badge-gray" style="font-size: 0.7rem; cursor: pointer;">
+                                        📥 Export Excel
                                     </span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -1557,6 +1601,79 @@
                                       '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Docker Containers</span>' +
                                       '<span class="ios-badge ios-badge-red mr-1 mb-1" style="font-size: 0.72rem;">Kubernetes (Missing)</span>' +
                                       '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Terraform (Basic)</span>';
+                }
+            }
+        }
+
+        function switchTpoPreset(presetKey) {
+            var btn1 = document.getElementById('tpoBtnTier1');
+            var btn2 = document.getElementById('tpoBtnTcs');
+            var btn3 = document.getElementById('tpoBtnFintech');
+
+            var s1 = document.getElementById('tpoStatus1');
+            var s2 = document.getElementById('tpoStatus2');
+            var s3 = document.getElementById('tpoStatus3');
+            var s4 = document.getElementById('tpoStatus4');
+            var s5 = document.getElementById('tpoStatus5');
+
+            var countText = document.getElementById('tpoCountText');
+            var matchBadge = document.getElementById('tpoConversionBadge');
+
+            [btn1, btn2, btn3].forEach(function(b) {
+                if (b) {
+                    b.style.background = "#f1f5f9";
+                    b.style.color = "#475569";
+                    b.style.borderColor = "#e2e8f0";
+                }
+            });
+
+            if (presetKey === 'tier1') {
+                if (btn1) {
+                    btn1.style.background = "#0071e3";
+                    btn1.style.color = "#ffffff";
+                    btn1.style.borderColor = "#0071e3";
+                }
+                if (s1) s1.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>';
+                if (s2) s2.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Top Pick ★</span>';
+                if (s3) s3.innerHTML = '<span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">CGPA &lt; 8.5</span>';
+                if (s4) s4.innerHTML = '<span class="ios-badge ios-badge-red font-weight-bold" style="font-size: 0.72rem;">Screened Out</span>';
+                if (s5) s5.innerHTML = '<span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">CGPA &lt; 8.5</span>';
+                if (countText) countText.textContent = "2 of 5";
+                if (matchBadge) {
+                    matchBadge.textContent = "40% Drive Match";
+                    matchBadge.className = "ios-badge ios-badge-green font-weight-bold";
+                }
+            } else if (presetKey === 'tcs') {
+                if (btn2) {
+                    btn2.style.background = "#0071e3";
+                    btn2.style.color = "#ffffff";
+                    btn2.style.borderColor = "#0071e3";
+                }
+                if (s1) s1.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>';
+                if (s2) s2.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Top Pick ★</span>';
+                if (s3) s3.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>';
+                if (s4) s4.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Eligible ✓</span>';
+                if (s5) s5.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>';
+                if (countText) countText.textContent = "5 of 5";
+                if (matchBadge) {
+                    matchBadge.textContent = "100% Batch Eligible";
+                    matchBadge.className = "ios-badge ios-badge-green font-weight-bold";
+                }
+            } else if (presetKey === 'fintech') {
+                if (btn3) {
+                    btn3.style.background = "#0071e3";
+                    btn3.style.color = "#ffffff";
+                    btn3.style.borderColor = "#0071e3";
+                }
+                if (s1) s1.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Shortlisted ✓</span>';
+                if (s2) s2.innerHTML = '<span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.72rem;">Top Pick ★</span>';
+                if (s3) s3.innerHTML = '<span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">DSA &lt; 150</span>';
+                if (s4) s4.innerHTML = '<span class="ios-badge ios-badge-red font-weight-bold" style="font-size: 0.72rem;">DSA &lt; 150</span>';
+                if (s5) s5.innerHTML = '<span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.72rem;">DSA &lt; 150</span>';
+                if (countText) countText.textContent = "2 of 5";
+                if (matchBadge) {
+                    matchBadge.textContent = "40% High-Algorithmic Match";
+                    matchBadge.className = "ios-badge ios-badge-purple font-weight-bold";
                 }
             }
         }

@@ -278,6 +278,34 @@
         box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.05);
         border-color: #cbd5e1;
     }
+
+    /* Modal Checkbox Card */
+    .modal-checkbox-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        margin-top: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .modal-checkbox-card:hover {
+        border-color: #cbd5e1;
+        background: #f1f5f9;
+    }
+
+    .modal-checkbox-input {
+        width: 18px;
+        height: 18px;
+        accent-color: #2563eb;
+        margin-top: 2px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
 </style>
 
 <div class="container-fluid px-3 px-lg-4 py-4 project-page-wrapper">
@@ -562,26 +590,28 @@
     <!-- Modal: Live GitHub Sync -->
     <div class="modal fade" id="syncGithubModal" tabindex="-1" role="dialog" aria-labelledby="syncGithubModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+            <div class="modal-content" style="border-radius: 18px; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden;">
                 <form id="syncGithubForm" method="POST" action="${pageContext.request.contextPath}/app/student/sync-platforms" onsubmit="return handleGithubSyncSubmit(this);">
                     <input type="hidden" name="csrfToken" value="${sessionScope.CSRF_TOKEN}">
                     <input type="hidden" name="redirectUri" value="/app/student/projects">
                     
-                    <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #1e293b, #0f172a); color: #ffffff;">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="modal-header d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #f1f5f9; padding: 1.25rem 1.5rem; background: #ffffff;">
+                        <div class="d-flex align-items-center gap-2.5" style="gap: 0.75rem;">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #1e293b, #0f172a); color: #ffffff;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                                 </svg>
                             </div>
-                            <h5 class="modal-title font-weight-bold text-dark mb-0" id="syncGithubModalLabel" style="font-size: 1.1rem;">Live GitHub Portfolio Sync</h5>
+                            <div>
+                                <h5 class="modal-title font-weight-bold text-dark mb-0" id="syncGithubModalLabel" style="font-size: 1.05rem;">Live GitHub Portfolio Sync</h5>
+                            </div>
                         </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border: none; font-size: 1.25rem; color: #64748b; line-height: 1; padding: 0; outline: none;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
-                    <div class="modal-body p-4">
+                    <div class="modal-body p-4" style="background: #ffffff;">
                         <!-- GitHub Username -->
                         <div class="form-group mb-3">
                             <label for="syncGithubUser" class="project-form-label">
@@ -590,29 +620,31 @@
                             </label>
                             <div class="input-icon-wrapper">
                                 <span class="input-icon-left">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                                     </svg>
                                 </span>
                                 <input type="text" class="project-input input-with-icon-left" id="syncGithubUser" name="githubUsername" value="<c:out value='${codingProfile != null ? codingProfile.githubUsername : ""}' />" required placeholder="Enter GitHub username (without @)">
                             </div>
-                            <small class="text-muted mt-1 d-block">System will fetch public repository count, bio, avatar, and verify your open source portfolio.</small>
+                            <small class="text-muted mt-1.5 d-block" style="font-size: 0.775rem;">System will fetch public repository count, bio, avatar, and verify your open source portfolio.</small>
                         </div>
 
-                        <!-- Auto-import Repositories Checkbox -->
-                        <div class="custom-control custom-checkbox p-3 mt-3" style="background: rgba(30, 41, 59, 0.04); border: 1px solid rgba(30, 41, 59, 0.12); border-radius: 12px;">
-                            <input type="checkbox" class="custom-control-input" id="autoImportRepos" name="autoDistribute" value="true" checked>
-                            <label class="custom-control-label small font-weight-bold text-dark" for="autoImportRepos">
-                                ⚡ Automatically import public repositories into Project Showcase
-                            </label>
-                            <small class="text-muted d-block mt-1" style="font-size: 0.775rem;">
-                                Creates portfolio projects directly with verified GitHub repository links, tech stack tags, and repository descriptions.
-                            </small>
+                        <!-- Auto-import Repositories Checkbox (Fixed alignment & padding) -->
+                        <div class="modal-checkbox-card" onclick="var cb = document.getElementById('autoImportRepos'); if(event.target !== cb) cb.checked = !cb.checked;">
+                            <input type="checkbox" class="modal-checkbox-input" id="autoImportRepos" name="autoDistribute" value="true" checked>
+                            <div>
+                                <label for="autoImportRepos" class="font-weight-bold text-dark small mb-0" style="cursor: pointer; font-size: 0.825rem; line-height: 1.4; display: block;">
+                                    ⚡ Automatically import public repositories into Project Showcase
+                                </label>
+                                <p class="text-muted small mb-0 mt-1" style="font-size: 0.75rem; line-height: 1.45;">
+                                    Creates portfolio projects directly with verified GitHub repository links, tech stack tags, and repository descriptions.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.25rem 1.5rem;">
-                        <button type="button" class="btn-action-light" data-dismiss="modal">Cancel</button>
+                    <div class="modal-footer d-flex justify-content-between align-items-center" style="border-top: 1px solid #f1f5f9; padding: 1.15rem 1.5rem; background: #ffffff;">
+                        <button type="button" class="btn-action-light" data-dismiss="modal" style="padding: 0.55rem 1.25rem;">Cancel</button>
                         <button type="submit" id="triggerGithubSyncBtn" class="btn-github-sync">
                             <span id="githubSyncSpinner" class="spinner-border spinner-border-sm d-none mr-1" role="status" aria-hidden="true"></span>
                             <span id="githubSyncBtnText">🚀 Fetch &amp; Sync GitHub Profile</span>

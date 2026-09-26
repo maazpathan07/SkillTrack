@@ -161,33 +161,34 @@
             </div>
         </header>
 
-        <!-- 1. HERO SECTION (APPLE LIQUID GLASS AESTHETIC) -->
-        <section class="ios-ambient-canvas py-5" id="overview" style="padding-top: 5rem !important; padding-bottom: 5.5rem !important;">
+        <!-- 1. HERO SECTION (APPLE LIQUID GLASS AESTHETIC & INTERACTIVE MULTI-ENGINE TERMINAL) -->
+        <section class="ios-ambient-canvas py-5" id="overview" style="padding-top: 4.5rem !important; padding-bottom: 5rem !important;">
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row align-items-center">
+                    <!-- Left Column: Hero Headline, Subtitle & Action CTAs -->
                     <div class="col-lg-7 text-center text-lg-left mb-5 mb-lg-0">
                         <!-- Apple Style Pill Tag -->
-                        <div class="d-inline-flex align-items-center px-3 py-1 mb-4 rounded-pill border" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); font-size: 0.825rem; font-weight: 700; color: var(--ios-blue);">
-                            <span class="mr-2" style="width: 6px; height: 6px; border-radius: 50%; background: var(--ios-blue); display: inline-block;"></span>
-                            Placement Intelligence Platform
+                        <div class="d-inline-flex align-items-center px-3 py-1 mb-3 rounded-pill border" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); font-size: 0.825rem; font-weight: 700; color: #0071e3; box-shadow: 0 2px 8px rgba(0, 113, 227, 0.08);">
+                            <span class="mr-2" style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);"></span>
+                            Next-Gen Placement Intelligence &bull; AI Powered
                         </div>
                         
                         <!-- Hero Typography -->
-                        <h1 class="ios-hero-title font-weight-bold mb-3" style="color: #1d1d1f;">
+                        <h1 class="ios-hero-title font-weight-bold mb-3" style="color: #0f172a; letter-spacing: -0.03em; line-height: 1.15;">
                             Master Industry Skills. <br />
-                            <span style="background: linear-gradient(135deg, #0071e3, #5856d6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                                Accelerate Career Readiness.
+                            <span style="background: linear-gradient(135deg, #0071e3 0%, #6366f1 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                Accelerate Placement Readiness.
                             </span>
                         </h1>
 
                         <!-- Subtitle -->
-                        <p class="lead mb-4" style="color: #6e6e73; font-size: 1.2rem; line-height: 1.6; max-width: 620px;">
-                            The intelligent platform that benchmarks your technical competencies against target roles, tracks daily DSA milestones, validates live GitHub projects, and calculates a deterministic <strong>100-Point Readiness Score</strong>.
+                        <p class="lead mb-4" style="color: #475569; font-size: 1.15rem; line-height: 1.6; max-width: 620px;">
+                            The unified placement operating system for engineering campuses. Auto-sync <strong>LeetCode stats</strong>, code in <strong>Live Playgrounds</strong>, scan <strong>ATS Resumes</strong> against company cutoffs, and earn a verified <strong>100-Point Placement Passport</strong>.
                         </p>
 
                         <!-- Action Buttons -->
                         <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3 mb-4">
-                            <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary mr-sm-3 mb-3 mb-sm-0" style="padding: 0.85rem 2rem; font-size: 1rem;">
+                            <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary mr-sm-3 mb-3 mb-sm-0" style="padding: 0.85rem 2rem; font-size: 1rem; box-shadow: 0 8px 20px -3px rgba(0, 113, 227, 0.35);">
                                 Register as Student &rarr;
                             </a>
                             <a href="${pageContext.request.contextPath}/login" class="ios-btn-secondary" style="padding: 0.85rem 2rem; font-size: 1rem;">
@@ -195,94 +196,210 @@
                             </a>
                         </div>
 
-                        <!-- Micro Feature Badges -->
-                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2 pt-2">
-                            <span class="ios-badge ios-badge-gray mr-2 mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                Deterministic Algorithm
+                        <!-- Micro Feature Badges with Official Vector Icons -->
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2 pt-1">
+                            <span class="ios-badge ios-badge-gray mr-2 mb-2" style="font-size: 0.775rem; padding: 0.35rem 0.75rem;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFA116" class="mr-1.5"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/></svg>
+                                LeetCode Live Sync
                             </span>
-                            <span class="ios-badge ios-badge-gray mr-2 mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                                12+ Industry Roles
+                            <span class="ios-badge ios-badge-gray mr-2 mb-2" style="font-size: 0.775rem; padding: 0.35rem 0.75rem;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.2" class="mr-1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Code Playground
                             </span>
-                            <span class="ios-badge ios-badge-gray mb-2">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                                PDF Readiness Card
+                            <span class="ios-badge ios-badge-gray mr-2 mb-2" style="font-size: 0.775rem; padding: 0.35rem 0.75rem;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" class="mr-1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                                ATS Resume Scanner
+                            </span>
+                            <span class="ios-badge ios-badge-gray mb-2" style="font-size: 0.775rem; padding: 0.35rem 0.75rem;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.2" class="mr-1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                Verified Passport
                             </span>
                         </div>
                     </div>
 
-                    <!-- Right Column: Apple iPad / macOS Glass Widget Container -->
+                    <!-- Right Column: Interactive Multi-Engine Terminal Widget -->
                     <div class="col-lg-5">
-                        <div class="ios-glass-card p-4">
-                            <!-- Header & Live Role Display -->
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div>
-                                    <span class="text-uppercase font-weight-bold" style="font-size: 0.725rem; letter-spacing: 0.06em; color: var(--ios-text-tertiary);">Interactive Preview</span>
-                                    <h5 class="font-weight-bold mb-0 mt-1" id="previewRoleTitle" style="color: var(--ios-text-primary);">Full Stack Engineer</h5>
+                        <div class="ios-glass-card p-4" style="background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(24px); border: 1px solid rgba(226, 232, 240, 0.95); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04); border-radius: 20px;">
+                            <!-- macOS Window Header Bar -->
+                            <div class="d-flex justify-content-between align-items-center mb-3 pb-2.5 border-bottom" style="border-color: #f1f5f9 !important;">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-2.5" style="gap: 5px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                                    </div>
+                                    <span class="font-weight-bold" style="font-size: 0.8rem; color: #334155;">Interactive Terminal</span>
                                 </div>
-                                <span class="ios-badge ios-badge-green" id="previewReadyBadge">Ready (88%)</span>
+                                <span class="ios-badge ios-badge-green" style="font-size: 0.7rem; padding: 2px 8px;">
+                                    <span class="mr-1" style="width: 5px; height: 5px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                    Live Preview
+                                </span>
                             </div>
 
-                            <!-- Apple iOS Segmented Control -->
-                            <div class="ios-segmented-control mb-3">
-                                <button type="button" class="ios-segment-btn active" onclick="switchPreviewRole('fullstack')" id="btnRole1">Full Stack</button>
-                                <button type="button" class="ios-segment-btn" onclick="switchPreviewRole('data')" id="btnRole2">Data Engineer</button>
-                                <button type="button" class="ios-segment-btn" onclick="switchPreviewRole('cloud')" id="btnRole3">Cloud DevOps</button>
+                            <!-- 3 Mode Segmented Control (Readiness, LeetCode, ATS Scanner) -->
+                            <div class="ios-segmented-control mb-3" style="background: #f1f5f9; padding: 3px; border-radius: 12px;">
+                                <button type="button" class="ios-segment-btn active" onclick="switchTerminalTab('readiness')" id="tabBtnReadiness" style="font-size: 0.775rem;">
+                                    Readiness Score
+                                </button>
+                                <button type="button" class="ios-segment-btn" onclick="switchTerminalTab('leetcode')" id="tabBtnLeetcode" style="font-size: 0.775rem;">
+                                    LeetCode Sync
+                                </button>
+                                <button type="button" class="ios-segment-btn" onclick="switchTerminalTab('ats')" id="tabBtnAts" style="font-size: 0.775rem;">
+                                    ATS Resume
+                                </button>
                             </div>
 
-                            <!-- Circular Score Gauge Card -->
-                            <div class="p-3 mb-3 rounded" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.06); box-shadow: var(--ios-shadow-sm);">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small font-weight-bold text-muted">Placement Readiness Score</span>
-                                    <span class="font-weight-bold" style="font-size: 1.35rem; color: var(--ios-blue);" id="previewScoreText">88 / 100</span>
-                                </div>
-                                <div class="progress" style="height: 10px; border-radius: 5px; background: rgba(0, 0, 0, 0.06);">
-                                    <div class="progress-bar" id="previewProgressBar" role="progressbar" style="width: 88%; background: var(--ios-green);" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-
-                            <!-- 4-Tile Metrics Grid -->
-                            <div class="row text-center mb-3">
-                                <div class="col-6 mb-2 pr-1">
-                                    <div class="p-2 border rounded" style="background: rgba(255, 255, 255, 0.95);">
-                                        <div class="font-weight-bold" style="font-size: 1.25rem; color: var(--ios-blue);" id="previewDsaCount">156</div>
-                                        <small class="text-muted font-weight-semibold">DSA Solved</small>
+                            <!-- TAB 1: READINESS SCORE VIEW -->
+                            <div id="terminalTabReadiness">
+                                <!-- Role Selector Pills -->
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="text-uppercase font-weight-bold" style="font-size: 0.7rem; letter-spacing: 0.05em; color: #64748b;">Target Role:</span>
+                                    <div class="d-flex gap-1" style="gap: 4px;">
+                                        <button type="button" class="btn-quick-add" onclick="switchPreviewRole('fullstack')" id="btnRole1" style="font-size: 0.72rem; padding: 2px 7px;">Full Stack</button>
+                                        <button type="button" class="btn-quick-add" onclick="switchPreviewRole('data')" id="btnRole2" style="font-size: 0.72rem; padding: 2px 7px; background: transparent; border: none; color: #64748b;">Data Eng</button>
+                                        <button type="button" class="btn-quick-add" onclick="switchPreviewRole('cloud')" id="btnRole3" style="font-size: 0.72rem; padding: 2px 7px; background: transparent; border: none; color: #64748b;">Cloud</button>
                                     </div>
                                 </div>
-                                <div class="col-6 mb-2 pl-1">
-                                    <div class="p-2 border rounded" style="background: rgba(255, 255, 255, 0.95);">
-                                        <div class="font-weight-bold" style="font-size: 1.25rem; color: var(--ios-green-dark);" id="previewSkillCount">9 / 10</div>
-                                        <small class="text-muted font-weight-semibold">Skills Matched</small>
+
+                                <!-- Score Gauge Box -->
+                                <div class="p-3 mb-2.5 rounded-lg" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                                    <div class="d-flex justify-content-between align-items-center mb-1.5">
+                                        <span class="small font-weight-bold" id="previewRoleTitle" style="color: #0f172a;">Full Stack Engineer</span>
+                                        <span class="font-weight-bold" style="font-size: 1.25rem; color: #0071e3;" id="previewScoreText">88 / 100</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px; border-radius: 4px; background: #e2e8f0;">
+                                        <div class="progress-bar" id="previewProgressBar" role="progressbar" style="width: 88%; background: #10b981; border-radius: 4px; transition: width 0.5s ease;" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                                <div class="col-6 pr-1">
-                                    <div class="p-2 border rounded" style="background: rgba(255, 255, 255, 0.95);">
-                                        <div class="font-weight-bold" style="font-size: 1.25rem; color: #7e22ce;" id="previewProjectsCount">4 Verified</div>
-                                        <small class="text-muted font-weight-semibold">Projects</small>
+
+                                <!-- 4 Metrics Tiles -->
+                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-primary" style="font-size: 1.1rem; line-height: 1.1;" id="previewDsaCount">156</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">DSA Solved</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-success" style="font-size: 1.1rem; line-height: 1.1;" id="previewSkillCount">9 / 10</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">Skills</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold" style="font-size: 1.1rem; line-height: 1.1; color: #7c3aed;" id="previewProjectsCount">4 Proj</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">Verified</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold" style="font-size: 1.1rem; line-height: 1.1; color: #d97706;" id="previewCriteriaCount">95%</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">Eligibility</small>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-6 pl-1">
-                                    <div class="p-2 border rounded" style="background: rgba(255, 255, 255, 0.95);">
-                                        <div class="font-weight-bold" style="font-size: 1.25rem; color: #c2410c;" id="previewCriteriaCount">95% Match</div>
-                                        <small class="text-muted font-weight-semibold">Company Cutoffs</small>
+
+                                <!-- Required Skills -->
+                                <div class="mb-3">
+                                    <div id="previewSkillChips" class="d-flex flex-wrap gap-1">
+                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Java Core</span>
+                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Spring Boot</span>
+                                        <span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">React.js</span>
+                                        <span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Docker (Interm)</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Live Competencies -->
-                            <div class="mb-3">
-                                <small class="text-muted font-weight-bold d-block mb-1">Required Competencies:</small>
-                                <div id="previewSkillChips" class="d-flex flex-wrap gap-1">
-                                    <span class="ios-badge ios-badge-green mr-1 mb-1">Java Core</span>
-                                    <span class="ios-badge ios-badge-green mr-1 mb-1">Spring Boot</span>
-                                    <span class="ios-badge ios-badge-green mr-1 mb-1">React.js</span>
-                                    <span class="ios-badge ios-badge-orange mr-1 mb-1">Docker (Intermediate)</span>
+                            <!-- TAB 2: LEETCODE AUTO-SYNC VIEW -->
+                            <div id="terminalTabLeetcode" class="d-none">
+                                <div class="p-3 mb-2.5 rounded-lg" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1.5px solid rgba(245, 158, 11, 0.35);">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFA116"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.607L9.4 7.64l4.083-4.371A1.38 1.38 0 0 0 13.483 0zm-2.88 7.218a1.38 1.38 0 0 0-.979.405l-4.54 4.54a1.38 1.38 0 0 0 0 1.952l4.54 4.54a1.38 1.38 0 0 0 1.952-1.952L7.962 13.11l3.614-3.614a1.38 1.38 0 0 0-.973-2.278z"/></svg>
+                                            <span class="font-weight-bold text-dark" style="font-size: 0.9rem;">@maaz_sde</span>
+                                        </div>
+                                        <span class="ios-badge ios-badge-green" style="font-size: 0.68rem; padding: 2px 7px;">✓ Live Synced</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                        <span class="small font-weight-bold text-muted">156 / 150 Solved</span>
+                                        <span class="font-weight-bold text-success" style="font-size: 0.85rem;">Target Met 104%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px; border-radius: 3px; background: #e2e8f0;">
+                                        <div class="progress-bar" style="width: 100%; background: #f59e0b;"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Difficulty Breakdown Chips -->
+                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-success" style="font-size: 1.1rem; line-height: 1.1;">84</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">🟢 Easy</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-warning" style="font-size: 1.1rem; line-height: 1.1;">52</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">🟡 Medium</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-danger" style="font-size: 1.1rem; line-height: 1.1;">20</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.68rem;">🔴 Hard</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2 mb-3 rounded bg-light border d-flex justify-content-between align-items-center" style="font-size: 0.75rem;">
+                                    <span class="text-muted">🏆 Global Rank: <strong>#18,420</strong></span>
+                                    <span class="badge badge-primary px-2 py-1">Top 8.5% Globally</span>
                                 </div>
                             </div>
 
-                            <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary btn-block text-center" style="border-radius: var(--ios-radius-sm); font-size: 0.925rem;">
-                                Create Your Profile &rarr;
+                            <!-- TAB 3: ATS RESUME SCANNER VIEW -->
+                            <div id="terminalTabAts" class="d-none">
+                                <div class="p-3 mb-2.5 rounded-lg" style="background: #f0fdf4; border: 1.5px solid rgba(16, 185, 129, 0.35);">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="small font-weight-bold text-dark">ATS Diagnostic Score</span>
+                                        <span class="font-weight-bold text-success" style="font-size: 1.25rem;">92 / 100</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px; border-radius: 3px; background: #dcfce7;">
+                                        <div class="progress-bar bg-success" style="width: 92%;"></div>
+                                    </div>
+                                    <span class="small text-muted d-block" style="font-size: 0.72rem;">Harvard / Ivy-League 1-Page A4 Standard Compliant</span>
+                                </div>
+
+                                <div class="row text-center mb-2.5 no-gutters" style="gap: 6px;">
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-success" style="font-size: 1rem; line-height: 1.1;">95%</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Keywords</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-primary" style="font-size: 1rem; line-height: 1.1;">88%</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Action Verbs</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 border rounded" style="background: #ffffff;">
+                                            <div class="font-weight-bold text-success" style="font-size: 1rem; line-height: 1.1;">100%</div>
+                                            <small class="text-muted font-weight-bold" style="font-size: 0.65rem;">Format</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2 mb-3 rounded bg-light border d-flex justify-content-between align-items-center" style="font-size: 0.75rem;">
+                                    <span class="text-muted">Target Company Cutoffs:</span>
+                                    <span class="badge badge-success px-2 py-1">Tier-1 Eligible ✓</span>
+                                </div>
+                            </div>
+
+                            <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary btn-block text-center" style="border-radius: 12px; font-size: 0.9rem; padding: 0.7rem;">
+                                Launch Your Student Portal &rarr;
                             </a>
                         </div>
                     </div>
@@ -1126,8 +1243,36 @@
         })();
         </script>
 
-        <!-- Interactive Hero Role Switcher Demo Script -->
+        <!-- Interactive Hero Terminal & Role Switcher Demo Script -->
         <script>
+        function switchTerminalTab(tabKey) {
+            var tabBtnReadiness = document.getElementById('tabBtnReadiness');
+            var tabBtnLeetcode = document.getElementById('tabBtnLeetcode');
+            var tabBtnAts = document.getElementById('tabBtnAts');
+
+            var tabContentReadiness = document.getElementById('terminalTabReadiness');
+            var tabContentLeetcode = document.getElementById('terminalTabLeetcode');
+            var tabContentAts = document.getElementById('terminalTabAts');
+
+            [tabBtnReadiness, tabBtnLeetcode, tabBtnAts].forEach(function(b) {
+                if (b) b.classList.remove('active');
+            });
+            [tabContentReadiness, tabContentLeetcode, tabContentAts].forEach(function(c) {
+                if (c) c.classList.add('d-none');
+            });
+
+            if (tabKey === 'readiness') {
+                if (tabBtnReadiness) tabBtnReadiness.classList.add('active');
+                if (tabContentReadiness) tabContentReadiness.classList.remove('d-none');
+            } else if (tabKey === 'leetcode') {
+                if (tabBtnLeetcode) tabBtnLeetcode.classList.add('active');
+                if (tabContentLeetcode) tabContentLeetcode.classList.remove('d-none');
+            } else if (tabKey === 'ats') {
+                if (tabBtnAts) tabBtnAts.classList.add('active');
+                if (tabContentAts) tabContentAts.classList.remove('d-none');
+            }
+        }
+
         function switchPreviewRole(roleKey) {
             var title = document.getElementById('previewRoleTitle');
             var score = document.getElementById('previewScoreText');
@@ -1135,58 +1280,79 @@
             var dsa = document.getElementById('previewDsaCount');
             var skills = document.getElementById('previewSkillCount');
             var chips = document.getElementById('previewSkillChips');
-            var badge = document.getElementById('previewReadyBadge');
 
             var btn1 = document.getElementById('btnRole1');
             var btn2 = document.getElementById('btnRole2');
             var btn3 = document.getElementById('btnRole3');
 
             [btn1, btn2, btn3].forEach(function(b) {
-                b.className = "ios-segment-btn";
+                if (b) {
+                    b.style.background = "transparent";
+                    b.style.border = "none";
+                    b.style.color = "#64748b";
+                }
             });
 
             if (roleKey === 'fullstack') {
-                btn1.className = "ios-segment-btn active";
-                title.textContent = "Full Stack Engineer";
-                score.textContent = "88 / 100";
-                bar.style.width = "88%";
-                bar.style.background = "var(--ios-green)";
-                badge.className = "ios-badge ios-badge-green";
-                badge.textContent = "Ready (88%)";
-                dsa.textContent = "156";
-                skills.textContent = "9 / 10";
-                chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1">Java Core</span>' +
-                                  '<span class="ios-badge ios-badge-green mr-1 mb-1">Spring Boot</span>' +
-                                  '<span class="ios-badge ios-badge-green mr-1 mb-1">React.js</span>' +
-                                  '<span class="ios-badge ios-badge-orange mr-1 mb-1">Docker (Intermediate)</span>';
+                if (btn1) {
+                    btn1.style.background = "#f1f5f9";
+                    btn1.style.border = "1px solid #e2e8f0";
+                    btn1.style.color = "#0f172a";
+                }
+                if (title) title.textContent = "Full Stack Engineer";
+                if (score) score.textContent = "88 / 100";
+                if (bar) {
+                    bar.style.width = "88%";
+                    bar.style.background = "#10b981";
+                }
+                if (dsa) dsa.textContent = "156";
+                if (skills) skills.textContent = "9 / 10";
+                if (chips) {
+                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Java Core</span>' +
+                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Spring Boot</span>' +
+                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">React.js</span>' +
+                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Docker (Interm)</span>';
+                }
             } else if (roleKey === 'data') {
-                btn2.className = "ios-segment-btn active";
-                title.textContent = "Data Engineer";
-                score.textContent = "76 / 100";
-                bar.style.width = "76%";
-                bar.style.background = "var(--ios-blue)";
-                badge.className = "ios-badge ios-badge-blue";
-                badge.textContent = "In Progress (76%)";
-                dsa.textContent = "118";
-                skills.textContent = "7 / 9";
-                chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1">Python 3</span>' +
-                                  '<span class="ios-badge ios-badge-green mr-1 mb-1">SQL / MySQL</span>' +
-                                  '<span class="ios-badge ios-badge-orange mr-1 mb-1">Apache Spark</span>' +
-                                  '<span class="ios-badge ios-badge-red mr-1 mb-1">Kafka (Missing)</span>';
+                if (btn2) {
+                    btn2.style.background = "#f1f5f9";
+                    btn2.style.border = "1px solid #e2e8f0";
+                    btn2.style.color = "#0f172a";
+                }
+                if (title) title.textContent = "Data Engineer";
+                if (score) score.textContent = "76 / 100";
+                if (bar) {
+                    bar.style.width = "76%";
+                    bar.style.background = "#0071e3";
+                }
+                if (dsa) dsa.textContent = "118";
+                if (skills) skills.textContent = "7 / 9";
+                if (chips) {
+                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Python 3</span>' +
+                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">SQL / MySQL</span>' +
+                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Apache Spark</span>' +
+                                      '<span class="ios-badge ios-badge-red mr-1 mb-1" style="font-size: 0.72rem;">Kafka (Missing)</span>';
+                }
             } else if (roleKey === 'cloud') {
-                btn3.className = "ios-segment-btn active";
-                title.textContent = "Cloud DevOps Architect";
-                score.textContent = "64 / 100";
-                bar.style.width = "64%";
-                bar.style.background = "var(--ios-orange)";
-                badge.className = "ios-badge ios-badge-orange";
-                badge.textContent = "Needs Prep (64%)";
-                dsa.textContent = "94";
-                skills.textContent = "5 / 8";
-                chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1">Linux / Bash</span>' +
-                                  '<span class="ios-badge ios-badge-green mr-1 mb-1">Docker Containers</span>' +
-                                  '<span class="ios-badge ios-badge-red mr-1 mb-1">Kubernetes (Missing)</span>' +
-                                  '<span class="ios-badge ios-badge-orange mr-1 mb-1">Terraform (Basic)</span>';
+                if (btn3) {
+                    btn3.style.background = "#f1f5f9";
+                    btn3.style.border = "1px solid #e2e8f0";
+                    btn3.style.color = "#0f172a";
+                }
+                if (title) title.textContent = "Cloud DevOps Architect";
+                if (score) score.textContent = "64 / 100";
+                if (bar) {
+                    bar.style.width = "64%";
+                    bar.style.background = "#f59e0b";
+                }
+                if (dsa) dsa.textContent = "94";
+                if (skills) skills.textContent = "5 / 8";
+                if (chips) {
+                    chips.innerHTML = '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Linux / Bash</span>' +
+                                      '<span class="ios-badge ios-badge-green mr-1 mb-1" style="font-size: 0.72rem;">Docker Containers</span>' +
+                                      '<span class="ios-badge ios-badge-red mr-1 mb-1" style="font-size: 0.72rem;">Kubernetes (Missing)</span>' +
+                                      '<span class="ios-badge ios-badge-orange mr-1 mb-1" style="font-size: 0.72rem;">Terraform (Basic)</span>';
+                }
             }
         }
         </script>

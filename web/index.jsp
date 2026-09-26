@@ -1385,97 +1385,120 @@
             </div>
         </section>
 
-        <!-- 7. APPLE LIQUID GLASS CTA BANNER -->
+        <!-- 7. APPLE LIQUID DARK GLASS CTA BANNER -->
         <section class="py-5" style="background: var(--ios-bg-base);">
             <div class="container py-5">
-                <div class="ios-dark-glass-banner">
-                    <div class="d-inline-flex align-items-center px-3 py-1 mb-4 rounded-pill" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.8rem; font-weight: 600; color: #ffffff;">
-                        <span class="mr-2" style="width: 6px; height: 6px; border-radius: 50%; background: #34c759; display: inline-block;"></span>
-                        Placement Readiness Platform
+                <div class="ios-dark-glass-banner text-center position-relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 28px; padding: 4rem 2rem; box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.4);">
+                    <!-- Top Pill -->
+                    <div class="d-inline-flex align-items-center px-3.5 py-1 mb-4 rounded-pill" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.8rem; font-weight: 600; color: #ffffff;">
+                        <span class="mr-2" style="width: 7px; height: 7px; border-radius: 50%; background: #34c759; display: inline-block; box-shadow: 0 0 10px #34c759;"></span>
+                        Next-Gen Campus Placement Operating System
                     </div>
                     
-                    <h2 class="ios-section-title font-weight-bold mb-3 text-white">
-                        Ready to Take Control of Your Career Readiness?
+                    <h2 class="ios-section-title font-weight-bold mb-3 text-white" style="letter-spacing: -0.025em; font-size: 2.25rem;">
+                        Take Full Control of Your Campus Placement Journey
                     </h2>
                     
-                    <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 620px; font-size: 1.15rem; line-height: 1.6;">
-                        Join engineering and IT students actively bridging skill gaps, tracking DSA milestones, and securing top tier corporate offers.
+                    <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 650px; font-size: 1.1rem; line-height: 1.6;">
+                        Join engineering students mastering algorithmic topics, eliminating skill gaps with AI guidance, and earning verified credentials that Tier-1 recruiters trust.
                     </p>
+
+                    <!-- Feature Badges -->
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4" style="gap: 8px;">
+                        <span class="ios-badge" style="background: rgba(255, 255, 255, 0.1); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.75rem;">LeetCode Live Sync</span>
+                        <span class="ios-badge" style="background: rgba(255, 255, 255, 0.1); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.75rem;">In-Browser Playground</span>
+                        <span class="ios-badge" style="background: rgba(255, 255, 255, 0.1); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.75rem;">Ivy-League ATS Resume</span>
+                        <span class="ios-badge" style="background: rgba(255, 255, 255, 0.1); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.75rem;">Verified Passport</span>
+                    </div>
                     
-                    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-                        <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary mr-sm-3 mb-3 mb-sm-0" style="background: #ffffff; color: #111827 !important; padding: 0.95rem 2.25rem; font-size: 1rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);">
-                            Create Student Account &rarr;
+                    <!-- Action Buttons -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-3">
+                        <a href="${pageContext.request.contextPath}/register" class="ios-btn-primary mr-sm-3 mb-3 mb-sm-0" style="background: #ffffff; color: #0f172a !important; padding: 0.9rem 2.25rem; font-size: 1rem; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                            Create Free Student Account &rarr;
                         </a>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-btn-secondary" style="background: rgba(255, 255, 255, 0.1); color: #ffffff !important; border-color: rgba(255, 255, 255, 0.25); padding: 0.95rem 2.25rem; font-size: 1rem;">
+                        <a href="${pageContext.request.contextPath}/login" class="ios-btn-secondary" style="background: rgba(255, 255, 255, 0.08); color: #ffffff !important; border-color: rgba(255, 255, 255, 0.25); padding: 0.9rem 2.25rem; font-size: 1rem; font-weight: 600;">
                             Sign In to Portal
                         </a>
+                    </div>
+
+                    <div class="small text-white-50 mt-2">
+                        <span>Are you a faculty member or placement officer?</span>&nbsp;
+                        <a href="${pageContext.request.contextPath}/login" style="color: #60a5fa; text-decoration: underline; font-weight: 600;">Access TPO Portal &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 8. APPLE MINIMALIST MULTI-COLUMN FOOTER -->
-        <footer class="ios-footer">
+        <footer class="ios-footer" style="background: #ffffff; border-top: 1px solid #e2e8f0; padding: 4.5rem 0 2.5rem;">
             <div class="container">
                 <div class="row mb-5 text-center text-lg-left">
                     <!-- Brand Column -->
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <a class="ios-brand d-inline-flex mb-3 justify-content-center justify-content-lg-start" href="${pageContext.request.contextPath}/">
-                            <span class="ios-brand-icon">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <span class="ios-brand-icon" style="width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, #0071e3, #5856d6); display: inline-flex; align-items: center; justify-content: center; color: #ffffff;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                                     <path d="M2 17l10 5 10-5"></path>
                                     <path d="M2 12l10 5 10-5"></path>
                                 </svg>
                             </span>
-                            <span class="ml-2 font-weight-bold" style="color: var(--ios-text-primary);">SkillTrack</span>
+                            <span class="ml-2 font-weight-bold" style="color: #0f172a; font-size: 1.15rem; letter-spacing: -0.02em;">SkillTrack</span>
                         </a>
-                        <p class="text-muted small pr-lg-4 mb-3 mx-auto ml-lg-0" style="line-height: 1.6; max-width: 420px;">
-                            Student Skill Benchmarking, DSA Milestone Tracker & Placement Readiness Management Platform.
+                        <p class="text-muted small pr-lg-4 mb-3 mx-auto ml-lg-0" style="line-height: 1.6; max-width: 380px;">
+                            Engineering placement readiness platform. Auto-sync LeetCode stats, test algorithms in live playgrounds, scan Ivy-League ATS resumes, and verify credentials with digital placement passports.
                         </p>
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <span class="ios-badge ios-badge-gray">
-                                Designed for Engineering & Tech Universities
+                            <span class="ios-badge ios-badge-green" style="font-size: 0.72rem;">
+                                ● System Active &bull; Version 4.7
                             </span>
                         </div>
                     </div>
 
-                    <!-- Column 2: Student Engines -->
-                    <div class="col-6 col-lg-2 mb-4 mb-lg-0">
-                        <div class="ios-footer-heading">Student Tools</div>
-                        <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Skill Gap Radar</a>
-                        <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">DSA Milestones</a>
-                        <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Project Portfolio</a>
-                        <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Readiness Card</a>
+                    <!-- Column 2: Placement Engines -->
+                    <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+                        <div class="ios-footer-heading font-weight-bold mb-3" style="color: #0f172a; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Placement Engines</div>
+                        <div class="d-flex flex-column" style="gap: 8px;">
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">LeetCode Auto-Sync</a>
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">In-Browser Code Playground</a>
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Ivy-League ATS Resume Builder</a>
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">24/7 AI Placement Coach</a>
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Verified Placement Passport</a>
+                        </div>
                     </div>
 
                     <!-- Column 3: Placement TPO -->
                     <div class="col-6 col-lg-3 mb-4 mb-lg-0">
-                        <div class="ios-footer-heading">Placement Cells</div>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Cohort Intelligence</a>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Company Criteria Rules</a>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Candidate PDF/Excel Export</a>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Security Audit Logs</a>
+                        <div class="ios-footer-heading font-weight-bold mb-3" style="color: #0f172a; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Placement Cells (TPO)</div>
+                        <div class="d-flex flex-column" style="gap: 8px;">
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Drive Shortlisting Simulator</a>
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Company Hiring Cutoff Rules</a>
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Department Cohort Analytics</a>
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">1-Click Excel / PDF Export</a>
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Security &amp; Audit Logs</a>
+                        </div>
                     </div>
 
-                    <!-- Column 4: Portals -->
-                    <div class="col-12 col-lg-3">
-                        <div class="ios-footer-heading">Quick Access</div>
-                        <a href="${pageContext.request.contextPath}/register" class="ios-footer-link">Create Student Account</a>
-                        <a href="${pageContext.request.contextPath}/login" class="ios-footer-link">Administrator Portal</a>
-                        <a href="#faq" class="ios-footer-link">System Documentation</a>
-                        <a href="#overview" class="ios-footer-link font-weight-bold" style="color: var(--ios-blue);">Back to Top ↑</a>
+                    <!-- Column 4: Quick Portals -->
+                    <div class="col-12 col-lg-2">
+                        <div class="ios-footer-heading font-weight-bold mb-3" style="color: #0f172a; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Quick Portals</div>
+                        <div class="d-flex flex-column" style="gap: 8px;">
+                            <a href="${pageContext.request.contextPath}/register" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Student Register</a>
+                            <a href="${pageContext.request.contextPath}/login" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Portal Sign In</a>
+                            <a href="#faq" class="ios-footer-link" style="color: #64748b; font-size: 0.875rem;">Platform FAQ</a>
+                            <a href="#overview" class="ios-footer-link font-weight-bold" style="color: #0071e3; font-size: 0.875rem;">Back to Top ↑</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Bottom Copyright Bar -->
-                <div class="border-top pt-4 d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center text-center text-sm-left small" style="color: #64748b; font-weight: 500; gap: 0.5rem;">
+                <div class="border-top pt-4 d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center text-center text-sm-left small" style="color: #64748b; font-weight: 500; gap: 0.5rem; border-color: #f1f5f9 !important;">
                     <div>
-                        &copy; 2026 <strong style="color: var(--ios-text-primary); font-weight: 700;">SkillTrack</strong> — Placement Readiness Platform.
+                        &copy; 2026 <strong style="color: #0f172a; font-weight: 700;">SkillTrack</strong> — Next-Gen Campus Placement Operating System.
                     </div>
                     <div class="d-inline-flex align-items-center justify-content-center">
                         <span class="mr-1">Developed by</span>&nbsp;
-                        <a href="https://www.linkedin.com/in/maazpathan/" target="_blank" rel="noopener noreferrer" class="st-dev-link" style="text-decoration: none;">
+                        <a href="https://www.linkedin.com/in/maazpathan/" target="_blank" rel="noopener noreferrer" class="st-dev-link" style="text-decoration: none; color: #0071e3; font-weight: 600;">
                             <span>Maaz Pathan</span>
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1" style="vertical-align: middle;">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>

@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +68,14 @@ public class GeminiAiClient {
         return isConfigured && apiKey != null && !apiKey.isEmpty();
     }
 
+    private static final String[] FALLBACK_MODELS = {
+        "gemini-3.1-flash-lite",
+        "gemini-flash-lite-latest",
+        "gemini-3.5-flash-lite",
+        "gemini-flash-latest",
+        "gemini-3.8-flash"
+    };
+
     /**
      * Generates real-time AI response for a user prompt with system context instructions.
      */
@@ -75,16 +85,39 @@ public class GeminiAiClient {
             return null;
         }
 
+        // Try primary configured model first, then fallback models if 503/429 occurs
+        List<String> modelsToTry = new ArrayList<>();
+        if (modelName != null && !modelName.isEmpty()) {
+            modelsToTry.add(modelName);
+        }
+        for (String m : FALLBACK_MODELS) {
+            if (!modelsToTry.contains(m)) {
+                modelsToTry.add(m);
+            }
+        }
+
+        for (String targetModel : modelsToTry) {
+            String result = callGeminiApi(targetModel, systemInstruction, userPrompt);
+            if (result != null && !result.trim().isEmpty()) {
+                return result;
+            }
+        }
+
+        LOGGER.warning("All Gemini AI model attempts failed. Returning fallback.");
+        return null;
+    }
+
+    private static String callGeminiApi(String targetModel, String systemInstruction, String userPrompt) {
         try {
-            String endpointUrl = baseUrl + modelName + ":generateContent?key=" + apiKey;
+            String endpointUrl = baseUrl + targetModel + ":generateContent?key=" + apiKey;
             URL url = new URL(endpointUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             conn.setRequestProperty("Accept", "application/json");
-            conn.setConnectTimeout(15000);
-            conn.setReadTimeout(30000);
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(20000);
             conn.setDoOutput(true);
 
             // Construct Gemini Request JSON
@@ -134,16 +167,17 @@ public class GeminiAiClient {
                     while ((line = br.readLine()) != null) {
                         errBuilder.append(line);
                     }
-                    LOGGER.log(Level.WARNING, "Gemini API Error (" + responseCode + "): " + errBuilder.toString());
+                    LOGGER.log(Level.WARNING, "Gemini API Error (" + responseCode + ") on model [" + targetModel + "]: " + errBuilder.toString());
                 }
                 return null;
             }
 
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Exception calling Google Gemini API: " + e.getMessage(), e);
+            LOGGER.log(Level.WARNING, "Exception calling Gemini model [" + targetModel + "]: " + e.getMessage());
             return null;
         }
     }
+
 
     /**
      * Extracts text content from Google Gemini JSON response structure:

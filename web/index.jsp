@@ -964,44 +964,84 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">4-Step Action Plan</span>
-                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
-                        Your Structured Roadmap to Placement
+                    <h2 class="ios-section-title font-weight-bold" style="color: #0f172a; letter-spacing: -0.025em;">
+                        Your Structured Roadmap to Campus Placement
                     </h2>
-                    <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
-                        From initial registration to walking out with top tier job offers.
+                    <p class="text-muted" style="max-width: 680px; margin: auto; font-size: 1.05rem; line-height: 1.6;">
+                        From initial registration to walking out with top-tier corporate job offers.
                     </p>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-center">
-                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 01</span>
-                            <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Register Profile</h5>
-                            <p class="text-muted small mb-0">Sign up with your college email, department (CSE, IT, ECE), graduation year, and current CGPA.</p>
+                    <!-- Step 1 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="ios-feature-card text-center h-100 p-4" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                            <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1.5px solid rgba(0, 113, 227, 0.25);">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="mb-2">
+                                <span class="ios-badge ios-badge-blue font-weight-bold" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">STEP 01</span>
+                            </div>
+                            <h5 class="font-weight-bold mb-2" style="color: #0f172a; font-size: 1.05rem;">Connect Profile &amp; LeetCode</h5>
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">Sign up with your college email, department (CSE/IT/ECE), CGPA, and link your LeetCode handle for live API sync.</p>
+                            <span class="ios-badge ios-badge-gray" style="font-size: 0.68rem;">1-Click Auto-Sync</span>
                         </div>
                     </div>
 
-                    <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-center">
-                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 02</span>
-                            <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Select Target Role</h5>
-                            <p class="text-muted small mb-0">Pick your desired industry role to instantly uncover required competencies and proficiency benchmarks.</p>
+                    <!-- Step 2 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="ios-feature-card text-center h-100 p-4" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                            <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(139, 92, 246, 0.1); color: #7c3aed; border: 1.5px solid rgba(139, 92, 246, 0.25);">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                                </svg>
+                            </div>
+                            <div class="mb-2">
+                                <span class="ios-badge ios-badge-purple font-weight-bold" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">STEP 02</span>
+                            </div>
+                            <h5 class="font-weight-bold mb-2" style="color: #0f172a; font-size: 1.05rem;">Choose Industry Role</h5>
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">Pick your target career track (Full Stack, Cloud, Data) to immediately render your Skill Gap Radar and company cutoffs.</p>
+                            <span class="ios-badge ios-badge-gray" style="font-size: 0.68rem;">Dynamic Gap Radar</span>
                         </div>
                     </div>
 
-                    <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-center">
-                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 03</span>
-                            <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Execute Daily Prep</h5>
-                            <p class="text-muted small mb-0">Rate mastered skills, log solved DSA questions, add GitHub project repositories, and complete action tasks.</p>
+                    <!-- Step 3 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="ios-feature-card text-center h-100 p-4" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                            <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(245, 158, 11, 0.1); color: #d97706; border: 1.5px solid rgba(245, 158, 11, 0.25);">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="mb-2">
+                                <span class="ios-badge ios-badge-orange font-weight-bold" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">STEP 03</span>
+                            </div>
+                            <h5 class="font-weight-bold mb-2" style="color: #0f172a; font-size: 1.05rem;">Master Skills &amp; ATS Resume</h5>
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">Code in the live sandbox, complete 18 DSA topics, and generate an Ivy-League A4 ATS resume with 95%+ match score.</p>
+                            <span class="ios-badge ios-badge-gray" style="font-size: 0.68rem;">Ivy-League A4 Format</span>
                         </div>
                     </div>
 
-                    <div class="col-md-3 mb-4">
-                        <div class="ios-feature-card text-center">
-                            <span class="ios-badge ios-badge-blue mb-3 font-weight-bold">STEP 04</span>
-                            <h5 class="font-weight-bold mb-2" style="color: var(--ios-text-primary);">Qualify & Get Hired</h5>
-                            <p class="text-muted small mb-0">Export your official verified Readiness Card, check company eligibility cutoffs, and sit for campus drives.</p>
+                    <!-- Step 4 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="ios-feature-card text-center h-100 p-4" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 18px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);">
+                            <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(16, 185, 129, 0.1); color: #059669; border: 1.5px solid rgba(16, 185, 129, 0.25);">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                            </div>
+                            <div class="mb-2">
+                                <span class="ios-badge ios-badge-green font-weight-bold" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">STEP 04</span>
+                            </div>
+                            <h5 class="font-weight-bold mb-2" style="color: #0f172a; font-size: 1.05rem;">Verified Passport &amp; Hired</h5>
+                            <p class="text-muted small mb-3" style="line-height: 1.5;">Share your verified cryptographic Passport URL (<code style="color: #059669;">/passport/{hash}</code>), meet TPO drive cutoffs, and land campus offers.</p>
+                            <span class="ios-badge ios-badge-gray" style="font-size: 0.68rem;">Tamper-Proof Credential</span>
                         </div>
                     </div>
                 </div>
@@ -1238,87 +1278,104 @@
             <div class="container py-5">
                 <div class="text-center mb-5">
                     <span class="ios-badge ios-badge-blue px-3 py-1 mb-2">Got Questions?</span>
-                    <h2 class="ios-section-title font-weight-bold" style="color: var(--ios-text-primary);">
+                    <h2 class="ios-section-title font-weight-bold" style="color: #0f172a; letter-spacing: -0.025em;">
                         Frequently Asked Questions
                     </h2>
-                    <p class="text-muted" style="max-width: 650px; margin: auto; font-size: 1.1rem;">
-                        Everything you need to know about SkillTrack algorithms and workflows.
+                    <p class="text-muted" style="max-width: 680px; margin: auto; font-size: 1.05rem; line-height: 1.6;">
+                        Everything you need to know about SkillTrack algorithms, LeetCode sync, ATS diagnostics, and verification pass.
                     </p>
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="accordion" id="faqAccordion">
-                            <!-- FAQ 1 -->
-                            <div class="ios-accordion-item">
-                                <button class="ios-accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                            <!-- FAQ 1: Readiness Score -->
+                            <div class="ios-accordion-item mb-3" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 16px; overflow: hidden;">
+                                <button class="ios-accordion-btn collapsed p-3.5 d-flex justify-content-between align-items-center w-100" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1" style="background: transparent; border: none; font-weight: 600; color: #0f172a; font-size: 0.975rem;">
                                     <span>How is the 100-Point Placement Readiness Score calculated?</span>
-                                    <span class="ios-accordion-icon-circle">
-                                        <svg class="ios-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <span class="ios-accordion-icon-circle ml-2 flex-shrink-0" style="width: 28px; height: 28px; border-radius: 50%; background: #ffffff; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+                                        <svg class="ios-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
                                     </span>
                                 </button>
                                 <div id="faqCollapse1" class="collapse" data-parent="#faqAccordion">
-                                    <div class="ios-accordion-body">
-                                        SkillTrack uses a weighted deterministic algorithm designed by industry hiring leads:
-                                        <ul class="mb-0 mt-2 pl-3">
-                                            <li class="mb-1"><strong>Target Role Skill Match (40% weight):</strong> Verified proficiency across core, secondary, and tooling requirements.</li>
-                                            <li class="mb-1"><strong>DSA Milestones (25% weight):</strong> Structured problem-solving across Easy, Medium, and Hard algorithmic topics.</li>
-                                            <li class="mb-1"><strong>Verified Projects & Certifications (20% weight):</strong> GitHub-hosted full stack / specialized engineering applications.</li>
-                                            <li><strong>Academic CGPA & Cutoff Eligibility (15% weight):</strong> College standing and zero active backlogs compliance.</li>
+                                    <div class="ios-accordion-body p-4 pt-0 text-muted" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #f1f5f9;">
+                                        SkillTrack uses a weighted deterministic model designed in collaboration with corporate tech hiring leads:
+                                        <ul class="mb-2 mt-2 pl-3" style="line-height: 1.6;">
+                                            <li class="mb-1.5"><strong>Target Role Skill Match (40% weight):</strong> Verified proficiency levels (Core, Secondary, Tools) benchmarked against live industry role requirements.</li>
+                                            <li class="mb-1.5"><strong>18-Topic DSA Matrix (25% weight):</strong> Structured problem-solving progress across Easy, Medium, and Hard algorithmic milestones.</li>
+                                            <li class="mb-1.5"><strong>Verified GitHub Projects (20% weight):</strong> GitHub-hosted full stack engineering applications with live deployment links.</li>
+                                            <li><strong>Academic Standing &amp; Backlog Compliance (15% weight):</strong> Degree CGPA and zero active backlog standing for company drive qualification.</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- FAQ 2 -->
-                            <div class="ios-accordion-item">
-                                <button class="ios-accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                                    <span>Can I change my target industry career role later?</span>
-                                    <span class="ios-accordion-icon-circle">
-                                        <svg class="ios-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- FAQ 2: LeetCode Auto-Sync & 18 Topics -->
+                            <div class="ios-accordion-item mb-3" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 16px; overflow: hidden;">
+                                <button class="ios-accordion-btn collapsed p-3.5 d-flex justify-content-between align-items-center w-100" type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2" style="background: transparent; border: none; font-weight: 600; color: #0f172a; font-size: 0.975rem;">
+                                    <span>How does LeetCode Auto-Sync and the 18-Topic DSA Matrix work?</span>
+                                    <span class="ios-accordion-icon-circle ml-2 flex-shrink-0" style="width: 28px; height: 28px; border-radius: 50%; background: #ffffff; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+                                        <svg class="ios-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
                                     </span>
                                 </button>
                                 <div id="faqCollapse2" class="collapse" data-parent="#faqAccordion">
-                                    <div class="ios-accordion-body">
-                                        Yes. You can switch your primary target career role (e.g. from <em>Full Stack Developer</em> to <em>Cloud DevOps Engineer</em> or <em>Data Engineer</em>) at any time from your Academic Profile. SkillTrack will instantly recalibrate your Skill Gap radar, missing skills list, and readiness percentage in real time.
+                                    <div class="ios-accordion-body p-4 pt-0 text-muted" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #f1f5f9;">
+                                        SkillTrack connects directly to public GraphQL APIs to synchronize your solved problem count across Easy, Medium, and Hard tiers in real time. It automatically maps your count across 18 core DSA topics (Arrays, Two Pointers, Sliding Window, Trees, Graphs, Dynamic Programming, etc.) and updates your readiness score without tedious manual logging.
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- FAQ 3 -->
-                            <div class="ios-accordion-item">
-                                <button class="ios-accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                                    <span>How does the DSA Milestone Tracker evaluate my progress?</span>
-                                    <span class="ios-accordion-icon-circle">
-                                        <svg class="ios-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- FAQ 3: ATS Resume & Scanner -->
+                            <div class="ios-accordion-item mb-3" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 16px; overflow: hidden;">
+                                <button class="ios-accordion-btn collapsed p-3.5 d-flex justify-content-between align-items-center w-100" type="button" data-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3" style="background: transparent; border: none; font-weight: 600; color: #0f172a; font-size: 0.975rem;">
+                                    <span>Why is the Ivy-League ATS Resume Builder superior to standard graphic templates?</span>
+                                    <span class="ios-accordion-icon-circle ml-2 flex-shrink-0" style="width: 28px; height: 28px; border-radius: 50%; background: #ffffff; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+                                        <svg class="ios-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
                                     </span>
                                 </button>
                                 <div id="faqCollapse3" class="collapse" data-parent="#faqAccordion">
-                                    <div class="ios-accordion-body">
-                                        Unlike raw problem counters, SkillTrack tracks structured milestones categorized by data structures (Arrays, Linked Lists, Binary Trees, Graphs, Dynamic Programming). This guarantees well-rounded algorithmic competence rather than repetitive easy question grinding.
+                                    <div class="ios-accordion-body p-4 pt-0 text-muted" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #f1f5f9;">
+                                        Over 75% of graphic multi-column resumes get silently rejected by corporate Applicant Tracking Systems (ATS) due to parsing errors. SkillTrack generates a clean, single-column Ivy-League standard A4 PDF resume and runs an automated 0-100% keyword diagnostic checking for target tech stack keywords, high-impact action verbs, and quantified business metrics.
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- FAQ 4 -->
-                            <div class="ios-accordion-item">
-                                <button class="ios-accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                                    <span>Can I download or print my official Readiness Profile Card?</span>
-                                    <span class="ios-accordion-icon-circle">
-                                        <svg class="ios-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- FAQ 4: Public Verified Passport -->
+                            <div class="ios-accordion-item mb-3" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 16px; overflow: hidden;">
+                                <button class="ios-accordion-btn collapsed p-3.5 d-flex justify-content-between align-items-center w-100" type="button" data-toggle="collapse" data-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4" style="background: transparent; border: none; font-weight: 600; color: #0f172a; font-size: 0.975rem;">
+                                    <span>What is the Public Verified Placement Passport (<code style="color: #7c3aed;">/passport/{hash}</code>)?</span>
+                                    <span class="ios-accordion-icon-circle ml-2 flex-shrink-0" style="width: 28px; height: 28px; border-radius: 50%; background: #ffffff; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+                                        <svg class="ios-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
                                     </span>
                                 </button>
                                 <div id="faqCollapse4" class="collapse" data-parent="#faqAccordion">
-                                    <div class="ios-accordion-body">
-                                        Yes. SkillTrack includes a specialized vector print-engine stylesheet that renders your entire profile into an official, single-page verified readiness card with verifiable metrics, skill badges, and readiness status for recruiters and campus placement drives.
+                                    <div class="ios-accordion-body p-4 pt-0 text-muted" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #f1f5f9;">
+                                        Every registered student receives a unique, tamper-proof cryptographic profile URL and QR code. Recruiters and placement officers can open this link to verify live GitHub source repositories, working application deployments, authenticated LeetCode solves, and official college academic standing in 1 click.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 5: TPO & Placement Cell Integration -->
+                            <div class="ios-accordion-item" style="background: rgba(248, 250, 252, 0.9); border: 1px solid rgba(226, 232, 240, 0.95); border-radius: 16px; overflow: hidden;">
+                                <button class="ios-accordion-btn collapsed p-3.5 d-flex justify-content-between align-items-center w-100" type="button" data-toggle="collapse" data-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5" style="background: transparent; border: none; font-weight: 600; color: #0f172a; font-size: 0.975rem;">
+                                    <span>How does SkillTrack support college TPOs and faculty coordinators?</span>
+                                    <span class="ios-accordion-icon-circle ml-2 flex-shrink-0" style="width: 28px; height: 28px; border-radius: 50%; background: #ffffff; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+                                        <svg class="ios-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="faqCollapse5" class="collapse" data-parent="#faqAccordion">
+                                    <div class="ios-accordion-body p-4 pt-0 text-muted" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #f1f5f9;">
+                                        College Training &amp; Placement Cells (TPOs) gain access to an enterprise console featuring an instant drive shortlisting simulator (applying CGPA cutoffs, backlog filters, and required tech skills), department cohort analytics, and 1-click exportable Excel/PDF rosters ready for visiting campus recruiters.
                                     </div>
                                 </div>
                             </div>

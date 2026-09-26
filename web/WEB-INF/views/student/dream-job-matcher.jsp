@@ -177,13 +177,13 @@
                 <div class="row g-3">
                     <c:forEach items="${companyPresets}" var="c">
                         <c:url var="cardToggleUrl" value="/app/student/dream-job">
-                            <c:if test="${matchResult.criteriaId != c.criteriaId}">
+                            <c:if test="${empty matchResult or empty matchResult.criteriaId or matchResult.criteriaId != c.criteriaId}">
                                 <c:param name="criteriaId" value="${c.criteriaId}" />
                             </c:if>
                         </c:url>
                         <div class="col-xl-4 col-md-6 col-12 mb-3">
-                            <a href="${cardToggleUrl}" class="text-decoration-none text-dark" title="${matchResult.criteriaId == c.criteriaId ? 'Click to deselect' : 'Click to select'}">
-                                <div class="company-preset-card p-3 h-100 ${matchResult.criteriaId == c.criteriaId ? 'active-preset' : ''}">
+                            <a href="${cardToggleUrl}" class="text-decoration-none text-dark" title="${not empty matchResult and matchResult.criteriaId == c.criteriaId ? 'Click to deselect' : 'Click to select'}">
+                                <div class="company-preset-card p-3 h-100 ${not empty matchResult and matchResult.criteriaId == c.criteriaId ? 'active-preset' : ''}">
                                     <div class="d-flex align-items-center justify-content-between mb-2.5">
                                         <div class="d-flex align-items-center" style="gap: 0.75rem;">
                                             <!-- Official High-Resolution Vector Company Logos -->
@@ -246,10 +246,6 @@
                                                 </span>
                                             </div>
                                         </div>
-
-                                        <c:if test="${matchResult.criteriaId == c.criteriaId}">
-                                            <span class="badge badge-primary px-2 py-1 font-weight-semibold" style="font-size: 0.7rem; border-radius: 10px; background: #0071e3; box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);">&check; Active</span>
-                                        </c:if>
                                     </div>
 
                                     <!-- Technical Cutoffs Pill Row -->

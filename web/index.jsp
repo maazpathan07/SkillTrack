@@ -35,64 +35,13 @@
                 </a>
             </div>
 
-            <!-- Apple Floating Capsule Pill Navigation Menu (Desktop: Compact & Dropdown Groups) -->
+            <!-- Apple Floating Capsule Pill Navigation Menu (Desktop: Clean Horizontal Links) -->
             <nav class="d-none d-lg-flex align-items-center ios-capsule-nav">
-                <!-- 1. Overview -->
                 <a href="#overview" class="ios-capsule-link active">Overview</a>
-
-                <!-- 2. Features Dropdown -->
-                <div class="dropdown">
-                    <a href="javascript:void(0)" class="ios-capsule-link dropdown-toggle" id="navFeaturesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>Capabilities</span>
-                        <svg class="ios-capsule-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <div class="dropdown-menu ios-capsule-dropdown-menu" aria-labelledby="navFeaturesDropdown">
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#features">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                            <span>4 Placement Engines</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#features">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                            <span>LeetCode Sync &amp; DSA</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#features">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                            <span>Code Playground</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#features">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                            <span>ATS Resume &amp; AI</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#features">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                            <span>Verified Passport</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 3. Solutions Dropdown -->
-                <div class="dropdown">
-                    <a href="javascript:void(0)" class="ios-capsule-link dropdown-toggle" id="navSolutionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>Solutions</span>
-                        <svg class="ios-capsule-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <div class="dropdown-menu ios-capsule-dropdown-menu" aria-labelledby="navSolutionsDropdown">
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#comparison">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-                            <span>Why SkillTrack</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#roadmap">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                            <span>4-Step Roadmap</span>
-                        </a>
-                        <a class="dropdown-item ios-capsule-dropdown-item" href="#tpo-portal">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                            <span>Placement Cells &amp; TPO</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 4. FAQ -->
+                <a href="#comparison" class="ios-capsule-link">Why SkillTrack</a>
+                <a href="#features" class="ios-capsule-link">Capabilities</a>
+                <a href="#roadmap" class="ios-capsule-link">Roadmap</a>
+                <a href="#tpo-portal" class="ios-capsule-link">Placement Cells</a>
                 <a href="#faq" class="ios-capsule-link">FAQ</a>
             </nav>
 
@@ -127,22 +76,20 @@
                         <span>Overview</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
-                    
-                    <div class="px-3 pt-2 pb-1 text-uppercase text-muted" style="font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;">Capabilities</div>
-                    <a href="#features" class="ios-mobile-link pl-4">
-                        <span>Placement Engines &amp; DSA</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
-                    <a href="#comparison" class="ios-mobile-link pl-4">
+                    <a href="#comparison" class="ios-mobile-link">
                         <span>Why SkillTrack</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
-                    <a href="#roadmap" class="ios-mobile-link pl-4">
-                        <span>4-Step Roadmap</span>
+                    <a href="#features" class="ios-mobile-link">
+                        <span>Capabilities</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
-                    <a href="#tpo-portal" class="ios-mobile-link pl-4">
-                        <span>Placement Cells &amp; TPO</span>
+                    <a href="#roadmap" class="ios-mobile-link">
+                        <span>Roadmap</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a href="#tpo-portal" class="ios-mobile-link">
+                        <span>Placement Cells</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
                     <a href="#faq" class="ios-mobile-link">

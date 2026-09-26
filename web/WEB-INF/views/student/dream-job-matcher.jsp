@@ -135,11 +135,14 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-1.5 flex-wrap">
                                         <label class="ios-form-label font-weight-semibold mb-0">Job Description (JD) Text</label>
-                                        <button type="button" class="btn btn-sm btn-link p-0 text-primary font-weight-bold" id="sampleJdBtn" style="font-size: 0.8rem;">
-                                            &circlearrowright; Load Sample JD
-                                        </button>
+                                        <div class="d-flex align-items-center flex-wrap" style="gap: 0.4rem;">
+                                            <button type="button" class="btn btn-xs btn-outline-primary py-0 px-1.5 font-weight-semibold" id="sampleSdeBtn" style="font-size: 0.72rem; border-radius: 12px;">&plus; SDE</button>
+                                            <button type="button" class="btn btn-xs btn-outline-info py-0 px-1.5 font-weight-semibold" id="sampleAiBtn" style="font-size: 0.72rem; border-radius: 12px;">&plus; AI/ML</button>
+                                            <button type="button" class="btn btn-xs btn-outline-success py-0 px-1.5 font-weight-semibold" id="sampleFullstackBtn" style="font-size: 0.72rem; border-radius: 12px;">&plus; MERN</button>
+                                            <button type="button" class="btn btn-xs btn-outline-secondary py-0 px-1.5 font-weight-semibold" id="clearJdBtn" style="font-size: 0.72rem; border-radius: 12px;">Clear</button>
+                                        </div>
                                     </div>
                                     <textarea class="ios-form-control" name="rawJdText" id="rawJdText" rows="9" placeholder="Paste the job description, required skills, DSA expectations, responsibilities, or minimum qualification text here..." style="font-size: 0.85rem; line-height: 1.5;"><c:out value="${matchResult.rawJdText}" /></textarea>
                                 </div>
@@ -450,22 +453,57 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Sample JD Auto-loader
-    var sampleBtn = document.getElementById('sampleJdBtn');
-    if (sampleBtn) {
-        sampleBtn.addEventListener('click', function() {
+    // Sample JD Auto-loaders
+    var sdeBtn = document.getElementById('sampleSdeBtn');
+    if (sdeBtn) {
+        sdeBtn.addEventListener('click', function() {
             document.getElementById('targetCompany').value = 'Google';
             document.getElementById('targetRole').value = 'Software Development Engineer (SDE-1)';
             document.getElementById('rawJdText').value = 
                 "Role: Software Development Engineer (SDE-1)\n" +
-                "Location: Mountain View / Bengaluru\n\n" +
                 "Minimum Qualifications:\n" +
-                "- Bachelor's degree in Computer Science or related technical field with minimum 7.5 CGPA.\n" +
-                "- Solid foundations in Data Structures and Algorithms (Dynamic Programming, Trees, Graphs, Hash Tables, System Scalability).\n" +
-                "- Proficiency in Java, Python, C++, or Go.\n" +
-                "- Experience building full-stack web applications, RESTful APIs, and relational databases (SQL / MySQL / PostgreSQL).\n" +
-                "- Familiarity with Cloud Computing (GCP, AWS) and containerization tools (Docker, Kubernetes).\n" +
-                "- Preferred: Industry recognized certifications or open-source GitHub contributions.";
+                "- Bachelor's degree with minimum 7.5 CGPA.\n" +
+                "- Strong in Data Structures and Algorithms (Dynamic Programming, Trees, Graphs, System Scalability).\n" +
+                "- Proficiency in Java, C++, or Go.\n" +
+                "- Experience with cloud backends and distributed systems.";
+        });
+    }
+
+    var aiBtn = document.getElementById('sampleAiBtn');
+    if (aiBtn) {
+        aiBtn.addEventListener('click', function() {
+            document.getElementById('targetCompany').value = 'OpenAI';
+            document.getElementById('targetRole').value = 'Machine Learning Engineer';
+            document.getElementById('rawJdText').value = 
+                "Role: Machine Learning Engineer\n" +
+                "Requirements:\n" +
+                "- Strong fundamentals in Python, Machine Learning, Deep Learning, and Math.\n" +
+                "- Hands-on experience with PyTorch or TensorFlow, Pandas, and NumPy.\n" +
+                "- Experience developing API endpoints (FastAPI / Flask) and Docker.";
+        });
+    }
+
+    var fullstackBtn = document.getElementById('sampleFullstackBtn');
+    if (fullstackBtn) {
+        fullstackBtn.addEventListener('click', function() {
+            document.getElementById('targetCompany').value = 'Swiggy';
+            document.getElementById('targetRole').value = 'MERN Stack Developer';
+            document.getElementById('rawJdText').value = 
+                "Role: MERN Full-Stack Developer\n" +
+                "Requirements:\n" +
+                "- Proficiency in React.js, Node.js, Express.js, and MongoDB.\n" +
+                "- Solid experience building RESTful APIs, Git version control, and clean state management.\n" +
+                "- Familiarity with responsive UI using Tailwind CSS.";
+        });
+    }
+
+    var clearBtn = document.getElementById('clearJdBtn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            document.getElementById('targetCompany').value = '';
+            document.getElementById('targetRole').value = '';
+            document.getElementById('rawJdText').value = '';
+            if (document.getElementById('sourceUrl')) document.getElementById('sourceUrl').value = '';
         });
     }
 
